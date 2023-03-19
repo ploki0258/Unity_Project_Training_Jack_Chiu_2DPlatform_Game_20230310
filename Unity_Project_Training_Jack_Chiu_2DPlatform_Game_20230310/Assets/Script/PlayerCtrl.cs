@@ -4,7 +4,11 @@ public class PlayerCtrl : MonoBehaviour
 {
     [Header("移動速度"), Range(0, 100)]
     [SerializeField] float speed = 10f;
-
+    [Header("跳躍力量")]
+    [SerializeField] float 跳躍力 = 0f;
+    
+    [Tooltip("用來儲存玩家是否站在地板上")]
+    private bool onFloor = false;
     Rigidbody2D rig;
     Animator ani;
 
@@ -17,6 +21,14 @@ public class PlayerCtrl : MonoBehaviour
     private void Update()
     {
         PlayerMove();
+        Jump();
+        // Debug.Log(onFloor);
+    }
+
+    private void FixedUpdate()
+    {
+        //偵測是否踩到地板
+        onFloor = Physics2D.Raycast(this.transform.position, Vector2.down, 0.1f);
     }
 
     /// <summary>
@@ -24,16 +36,54 @@ public class PlayerCtrl : MonoBehaviour
     /// </summary>
     void PlayerMove()
     {
-        if (Input.GetKey(KeyCode.RightArrow))                         // 如果 按下右方向鍵
+        // 移動
+        float ad = Input.GetAxisRaw("Horizontal");                        // 取得水平值
+        rig.velocity = new Vector2(ad * speed, rig.velocity.y);
+
+        //移動動畫
+        ani.SetBool("isRun", ad != 0);
+
+        // 翻轉
+        if (Input.GetKey(KeyCode.RightArrow))
+            this.transform.rotation = Quaternion.AngleAxis(0, new Vector3(0, 1, 0));
+        
+        if (Input.GetKey(KeyCode.LeftArrow))
+            this.transform.rotation = Quaternion.AngleAxis(180, new Vector3(0, 1, 0));
+
+        /*
+        if (Input.GetKeyDown(KeyCode.RightArrow))                         // 如果 按下右方向鍵
         {
-            rig.AddForce(transform.right * speed, ForceMode2D.Force);  // 向右側施加一個推力
-            print("向右移動");
+            // rig.AddForce(transform.right * speed, ForceMode2D.Force);  // 向右側施加一個推力
+            // print("向右移動");
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow))                          // 如果 按下左方向鍵
+        if (Input.GetKeyDown(KeyCode.LeftArrow))                          // 如果 按下左方向鍵
         {
-            rig.AddForce(new Vector2(-speed, 0f), ForceMode2D.Force);  // 向左側施加一個推力
-            print("向左移動");
+            // rig.AddForce(new Vector2(-speed, 0f), ForceMode2D.Force);  // 向左側施加一個推力
+            // print("向左移動");
         }
+        */
     }
+
+    /// <summary>
+    /// 跳躍功能
+    /// </summary>
+    void Jump()
+    {
+        // 如果 按下空白建 以及 onFloor 就跳躍
+        if (Input.GetKeyDown(KeyCode.Space) && onFloor == true)
+        {
+            // rig.velocity = new Vector2(rig.velocity.x, 跳躍力);
+            rig.AddForce(transform.up * 跳躍力, ForceMode2D.Impulse);
+        }
+
+        //跳躍動畫
+        ani.SetBool("isJump", onFloor == false);
+        Debug.Log(onFloor);
+    }
+
+    void Attack()
+    {
+    }
+
 }
