@@ -6,7 +6,10 @@ public class PlayerCtrl : MonoBehaviour
     [SerializeField] float speed = 10f;
     [Header("跳躍力量")]
     [SerializeField] float 跳躍力 = 0f;
-    
+    [SerializeField] GameObject atkObject = null;
+    [SerializeField] Transform 攻擊生成點 = null;
+    [SerializeField] float 攻擊速度 = 0f;
+
     [Tooltip("用來儲存玩家是否站在地板上")]
     private bool onFloor = false;
     Rigidbody2D rig;
@@ -22,13 +25,14 @@ public class PlayerCtrl : MonoBehaviour
     {
         PlayerMove();
         Jump();
+        Attack();
         // Debug.Log(onFloor);
     }
 
     private void FixedUpdate()
     {
         //偵測是否踩到地板
-        onFloor = Physics2D.Raycast(this.transform.position, Vector2.down, 0.1f);
+        onFloor = Physics2D.Raycast(this.transform.position, new Vector2(0f, -1f), 0.9f);
     }
 
     /// <summary>
@@ -46,7 +50,7 @@ public class PlayerCtrl : MonoBehaviour
         // 翻轉
         if (Input.GetKey(KeyCode.RightArrow))
             this.transform.rotation = Quaternion.AngleAxis(0, new Vector3(0, 1, 0));
-        
+
         if (Input.GetKey(KeyCode.LeftArrow))
             this.transform.rotation = Quaternion.AngleAxis(180, new Vector3(0, 1, 0));
 
@@ -70,8 +74,8 @@ public class PlayerCtrl : MonoBehaviour
     /// </summary>
     void Jump()
     {
-        // 如果 按下空白建 以及 onFloor 就跳躍
-        if (Input.GetKeyDown(KeyCode.Space) && onFloor == true)
+        // 如果 按下空白建(或上) 以及 onFloor = true 就跳躍
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && onFloor != false)
         {
             // rig.velocity = new Vector2(rig.velocity.x, 跳躍力);
             rig.AddForce(transform.up * 跳躍力, ForceMode2D.Impulse);
@@ -82,8 +86,16 @@ public class PlayerCtrl : MonoBehaviour
         Debug.Log(onFloor);
     }
 
+    /// <summary>
+    /// 攻擊功能
+    /// </summary>
     void Attack()
     {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            GameObject temp = Instantiate(atkObject, 攻擊生成點.position, 攻擊生成點.rotation);
+            temp.GetComponent<Rigidbody2D>().AddForce(transform.right * 攻擊速度 + transform.up * 100);
+        }
     }
 
 }
