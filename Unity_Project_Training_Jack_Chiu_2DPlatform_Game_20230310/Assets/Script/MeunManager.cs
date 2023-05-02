@@ -6,7 +6,7 @@ public class MeunManager : MonoBehaviour
     /// <summary>
     /// Â÷¶}¹CÀ¸
     /// </summary>
-    public void Quit()
+    public void QuitGame()
     {
         Application.Quit();
     }
