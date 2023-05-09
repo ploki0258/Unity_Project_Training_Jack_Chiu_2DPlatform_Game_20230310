@@ -6,8 +6,11 @@ public class PlayerCtrl : MonoBehaviour
 	[SerializeField] float speed = 10f;
 	[Header("跳躍力量")]
 	[SerializeField] float 跳躍力 = 0f;
+	[Header("攻擊物件")]
 	[SerializeField] GameObject atkObject = null;
+	[Header("生成點")]
 	[SerializeField] Transform 攻擊生成點 = null;
+	[Header("攻擊速度")]
 	[SerializeField] float 攻擊速度 = 0f;
 
 	[Tooltip("用來儲存玩家是否站在地板上")]
@@ -93,12 +96,14 @@ public class PlayerCtrl : MonoBehaviour
 	}
 
 	/// <summary>
-	/// 攻擊功能
+	/// 攻擊功能：發射子彈
 	/// </summary>
 	void Attack()
 	{
 		if (Input.GetKeyDown(KeyCode.Mouse0))
 		{
+			ani.SetTrigger("attack");
+			
 			if (翻轉 != true)
 			{
 				GameObject temp = Instantiate(atkObject, 攻擊生成點.position, Quaternion.Euler(0, 0, 90f));
