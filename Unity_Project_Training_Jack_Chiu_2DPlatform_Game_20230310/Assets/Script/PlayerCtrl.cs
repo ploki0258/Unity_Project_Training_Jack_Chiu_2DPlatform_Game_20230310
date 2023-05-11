@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerCtrl : MonoBehaviour
@@ -23,7 +24,7 @@ public class PlayerCtrl : MonoBehaviour
     [Header("最大魔力")]
     [SerializeField] float maxMP = 100f;
     [Header("金幣數量")]
-    [SerializeField] Text countCoin = null;
+    [SerializeField] TMP_Text countCoin;
     [Header("魔力消耗")]
     [SerializeField] float costMP = 0f;
     /*[Header("血量值")]
@@ -60,6 +61,7 @@ public class PlayerCtrl : MonoBehaviour
         PlayerMove();
         Jump();
         Attack();
+        Panacea();
     }
 
     private void FixedUpdate()
@@ -153,6 +155,17 @@ public class PlayerCtrl : MonoBehaviour
                 GameObject temp = Instantiate(atkObject, 攻擊生成點.position, Quaternion.Euler(0, 0, 270f));
                 temp.GetComponent<Rigidbody2D>().AddForce(transform.right * 攻擊速度 + transform.up * 250);
             }
+        }
+    }
+
+    /// <summary>
+    /// 萬能藥：MP全回滿
+    /// </summary>
+    void Panacea()
+    {
+        if (Input.GetKeyDown(KeyCode.P) && mp != maxMP)
+        {
+            mp = maxMP;
         }
     }
 
