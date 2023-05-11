@@ -24,7 +24,8 @@ public class PlayerCtrl : MonoBehaviour
     [Header("最大魔力")]
     [SerializeField] float maxMP = 100f;
     [Header("金幣數量")]
-    [SerializeField] TMP_Text countCoin;
+    [SerializeField] TextMeshProUGUI countCoin = null;
+    [SerializeField] Text countCoin_2 = null;
     [Header("魔力消耗")]
     [SerializeField] float costMP = 0f;
     /*[Header("血量值")]
@@ -148,12 +149,12 @@ public class PlayerCtrl : MonoBehaviour
             if (翻轉 != true)
             {
                 GameObject temp = Instantiate(atkObject, 攻擊生成點.position, Quaternion.Euler(0, 0, 90f));
-                temp.GetComponent<Rigidbody2D>().AddForce(transform.right * 攻擊速度 + transform.up * 250);
+                temp.GetComponent<Rigidbody2D>().AddForce(transform.right * 攻擊速度 + transform.up * 10);
             }
             else
             {
                 GameObject temp = Instantiate(atkObject, 攻擊生成點.position, Quaternion.Euler(0, 0, 270f));
-                temp.GetComponent<Rigidbody2D>().AddForce(transform.right * 攻擊速度 + transform.up * 250);
+                temp.GetComponent<Rigidbody2D>().AddForce(transform.right * 攻擊速度 + transform.up * 10);
             }
         }
     }
@@ -187,14 +188,14 @@ public class PlayerCtrl : MonoBehaviour
         }
     }
 
-    float coin
+    public float coin
     {
         get { return _coin; }
         set
         {
             _coin = value;
-            countCoin.text = Mathf.Round(value).ToString();
+            countCoin_2.text = Mathf.Round(value) + "";
         }
     }
-    float _coin = 0;
+    float _coin = 0f;
 }
