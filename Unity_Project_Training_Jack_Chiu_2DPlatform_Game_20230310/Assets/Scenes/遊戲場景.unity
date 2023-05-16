@@ -1334,7 +1334,6 @@ MonoBehaviour:
   maxHP: 100
   maxMP: 100
   countCoin: {fileID: 0}
-  countCoin_2: {fileID: 0}
   costMP: 0
 --- !u!1 &618134684
 GameObject:
@@ -1825,7 +1824,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -220, y: -85}
+  m_AnchoredPosition: {x: -195, y: -85}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &774936595
@@ -1883,7 +1882,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 4
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2227,7 +2226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &963759007
 RectTransform:
   m_ObjectHideFlags: 0
