@@ -1,0 +1,7 @@
+using UnityEngine;
+
+public class enemy : MonoBehaviour
+{
+    [SerializeField, Header("§ðÀ»¤O")]
+    float atk = 10f;
+}
