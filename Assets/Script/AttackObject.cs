@@ -1,8 +1,8 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class AttackObject : MonoBehaviour
 {
-	[Header("¶Ë®`­È")]
+	[Header("å‚·å®³å€¼")]
 	[SerializeField] float damage = 5f;
 
 	private void OnCollisionEnter2D(Collision2D collision)

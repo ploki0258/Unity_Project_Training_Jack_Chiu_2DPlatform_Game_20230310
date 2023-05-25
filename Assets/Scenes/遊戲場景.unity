@@ -4305,6 +4305,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2005787615573118195, guid: 2dbb8519d4717364da43309a0edbdd33,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.237
+      objectReference: {fileID: 0}
     - target: {fileID: 4260598489493462967, guid: 2dbb8519d4717364da43309a0edbdd33,
         type: 3}
       propertyPath: point
@@ -4320,6 +4325,11 @@ PrefabInstance:
       propertyPath: coinCount
       value: 
       objectReference: {fileID: 774936595}
+    - target: {fileID: 4260598489493462967, guid: 2dbb8519d4717364da43309a0edbdd33,
+        type: 3}
+      propertyPath: showCoinAni
+      value: 
+      objectReference: {fileID: 242122688}
     - target: {fileID: 4260598489493462967, guid: 2dbb8519d4717364da43309a0edbdd33,
         type: 3}
       propertyPath: "\u91D1\u5E63\u986F\u793A\u52D5\u756B"
