@@ -127,7 +127,7 @@ public class PlayerCtrl : MonoBehaviour
 
         //跳躍動畫
         ani.SetBool("isJump", onFloor == false);
-        Debug.Log("踩到地板" + onFloor);
+        // Debug.Log("踩到地板" + onFloor);
     }
 
     /// <summary>
