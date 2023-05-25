@@ -25,9 +25,9 @@ public class PlayerCtrl : MonoBehaviour
     [SerializeField] float maxMP = 100f;
     [Header("金幣數量")]
     [SerializeField] TextMeshProUGUI countCoin = null;
-    // [SerializeField] Text countCoin_2 = null;
     [Header("魔力消耗")]
     [SerializeField] float costMP = 0f;
+    // [SerializeField] Animator 金幣顯示動畫 = null;
     /*[Header("血量值")]
     [SerializeField] Text valueHP = null;
     [Header("魔力值")]
@@ -193,6 +193,11 @@ public class PlayerCtrl : MonoBehaviour
             mp = maxMP;
         }
     }
+
+    /*public void Coin()
+    {
+        countCoin.text = "× " + Enemy.instance.coinNumber.ToString();
+    }*/
 
     public float hp
     {

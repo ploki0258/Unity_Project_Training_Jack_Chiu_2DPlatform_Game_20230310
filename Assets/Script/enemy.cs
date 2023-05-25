@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Enemy : MonoBehaviour
 {
     [Header("怪物血量")]
-    [SerializeField] float hpMonster = 100f;
+    [SerializeField] float hpMonsterMax = 100f;
     [Header("怪物攻擊力")]
     [SerializeField] float atkMonster = 5f;
     [Header("生成點")]
@@ -13,14 +14,19 @@ public class Enemy : MonoBehaviour
     [SerializeField] float speedMonster = 5f;
     [Header("基準距離")]
     [SerializeField] float disBase = 8f;
-    [Header("掉落金幣")]
-    [SerializeField] int coin = 0;
+    [Header("掉落金幣數量")]
+    public int coinNumber = 0;
+    [Header("資訊欄")]
+    [SerializeField] Text coinInfo = null;
+    [Header("金幣數量")]
+    [SerializeField] TextMeshProUGUI coinCount = null;
     [Header("掉落道具")]
     [SerializeField] GameObject itemNorm = null;
-
+    [SerializeField] Animator 金幣顯示動畫 = null;
     [SerializeField] Image barHP = null;
     // [SerializeField] float maxHP = 100f;
 
+    bool aniCoin = false;
     Transform player = null;
     Rigidbody2D rig = null;
     Animator ani = null;
@@ -38,7 +44,8 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        hp = hpMonster;
+        hpMonster = hpMonsterMax;
+        coinInfo.text = "";
     }
 
     private void Update()
@@ -69,17 +76,25 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamageMonster(float hurt)
     {
-        hp -= hurt;
+        hpMonster -= hurt;
     }
 
     void Dead()
     {
-        if(hp <= 1)
+        if (hpMonster < 1)
         {
             enabled = false;
             ani.SetTrigger("damage");
             Instantiate(itemNorm, point.position, point.rotation);
-            // Destroy(this.gameObject);
+            aniCoin = true;
+            int coinNumber = Random.Range(100, 1000);
+            coinInfo.text = "+" + coinNumber + "金幣";
+            
+            if (aniCoin == true)
+                金幣顯示動畫.SetTrigger("play");
+            coinCount.text = "× " + coinNumber;
+            Destroy(this.gameObject);
+            // Debug.Log(coinNumber);
         }
     }
 
@@ -91,12 +106,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public float hp
+    public float hpMonster
     {
-        get { return hpMonster * barHP.fillAmount; }
+        get { return hpMonsterMax * barHP.fillAmount; }
         set
         {
-            barHP.fillAmount = value / hpMonster;
+            barHP.fillAmount = value / hpMonsterMax;
         }
     }
 }
