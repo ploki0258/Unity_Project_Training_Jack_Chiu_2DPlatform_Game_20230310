@@ -1236,6 +1236,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rogue_06
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011821036864, guid: 5b210609803658e488f512fc13a6163e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4000011826580284, guid: 5b210609803658e488f512fc13a6163e, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1669,6 +1673,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: "\u73A9\u5BB6"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105362945620786469, guid: ebea5f8b8163f9a4ab9d9a1b45444e28,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4105362945620786471, guid: ebea5f8b8163f9a4ab9d9a1b45444e28,
         type: 3}
@@ -3757,6 +3766,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &1892972323 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2005787615573118195, guid: 2dbb8519d4717364da43309a0edbdd33,
+    type: 3}
+  m_PrefabInstance: {fileID: 4260598489493462965}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1925255274
 GameObject:
   m_ObjectHideFlags: 0
@@ -4067,7 +4082,7 @@ PrefabInstance:
     - target: {fileID: 1626587007037101741, guid: 2dbb8519d4717364da43309a0edbdd33,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.6
+      value: -6.4
       objectReference: {fileID: 0}
     - target: {fileID: 1626587007037101741, guid: 2dbb8519d4717364da43309a0edbdd33,
         type: 3}
@@ -4114,5 +4129,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4260598489493462967, guid: 2dbb8519d4717364da43309a0edbdd33,
+        type: 3}
+      propertyPath: point
+      value: 
+      objectReference: {fileID: 1892972323}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dbb8519d4717364da43309a0edbdd33, type: 3}

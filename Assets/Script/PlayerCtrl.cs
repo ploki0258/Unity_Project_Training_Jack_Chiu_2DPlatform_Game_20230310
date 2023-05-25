@@ -178,7 +178,7 @@ public class PlayerCtrl : MonoBehaviour
     /// 受傷功能
     /// </summary>
     /// <param name="hurt">傷害量</param>
-    public void takeDamage(float hurt)
+    public void TakeDamage(float hurt)
     {
         hp -= hurt;
     }
