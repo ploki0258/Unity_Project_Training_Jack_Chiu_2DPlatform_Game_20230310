@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4260598490438516883}
   - component: {fileID: 4260598489493462967}
   m_Layer: 0
-  m_Name: PrefMiniChara
+  m_Name: "\u53F2\u840A\u59C6"
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1626587007037101715}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.6, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -148,15 +148,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326291c50175f0d4aa952ec74e4ba60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpMonster: 100
+  hpMonsterMax: 100
+  barHP: {fileID: 4260598490837060330}
   atkMonster: 10
-  point: {fileID: 0}
+  point: {fileID: 2005787615573118195}
   speedMonster: 5
   disBase: 8
-  coin: 100
+  coinInfo: {fileID: 0}
+  skillInfo: {fileID: 0}
+  coinCount: {fileID: 0}
+  skillCount: {fileID: 0}
   itemNorm: {fileID: 4544073352136542978, guid: 12975e6074d5c3340b7b22a984ca9ce3,
     type: 3}
-  barHP: {fileID: 4260598490837060330}
+  showCoinAni: {fileID: 0}
+  showSkillPointAni: {fileID: 0}
 --- !u!1 &1626587007282310853
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,7 +538,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5937468149833880823}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.28, y: -2.51, z: 0}
+  m_LocalPosition: {x: 0.28, y: -2.237, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
