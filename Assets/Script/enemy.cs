@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         // Move();
-        Dead();
+        // Dead();
         DropItem();
         DeathAni();
     }
@@ -100,13 +100,10 @@ public class Enemy : MonoBehaviour
     /// </summary>
     void Dead()
     {
-        if (hpMonster < 1)
-        {
-            // ani.SetTrigger("damage");
-            enabled = false;
-            isDeath = true;
-            // Debug.Log(coinNumber);
-        }
+        enabled = false;
+        isDeath = true;
+        Destroy(this.gameObject);
+        // Debug.Log(coinNumber);
     }
 
     /// <summary>
@@ -139,15 +136,17 @@ public class Enemy : MonoBehaviour
             {
                 Instantiate(itemNorm, point.position, point.rotation);
             }
-            Debug.Log("隨機號：" + randomDrop);
+            // Debug.Log("隨機號：" + randomDrop);
         }
     }
 
     void DeathAni()
     {
-        Invoke("Dead", 5f);
         if (hpMonster <= 0)
-            Destroy(this.gameObject);
+        {
+            ani.SetTrigger("damage");
+            Invoke("Dead", 5f);
+        }   
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
