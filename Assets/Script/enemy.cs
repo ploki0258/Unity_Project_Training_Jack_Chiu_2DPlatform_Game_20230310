@@ -65,9 +65,7 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         // Move();
-        // Dead();
         DropItem();
-        DeathAni();
     }
 
     void Move()
@@ -96,14 +94,12 @@ public class Enemy : MonoBehaviour
     }
 
     /// <summary>
-    /// 死亡功能
+    /// 死亡功能：刪除自己
     /// </summary>
     void Dead()
     {
         enabled = false;
-        isDeath = true;
         Destroy(this.gameObject);
-        // Debug.Log(coinNumber);
     }
 
     /// <summary>
@@ -115,14 +111,18 @@ public class Enemy : MonoBehaviour
         {
             aniCoin = true;
             aniSkill = true;
-            int coinNumber = Random.Range(10, 100) * 10;
-            int skillNumber = Random.Range(10, 100) * 10;
+
+            int coinNumber = Random.Range(10, 100) * 10;    // 獲得金幣數量
+            int skillNumber = Random.Range(10, 100) * 10;   // 獲得技能點數
             coinInfo.text = "+" + coinNumber + "金幣";
             skillInfo.text = "獲得" + skillNumber + "點";
+            // Debug.Log(coinNumber);
 
             if (aniCoin == true)
+            {
                 showCoinAni.SetTrigger("play");
-            coinCount.text = "× " + coinNumber;
+                coinCount.text = "× " + coinNumber;
+            }
 
             if (aniSkill == true)
             {
@@ -140,15 +140,21 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void DeathAni()
+    // 觸發事件
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (hpMonster <= 0)
+        if (collision.gameObject.tag == "bullet")
         {
-            ani.SetTrigger("damage");
-            Invoke("Dead", 5f);
-        }   
+            if (hpMonster <= 0)
+            {
+                ani.SetTrigger("damage");
+                isDeath = true;
+                Invoke("Dead", 1f);
+            }
+        }
     }
 
+    // 碰撞事件
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")

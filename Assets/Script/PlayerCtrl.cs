@@ -166,7 +166,7 @@ public class PlayerCtrl : MonoBehaviour
     /// </summary>
     void Dead()
     {
-		if (hp == 0)
+		if (hp <= 0)
 		{
             ani.SetTrigger("die");
 
