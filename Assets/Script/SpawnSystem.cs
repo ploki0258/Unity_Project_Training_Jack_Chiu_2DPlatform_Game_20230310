@@ -6,12 +6,12 @@ public class SpawnSystem : MonoBehaviour
     [SerializeField] float interval = 0f;
     [Header("怪物預製物")]
     [SerializeField] GameObject prefabEnemy = null;
-    //[Header("最大生成點範圍")]
-    //[SerializeField] float rangeMax;
-    //[Header("最小生成點範圍")]
-    //[SerializeField] float rangeMin;
+    [Header("最大生成點範圍")]
+    [SerializeField] float rangeMax;
+    [Header("最小生成點範圍")]
+    [SerializeField] float rangeMin;
     [Header("怪物生成範圍")]
-    [SerializeField] Vector2 monsterRange;
+    [SerializeField] Vector3 monsterRange;
 
     private void Start()
     {
@@ -20,10 +20,10 @@ public class SpawnSystem : MonoBehaviour
 
     void SpawnEnemy()
     {
-        /*float rangeX = Random.Range(rangeMin, rangeMax);
+        float rangeX = Random.Range(rangeMin, rangeMax);
         float rangeY = Random.Range(rangeMin, rangeMax);
-        Vector2 spawnRange = new Vector2(rangeX, rangeY);
-        */
+        Vector3 monsterRange = new Vector2(rangeX, rangeY);
+        
         Instantiate(prefabEnemy, monsterRange, Quaternion.identity);
     }
 }

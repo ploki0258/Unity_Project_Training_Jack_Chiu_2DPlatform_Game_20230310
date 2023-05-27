@@ -8,13 +8,13 @@ public class PlayerCtrl : MonoBehaviour
     [Header("移動速度"), Range(0, 100)]
     [SerializeField] float speed = 10f;
     [Header("跳躍力量")]
-    [SerializeField] float 跳躍力 = 0f;
+    [SerializeField] float powJump = 0f;
     [Header("攻擊物件")]
     [SerializeField] GameObject atkObject = null;
     [Header("生成點")]
-    [SerializeField] Transform 攻擊生成點 = null;
+    [SerializeField] Transform pointAtk = null;
     [Header("攻擊速度")]
-    [SerializeField] float 攻擊速度 = 0f;
+    [SerializeField] float speedAtk = 500f;
     [Header("血量條")]
     [SerializeField] Image barHP = null;
     [Header("魔力條")]
@@ -27,7 +27,19 @@ public class PlayerCtrl : MonoBehaviour
     [SerializeField] TextMeshProUGUI countCoin = null;
     [Header("魔力消耗")]
     [SerializeField] float costMP = 0f;
-    // [SerializeField] Animator 金幣顯示動畫 = null;
+    // 怪物使用
+    [Header("資訊欄顯示")]
+    public Text coinInfo = null;
+    public Text skillInfo = null;
+    [Header("金幣數量")]
+    public TextMeshProUGUI coinCount = null;
+    [Header("技能點數")]
+    public TextMeshProUGUI skillCount = null;
+    [Header("金幣顯示動畫")]
+    public Animator showCoinAni = null;
+    [Header("技能點數顯示動畫")]
+    public Animator showSkillPointAni = null;
+
     /*[Header("血量值")]
     [SerializeField] Text valueHP = null;
     [Header("魔力值")]
@@ -55,7 +67,9 @@ public class PlayerCtrl : MonoBehaviour
     {
         hp = maxHP;
         mp = maxMP;
+        coinInfo.text = "";
         coin = 0;
+        skill = 0;
     }
 
     private void Update()
@@ -122,7 +136,7 @@ public class PlayerCtrl : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && onFloor != false)
         {
             // rig.velocity = new Vector2(rig.velocity.x, 跳躍力);
-            rig.AddForce(transform.up * 跳躍力, ForceMode2D.Impulse);
+            rig.AddForce(transform.up * powJump, ForceMode2D.Impulse);
         }
 
         //跳躍動畫
@@ -150,13 +164,13 @@ public class PlayerCtrl : MonoBehaviour
 
             if (翻轉 != true)
             {
-                GameObject temp = Instantiate(atkObject, 攻擊生成點.position, Quaternion.Euler(0, 0, 90f));
-                temp.GetComponent<Rigidbody2D>().AddForce(transform.right * 攻擊速度 + transform.up * 10);
+                GameObject temp = Instantiate(atkObject, pointAtk.position, Quaternion.Euler(0, 0, 90f));
+                temp.GetComponent<Rigidbody2D>().AddForce(transform.right * speedAtk + transform.up * 10);
             }
             else
             {
-                GameObject temp = Instantiate(atkObject, 攻擊生成點.position, Quaternion.Euler(0, 0, 270f));
-                temp.GetComponent<Rigidbody2D>().AddForce(transform.right * 攻擊速度 + transform.up * 10);
+                GameObject temp = Instantiate(atkObject, pointAtk.position, Quaternion.Euler(0, 0, 270f));
+                temp.GetComponent<Rigidbody2D>().AddForce(transform.right * speedAtk + transform.up * 10);
             }
         }
     }
@@ -227,4 +241,15 @@ public class PlayerCtrl : MonoBehaviour
         }
     }
     int _coin = 0;
+
+    public int skill
+    {
+        get { return _skill; }
+        set
+        {
+            _skill = value;
+            skillCount.text = "× " + value;
+        }
+    }
+    int _skill = 0;
 }

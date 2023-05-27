@@ -17,21 +17,22 @@ public class Enemy : MonoBehaviour
     [SerializeField] float speedMonster = 5f;
     [Header("基準距離")]
     [SerializeField] float disBase = 8f;
+    [Header("掉落道具")]
+    [SerializeField] GameObject itemNorm = null;
     [Header("掉落金幣數量")]
     private int coinNumber = 0;
-    [Header("資訊欄顯示")]
+    /*[Header("資訊欄顯示")]
     [SerializeField] Text coinInfo = null;
     [SerializeField] Text skillInfo = null;
     [Header("金幣數量")]
     [SerializeField] TextMeshProUGUI coinCount = null;
     [Header("技能點數")]
     [SerializeField] TextMeshProUGUI skillCount = null;
-    [Header("掉落道具")]
-    [SerializeField] GameObject itemNorm = null;
     [Header("金幣顯示動畫")]
     [SerializeField] Animator showCoinAni = null;
     [Header("技能點數顯示動畫")]
     [SerializeField] Animator showSkillPointAni = null;
+    */
     // [Header("掉落機率")]
     // public int randomDrop = Random.Range(1, 10);
     // [SerializeField] float maxHP = 100f;
@@ -58,8 +59,8 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         hpMonster = hpMonsterMax;
-        coinInfo.text = "";
-        skill = 0;
+        // coinInfo.text = "";
+        // skill = 0;
     }
 
     private void Update()
@@ -68,23 +69,27 @@ public class Enemy : MonoBehaviour
         DropItem();
     }
 
+    /// <summary>
+    /// 追蹤玩家
+    /// </summary>
     void Move()
     {
         if (player.position.x > this.transform.position.x)
         {
             transform.eulerAngles = Vector3.zero;
         }
-        else
+        else if(player.position.x < this.transform.position.x)
         {
             transform.eulerAngles = new Vector3(0f, 180f, 0f);
         }
 
         float dis = Vector3.Distance(player.position, transform.position);
-
+        // 如果玩家進入追蹤範圍 就追蹤玩家
         if (dis < disBase)
         {
-            rig.velocity = transform.right * speedMonster;
-            rig.velocity = new Vector3(rig.velocity.x, rig.velocity.y);
+            transform.position = Vector3.MoveTowards(transform.position, player.position, speedMonster);
+            // rig.velocity = transform.right * speedMonster;
+            // rig.velocity = new Vector3(rig.velocity.x, rig.velocity.y);
         }
     }
 
@@ -105,7 +110,7 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// 道具掉落功能：掉落金幣、技能道具
     /// </summary>
-    void DropItem()
+     void DropItem()
     {
         if (isDeath == true)
         {
@@ -114,20 +119,22 @@ public class Enemy : MonoBehaviour
 
             int coinNumber = Random.Range(10, 100) * 10;    // 獲得金幣數量
             int skillNumber = Random.Range(10, 100) * 10;   // 獲得技能點數
-            coinInfo.text = "+" + coinNumber + "金幣";
-            skillInfo.text = "獲得" + skillNumber + "點";
+            PlayerCtrl.instance.coinInfo.text = "+" + coinNumber + "金幣";
+            PlayerCtrl.instance.skillInfo.text = "獲得" + skillNumber + "點";
             // Debug.Log(coinNumber);
 
             if (aniCoin == true)
             {
-                showCoinAni.SetTrigger("play");
-                coinCount.text = "× " + coinNumber;
+                PlayerCtrl.instance.showCoinAni.SetTrigger("play");
+                PlayerCtrl.instance.coinCount.text = "× " + coinNumber;
+                coinNumber += coinNumber;
             }
 
             if (aniSkill == true)
             {
-                showSkillPointAni.SetTrigger("play");
-                skillCount.text = "× " + skillNumber;
+                PlayerCtrl.instance.showSkillPointAni.SetTrigger("play");
+                PlayerCtrl.instance.skillCount.text = "× " + skillNumber;
+                skillNumber += skillNumber;
             }
 
             // 有一半的機率會生成道具
@@ -174,14 +181,15 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public int skill
+    /*public int skill
     {
         get { return _skill; }
         set
         {
             _skill = value;
-            skillCount.text = "× " + value;
+            PlayerCtrl.instance.skillCount.text = "× " + value;
         }
     }
     int _skill = 0;
+    */
 }
