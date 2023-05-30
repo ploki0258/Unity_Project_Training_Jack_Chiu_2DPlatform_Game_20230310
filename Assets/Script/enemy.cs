@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     [Header("掉落道具")]
     [SerializeField] GameObject itemNorm = null;
     [Header("掉落金幣數量")]
-    private int coinNumber = 0;
+    private int coinCount = 0;
     /*[Header("資訊欄顯示")]
     [SerializeField] Text coinInfo = null;
     [SerializeField] Text skillInfo = null;
@@ -37,6 +37,8 @@ public class Enemy : MonoBehaviour
     // public int randomDrop = Random.Range(1, 10);
     // [SerializeField] float maxHP = 100f;
 
+    int coinNumber;
+    int skillNumber;
     bool aniCoin = false;       // 播放金幣動畫
     bool aniSkill = false;      // 播放技能點數動畫
     bool isDeath = false;       // 是否死亡
@@ -59,14 +61,37 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         hpMonster = hpMonsterMax;
+        SaveManager.instance.playerData.更新金幣 += 更新;
         // coinInfo.text = "";
         // skill = 0;
+    }
+
+    private void OnDisable()
+    {
+        SaveManager.instance.playerData.更新金幣 -= 更新;
     }
 
     private void Update()
     {
         // Move();
         DropItem();
+    }
+
+    void 更新()
+    {
+        if (aniCoin == true)
+        {
+            PlayerCtrl.instance.showCoinAni.SetTrigger("play");
+            PlayerCtrl.instance.coinCount.text = "× " + SaveManager.instance.playerData.moneyCount;
+            coinNumber += SaveManager.instance.playerData.moneyCount;
+        }
+
+        if (aniSkill == true)
+        {
+            PlayerCtrl.instance.showSkillPointAni.SetTrigger("play");
+            PlayerCtrl.instance.skillCount.text = "× " + SaveManager.instance.playerData.skillPoint;
+            skillNumber += SaveManager.instance.playerData.skillPoint;
+        }
     }
 
     /// <summary>
@@ -93,6 +118,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 怪物受到傷害
+    /// </summary>
+    /// <param name="hurt">所受的傷害量</param>
     public void TakeDamageMonster(float hurt)
     {
         hpMonster -= hurt;
@@ -119,23 +148,29 @@ public class Enemy : MonoBehaviour
 
             int coinNumber = Random.Range(10, 100) * 10;    // 獲得金幣數量
             int skillNumber = Random.Range(10, 100) * 10;   // 獲得技能點數
+            SaveManager.instance.SaveData();
+
             PlayerCtrl.instance.coinInfo.text = "+" + coinNumber + "金幣";
             PlayerCtrl.instance.skillInfo.text = "獲得" + skillNumber + "點";
+
+            SaveManager.instance.playerData.moneyCount = coinNumber;
+            SaveManager.instance.playerData.skillPoint = skillNumber;
             // Debug.Log(coinNumber);
 
-            if (aniCoin == true)
+            /*if (aniCoin == true)
             {
                 PlayerCtrl.instance.showCoinAni.SetTrigger("play");
-                PlayerCtrl.instance.coinCount.text = "× " + coinNumber;
-                coinNumber += coinNumber;
+                PlayerCtrl.instance.coinCount.text = "× " + SaveManager.instance.playerData.moneyCount;
+                coinNumber += SaveManager.instance.playerData.moneyCount;
             }
 
             if (aniSkill == true)
             {
                 PlayerCtrl.instance.showSkillPointAni.SetTrigger("play");
-                PlayerCtrl.instance.skillCount.text = "× " + skillNumber;
-                skillNumber += skillNumber;
+                PlayerCtrl.instance.skillCount.text = "× " + SaveManager.instance.playerData.skillPoint;
+                skillNumber += SaveManager.instance.playerData.skillPoint;
             }
+            */
 
             // 有一半的機率會生成道具
             int randomDrop = Random.Range(1, 10);

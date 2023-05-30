@@ -66,27 +66,57 @@ public struct PlayerData
     /// <summary>
     /// 金幣數量
     /// </summary>
-    public int coinQuantity
+    [SerializeField]
+    public int moneyCount
     {
-        get { return _coinQuantity; }
-        set
+        get { return _moneyCount; }
+        set 
         {
-            _coinQuantity = value;
+            _moneyCount = value;
+
+            // 
+            if (更新金幣 != null)
+            {
+                更新金幣.Invoke();
+            }
         }
     }
-    [SerializeField] public int _coinQuantity;
-    public System.Action coinChage;
-
-    public PlayerData(int coin)
+    int _moneyCount;
+    public System.Action 更新金幣;
+    
+    /// <summary>
+    /// 技能點數
+    /// </summary>
+    [SerializeField] public int skillPoint
     {
-        _coinQuantity = coin;
-        coinChage = null;
+        get { return _skillPoint; }
+        set 
+        {
+            _skillPoint = value;
+
+            // 
+            if (更新技能點 != null)
+            {
+                更新技能點.Invoke();
+            }
+        }
+    }
+    int _skillPoint;
+    public System.Action 更新技能點;
+
+    public PlayerData(int coin, int skill)
+    {
+        _moneyCount = coin;
+        _skillPoint = skill;
+        更新金幣 = null;
+        更新技能點 = null;
     }
 
-    /*public PlayerData(int v)
+    public PlayerData(int v)
     {
-        _coinQuantity = 0;
-        coinChage = null;
+        _moneyCount = 0;
+        _skillPoint = 0;
+        更新金幣 = null;
+        更新技能點 = null;
     }
-    */
 }

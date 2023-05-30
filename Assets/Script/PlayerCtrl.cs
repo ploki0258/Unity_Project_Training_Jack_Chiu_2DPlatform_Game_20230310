@@ -61,6 +61,9 @@ public class PlayerCtrl : MonoBehaviour
         instance = this;    // 讓單例等於自己
         rig = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
+        // 角色出生時存/讀檔一次
+        SaveManager.instance.LoadData();
+        SaveManager.instance.SaveData();
     }
 
     private void Start()
