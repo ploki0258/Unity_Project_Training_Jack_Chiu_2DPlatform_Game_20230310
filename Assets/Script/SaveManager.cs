@@ -54,6 +54,7 @@ public class SaveManager
         string json = JsonUtility.ToJson(playerData, true);
         Debug.Log(json);
         PlayerPrefs.SetString("GameData", json);
+        PlayerPrefs.Save();
     }
 }
 
