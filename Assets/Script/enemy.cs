@@ -62,6 +62,7 @@ public class Enemy : MonoBehaviour
     {
         hpMonster = hpMonsterMax;
         SaveManager.instance.playerData.更新金幣 += 更新;
+        SaveManager.instance.playerData.更新技能點 += 更新;
         // coinInfo.text = "";
         // skill = 0;
     }
@@ -69,12 +70,12 @@ public class Enemy : MonoBehaviour
     private void OnDisable()
     {
         SaveManager.instance.playerData.更新金幣 -= 更新;
+        SaveManager.instance.playerData.更新技能點 -= 更新;
     }
 
     private void Update()
     {
         // Move();
-        DropItem();
     }
 
     void 更新()
@@ -83,14 +84,14 @@ public class Enemy : MonoBehaviour
         {
             PlayerCtrl.instance.showCoinAni.SetTrigger("play");
             PlayerCtrl.instance.coinCount.text = "× " + SaveManager.instance.playerData.moneyCount;
-            coinNumber += SaveManager.instance.playerData.moneyCount;
+            // coinNumber += SaveManager.instance.playerData.moneyCount;
         }
 
         if (aniSkill == true)
         {
             PlayerCtrl.instance.showSkillPointAni.SetTrigger("play");
             PlayerCtrl.instance.skillCount.text = "× " + SaveManager.instance.playerData.skillPoint;
-            skillNumber += SaveManager.instance.playerData.skillPoint;
+            // skillNumber += SaveManager.instance.playerData.skillPoint;
         }
     }
 
@@ -103,7 +104,7 @@ public class Enemy : MonoBehaviour
         {
             transform.eulerAngles = Vector3.zero;
         }
-        else if(player.position.x < this.transform.position.x)
+        else if (player.position.x < this.transform.position.x)
         {
             transform.eulerAngles = new Vector3(0f, 180f, 0f);
         }
@@ -132,6 +133,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     void Dead()
     {
+        DropItem();
         enabled = false;
         Destroy(this.gameObject);
     }
@@ -139,7 +141,7 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// 道具掉落功能：掉落金幣、技能道具
     /// </summary>
-     void DropItem()
+    void DropItem()
     {
         if (isDeath == true)
         {
@@ -148,13 +150,14 @@ public class Enemy : MonoBehaviour
 
             int coinNumber = Random.Range(10, 100) * 10;    // 獲得金幣數量
             int skillNumber = Random.Range(10, 100) * 10;   // 獲得技能點數
-            SaveManager.instance.SaveData();
+
 
             PlayerCtrl.instance.coinInfo.text = "+" + coinNumber + "金幣";
             PlayerCtrl.instance.skillInfo.text = "獲得" + skillNumber + "點";
 
-            SaveManager.instance.playerData.moneyCount = coinNumber;
-            SaveManager.instance.playerData.skillPoint = skillNumber;
+            SaveManager.instance.playerData.moneyCount += coinNumber;
+            SaveManager.instance.playerData.skillPoint += skillNumber;
+            SaveManager.instance.SaveData();
             // Debug.Log(coinNumber);
 
             /*if (aniCoin == true)
@@ -185,6 +188,8 @@ public class Enemy : MonoBehaviour
     // 觸發事件
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isDeath)
+            return;
         if (collision.gameObject.tag == "bullet")
         {
             if (hpMonster <= 0)
@@ -199,6 +204,7 @@ public class Enemy : MonoBehaviour
     // 碰撞事件
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // 如果碰到玩家 就扣玩家血量
         if (collision.gameObject.tag == "Player")
         {
             PlayerCtrl.instance.hp -= atkMonster;
