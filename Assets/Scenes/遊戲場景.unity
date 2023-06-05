@@ -519,7 +519,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 70890001}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 7.07, y: -4.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -538,12 +538,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7d58d99d447004d8a5e5f174b63de7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 10
+  interval: 8
   prefabEnemy: {fileID: 3456010384803124554, guid: 7f07cdb854e62c54f936d0bd125b7b12,
     type: 3}
-  rangeMax: 10
-  rangeMin: 1
-  monsterRange: {x: 5, y: 11.9, z: 0}
+  range_X: 10
+  range_Y: 4
+  offset: {x: 0, y: 2, z: 0}
 --- !u!1 &83308884
 GameObject:
   m_ObjectHideFlags: 0
