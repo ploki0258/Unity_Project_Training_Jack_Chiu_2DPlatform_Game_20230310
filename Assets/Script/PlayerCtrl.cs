@@ -63,6 +63,7 @@ public class PlayerCtrl : MonoBehaviour
         ani = GetComponent<Animator>();
         // 角色出生時 讀檔一次
         SaveManager.instance.LoadData();
+        SaveManager.instance.SaveData();
     }
 
     private void Start()
@@ -185,9 +186,14 @@ public class PlayerCtrl : MonoBehaviour
 		if (hp <= 0)
 		{
             ani.SetTrigger("die");
-
+            SaveManager.instance.SaveUser();
             Destroy(this);
 		}
+    }
+
+    public void SaveBtn()
+    {
+        SaveManager.instance.SaveData();
     }
 
     /// <summary>

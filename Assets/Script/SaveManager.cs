@@ -1,3 +1,4 @@
+using Fungus;
 using UnityEngine;
 
 public class SaveManager
@@ -24,6 +25,7 @@ public class SaveManager
     static SaveManager _instance = null;
     #endregion
 
+    // 建立玩家的資料
     public PlayerData playerData = new PlayerData();
 
     /// <summary>
@@ -53,22 +55,33 @@ public class SaveManager
         // 轉換資料為Json格式
         string json = JsonUtility.ToJson(playerData, true);
         Debug.Log(json);
+        // 儲存在硬碟中
         PlayerPrefs.SetString("GameData", json);
-        PlayerPrefs.Save();
+        // PlayerPrefs.Save();
+    }
+
+    public void SaveUser()
+    {
+        if(PlayerCtrl.instance.hp <= 0)
+        {
+            SaveData();
+        }
     }
 }
 
 /// <summary>
-/// 玩家資料
+/// 玩家資料：定義資料內容
 /// </summary>
 [System.Serializable]
 public struct PlayerData
 {
+    // public int moneyCount;   // 金幣數量
+    // public int skillPoint;   // 技能點數
+
     /// <summary>
     /// 金幣數量
     /// </summary>
-    [SerializeField]
-    public int moneyCount
+    [SerializeField] public int moneyCount
     {
         get { return _moneyCount; }
         set 
@@ -84,7 +97,7 @@ public struct PlayerData
     }
     int _moneyCount;
     public System.Action 更新金幣;
-    
+
     /// <summary>
     /// 技能點數
     /// </summary>
@@ -104,9 +117,13 @@ public struct PlayerData
     }
     int _skillPoint;
     public System.Action 更新技能點;
-
+    
+    // 建構式
     public PlayerData(int coin, int skill)
     {
+        // this.moneyCount = coin;
+        // this.skillPoint = skill;
+
         _moneyCount = coin;
         _skillPoint = skill;
         更新金幣 = null;
@@ -115,6 +132,9 @@ public struct PlayerData
 
     public PlayerData(int v)
     {
+        // this.moneyCount = 0;
+        // this.skillPoint = 0;
+
         _moneyCount = 0;
         _skillPoint = 0;
         更新金幣 = null;

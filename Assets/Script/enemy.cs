@@ -78,20 +78,25 @@ public class Enemy : MonoBehaviour
         // Move();
     }
 
+    // 
     void 更新()
     {
+        // 播放金幣動畫為 true 時
         if (aniCoin == true)
         {
+            // 播放動畫
             PlayerCtrl.instance.showCoinAni.SetTrigger("play");
+            // 顯示金幣文字
             PlayerCtrl.instance.coinCount.text = "× " + SaveManager.instance.playerData.moneyCount;
-            // coinNumber += SaveManager.instance.playerData.moneyCount;
         }
 
+        // 播放技能點數動畫為 true 時
         if (aniSkill == true)
         {
+            // 播放動畫
             PlayerCtrl.instance.showSkillPointAni.SetTrigger("play");
+            // 顯示技能文字
             PlayerCtrl.instance.skillCount.text = "× " + SaveManager.instance.playerData.skillPoint;
-            // skillNumber += SaveManager.instance.playerData.skillPoint;
         }
     }
 
@@ -129,7 +134,7 @@ public class Enemy : MonoBehaviour
     }
 
     /// <summary>
-    /// 死亡功能：刪除自己
+    /// 死亡功能：死亡後掉落道具、關閉腳本、刪除自己
     /// </summary>
     void Dead()
     {
@@ -149,15 +154,15 @@ public class Enemy : MonoBehaviour
             aniSkill = true;
 
             int coinNumber = Random.Range(10, 100) * 10;    // 獲得金幣數量
-            int skillNumber = Random.Range(10, 100) * 10;   // 獲得技能點數
+            int skillNumber = Random.Range(1, 10) * 10;     // 獲得技能點數
 
-
+            // 顯示資訊欄文字
             PlayerCtrl.instance.coinInfo.text = "+" + coinNumber + "金幣";
             PlayerCtrl.instance.skillInfo.text = "獲得" + skillNumber + "點";
 
             SaveManager.instance.playerData.moneyCount += coinNumber;
             SaveManager.instance.playerData.skillPoint += skillNumber;
-            SaveManager.instance.SaveData();
+            SaveManager.instance.SaveData();    // 儲存玩家目前的資料
             // Debug.Log(coinNumber);
 
             /*if (aniCoin == true)
