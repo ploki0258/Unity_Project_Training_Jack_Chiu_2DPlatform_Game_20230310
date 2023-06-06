@@ -161,7 +161,6 @@ public class PlayerCtrl : MonoBehaviour
                 if (mp <= 0)
                     return;
 
-                //costMP = 1f;
                 mp -= costMP;
             }
 
@@ -191,6 +190,9 @@ public class PlayerCtrl : MonoBehaviour
 		}
     }
 
+    /// <summary>
+    /// 儲存玩家資訊
+    /// </summary>
     public void SaveBtn()
     {
         SaveManager.instance.SaveData();

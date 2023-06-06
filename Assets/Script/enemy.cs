@@ -13,14 +13,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] float atkMonster = 5f;
     [Header("生成點")]
     [SerializeField] Transform point = null;
-    [Header("怪物移動速度")]
+    [Header("怪物移動速度"), Range(0,30)]
     [SerializeField] float speedMonster = 5f;
     [Header("基準距離")]
     [SerializeField] float disBase = 8f;
-    [Header("掉落道具")]
-    [SerializeField] GameObject itemNorm = null;
+    [Header("掉落(技能)道具")]
+    [SerializeField] GameObject itemSkill = null;
     [Header("掉落金幣數量")]
     private int coinCount = 0;
+    [Header("掉落機率")]
+    public float probDrop = 5f;
     /*[Header("資訊欄顯示")]
     [SerializeField] Text coinInfo = null;
     [SerializeField] Text skillInfo = null;
@@ -33,8 +35,6 @@ public class Enemy : MonoBehaviour
     [Header("技能點數顯示動畫")]
     [SerializeField] Animator showSkillPointAni = null;
     */
-    // [Header("掉落機率")]
-    // public int randomDrop = Random.Range(1, 10);
     // [SerializeField] float maxHP = 100f;
 
     int coinNumber;
@@ -103,24 +103,27 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// 追蹤玩家
     /// </summary>
-    void Move()
+    private void Move()
     {
-        if (player.position.x > this.transform.position.x)
+        // 面向玩家：如果玩家的 X 大於 敵人的 X 角度 0，否則 角度 180
+        if (player.position.x < this.transform.position.x)
         {
             transform.eulerAngles = Vector3.zero;
         }
-        else if (player.position.x < this.transform.position.x)
+        else if (player.position.x > this.transform.position.x)
         {
             transform.eulerAngles = new Vector3(0f, 180f, 0f);
         }
 
-        float dis = Vector3.Distance(player.position, transform.position);
+        // 距離 = 二維向量的 距離(A點, B點)
+        float dis = Vector2.Distance(player.position, transform.position);
+        print(dis);
         // 如果玩家進入追蹤範圍 就追蹤玩家
         if (dis < disBase)
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.position, speedMonster);
-            // rig.velocity = transform.right * speedMonster;
-            // rig.velocity = new Vector3(rig.velocity.x, rig.velocity.y);
+            // transform.position = Vector3.MoveTowards(transform.position, player.position, speedMonster);
+            rig.velocity = transform.right * speedMonster;
+            rig.velocity = new Vector2(rig.velocity.x, rig.velocity.y);
         }
     }
 
@@ -182,9 +185,10 @@ public class Enemy : MonoBehaviour
 
             // 有一半的機率會生成道具
             int randomDrop = Random.Range(1, 10);
-            if (randomDrop <= 5)
+            // 如果 randomDrop 小於等於 掉落機率 就生成道具
+            if (randomDrop <= probDrop)
             {
-                Instantiate(itemNorm, point.position, point.rotation);
+                Instantiate(itemSkill, point.position, point.rotation);
             }
             // Debug.Log("隨機號：" + randomDrop);
         }
