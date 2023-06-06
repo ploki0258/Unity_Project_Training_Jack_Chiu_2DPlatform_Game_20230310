@@ -4,31 +4,42 @@ using UnityEngine.EventSystems;
 
 public class SkillManager : MonoBehaviour
 {
-	[SerializeField] Transform pointSkill;
-	[SerializeField] string skillName = null;
-	public KeyCode activationKey;
-	public GameObject skillPrefab = null;
-	[SerializeField] Transform skillSlot;
-	SkillManager currentSkill;
+    [Header("技能位置")]
+    [SerializeField] Transform pointSkill;
+    [Header("技能名稱")]
+    [SerializeField] string skillName = null;
+    [Header("施法按鍵")]
+    public KeyCode activationKey;
+    [Header("技能特效")]
+    public GameObject skillPrefab = null;
+    [Header("技能位置")]
+    [SerializeField] Transform skillSlot;
+    [Header("當前技能特效")]
+    SkillManager currentSkill;
 
-    // public List<GameObject> skillPrefab = new List<GameObject>();
+    public List<GameObject> skillPrefabs = new List<GameObject>();
 
-    /*public void CastSkill(int index)
+    /// <summary>
+    /// 施放法術
+    /// </summary>
+    /// <param name="index"></param>
+    public void CastSkill(int index)
     {
-        if (index < 0 || index >= skillPrefab.Count)
+        // 如果 index 小於 0  或 大於等於 列表個數 就停止執行
+        if (index < 0 || index >= skillPrefabs.Count)
             return;
-        GameObject skillPfb = skillPrefab[index];
-
-        if (Input.GetKeyDown(KeyCode.Z))
-            Instantiate(skillPfb, pointSkill.position, Quaternion.identity);
+        GameObject skillPfb = skillPrefabs[index];
+        Instantiate(skillPfb, pointSkill.position, Quaternion.identity);
     }
-    */
 
     private void Update()
     {
         CastSpell();
     }
 
+    /// <summary>
+    /// 施放法術(按鍵)
+    /// </summary>
     public void CastSpell()
     {
         if (Input.GetKeyDown(KeyCode.Z))

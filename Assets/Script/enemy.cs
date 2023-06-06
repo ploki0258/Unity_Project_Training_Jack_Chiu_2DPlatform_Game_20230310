@@ -13,10 +13,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] float atkMonster = 5f;
     [Header("生成點")]
     [SerializeField] Transform point = null;
-    [Header("怪物移動速度"), Range(0,30)]
+    [Header("怪物移動速度"), Range(0, 30)]
     [SerializeField] float speedMonster = 5f;
-    [Header("基準距離")]
-    [SerializeField] float disBase = 8f;
+    [Header("追蹤距離")]
+    [SerializeField] float disChase = 8f;
     [Header("掉落(技能)道具")]
     [SerializeField] GameObject itemSkill = null;
     [Header("掉落金幣數量")]
@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        // Move();
+        Move();
     }
 
     // 
@@ -106,24 +106,27 @@ public class Enemy : MonoBehaviour
     private void Move()
     {
         // 面向玩家：如果玩家的 X 大於 敵人的 X 角度 0，否則 角度 180
-        if (player.position.x < this.transform.position.x)
+        if (player.position.x > this.transform.position.x)
         {
             transform.eulerAngles = Vector3.zero;
         }
-        else if (player.position.x > this.transform.position.x)
+        else if (player.position.x < this.transform.position.x)
         {
             transform.eulerAngles = new Vector3(0f, 180f, 0f);
         }
+        
 
         // 距離 = 二維向量的 距離(A點, B點)
-        float dis = Vector2.Distance(player.position, transform.position);
-        print(dis);
+        float dis = Vector3.Distance(transform.position, player.position);
         // 如果玩家進入追蹤範圍 就追蹤玩家
-        if (dis < disBase)
+        if (dis <= disChase)
         {
+            Vector3 newPos = Vector3.Lerp(transform.position, player.position, Time.deltaTime * 0.1f);
+            transform.position = newPos;
+
             // transform.position = Vector3.MoveTowards(transform.position, player.position, speedMonster);
-            rig.velocity = transform.right * speedMonster;
-            rig.velocity = new Vector2(rig.velocity.x, rig.velocity.y);
+            // rig.velocity = transform.right * speedMonster;
+            // rig.velocity = new Vector2(rig.velocity.x, rig.velocity.y);
         }
     }
 
