@@ -19,10 +19,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] float disChase = 8f;
     [Header("掉落(技能)道具")]
     [SerializeField] GameObject itemSkill = null;
-    [Header("掉落金幣數量")]
-    private int coinCount = 0;
     [Header("掉落機率")]
     public float probDrop = 5f;
+    [Header("傷害值")]
+    [SerializeField] float damage = 5f;
     /*[Header("資訊欄顯示")]
     [SerializeField] Text coinInfo = null;
     [SerializeField] Text skillInfo = null;
@@ -88,6 +88,7 @@ public class Enemy : MonoBehaviour
             PlayerCtrl.instance.showCoinAni.SetTrigger("play");
             // 顯示金幣文字
             PlayerCtrl.instance.coinCount.text = "× " + SaveManager.instance.playerData.moneyCount;
+            Debug.Log("更新");
         }
 
         // 播放技能點數動畫為 true 時
@@ -204,6 +205,8 @@ public class Enemy : MonoBehaviour
             return;
         if (collision.gameObject.tag == "bullet")
         {
+            TakeDamageMonster(damage);
+
             if (hpMonster <= 0)
             {
                 ani.SetTrigger("damage");

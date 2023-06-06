@@ -12,8 +12,6 @@ public class SkillManager : MonoBehaviour
     public KeyCode activationKey;
     [Header("技能特效")]
     public GameObject skillPrefab = null;
-    [Header("技能位置")]
-    [SerializeField] Transform skillSlot;
     [Header("當前技能特效")]
     SkillManager currentSkill;
 
