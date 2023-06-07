@@ -14,7 +14,7 @@ public class SpawnSystem : MonoBehaviour
     [SerializeField] float posX;
     [Header("Y軸位置")]
     [SerializeField] float posY;
-    [Header("檢查地面位移")]
+    [Header("中心點位移")]
     [SerializeField] Vector2 offset;
     [Header("X軸最小值")]
     [SerializeField] float minX;
@@ -37,8 +37,9 @@ public class SpawnSystem : MonoBehaviour
     // 繪製圖示
     private void OnDrawGizmos()
     {
+        // 圖示.顏色 = 紅色
         Gizmos.color = Color.red;
-        // 繪製矩形
+        // 繪製(框線)矩形
         Gizmos.DrawWireCube(new Vector2(transform.position.x, transform.position.y) + offset, new Vector3(range_X, range_Y, 0f));
         
         Gizmos.color = new Color(00, 10, 99);
