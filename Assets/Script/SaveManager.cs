@@ -1,61 +1,61 @@
-using Fungus;
+ï»¿using Fungus;
 using UnityEngine;
 
 public class SaveManager
 {
-    #region ³æ¨Ò¼Ò¦¡
-    // ¦b¾ã­Ó±M®×¥ş°ì«Å§i¤@­Óinstance
+    #region å–®ä¾‹æ¨¡å¼
+    // åœ¨æ•´å€‹å°ˆæ¡ˆå…¨åŸŸå®£å‘Šä¸€å€‹instance
     public static SaveManager instance
     {
-        // ¦³¤H»İ­n§Ú
+        // æœ‰äººéœ€è¦æˆ‘
         get
         {
-            // ¦pªG§Ú¤£¦s¦b
+            // å¦‚æœæˆ‘ä¸å­˜åœ¨
             if (_instance == null)
             {
-                // ´N¦Û¤v³Ğ³y¦Û¤v
+                // å°±è‡ªå·±å‰µé€ è‡ªå·±
                 _instance = new SaveManager();
             }
 
-            // ¦^¶Ç¦Û¤v
+            // å›å‚³è‡ªå·±
             return _instance;
         }
     }
-    // °O¾ĞÅé¹ê»Úªº¦ì¸m
+    // è¨˜æ†¶é«”å¯¦éš›çš„ä½ç½®
     static SaveManager _instance = null;
     #endregion
 
-    // «Ø¥ßª±®aªº¸ê®Æ
+    // å»ºç«‹ç©å®¶çš„è³‡æ–™
     public PlayerData playerData = new PlayerData();
 
     /// <summary>
-    /// ¹CÀ¸ÅªÀÉ
+    /// éŠæˆ²è®€æª”
     /// </summary>
     public void LoadData()
     {
         string json = PlayerPrefs.GetString("GameData", "0");
-        // ¦pªG json¬°0®É
+        // å¦‚æœ jsonç‚º0æ™‚
         if (json == "0")
         {
-            // ³o¬O¤@­Ó·sª±®a ½Ğµ¹¥L°ò¥»¼Æ­È
+            // é€™æ˜¯ä¸€å€‹æ–°ç©å®¶ è«‹çµ¦ä»–åŸºæœ¬æ•¸å€¼
             playerData = new PlayerData(0);
         }
         else
         {
-            // ±q¬J¦³¸ê®Æ¥ÑjsonÀÉÂà¦^¨Ó¨Ï¥Î
+            // å¾æ—¢æœ‰è³‡æ–™ç”±jsonæª”è½‰å›ä¾†ä½¿ç”¨
             playerData = JsonUtility.FromJson<PlayerData>(json);
         }
     }
 
     /// <summary>
-    /// ¹CÀ¸¦sÀÉ
+    /// éŠæˆ²å­˜æª”
     /// </summary>
     public void SaveData()
     {
-        // Âà´«¸ê®Æ¬°Json®æ¦¡
+        // è½‰æ›è³‡æ–™ç‚ºJsonæ ¼å¼
         string json = JsonUtility.ToJson(playerData, true);
         Debug.Log(json);
-        // Àx¦s¦bµwºĞ¤¤
+        // å„²å­˜åœ¨ç¡¬ç¢Ÿä¸­
         PlayerPrefs.SetString("GameData", json);
         // PlayerPrefs.Save();
     }
@@ -70,16 +70,16 @@ public class SaveManager
 }
 
 /// <summary>
-/// ª±®a¸ê®Æ¡G©w¸q¸ê®Æ¤º®e
+/// ç©å®¶è³‡æ–™ï¼šå®šç¾©è³‡æ–™å…§å®¹
 /// </summary>
 [System.Serializable]
 public struct PlayerData
 {
-    // public int moneyCount;   // ª÷¹ô¼Æ¶q
-    // public int skillPoint;   // §Ş¯àÂI¼Æ
+    // public int moneyCount;   // é‡‘å¹£æ•¸é‡
+    // public int skillPoint;   // æŠ€èƒ½é»æ•¸
 
     /// <summary>
-    /// ª÷¹ô¼Æ¶q
+    /// é‡‘å¹£æ•¸é‡
     /// </summary>
     [SerializeField] public int moneyCount
     {
@@ -89,17 +89,17 @@ public struct PlayerData
             _moneyCount = value;
 
             // 
-            if (§ó·sª÷¹ô != null)
+            if (æ›´æ–°é‡‘å¹£ != null)
             {
-                §ó·sª÷¹ô.Invoke();
+                æ›´æ–°é‡‘å¹£.Invoke();
             }
         }
     }
     int _moneyCount;
-    public System.Action §ó·sª÷¹ô;
+    public System.Action æ›´æ–°é‡‘å¹£;
 
     /// <summary>
-    /// §Ş¯àÂI¼Æ
+    /// æŠ€èƒ½é»æ•¸
     /// </summary>
     [SerializeField] public int skillPoint
     {
@@ -109,16 +109,16 @@ public struct PlayerData
             _skillPoint = value;
 
             // 
-            if (§ó·s§Ş¯àÂI != null)
+            if (æ›´æ–°æŠ€èƒ½é» != null)
             {
-                §ó·s§Ş¯àÂI.Invoke();
+                æ›´æ–°æŠ€èƒ½é».Invoke();
             }
         }
     }
     int _skillPoint;
-    public System.Action §ó·s§Ş¯àÂI;
+    public System.Action æ›´æ–°æŠ€èƒ½é»;
     
-    // «Øºc¦¡
+    // å»ºæ§‹å¼
     public PlayerData(int coin, int skill)
     {
         // this.moneyCount = coin;
@@ -126,8 +126,8 @@ public struct PlayerData
 
         _moneyCount = coin;
         _skillPoint = skill;
-        §ó·sª÷¹ô = null;
-        §ó·s§Ş¯àÂI = null;
+        æ›´æ–°é‡‘å¹£ = null;
+        æ›´æ–°æŠ€èƒ½é» = null;
     }
 
     public PlayerData(int v)
@@ -137,7 +137,7 @@ public struct PlayerData
 
         _moneyCount = 0;
         _skillPoint = 0;
-        §ó·sª÷¹ô = null;
-        §ó·s§Ş¯àÂI = null;
+        æ›´æ–°é‡‘å¹£ = null;
+        æ›´æ–°æŠ€èƒ½é» = null;
     }
 }

@@ -1,62 +1,62 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class SpawnSystem : MonoBehaviour
 {
-    [Header("¥Í¦¨¶¡¹j"), Range(0, 10)]
+    [Header("ç”Ÿæˆé–“éš”"), Range(0, 10)]
     [SerializeField] float interval = 0f;
-    [Header("©Çª«¹w»sª«")]
+    [Header("æ€ªç‰©é è£½ç‰©")]
     [SerializeField] GameObject prefabEnemy = null;
-    [Header("¥Í¦¨ÂI½d³òX")]
+    [Header("ç”Ÿæˆé»ç¯„åœX")]
     [SerializeField] float range_X;
-    [Header("¥Í¦¨ÂI½d³òY")]
+    [Header("ç”Ÿæˆé»ç¯„åœY")]
     [SerializeField] float range_Y;
-    [Header("¶ê§ÎX¶b¦ì¸m")]
+    [Header("åœ“å½¢Xè»¸ä½ç½®")]
     [SerializeField] float posX;
-    [Header("¶ê§ÎY¶b¦ì¸m")]
+    [Header("åœ“å½¢Yè»¸ä½ç½®")]
     [SerializeField] float posY;
-    [Header("¯x§Î¤¤¤ßÂI¦ì²¾")]
+    [Header("çŸ©å½¢ä¸­å¿ƒé»ä½ç§»")]
     [SerializeField] Vector2 offset;
-    [Header("X¶b³Ì¤p­È")]
+    [Header("Xè»¸æœ€å°å€¼")]
     [SerializeField] float minX;
-    [Header("X¶b³Ì¤j­È")]
+    [Header("Xè»¸æœ€å¤§å€¼")]
     [SerializeField] float maxX;
-    [Header("Y¶b³Ì¤p­È")]
+    [Header("Yè»¸æœ€å°å€¼")]
     [SerializeField] float minY;
-    [Header("Y¶b³Ì¤j­È")]
+    [Header("Yè»¸æœ€å¤§å€¼")]
     [SerializeField] float maxY;
     
-    [Header("©Çª«¥Í¦¨½d³ò")]
+    [Header("æ€ªç‰©ç”Ÿæˆç¯„åœ")]
     private Vector2 monsterRange;
 
     private void Start()
     {
-        // ©µ¿ğ­«½Æ©I¥s
+        // å»¶é²é‡è¤‡å‘¼å«
         InvokeRepeating("SpawnEnemy", 0, interval);
     }
 
-    // Ã¸»s¹Ï¥Ü
+    // ç¹ªè£½åœ–ç¤º
     private void OnDrawGizmos()
     {
-        // ¹Ï¥Ü.ÃC¦â = ¬õ¦â
+        // åœ–ç¤º.é¡è‰² = ç´…è‰²
         Gizmos.color = Color.red;
-        // Ã¸»s(®Ø½u)¯x§Î
+        // ç¹ªè£½(æ¡†ç·š)çŸ©å½¢
         Gizmos.DrawWireCube(new Vector2(transform.position.x, transform.position.y) + offset, new Vector3(range_X, range_Y, 0f));
         
         Gizmos.color = new Color(00, 10, 99);
-        // Ã¸»s¶ê§Î
+        // ç¹ªè£½åœ“å½¢
         Gizmos.DrawSphere((new Vector2(transform.position.x, transform.position.y)) + new Vector2(posX, posY), 0.3f);
     }
 
     /// <summary>
-    /// ¥Í¦¨©Çª«
+    /// ç”Ÿæˆæ€ªç‰©
     /// </summary>
     void SpawnEnemy()
     {
-        // ÀH¾÷X¶b Y¶bªº­È
+        // éš¨æ©ŸXè»¸ Yè»¸çš„å€¼
         float rangeX = Random.Range(this.transform.position.x + minX, this.transform.position.x + maxX);
         float rangeY = Random.Range(this.transform.position.y + minY, this.transform.position.y + maxY);
         monsterRange = new Vector3(rangeX, rangeY);
-        // ©ó¥Í¦¨½d³ò¤º¥Í¦¨©Çª«
+        // æ–¼ç”Ÿæˆç¯„åœå…§ç”Ÿæˆæ€ªç‰©
         Instantiate(prefabEnemy, monsterRange, Quaternion.identity);
     }
 }

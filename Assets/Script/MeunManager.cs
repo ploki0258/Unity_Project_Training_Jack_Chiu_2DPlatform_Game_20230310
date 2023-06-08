@@ -1,10 +1,10 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MeunManager : MonoBehaviour
 {
     /// <summary>
-    /// Â÷¶}¹CÀ¸
+    /// é›¢é–‹éŠæˆ²
     /// </summary>
     public void QuitGame()
     {
@@ -12,10 +12,10 @@ public class MeunManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¶}©l¹CÀ¸
+    /// é–‹å§‹éŠæˆ²
     /// </summary>
     public void StartGame()
     {
-        SceneManager.LoadScene("¹CÀ¸³õ´º");
+        SceneManager.LoadScene("éŠæˆ²å ´æ™¯");
     }
 }
