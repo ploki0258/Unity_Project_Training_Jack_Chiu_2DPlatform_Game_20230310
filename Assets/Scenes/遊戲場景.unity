@@ -550,6 +550,7 @@ MonoBehaviour:
   maxX: 5
   minY: 3
   maxY: 3
+  playerDis: 5
 --- !u!1 &83308884
 GameObject:
   m_ObjectHideFlags: 0
@@ -1954,7 +1955,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1102056029}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999987
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3743,7 +3744,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000016709124}
+  m_AnchoredPosition: {x: 0, y: 0.0010523063}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &892256979
@@ -4934,6 +4935,7 @@ MonoBehaviour:
   maxX: 5
   minY: 4
   maxY: 4
+  playerDis: 0
 --- !u!4 &1104809014 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1125846721, guid: ebea5f8b8163f9a4ab9d9a1b45444e28,
@@ -5176,6 +5178,7 @@ MonoBehaviour:
   maxX: 5
   minY: 4
   maxY: 4
+  playerDis: 0
 --- !u!1 &1198612786
 GameObject:
   m_ObjectHideFlags: 0
@@ -6513,7 +6516,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5DF2\u53D6\u5F97"
+  m_Text: "\u5DF2\u7FD2\u5F97"
 --- !u!222 &1762054979
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7224,6 +7227,7 @@ MonoBehaviour:
   maxX: 5
   minY: 4
   maxY: 4
+  playerDis: 0
 --- !u!1 &2035571124
 GameObject:
   m_ObjectHideFlags: 0

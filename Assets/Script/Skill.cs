@@ -22,6 +22,8 @@ public class Skill : ScriptableObject
     public float skillAttack;
     [Header("施法速度")]
     public float skillSpeed;
+    [Header("敵人延遲時間")]
+    public float enemyTime;
     // [Header("技能持續時間")]
     // public float skillHoldTime;
 }

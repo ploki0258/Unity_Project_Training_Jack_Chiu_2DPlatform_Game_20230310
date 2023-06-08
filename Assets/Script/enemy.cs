@@ -35,8 +35,8 @@ public class Enemy : MonoBehaviour
     [Header("技能點數顯示動畫")]
     [SerializeField] Animator showSkillPointAni = null;
     */
-    [Header("最大血量")]
-    [SerializeField] float maxHP = 200f;
+    // [Header("最大血量")]
+    // [SerializeField] float maxHP = 200f;
 
     int coinNumber;
     int skillNumber;
