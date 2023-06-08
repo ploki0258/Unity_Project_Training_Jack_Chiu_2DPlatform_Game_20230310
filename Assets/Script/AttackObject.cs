@@ -21,7 +21,7 @@ public class AttackObject : MonoBehaviour
         // 如果 子彈 碰到 敵人 就給予傷害
         if (collision.gameObject.tag == "enemy")
         {
-            Enemy.instance.TakeDamageMonster(damage);
+            // Enemy.instance.TakeDamageMonster(damage);
         }
     }
 
