@@ -1,27 +1,27 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Skill", menuName = "Add New Skill")]
 public class Skill : ScriptableObject
 {
-    [Header("§Ş¯àID")]
+    [Header("æŠ€èƒ½ID")]
     public int id;
-    [Header("§Ş¯à¦WºÙ")]
+    [Header("æŠ€èƒ½åç¨±")]
     public string skillName;
-    [Header("§Ş¯à¹Ï¥Ü")]
+    [Header("æŠ€èƒ½åœ–ç¤º")]
     public Sprite skillIcon;
-    [Header("§Ş¯à¯S®Ä")]
+    [Header("æŠ€èƒ½ç‰¹æ•ˆ")]
     public GameObject skillPrefab;
-    [Header("§Ş¯àÃş§O")]
+    [Header("æŠ€èƒ½é¡åˆ¥")]
     public Color skillCate;
-    [Header("§Ş¯à±Ô­z")]
+    [Header("æŠ€èƒ½æ•˜è¿°")]
     [TextArea(5, 5)] public string skillDis;
-    [Header("§Ş¯à¶O¥Î")]
+    [Header("æŠ€èƒ½è²»ç”¨")]
     public int skillCoinCost;
     public int skillPointCost;
-    [Header("¶Ë®`­È")]
+    [Header("å‚·å®³å€¼")]
     public float skillAttack;
-    [Header("¬Iªk³t«×")]
+    [Header("æ–½æ³•é€Ÿåº¦")]
     public float skillSpeed;
-    [Header("§Ş¯à«ùÄò®É¶¡")]
-    public float skillHoldTime;
+    // [Header("æŠ€èƒ½æŒçºŒæ™‚é–“")]
+    // public float skillHoldTime;
 }

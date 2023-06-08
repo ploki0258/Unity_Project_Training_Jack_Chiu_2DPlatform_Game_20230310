@@ -10,11 +10,11 @@ public class SpawnSystem : MonoBehaviour
     [SerializeField] float range_X;
     [Header("生成點範圍Y")]
     [SerializeField] float range_Y;
-    [Header("X軸位置")]
+    [Header("圓形X軸位置")]
     [SerializeField] float posX;
-    [Header("Y軸位置")]
+    [Header("圓形Y軸位置")]
     [SerializeField] float posY;
-    [Header("中心點位移")]
+    [Header("矩形中心點位移")]
     [SerializeField] Vector2 offset;
     [Header("X軸最小值")]
     [SerializeField] float minX;

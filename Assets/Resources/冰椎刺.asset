@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 765503767b461ee47b1130cfd6220ff9, type: 3}
-  m_Name: "\u706B\u7403\u8853"
+  m_Name: "\u51B0\u690E\u523A"
   m_EditorClassIdentifier: 
-  id: 0
-  skillName: 
+  id: 1
+  skillName: "\u51B0\u690E\u523A"
   skillIcon: {fileID: 0}
   skillPrefab: {fileID: 0}
-  skillCate: {r: 0.9056604, g: 0, b: 0, a: 1}
-  skillDis: 
-  skillCoinCost: 0
-  skillPointCost: 0
-  skillAttack: 0
+  skillCate: {r: 0, g: 0, b: 0, a: 0}
+  skillDis: "\u767C\u5C04\u51B0\u523A"
+  skillCoinCost: 1500
+  skillPointCost: 150
+  skillAttack: 20
   skillSpeed: 0
-  skillHoldTime: 0
