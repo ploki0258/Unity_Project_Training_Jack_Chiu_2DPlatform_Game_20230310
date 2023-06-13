@@ -10,15 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 765503767b461ee47b1130cfd6220ff9, type: 3}
-  m_Name: "\u706B\u7403\u8853"
+  m_Name: "\u706B\u7403\u88530"
   m_EditorClassIdentifier: 
   id: 0
-  skillName: 
+  skillName: "\u706B\u7403\u8853"
   skillIcon: {fileID: 21300000, guid: 93e139652ed044f43ad8656445027bce, type: 3}
   skillPrefab: {fileID: 0}
   skillCate: {r: 0.9056604, g: 0, b: 0, a: 1}
-  skillDis: "\u767C\u5C04\u706B\u7403"
+  isSpecial: 0
+  attackDis: "\u767C\u5C04\u706B\u7403"
+  skillDis: "\u5C0D\u524D\u65B9\u4E00\u540D\u6575\u4EBA\u9020\u6210\u5C0F\u5E45\u5EA6\u50B7\u5BB3"
   skillCoinCost: 1000
   skillPointCost: 100
   skillAttack: 10
   skillSpeed: 1
+  burntPos: {fileID: 0}
+  enemyDis: 0
+  enemySlowSpeed: 0
+  enemyDelayTime: 0
+  skillHoldTime: 0

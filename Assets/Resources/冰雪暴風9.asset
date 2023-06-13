@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765503767b461ee47b1130cfd6220ff9, type: 3}
+  m_Name: "\u51B0\u96EA\u66B4\u98A89"
+  m_EditorClassIdentifier: 
+  id: 9
+  skillName: "\u51B0\u96EA\u66B4\u98A8"
+  skillIcon: {fileID: 0}
+  skillPrefab: {fileID: 0}
+  skillCate: {r: 0.023584902, g: 0.4605793, b: 1, a: 1}
+  isSpecial: 0
+  attackDis: "\u5F9E\u5929\u964D\u4E0B\u51B0\u96EA\u66B4\u98A8"
+  skillDis: "\u5C0D\u524D\u65B9\u7BC4\u570D\u5167\u7684\u6575\u4EBA\u9020\u6210\u4E2D\u5E45\u5EA6\u50B7\u5BB3\uFF0C\u4E26\u4E2D\u5E45\u5EA6\u964D\u4F4E\u884C\u52D5\u901F\u5EA6\uFF0C\u7DAD\u6301\u6578\u79D2"
+  skillCoinCost: 2000
+  skillPointCost: 200
+  skillAttack: 100
+  skillSpeed: 1
+  burntPos: {fileID: 0}
+  enemyDis: 0
+  enemySlowSpeed: 10
+  enemyDelayTime: 3
+  skillHoldTime: 0
