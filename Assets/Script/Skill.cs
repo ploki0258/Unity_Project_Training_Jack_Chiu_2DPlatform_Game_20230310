@@ -6,6 +6,10 @@ public class Skill : ScriptableObject
     // 共同
     [Header("技能ID")]
     public int id;
+    [Header("是否有前置技能")]
+    public bool Pre_Skill;
+    [Header("前置ID")]
+    public int Pre_id;
     [Header("技能名稱")]
     public string skillName;
     [Header("技能圖示")]

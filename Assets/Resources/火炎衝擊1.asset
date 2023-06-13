@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: "\u706B\u708E\u885D\u64CA1"
   m_EditorClassIdentifier: 
   id: 1
+  Pre_Skill: 1
+  Pre_id: 0
   skillName: "\u706B\u708E\u885D\u64CA"
   skillIcon: {fileID: 0}
   skillPrefab: {fileID: 0}
