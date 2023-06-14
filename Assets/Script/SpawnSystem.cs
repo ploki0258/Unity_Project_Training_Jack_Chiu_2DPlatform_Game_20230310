@@ -27,13 +27,14 @@ public class SpawnSystem : MonoBehaviour
 	[Header("與玩家的距離")]
 	[SerializeField] float playerDis;
 
-	[Header("怪物生成範圍")]
-	private Vector2 monsterRange;
+	private Vector2 monsterRange;   // 怪物生成範圍
+	int enemyCount = 0;				// 計算敵人個數
 	Transform player;
 
 	private void Awake()
 	{
 		player = GameObject.Find("玩家").transform;
+		enemyCount = 0;
 	}
 
 	private void Start()
@@ -76,7 +77,13 @@ public class SpawnSystem : MonoBehaviour
 		float rangeX = Random.Range(this.transform.position.x + minX, this.transform.position.x + maxX);
 		float rangeY = Random.Range(this.transform.position.y + minY, this.transform.position.y + maxY);
 		monsterRange = new Vector3(rangeX, rangeY);
-		// 於生成範圍內生成怪物
-		Instantiate(prefabEnemy, monsterRange, Quaternion.identity);
+
+		if (enemyCount < 3)
+		{
+			// 於生成範圍內生成怪物
+			Instantiate(prefabEnemy, monsterRange, Quaternion.identity);
+		}
+		// 每生成一隻怪物 計數器就+1
+		enemyCount++;
 	}
 }
