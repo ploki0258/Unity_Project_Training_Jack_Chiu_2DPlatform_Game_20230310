@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// 技能資料
+/// </summary>
 [CreateAssetMenu(fileName = "New Skill", menuName = "Add New Skill")]
 public class Skill : ScriptableObject
 {

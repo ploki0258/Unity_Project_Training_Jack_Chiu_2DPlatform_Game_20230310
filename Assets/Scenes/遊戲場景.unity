@@ -1060,7 +1060,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 182701507}
-  - component: {fileID: 182701506}
   m_Layer: 0
   m_Name: "\u6280\u80FD\u7BA1\u7406\u5668"
   m_TagString: Untagged
@@ -1068,34 +1067,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &182701506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 182701505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22e1c7e13e03bd442a2c18c4ec649788, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointSkill: {fileID: 1104809014}
-  skillName: Fire Ball
-  activationKey: 122
-  skillPrefab: {fileID: 4810013998824171616, guid: 6e0d22218c0a8bc4096f11b168b18a13,
-    type: 3}
-  skillPrefabs:
-  - {fileID: 100000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
-  - {fileID: 1892078723244562, guid: 46876a2780737ec45a19d62f88e5ce56, type: 3}
-  - {fileID: 1247311384876784, guid: 4adffb0018aeda44e9263f901167af1f, type: 3}
-  - {fileID: 100004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
-  - {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
-  - {fileID: 1545806602296978, guid: 9e4577abe56a95f4a91d29a0473cd30c, type: 3}
-  - {fileID: 100018, guid: a40b64bf23366dc42a892af2c6ff6140, type: 3}
-  - {fileID: 100000, guid: 3156817f64ec68948ad6bb26569b9ef5, type: 3}
-  - {fileID: 100000, guid: 352304b7fbe11f445970df6ae36e6227, type: 3}
-  - {fileID: 100006, guid: 2a474af3f4c27be4e9bdce39cfe4315d, type: 3}
 --- !u!4 &182701507
 Transform:
   m_ObjectHideFlags: 0
@@ -2846,6 +2817,82 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
   m_PVRTiledBaking: 0
+--- !u!1 &490082382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 490082383}
+  - component: {fileID: 490082385}
+  - component: {fileID: 490082384}
+  m_Layer: 5
+  m_Name: "\u9053\u5177\u4ECB\u9762"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &490082383
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490082382}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 934149899}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &490082384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490082382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.7529412}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &490082385
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490082382}
+  m_CullTransparentMesh: 1
 --- !u!1001 &496671173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3497,6 +3544,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\u73A9\u5BB6"
       objectReference: {fileID: 0}
+    - target: {fileID: 4105362945620786469, guid: ebea5f8b8163f9a4ab9d9a1b45444e28,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4105362945620786471, guid: ebea5f8b8163f9a4ab9d9a1b45444e28,
         type: 3}
       propertyPath: m_RootOrder
@@ -3766,7 +3818,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 182701506}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillManager, Assembly-CSharp
         m_MethodName: CastSkill
         m_Mode: 3
@@ -4580,7 +4632,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 774273520}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1955147660}
+        m_TargetAssemblyTypeName: SkillField, Assembly-CSharp
+        m_MethodName: LearnSkill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &774273520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5180,6 +5244,7 @@ RectTransform:
   - {fileID: 1415217921}
   - {fileID: 760676304}
   - {fileID: 661030037}
+  - {fileID: 490082383}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6190,12 +6255,6 @@ MonoBehaviour:
   minY: 4
   maxY: 4
   playerDis: 0
---- !u!4 &1104809014 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1125846721, guid: ebea5f8b8163f9a4ab9d9a1b45444e28,
-    type: 3}
-  m_PrefabInstance: {fileID: 631327308}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1120333981
 GameObject:
   m_ObjectHideFlags: 0
@@ -8792,7 +8851,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 182701506}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillManager, Assembly-CSharp
         m_MethodName: CastSkill
         m_Mode: 3
@@ -9635,13 +9694,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e6dae9903d2d2244b6875698cc60b51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 1961115898}
-  title: {fileID: 236104079}
-  info:
+  iconSkill: {fileID: 1961115898}
+  titleSkill: {fileID: 236104079}
+  infoSkill:
   - {fileID: 1871169562}
   - {fileID: 309256760}
-  skillBtn: {fileID: 774273519}
-  alreSkill: 0
+  btnSkill: {fileID: 774273519}
 --- !u!1 &1955870411
 GameObject:
   m_ObjectHideFlags: 0

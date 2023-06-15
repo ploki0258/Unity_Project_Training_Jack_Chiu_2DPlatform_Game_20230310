@@ -1,4 +1,5 @@
 ﻿using Fungus;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveManager
@@ -117,7 +118,44 @@ public struct PlayerData
     }
     int _skillPoint;
     public System.Action 更新技能點;
-    
+
+    public List<int> haveSkill; // 已擁有的技能
+    public List<int> haveItem;  // 已擁有的道具
+
+    /// <summary>
+    /// 檢查該技能ID是否已購買
+    /// </summary>
+    /// <param name="id">技能ID</param>
+    /// <returns></returns>
+    public bool IsHaveSkill(int id)
+	{
+		for (int i = 0; i < haveSkill.Count; i++)
+		{
+			if (haveSkill[i] == id)
+			{
+                return true;
+			}
+		}
+        return false;
+	}
+
+    /// <summary>
+    /// 檢查該道具ID是否已購買
+    /// </summary>
+    /// <param name="id">道具ID</param>
+    /// <returns></returns>
+    public bool IsHaveItem(int id)
+    {
+        for (int i = 0; i < haveItem.Count; i++)
+        {
+            if (haveItem[i] == id)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // 建構式
     public PlayerData(int coin, int skill)
     {
@@ -128,6 +166,8 @@ public struct PlayerData
         _skillPoint = skill;
         更新金幣 = null;
         更新技能點 = null;
+        haveSkill = new List<int>();
+        haveItem = new List<int>();
     }
 
     public PlayerData(int v)
@@ -139,5 +179,7 @@ public struct PlayerData
         _skillPoint = 0;
         更新金幣 = null;
         更新技能點 = null;
+        haveSkill = new List<int>();
+        haveItem = new List<int>();
     }
 }
