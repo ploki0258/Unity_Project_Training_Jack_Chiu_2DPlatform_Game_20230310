@@ -5,18 +5,26 @@ using UnityEngine;
 
 public class SkillInterface : Windows<SkillInterface>
 {
-	new bool isOpen = false;
+	bool Opening = false;
 
 	public override void Open()
 	{
 		base.Open();
-		isOpen = true;
+		Opening = true;
+		Time.timeScale = 0f;
 	}
 
 	public override void Close()
 	{
 		base.Close();
-		isOpen = false;
+		Opening = false;
+		Time.timeScale = 1f;
+	}
+
+	protected override void Awake()
+	{
+		base.Awake();
+		SkillManager.instance.Initialization();
 	}
 
 	protected override void Update()
@@ -24,7 +32,7 @@ public class SkillInterface : Windows<SkillInterface>
 		base.Update();
 		if (Input.GetKeyDown(KeyCode.Tab))
 		{
-			if (!isOpen)
+			if (!Opening)
 			{
 				Open();
 			}

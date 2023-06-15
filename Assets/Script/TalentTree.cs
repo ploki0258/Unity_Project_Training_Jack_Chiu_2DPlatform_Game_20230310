@@ -10,9 +10,10 @@ public class TalentTree : MonoBehaviour
     /// <summary>
     /// 施放法術
     /// </summary>
-    /// <param name="index"></param>
-    public void CastSkill(int index)
+    /// <param name="id"></param>
+    public void CastSkill(int id)
     {
-        Debug.Log("按下按鈕：" + index + "號技能");
+        Debug.Log("按下按鈕：" + id + "號技能");
+        GetComponent<SkillField>().初始化技能(id);
     }
 }
