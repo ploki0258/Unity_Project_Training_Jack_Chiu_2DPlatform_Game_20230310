@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject itemSkill = null;
     [Header("掉落機率")]
     public float probDrop = 5f;
-    [Header("傷害值")]
+    [Header("被傷害值")]
     [SerializeField] float damage = 5f;
     /*[Header("資訊欄顯示")]
     [SerializeField] Text coinInfo = null;

@@ -3,7 +3,7 @@
 public class AttackObject : MonoBehaviour
 {
     [Header("傷害值")]
-    [SerializeField] float damage = 5f;
+    [SerializeField] float damage = 0f;
 
     bool isWandAttack = false;  // 物理攻擊(MP <= 0)
 

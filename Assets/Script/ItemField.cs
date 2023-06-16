@@ -49,6 +49,9 @@ public class ItemField : Windows<ItemField>
                 Close();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Close();
     }
 
     // 打開視窗時 顯示滑鼠 時間暫停
@@ -67,7 +70,6 @@ public class ItemField : Windows<ItemField>
         Time.timeScale = 1f;
     }
 
-
     void 刷新道具欄()
     {
         // 格子模板本身不顯示
@@ -81,19 +83,20 @@ public class ItemField : Windows<ItemField>
                 // 顯示持有道具
                 // 複製一個格子模板 並放進道具欄背景中
                 GameObject 剛創建的格子 = Instantiate(tempGrid, itemFieldBG);
+                // 叫出格子時先把它啟動
                 剛創建的格子.SetActive(true);
-                RectTransform UIPos = 剛創建的格子.GetComponent<RectTransform>();
-                UIPos.anchoredPosition = new Vector2(200f * i, 200f * i);
+                // 將物品資料傳送給格子處理
                 剛創建的格子.GetComponent<Grid>().InputData(SaveManager.instance.goodsList[i]);
             }
             // 否則顯示空格子
             else
             {
+                // 複製一個格子模板出來 並且放進道具欄背景中
                 GameObject 剛創建的格子 = Instantiate(tempGrid, itemFieldBG);
+                // 叫出格子時先把它啟動
                 剛創建的格子.SetActive(true);
             }
         }
-        itemFieldBG.sizeDelta = new Vector2(itemFieldBG.sizeDelta.x, 200f + (ItemManager.instance.AllItemData.Length * 205f));
     }
 
     /*
@@ -111,7 +114,6 @@ public class ItemField : Windows<ItemField>
             剛剛生成的商品.GetComponent<Grid>().輸入資料(SaveManager.instance.goodsList[i]);
         }
         itemFieldBG.sizeDelta = new Vector2(itemFieldBG.sizeDelta.x, 20f + (ItemManager.instance.AllItem.Length * 22f));
-
     }
     */
 }

@@ -1060,8 +1060,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 182701507}
+  - component: {fileID: 182701508}
   m_Layer: 0
-  m_Name: "\u6280\u80FD\u7BA1\u7406\u5668"
+  m_Name: "\u6280\u80FD\u7279\u6548\u793A\u7BC4"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1082,6 +1083,73 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &182701508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182701505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64ec3dc3525a89d4abb9f976c2667a6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointSkill: {fileID: 984110722}
+  skillName: 
+  activationKey: 0
+  skillPrefab: {fileID: 0}
+  skillEffPrefab:
+  - {fileID: 100000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
+  - {fileID: 1892078723244562, guid: 46876a2780737ec45a19d62f88e5ce56, type: 3}
+  - {fileID: 1247311384876784, guid: 4adffb0018aeda44e9263f901167af1f, type: 3}
+  - {fileID: 100004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
+  - {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
+  - {fileID: 1545806602296978, guid: 9e4577abe56a95f4a91d29a0473cd30c, type: 3}
+  - {fileID: 100018, guid: a40b64bf23366dc42a892af2c6ff6140, type: 3}
+  - {fileID: 100000, guid: 3156817f64ec68948ad6bb26569b9ef5, type: 3}
+  - {fileID: 100000, guid: 352304b7fbe11f445970df6ae36e6227, type: 3}
+  - {fileID: 100006, guid: 2a474af3f4c27be4e9bdce39cfe4315d, type: 3}
+  - {fileID: 100000, guid: bc98890f6028f444eaa7789bde5e2eeb, type: 3}
+  - {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
+  - {fileID: 1995403933065894, guid: 4961a16ba01e09547be3e1c9d16d5ad0, type: 3}
+  - {fileID: 1965343156803978, guid: aa8d6482d70a23445b4b2a928ed1b845, type: 3}
+  - {fileID: 100000, guid: d4f5579fb5da2f646a0c2bee91bdf6b5, type: 3}
+  - {fileID: 100006, guid: bcaff8fc36e95584bb27cc3cf7c6cb14, type: 3}
+  - {fileID: 1781930563638536, guid: daa6cceb1b087d74aad6916dac2805ea, type: 3}
+  - {fileID: 100000, guid: aa3fed151f536ee49b583c6a3ac4a2e1, type: 3}
+  - {fileID: 100004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
+  - {fileID: 100000, guid: 1bc4a709f24528b40984e62f32e398a0, type: 3}
+  - {fileID: 100006, guid: 8fc06027b01064e4f885fd8dd2929310, type: 3}
+  - {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
+  - {fileID: 1687118924408352, guid: 77c69ec12208c4c4380d15e30b6f8f68, type: 3}
+  - {fileID: 100008, guid: 1ca16f2a31fb6a548ad8954bed1d321f, type: 3}
+  - {fileID: 1628744458893394, guid: e243632bb3aff9549abdcfcc2ef0c4f0, type: 3}
+  - {fileID: 100000, guid: de07bf378e7247444a0715ad2ff509e3, type: 3}
+  - {fileID: 1134129239631916, guid: 7e48ba6b1b968764490bbc70b66e3fe1, type: 3}
+  - {fileID: 1727626132299242, guid: b0bc1b6b391734647b9bb142bafc0819, type: 3}
+  - {fileID: 100000, guid: f89732ea99785b94c87bbba1e27f75a3, type: 3}
+  - {fileID: 100004, guid: 757df604761b8ef42831192c70ee1099, type: 3}
+  - {fileID: 100000, guid: ada5d62ffe762ce4fbccc70dcdbc9022, type: 3}
+  - {fileID: 100000, guid: 7b56cd9b663f23f429e131a54ec87db0, type: 3}
+  - {fileID: 100006, guid: 60bc526f4be1e044ab9e46340b82ffb3, type: 3}
+  - {fileID: 100008, guid: e3d819d8722fa1f47a3f68574b56dfb3, type: 3}
+  - {fileID: 100000, guid: 3d4907e6bd39f474b8fd8220920e65c4, type: 3}
+  - {fileID: 100000, guid: 7d6835d9db898fa4bbfda5d62c496786, type: 3}
+  - {fileID: 100000, guid: 979632a27455af442bd2d8f36eb0ffce, type: 3}
+  - {fileID: 100000, guid: 83cd9cc9f9c88824ba18dc59b05ae328, type: 3}
+  - {fileID: 1280141305896002, guid: e473029e4c70ad543a6879b82a732f4f, type: 3}
+  - {fileID: 1750940742320366, guid: ec1383a81f8b26e41bd5795fba065567, type: 3}
+  - {fileID: 100004, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
+  - {fileID: 1844191813266838, guid: 968c924d2be019d4b9e67647551eec3e, type: 3}
+  - {fileID: 100002, guid: db50ab1c866680e4bb870bf5eb72dd3d, type: 3}
+  - {fileID: 1845240806346120, guid: b395d5d6eb4b4b846acc021ee036b744, type: 3}
+  - {fileID: 1462327970484030, guid: f01c1eba69de19e44b04d8d651aaac37, type: 3}
+  - {fileID: 100002, guid: e9391f622091e1449bdef4ef15af4948, type: 3}
+  - {fileID: 100000, guid: f2dba9e16cd347f44a395b8204544ee5, type: 3}
+  - {fileID: 100004, guid: fb7b0526ade434043b350a180d741cf3, type: 3}
+  - {fileID: 100000, guid: 18204b98237ccb540808f2cd2d78c2c8, type: 3}
+  - {fileID: 100000, guid: 37bd362d795dc334d8676f4781d66578, type: 3}
 --- !u!1 &209339490
 GameObject:
   m_ObjectHideFlags: 0
@@ -3439,10 +3507,6 @@ PrefabInstance:
       propertyPath: coinInfo
       value: 
       objectReference: {fileID: 1120333984}
-    - target: {fileID: 1916344258, guid: ebea5f8b8163f9a4ab9d9a1b45444e28, type: 3}
-      propertyPath: pointAtk
-      value: 
-      objectReference: {fileID: 984110722}
     - target: {fileID: 1916344258, guid: ebea5f8b8163f9a4ab9d9a1b45444e28, type: 3}
       propertyPath: coinCount
       value: 
@@ -8788,8 +8852,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkillManager, Assembly-CSharp
+      - m_Target: {fileID: 182701508}
+        m_TargetAssemblyTypeName: TestSkill, Assembly-CSharp
         m_MethodName: CastSkill
         m_Mode: 3
         m_Arguments:
@@ -9699,7 +9763,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.9999695}
+  m_AnchoredPosition: {x: 0, y: 1}
   m_SizeDelta: {x: 0, y: 341.5332}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1955147658
