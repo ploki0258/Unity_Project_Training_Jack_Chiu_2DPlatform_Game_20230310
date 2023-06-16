@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestSkill : MonoBehaviour
+public class TestSkillEffect : MonoBehaviour
 {
 	[Header("§Þ¯à¦ì¸m")]
     [SerializeField] Transform pointSkill;
