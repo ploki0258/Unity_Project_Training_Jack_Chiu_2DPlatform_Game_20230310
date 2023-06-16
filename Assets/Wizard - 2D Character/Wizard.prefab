@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1125846720
+--- !u!1 &2886600913845526173
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1125846721}
-  - component: {fileID: 2442100207342049538}
+  - component: {fileID: 139718891133977435}
+  - component: {fileID: 580756050630006119}
   m_Layer: 0
   m_Name: "\u653B\u64CA\u751F\u6210\u9EDE"
-  m_TagString: bullet
+  m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1125846721
+--- !u!4 &139718891133977435
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1125846720}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.70710677}
-  m_LocalPosition: {x: 1.3900633, y: 0.002096653, z: 0}
+  m_GameObject: {fileID: 2886600913845526173}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.387, y: 0.012, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5648001209294577967}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &2442100207342049538
+--- !u!58 &580756050630006119
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1125846720}
+  m_GameObject: {fileID: 2886600913845526173}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -58,9 +58,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4105362945620786471}
   - component: {fileID: 4105362945620786468}
-  - component: {fileID: 405701571}
-  - component: {fileID: 405701570}
-  - component: {fileID: 1441102371}
+  - component: {fileID: 1916344259}
+  - component: {fileID: 1916344260}
+  - component: {fileID: 1916344258}
   m_Layer: 0
   m_Name: Wizard
   m_TagString: Player
@@ -104,7 +104,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!50 &405701571
+--- !u!50 &1916344259
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -125,7 +125,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &405701570
+--- !u!70 &1916344260
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4105362945620786469}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.03, y: 1.4}
+  m_Size: {x: 1.08, y: 3.04}
+  m_Direction: 0
+--- !u!114 &1916344258
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,11 +153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40f9af641938b546b9f357240c7463f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  powJump: 8
+  speed: 10
+  powJump: 3
   atkObject: {fileID: 3505493634716584361, guid: bd8082de0d59f234da9264a27d99f0f1,
     type: 3}
-  pointAtk: {fileID: 1125846721}
+  pointAtk: {fileID: 0}
   speedAtk: 500
   barHP: {fileID: 0}
   barMP: {fileID: 0}
@@ -155,22 +171,6 @@ MonoBehaviour:
   skillCount: {fileID: 0}
   showCoinAni: {fileID: 0}
   showSkillPointAni: {fileID: 0}
---- !u!70 &1441102371
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4105362945620786469}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.52}
-  m_Size: {x: 1.4, y: 3}
-  m_Direction: 0
 --- !u!1001 &4105362946132217688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -662,11 +662,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Bounds.m_Extent.x
       value: 0.61864996
-      objectReference: {fileID: 0}
-    - target: {fileID: -1423065433164063525, guid: dde2588f5e0bc7b4ab407c1ae99bd5c1,
-        type: 3}
-      propertyPath: m_Bounds.m_Extent.y
-      value: 0.44368482
       objectReference: {fileID: 0}
     - target: {fileID: -1412640778794251977, guid: dde2588f5e0bc7b4ab407c1ae99bd5c1,
         type: 3}

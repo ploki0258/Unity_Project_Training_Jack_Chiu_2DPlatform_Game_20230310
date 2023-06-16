@@ -38,7 +38,7 @@ public class ItemManager
 	/// </summary>
 	/// <param name="id">πD®„ID</param>
 	/// <returns></returns>
-	public Item FindItemByID(int id)
+	public Item FindItemData(int id)
 	{
 		for (int i = 0; i < AllItemData.Length; i++)
 		{

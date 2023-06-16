@@ -11,7 +11,7 @@ public class TalentTree : MonoBehaviour
     /// 施放法術
     /// </summary>
     /// <param name="id"></param>
-    public void CastSkill(int id)
+    public void PressSkill(int id)
     {
         Debug.Log("按下按鈕：" + id + "號技能");
         GetComponent<SkillField>().初始化技能(id);

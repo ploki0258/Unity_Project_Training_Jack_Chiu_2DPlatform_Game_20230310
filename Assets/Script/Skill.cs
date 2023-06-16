@@ -25,8 +25,8 @@ public class Skill : ScriptableObject
     public bool isSpecial;
     [Header("攻擊形式")]
     public string attackDis;
-    [Header("技能敘述")]
-    [TextArea(5, 5)] public string skillDis;
+    [Header("技能敘述"), TextArea(5, 5)]
+    public string skillDis;
     [Header("技能費用")]
     public int skillCoinCost;
     public int skillPointCost;

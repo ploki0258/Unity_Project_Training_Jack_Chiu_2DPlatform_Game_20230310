@@ -19,8 +19,7 @@ public class SkillField : MonoBehaviour
 
 	private void Awake()
 	{
-		iconSkill.sprite = null;
-		iconSkill.transform.localScale = (iconSkill.sprite == null) ? Vector3.zero : Vector3.one;
+		iconSkill.transform.localScale = Vector3.zero;
 		titleSkill.text = "";
 		infoSkill[0].text = "";
 		infoSkill[1].text = "";
@@ -33,10 +32,11 @@ public class SkillField : MonoBehaviour
 		// 查找資料
 		skillData = SkillManager.instance.FindSkillByID(id);
 
+		iconSkill.transform.localScale = (iconSkill.sprite == null) ? Vector3.zero : Vector3.one;
 		iconSkill.sprite = skillData.skillIcon;
 		titleSkill.text = skillData.skillName;
 		infoSkill[0].text = skillData.skillDis;
-		infoSkill[1].text = skillData.skillCoinCost.ToString() + "\n" + skillData.skillPointCost;
+		infoSkill[1].text = "花費金幣：" + skillData.skillCoinCost.ToString() + "\n花費技能點數" + skillData.skillPointCost;
 		// 如果玩家沒有該技能的話 才顯示按鈕
 		alreSkill = SaveManager.instance.playerData.IsHaveSkill(id);
 		btnSkill[0].SetActive(alreSkill == false);
