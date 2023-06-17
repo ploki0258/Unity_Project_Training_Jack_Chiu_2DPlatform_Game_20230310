@@ -537,7 +537,7 @@ MonoBehaviour:
   point: {fileID: 3456010384097905134}
   speedMonster: 5
   disChase: 8
-  itemSkill: {fileID: 4544073352136542978, guid: 12975e6074d5c3340b7b22a984ca9ce3,
+  itemSkill: {fileID: 4671880185607488085, guid: b9058730acfdbdc45bba83fbcbe52e6f,
     type: 3}
   probDrop: 5
   damage: 50

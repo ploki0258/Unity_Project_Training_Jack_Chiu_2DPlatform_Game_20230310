@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ItemField : Windows<ItemField>
 {
@@ -18,20 +20,20 @@ public class ItemField : Windows<ItemField>
     {
         base.Start();
         // Test
-        SaveManager.instance.addItem(20);
-        SaveManager.instance.addItem(20);
-        SaveManager.instance.addItem(21);
-        SaveManager.instance.addItem(22);
-        SaveManager.instance.addItem(23);
+        SaveManager.instance.playerData.AddItem(20);
+        SaveManager.instance.playerData.AddItem(20);
+        SaveManager.instance.playerData.AddItem(21);
+        SaveManager.instance.playerData.AddItem(22);
+        SaveManager.instance.playerData.AddItem(23);
 
         刷新道具欄();
 
-        SaveManager.instance.Act_goodsChange += 刷新道具欄;
+        SaveManager.instance.playerData.Act_goodsChange += 刷新道具欄;
     }
 
     private void OnDisable()
     {
-        SaveManager.instance.Act_goodsChange -= 刷新道具欄;
+        SaveManager.instance.playerData.Act_goodsChange -= 刷新道具欄;
     }
 
     protected override void Update()
@@ -70,15 +72,21 @@ public class ItemField : Windows<ItemField>
         Time.timeScale = 1f;
     }
 
+    List<GameObject> 垃圾桶 = new List<GameObject>();
+
     void 刷新道具欄()
     {
+        foreach (var g in 垃圾桶)
+            DestroyImmediate(g);
+        垃圾桶.Clear();
+
         // 格子模板本身不顯示
         tempGrid.SetActive(false);
         // i小於格子數量 20
         for (int i = 0; i < 20; i++)
         {
             // 如果i小於玩家持有的道具數量 就顯示道具
-            if (i < SaveManager.instance.goodsList.Count)
+            if (i < SaveManager.instance.playerData.goodsList.Count)
             {
                 // 顯示持有道具
                 // 複製一個格子模板 並放進道具欄背景中
@@ -86,7 +94,9 @@ public class ItemField : Windows<ItemField>
                 // 叫出格子時先把它啟動
                 剛創建的格子.SetActive(true);
                 // 將物品資料傳送給格子處理
-                剛創建的格子.GetComponent<Grid>().InputData(SaveManager.instance.goodsList[i]);
+                剛創建的格子.GetComponent<Grid>().InputData(SaveManager.instance.playerData.goodsList[i]);
+
+                垃圾桶.Add(剛創建的格子);
             }
             // 否則顯示空格子
             else
@@ -95,6 +105,8 @@ public class ItemField : Windows<ItemField>
                 GameObject 剛創建的格子 = Instantiate(tempGrid, itemFieldBG);
                 // 叫出格子時先把它啟動
                 剛創建的格子.SetActive(true);
+
+                垃圾桶.Add(剛創建的格子);
             }
         }
     }

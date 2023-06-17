@@ -11,20 +11,18 @@ public class PlayerCtrl : MonoBehaviour
     [SerializeField] float powJump = 0f;
     [Header("攻擊物件")]
     [SerializeField] GameObject atkObject = null;
-    [Header("生成點")]
+    [Header("施法生成點")]
     [SerializeField] Transform pointAtk = null;
     [Header("攻擊速度")]
     [SerializeField] float speedAtk = 500f;
     [Header("血量條")]
-    [SerializeField] Image barHP = null;
+    public Image barHP = null;
     [Header("魔力條")]
-    [SerializeField] Image barMP = null;
+    public Image barMP = null;
     [Header("最大血量")]
     [SerializeField] float maxHP = 100f;
     [Header("最大魔力")]
     [SerializeField] float maxMP = 100f;
-    [Header("金幣數量")]
-    [SerializeField] TextMeshProUGUI countCoin = null;
     [Header("魔力消耗")]
     [SerializeField] float costMP = 0f;
     // 怪物使用
@@ -49,6 +47,7 @@ public class PlayerCtrl : MonoBehaviour
     [Tooltip("用來儲存玩家是否站在地板上")]
     private bool onFloor = false;
     bool 翻轉 = false;
+    bool isWindowsOpen = WindowsManager.instance.IsWindowsOpen();   // 視窗是否被開啟
     Rigidbody2D rig;
     Animator ani;
     #endregion
@@ -64,18 +63,32 @@ public class PlayerCtrl : MonoBehaviour
         // 角色出生時 讀檔一次
         SaveManager.instance.LoadData();
         // SaveManager.instance.SaveData();
+        WindowsManager.instance.Start();
     }
 
     private void Start()
     {
-        hp = maxHP;
-        mp = maxMP;
+        // SaveManager.instance.playerData.playerHP = maxHP;
+        // SaveManager.instance.playerData.playerMP = maxMP;
         coinInfo.text = "";
-        coin = 0;
-        skill = 0;
+
+        SaveManager.instance.playerData.renewCoin += RenewCoin;
+        SaveManager.instance.playerData.renewSkillPoint += RenewSkillPoint;
+        SaveManager.instance.playerData.renewPlayerHP += RenewPlayerHP;
+        SaveManager.instance.playerData.renewPlayerMP += RenewPlayerMP;
+        RenewPlayerHP();
+        RenewPlayerMP();
     }
 
-    private void Update()
+	private void OnDisable()
+	{
+        SaveManager.instance.playerData.renewCoin -= RenewCoin;
+        SaveManager.instance.playerData.renewSkillPoint -= RenewSkillPoint;
+        SaveManager.instance.playerData.renewPlayerHP -= RenewPlayerHP;
+        SaveManager.instance.playerData.renewPlayerMP -= RenewPlayerMP;
+    }
+
+	private void Update()
     {
         PlayerMove();
         Jump();
@@ -97,19 +110,23 @@ public class PlayerCtrl : MonoBehaviour
     {
         // 移動
         float ad = Input.GetAxisRaw("Horizontal");                        // 取得水平值
+        // 如果有視窗被開啟 就不移動
+        if (isWindowsOpen)
+            ad = 0;
+
         rig.velocity = new Vector2(ad * speed, rig.velocity.y);
 
         //移動動畫
         ani.SetBool("isRun", ad != 0);
 
         // 翻轉
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && isWindowsOpen == false)
         {
             this.transform.rotation = Quaternion.AngleAxis(0, new Vector3(0, 1, 0));
             翻轉 = false;
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && isWindowsOpen == false)
         {
             this.transform.rotation = Quaternion.AngleAxis(180, new Vector3(0, 1, 0));
             翻轉 = true;
@@ -136,7 +153,7 @@ public class PlayerCtrl : MonoBehaviour
     void Jump()
     {
         // 如果 按下空白建(或上) 以及 onFloor = true 就跳躍
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && onFloor != false)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && onFloor != false && isWindowsOpen == false)
         {
             // rig.velocity = new Vector2(rig.velocity.x, 跳躍力);
             rig.AddForce(transform.up * powJump, ForceMode2D.Impulse);
@@ -152,16 +169,16 @@ public class PlayerCtrl : MonoBehaviour
     /// </summary>
     void Attack()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && isWindowsOpen == false)
         {
             ani.SetTrigger("attack");
 
             if (atkObject == true)
             {
-                if (mp <= 0)
+                if (SaveManager.instance.playerData.playerMP <= 0)
                     return;
 
-                mp -= costMP;
+                SaveManager.instance.playerData.playerMP -= costMP;
             }
 
             if (翻轉 != true)
@@ -182,12 +199,33 @@ public class PlayerCtrl : MonoBehaviour
     /// </summary>
     void Dead()
     {
-		if (hp <= 0)
+		if (SaveManager.instance.playerData.playerHP <= 0)
 		{
             ani.SetTrigger("die");
             SaveManager.instance.SaveUser();
             Destroy(this);
 		}
+    }
+
+    /// <summary>
+    /// 受傷功能
+    /// </summary>
+    /// <param name="hurt">傷害量</param>
+    public void TakeDamage(float hurt)
+    {
+        SaveManager.instance.playerData.playerHP -= hurt;
+    }
+
+    /// <summary>
+    /// 萬能藥：MP全回滿
+    /// </summary>
+    /// Test
+    void Panacea()
+    {
+        if (Input.GetKeyDown(KeyCode.P) && SaveManager.instance.playerData.playerMP != maxMP)
+        {
+            SaveManager.instance.playerData.playerMP = maxMP;
+        }
     }
 
     /// <summary>
@@ -198,32 +236,12 @@ public class PlayerCtrl : MonoBehaviour
         SaveManager.instance.SaveData();
     }
 
-    /// <summary>
-    /// 受傷功能
-    /// </summary>
-    /// <param name="hurt">傷害量</param>
-    public void TakeDamage(float hurt)
-    {
-        hp -= hurt;
-    }
-
-    /// <summary>
-    /// 萬能藥：MP全回滿
-    /// </summary>
-    void Panacea()
-    {
-        if (Input.GetKeyDown(KeyCode.P) && mp != maxMP)
-        {
-            mp = maxMP;
-        }
-    }
-
     /*public void Coin()
     {
         countCoin.text = "× " + Enemy.instance.coinNumber.ToString();
     }*/
 
-    public float hp
+    /*public float hp
     {
         get { return maxHP * barHP.fillAmount; }
         set
@@ -240,26 +258,28 @@ public class PlayerCtrl : MonoBehaviour
             barMP.fillAmount = value / maxMP;
         }
     }
+    */
 
-    public int coin
+    void RenewCoin()
     {
-        get { return _coin; }
-        set
-        {
-            _coin = value;
-            countCoin.text = "× " + Mathf.Round(value).ToString();
-        }
+        // 播放動畫
+        PlayerCtrl.instance.showCoinAni.SetTrigger("play");
     }
-    int _coin = 0;
+    
+    void RenewSkillPoint()
+	{
+        // 播放動畫
+        PlayerCtrl.instance.showSkillPointAni.SetTrigger("play");
+    }
 
-    public int skill
-    {
-        get { return _skill; }
-        set
-        {
-            _skill = value;
-            skillCount.text = "× " + value;
-        }
+    void RenewPlayerHP()
+	{
+        barHP.fillAmount = SaveManager.instance.playerData.playerHP / maxHP;
+
     }
-    int _skill = 0;
+    
+    void RenewPlayerMP()
+	{
+        barMP.fillAmount = SaveManager.instance.playerData.playerMP / maxMP;
+	}
 }

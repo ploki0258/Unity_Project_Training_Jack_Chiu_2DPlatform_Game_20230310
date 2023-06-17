@@ -39,12 +39,14 @@ public class SaveManager
 		if (json == "0")
 		{
 			// 這是一個新玩家 請給他基本數值
-			playerData = new PlayerData(0);
+			playerData = new PlayerData(0, 0, 100f, 100f);
+			// Debug.Log("給予玩家預設值");
 		}
 		else
 		{
 			// 從既有資料由json檔轉回來使用
 			playerData = JsonUtility.FromJson<PlayerData>(json);
+			// Debug.Log("撈資料給予玩家");
 		}
 	}
 
@@ -61,12 +63,154 @@ public class SaveManager
 		// PlayerPrefs.Save();
 	}
 
-	// 最大持有道具數量
-	int itemNumberMax = 999;
+	/// <summary>
+	/// 儲存使用者資料
+	/// </summary>
+	public void SaveUser()
+	{
+		if (SaveManager.instance.playerData.playerHP <= 0)
+		{
+			SaveData();
+		}
+	}
+}
+
+/// <summary>
+/// 玩家資料：定義資料內容
+/// </summary>
+[System.Serializable]
+public struct PlayerData
+{
+	// public int moneyCount;   // 金幣數量
+	// public int skillPoint;   // 技能點數
+
+	/// <summary>
+	/// 金幣數量
+	/// </summary>
+	[SerializeField]
+	public int moneyCount
+	{
+		get { return _moneyCount; }
+		set
+		{
+			_moneyCount = value;
+
+			// 呼叫刷新金幣
+			if (renewCoin != null)
+			{
+				renewCoin.Invoke();
+			}
+		}
+	}
+	[SerializeField] int _moneyCount;
+	public System.Action renewCoin;
+
+	/// <summary>
+	/// 技能點數
+	/// </summary>
+	[SerializeField]
+	public int skillPoint
+	{
+		get { return _skillPoint; }
+		set
+		{
+			_skillPoint = value;
+
+			// 呼叫刷新技能點數
+			if (renewSkillPoint != null)
+			{
+				renewSkillPoint.Invoke();
+			}
+		}
+	}
+	[SerializeField] int _skillPoint;
+	public System.Action renewSkillPoint;
+
+	/// <summary>
+	/// 玩家血量
+	/// </summary>
+	[SerializeField]
+	public float playerHP
+	{
+		get { return _playerHP; }
+		set
+		{
+			_playerHP = value;
+
+			// 呼叫刷新技能點數
+			if (renewPlayerHP != null)
+			{
+				renewPlayerHP.Invoke();
+			}
+		}
+	}
+	[SerializeField] float _playerHP;
+	public System.Action renewPlayerHP;
+
+	/// <summary>
+	/// 玩家魔力
+	/// </summary>
+	[SerializeField]
+	public float playerMP
+	{
+		get { return _playerMP; }
+		set
+		{
+			_playerMP = value;
+
+			// 呼叫刷新技能點數
+			if (renewPlayerMP != null)
+			{
+				renewPlayerMP.Invoke();
+			}
+		}
+	}
+	[SerializeField] float _playerMP;
+	public System.Action renewPlayerMP;
+
+	public List<int> haveSkill; // 已擁有的技能
+	public List<int> haveItem;  // 已擁有的道具
+
+	/// <summary>
+	/// 檢查該技能ID是否已購買
+	/// </summary>
+	/// <param name="id">技能ID</param>
+	/// <returns></returns>
+	public bool IsHaveSkill(int id)
+	{
+		for (int i = 0; i < haveSkill.Count; i++)
+		{
+			if (haveSkill[i] == id)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/// <summary>
+	/// 檢查該道具ID是否已購買
+	/// </summary>
+	/// <param name="id">道具ID</param>
+	/// <returns></returns>
+	public bool IsHaveItem(int id)
+	{
+		for (int i = 0; i < haveItem.Count; i++)
+		{
+			if (haveItem[i] == id)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 
 	// 持有物品列表
-	public List<Goods> goodsList = new List<Goods>();
+	public List<Goods> goodsList;
+	// 最大持有道具數量
+	public int itemNumberMax;
 
+	#region 物品功能
 	// 道具發生變化：新增、減少
 	public System.Action Act_goodsChange;
 
@@ -74,10 +218,10 @@ public class SaveManager
 	/// 添加道具(By ID)
 	/// </summary>
 	/// <param name="id">道具編號</param>
-	public bool addItem(int id)
+	public bool AddItem(int id)
 	{
 		// 如果已經有道具 就累計
-		if (checkItem(id) > 0)
+		if (CheckItem(id) > 0)
 		{
 			// 掃描所有道具
 			for (int i = 0; i < goodsList.Count; i++)
@@ -123,9 +267,9 @@ public class SaveManager
 	/// 減少道具
 	/// </summary>
 	/// <param name="id">道具編號</param>
-	public void removeItem(int id)
+	public void RemoveItem(int id)
 	{
-		int thisItem = checkItem(id);
+		int thisItem = CheckItem(id);
 
 		// 如果道具數量有兩個或以上時 只需減少即可
 		if (thisItem >= 2)
@@ -171,7 +315,7 @@ public class SaveManager
 	/// </summary>
 	/// <param name="id">道具編號</param>
 	/// <returns></returns>
-	public int checkItem(int id)
+	public int CheckItem(int id)
 	{
 		for (int i = 0; i < goodsList.Count; i++)
 		{
@@ -184,141 +328,56 @@ public class SaveManager
 		}
 		return 0;
 	}
-
-	/// <summary>
-	/// 持有物
-	/// </summary>
-	[System.Serializable]
-	public struct Goods
-	{
-		[SerializeField] public int id;     // 有什麼樣的道具(ID)
-		[SerializeField] public int number; // 有幾個這個道具(數量)
-	}
-
-	/// <summary>
-	/// 儲存使用者資料
-	/// </summary>
-	public void SaveUser()
-	{
-		if (PlayerCtrl.instance.hp <= 0)
-		{
-			SaveData();
-		}
-	}
-}
-
-/// <summary>
-/// 玩家資料：定義資料內容
-/// </summary>
-[System.Serializable]
-public struct PlayerData
-{
-	// public int moneyCount;   // 金幣數量
-	// public int skillPoint;   // 技能點數
-
-	/// <summary>
-	/// 金幣數量
-	/// </summary>
-	[SerializeField]
-	public int moneyCount
-	{
-		get { return _moneyCount; }
-		set
-		{
-			_moneyCount = value;
-
-			// 
-			if (更新金幣 != null)
-			{
-				更新金幣.Invoke();
-			}
-		}
-	}
-	int _moneyCount;
-	public System.Action 更新金幣;
-
-	/// <summary>
-	/// 技能點數
-	/// </summary>
-	[SerializeField]
-	public int skillPoint
-	{
-		get { return _skillPoint; }
-		set
-		{
-			_skillPoint = value;
-
-			// 
-			if (更新技能點 != null)
-			{
-				更新技能點.Invoke();
-			}
-		}
-	}
-	int _skillPoint;
-	public System.Action 更新技能點;
-
-	public List<int> haveSkill; // 已擁有的技能
-	public List<int> haveItem;  // 已擁有的道具
-
-	/// <summary>
-	/// 檢查該技能ID是否已購買
-	/// </summary>
-	/// <param name="id">技能ID</param>
-	/// <returns></returns>
-	public bool IsHaveSkill(int id)
-	{
-		for (int i = 0; i < haveSkill.Count; i++)
-		{
-			if (haveSkill[i] == id)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/// <summary>
-	/// 檢查該道具ID是否已購買
-	/// </summary>
-	/// <param name="id">道具ID</param>
-	/// <returns></returns>
-	public bool IsHaveItem(int id)
-	{
-		for (int i = 0; i < haveItem.Count; i++)
-		{
-			if (haveItem[i] == id)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
+	#endregion
 
 	// 建構式
-	public PlayerData(int coin, int skill)
+	public PlayerData(int coin, int skill, float maxHP, float maxMP)
 	{
-		// this.moneyCount = coin;
-		// this.skillPoint = skill;
-
 		_moneyCount = coin;
 		_skillPoint = skill;
-		更新金幣 = null;
-		更新技能點 = null;
+		renewCoin = null;
+		renewSkillPoint = null;
+		Act_goodsChange = null;
+		itemNumberMax = 999;
 		haveSkill = new List<int>();
 		haveItem = new List<int>();
+		goodsList = new List<Goods>();
+		_playerHP = maxHP;
+		renewPlayerHP = null;
+		_playerMP = maxMP;
+		renewPlayerMP = null;
+
+		// this.moneyCount = coin;
+		// this.skillPoint = skill;
 	}
 
 	public PlayerData(int v)
 	{
-		// this.moneyCount = 0;
-		// this.skillPoint = 0;
-
 		_moneyCount = 0;
 		_skillPoint = 0;
-		更新金幣 = null;
-		更新技能點 = null;
+		renewCoin = null;
+		renewSkillPoint = null;
+		Act_goodsChange = null;
+		itemNumberMax = 999;
 		haveSkill = new List<int>();
 		haveItem = new List<int>();
+		goodsList = new List<Goods>();
+		_playerHP = 100f;
+		renewPlayerHP = null;
+		_playerMP = 100f;
+		renewPlayerMP = null;
+
+		// this.moneyCount = 0;
+		// this.skillPoint = 0;
 	}
+}
+
+/// <summary>
+/// 持有物
+/// </summary>
+[System.Serializable]
+public struct Goods
+{
+	[SerializeField] public int id;     // 有什麼樣的道具(ID)
+	[SerializeField] public int number; // 有幾個這個道具(數量)
 }

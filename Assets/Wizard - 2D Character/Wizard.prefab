@@ -61,7 +61,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74734cba1600ebc4a9dde95788aded22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 5
+  isWandAttack: 1
 --- !u!1 &4105362945620786469
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,7 +178,6 @@ MonoBehaviour:
   barMP: {fileID: 0}
   maxHP: 100
   maxMP: 100
-  countCoin: {fileID: 0}
   costMP: 10
   coinInfo: {fileID: 0}
   skillInfo: {fileID: 0}

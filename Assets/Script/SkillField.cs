@@ -32,8 +32,8 @@ public class SkillField : MonoBehaviour
 		// 查找資料
 		skillData = SkillManager.instance.FindSkillByID(id);
 
-		iconSkill.transform.localScale = (iconSkill.sprite == null) ? Vector3.zero : Vector3.one;
 		iconSkill.sprite = skillData.skillIcon;
+		iconSkill.transform.localScale = (iconSkill.sprite == null) ? Vector3.zero : Vector3.one;
 		titleSkill.text = skillData.skillName;
 		infoSkill[0].text = skillData.skillDis;
 		infoSkill[1].text = "花費金幣：" + skillData.skillCoinCost.ToString() + "\n花費技能點數" + skillData.skillPointCost;

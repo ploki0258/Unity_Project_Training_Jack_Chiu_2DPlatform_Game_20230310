@@ -27,6 +27,7 @@ public abstract class Windows<T> : SingletonMonoBehaviour<T> where T : class
 #if UNITY_EDITOR
         this.gameObject.name = ">>>>>>>" + ogName + "<<<<<<<";
 #endif
+        WindowsManager.instance.AddWindows(this.transform.GetInstanceID());
     }
     /// <summary>關閉介面</summary>
     virtual public void Close()
@@ -36,6 +37,7 @@ public abstract class Windows<T> : SingletonMonoBehaviour<T> where T : class
 #if UNITY_EDITOR
         this.gameObject.name = ogName;
 #endif
+        WindowsManager.instance.RemoveWindows(this.transform.GetInstanceID());
     }
     float targetAlpha = 0f;
     public bool isOpen = false;

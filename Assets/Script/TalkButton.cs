@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class TalkButton : MonoBehaviour
 {
-    public GameObject Button;
-    public GameObject talkUI;
-    [SerializeField] 對話文本 lines;
+    [SerializeField] GameObject Button;
+    [SerializeField] Animator archiveAni = null;
+
+    private void Update()
+    {
+        // HideUI();
+        Archive();
+    }
 
     // 當 玩家 靠近NPC時 就顯示對話提示按鈕
     private void OnTriggerEnter2D(Collider2D collision)
@@ -12,6 +17,7 @@ public class TalkButton : MonoBehaviour
         if (collision.tag == "Player")
         {
             Button.SetActive(true);     //顯示對話提示按鈕
+            archiveAni.SetTrigger("play");
         }
     }
 
@@ -24,10 +30,18 @@ public class TalkButton : MonoBehaviour
         }
     }
 
+    public void Archive()
+    {
+        if (Button.activeSelf && Input.GetKeyDown(KeyCode.E))
+		{
+            SaveManager.instance.SaveData();
+		}
+    }
+
     /// <summary>
     /// 顯示對話介面，並執行開始對話
     /// </summary>
-    public void HideUI()
+    /*public void HideUI()
     {
         if (Button.activeSelf && Input.GetKeyDown(KeyCode.E))
         {
@@ -39,9 +53,5 @@ public class TalkButton : MonoBehaviour
             }
         }
     }
-
-    private void Update()
-    {
-        HideUI();
-    }
+    */
 }

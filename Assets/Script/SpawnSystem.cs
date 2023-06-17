@@ -6,6 +6,9 @@ public class SpawnSystem : MonoBehaviour
 	[SerializeField] float interval = 0f;
 	[Header("怪物預製物")]
 	[SerializeField] GameObject prefabEnemy = null;
+	[Header("道具預製物")]
+	[SerializeField] GameObject[] prefabItem = null;
+	// 繪製圖形
 	[Header("生成點範圍X")]
 	[SerializeField] float range_X;
 	[Header("生成點範圍Y")]
@@ -16,19 +19,23 @@ public class SpawnSystem : MonoBehaviour
 	[SerializeField] float posY;
 	[Header("矩形中心點位移")]
 	[SerializeField] Vector2 offset;
+	// 生成範圍
 	[Header("X軸最小值")]
-	[SerializeField] float minX;
+	[SerializeField] float min_X;
 	[Header("X軸最大值")]
-	[SerializeField] float maxX;
+	[SerializeField] float max_X;
 	[Header("Y軸最小值")]
-	[SerializeField] float minY;
+	[SerializeField] float min_Y;
 	[Header("Y軸最大值")]
-	[SerializeField] float maxY;
+	[SerializeField] float max_Y;
 	[Header("與玩家的距離")]
 	[SerializeField] float playerDis;
+	[Header("生成類別")]
+	[SerializeField] bool isItem = false;
 
 	private Vector2 monsterRange;   // 怪物生成範圍
-	int enemyCount = 0;				// 計算敵人個數
+	private Vector2 itemRange;      // 道具生成範圍
+	int enemyCount = 0;             // 計算敵人個數
 	Transform player;
 
 	private void Awake()
@@ -39,8 +46,15 @@ public class SpawnSystem : MonoBehaviour
 
 	private void Start()
 	{
-		// 延遲重複呼叫
-		InvokeRepeating("SpawnEnemy", 0, interval);
+		if (isItem)
+		{
+			InvokeRepeating("SpawnItem", 0, interval);
+		}
+		else
+		{
+			// 延遲重複呼叫
+			InvokeRepeating("SpawnEnemy", 0, interval);
+		}
 
 		// float dis = Vector2.Distance(player.position, transform.position);
 
@@ -74,9 +88,9 @@ public class SpawnSystem : MonoBehaviour
 	void SpawnEnemy()
 	{
 		// 隨機X軸 Y軸的值
-		float rangeX = Random.Range(this.transform.position.x + minX, this.transform.position.x + maxX);
-		float rangeY = Random.Range(this.transform.position.y + minY, this.transform.position.y + maxY);
-		monsterRange = new Vector3(rangeX, rangeY);
+		float random_X = Random.Range(this.transform.position.x + min_X, this.transform.position.x + max_X);
+		float random_Y = Random.Range(this.transform.position.y + min_Y, this.transform.position.y + max_Y);
+		monsterRange = new Vector3(random_X, random_Y);
 
 		if (enemyCount < 3)
 		{
@@ -85,5 +99,17 @@ public class SpawnSystem : MonoBehaviour
 		}
 		// 每生成一隻怪物 計數器就+1
 		enemyCount++;
+	}
+
+	void SpawnItem()
+	{
+		// 隨機X軸 Y軸的值
+		float random_X = Random.Range(this.transform.position.x + min_X, this.transform.position.x + max_X);
+		float random_Y = Random.Range(this.transform.position.y + min_Y, this.transform.position.y + max_Y);
+		itemRange = new Vector3(random_X, random_Y);
+
+		int randomItem = Random.Range(0, prefabItem.Length);
+		// 於生成範圍內隨機生成道具
+		Instantiate(prefabItem[randomItem], itemRange, Quaternion.identity);
 	}
 }

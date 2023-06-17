@@ -62,16 +62,14 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         hpMonster = hpMonsterMax;
-        SaveManager.instance.playerData.更新金幣 += 更新;
-        SaveManager.instance.playerData.更新技能點 += 更新;
+        
         // coinInfo.text = "";
         // skill = 0;
     }
 
     private void OnDisable()
     {
-        SaveManager.instance.playerData.更新金幣 -= 更新;
-        SaveManager.instance.playerData.更新技能點 -= 更新;
+       
     }
 
     private void Update()
@@ -80,27 +78,7 @@ public class Enemy : MonoBehaviour
     }
 
     // 
-    void 更新()
-    {
-        // 播放金幣動畫為 true 時
-        if (aniCoin == true)
-        {
-            // 播放動畫
-            PlayerCtrl.instance.showCoinAni.SetTrigger("play");
-            // 顯示金幣文字
-            PlayerCtrl.instance.coinCount.text = "× " + SaveManager.instance.playerData.moneyCount;
-            Debug.Log("更新");
-        }
-
-        // 播放技能點數動畫為 true 時
-        if (aniSkill == true)
-        {
-            // 播放動畫
-            PlayerCtrl.instance.showSkillPointAni.SetTrigger("play");
-            // 顯示技能文字
-            PlayerCtrl.instance.skillCount.text = "× " + SaveManager.instance.playerData.skillPoint;
-        }
-    }
+    
 
     /// <summary>
     /// 追蹤玩家
@@ -158,9 +136,6 @@ public class Enemy : MonoBehaviour
     {
         if (isDeath == true)
         {
-            aniCoin = true;
-            aniSkill = true;
-
             int coinNumber = Random.Range(10, 100) * 10;    // 獲得金幣數量
             int skillNumber = Random.Range(1, 10) * 10;     // 獲得技能點數
 
@@ -170,7 +145,6 @@ public class Enemy : MonoBehaviour
 
             SaveManager.instance.playerData.moneyCount += coinNumber;
             SaveManager.instance.playerData.skillPoint += skillNumber;
-            SaveManager.instance.SaveData();    // 儲存玩家目前的資料
             // Debug.Log(coinNumber);
 
             /*if (aniCoin == true)
@@ -220,10 +194,10 @@ public class Enemy : MonoBehaviour
     // 碰撞事件
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // 如果碰到玩家 就扣玩家血量
+        // 如果碰到玩家 就依據怪物攻擊力扣玩家血量
         if (collision.gameObject.tag == "Player")
         {
-            PlayerCtrl.instance.hp -= atkMonster;
+            PlayerCtrl.instance.TakeDamage(atkMonster);
         }
     }
 

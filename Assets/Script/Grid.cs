@@ -8,12 +8,12 @@ public class Grid : MonoBehaviour
 	[SerializeField] Text 數量;
 	[SerializeField] Text 名稱;
 	[SerializeField] Text 描述;
-	[SerializeField] GameObject btnUse = null;
+	[SerializeField] 道具欄使用按鈕 btnUse = null;
 
 	Item dataGrid;
 	bool isNoneGrid = true; // 是否為空格子
 
-	public void InputData(SaveManager.Goods data)
+	public void InputData(Goods data)
 	{
 		isNoneGrid = false;
 		dataGrid = ItemManager.instance.FindItemData(data.id);
@@ -46,11 +46,13 @@ public class Grid : MonoBehaviour
 		// 如果是空格子 就不執行
 		if (isNoneGrid)
 		{
+			btnUse.目前選到的格子 = null;
 			return;
 		}
 		else
 		{
 			描述.text = dataGrid.info;
+			btnUse.目前選到的格子 = this;
 		}
 		// Debug.Log("按下" + dataGrid.title);
 	}
@@ -70,7 +72,7 @@ public class Grid : MonoBehaviour
 			// 如果會消耗 就減少一個
 			else if (dataGrid.Consumables == true)
 			{
-				SaveManager.instance.removeItem(dataGrid.id);
+				SaveManager.instance.playerData.RemoveItem(dataGrid.id);
 				Debug.Log("消耗" + dataGrid.title);
 			}
 			// 根據道具效果做各種事情
