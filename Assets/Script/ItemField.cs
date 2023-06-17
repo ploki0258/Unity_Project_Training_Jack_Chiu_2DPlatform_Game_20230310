@@ -20,11 +20,7 @@ public class ItemField : Windows<ItemField>
     {
         base.Start();
         // Test
-        SaveManager.instance.playerData.AddItem(20);
-        SaveManager.instance.playerData.AddItem(20);
-        SaveManager.instance.playerData.AddItem(21);
-        SaveManager.instance.playerData.AddItem(22);
-        SaveManager.instance.playerData.AddItem(23);
+        // SaveManager.instance.playerData.AddItem(20);
 
         ¨ê·s¹D¨ãÄæ();
 

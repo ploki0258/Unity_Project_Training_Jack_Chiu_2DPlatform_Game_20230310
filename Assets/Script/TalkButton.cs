@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TalkButton : MonoBehaviour
 {
-    [SerializeField] GameObject Button;
+    [SerializeField] GameObject Button = null;
     [SerializeField] Animator archiveAni = null;
 
     private void Update()
@@ -16,8 +16,8 @@ public class TalkButton : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Button.SetActive(true);     //顯示對話提示按鈕
-            archiveAni.SetTrigger("play");
+            Button.SetActive(true);     //顯示提示按鈕
+            archiveAni.SetBool("play", true);
         }
     }
 
@@ -26,7 +26,8 @@ public class TalkButton : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Button.SetActive(false);    //隱藏對話提示按鈕
+            Button.SetActive(false);    //隱藏提示按鈕
+            archiveAni.SetBool("play", false);
         }
     }
 

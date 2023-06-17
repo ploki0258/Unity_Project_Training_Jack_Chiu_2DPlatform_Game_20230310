@@ -660,19 +660,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7d58d99d447004d8a5e5f174b63de7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 1
-  prefabEnemy: {fileID: 3456010384803124554, guid: 7f07cdb854e62c54f936d0bd125b7b12,
-    type: 3}
+  interval: 2
+  prefabEnemy:
+  - {fileID: 3456010384803124554, guid: 7f07cdb854e62c54f936d0bd125b7b12, type: 3}
   prefabItem: []
   range_X: 10
   range_Y: 4
   posX: 0
   posY: 4
   offset: {x: 0, y: 2}
-  min_X: 0
-  max_X: 0
-  min_Y: 0
-  max_Y: 0
+  min_X: -5
+  max_X: 5
+  min_Y: 3
+  max_Y: 3
   playerDis: 5
   isItem: 0
 --- !u!1 &83308884
@@ -942,7 +942,7 @@ GameObject:
   - component: {fileID: 126378232}
   - component: {fileID: 126378231}
   m_Layer: 0
-  m_Name: "\u5730\u5716\u9053\u5177"
+  m_Name: "\u5730\u5716\u9053\u5177\u751F\u6210\u9EDE"
   m_TagString: Untagged
   m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -961,7 +961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interval: 2
-  prefabEnemy: {fileID: 0}
+  prefabEnemy: []
   prefabItem:
   - {fileID: 1467135916629253400, guid: 634291ae0f00eae4a99998bbab8b67d7, type: 3}
   - {fileID: 7220379217627899440, guid: 5f5e270bcecada04b9f60868d429ff39, type: 3}
@@ -6287,19 +6287,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interval: 10
-  prefabEnemy: {fileID: 3456010384803124554, guid: 7f07cdb854e62c54f936d0bd125b7b12,
-    type: 3}
+  prefabEnemy:
+  - {fileID: 3456010384803124554, guid: 7f07cdb854e62c54f936d0bd125b7b12, type: 3}
   prefabItem: []
   range_X: 10
   range_Y: 4
   posX: 0
   posY: 4
   offset: {x: 0, y: 2}
-  min_X: 0
-  max_X: 0
-  min_Y: 0
-  max_Y: 0
-  playerDis: 0
+  min_X: -5
+  max_X: 5
+  min_Y: 3
+  max_Y: 3
+  playerDis: 5
   isItem: 0
 --- !u!1 &1120333981
 GameObject:
@@ -6606,19 +6606,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interval: 10
-  prefabEnemy: {fileID: 3456010384803124554, guid: 7f07cdb854e62c54f936d0bd125b7b12,
-    type: 3}
+  prefabEnemy:
+  - {fileID: 3456010384803124554, guid: 7f07cdb854e62c54f936d0bd125b7b12, type: 3}
   prefabItem: []
   range_X: 10
   range_Y: 4
   posX: 0
   posY: 4
   offset: {x: 0, y: 2}
-  min_X: 0
-  max_X: 0
-  min_Y: 0
-  max_Y: 0
-  playerDis: 0
+  min_X: -5
+  max_X: 5
+  min_Y: 3
+  max_Y: 3
+  playerDis: 5
   isItem: 0
 --- !u!1 &1179213098
 GameObject:
@@ -10385,8 +10385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interval: 10
-  prefabEnemy: {fileID: 1935043901326990068, guid: 42a9aa59026b7f5489fd407497c96455,
-    type: 3}
+  prefabEnemy: []
   prefabItem: []
   range_X: 5
   range_Y: 10

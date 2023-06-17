@@ -5,7 +5,7 @@ public class SpawnSystem : MonoBehaviour
 	[Header("生成間隔"), Range(0, 10)]
 	[SerializeField] float interval = 0f;
 	[Header("怪物預製物")]
-	[SerializeField] GameObject prefabEnemy = null;
+	[SerializeField] GameObject[] prefabEnemy = null;
 	[Header("道具預製物")]
 	[SerializeField] GameObject[] prefabItem = null;
 	// 繪製圖形
@@ -20,13 +20,13 @@ public class SpawnSystem : MonoBehaviour
 	[Header("矩形中心點位移")]
 	[SerializeField] Vector2 offset;
 	// 生成範圍
-	[Header("X軸最小值")]
+	[Header("生成範圍X軸最小值")]
 	[SerializeField] float min_X;
-	[Header("X軸最大值")]
+	[Header("生成範圍X軸最大值")]
 	[SerializeField] float max_X;
-	[Header("Y軸最小值")]
+	[Header("生成範圍Y軸最小值")]
 	[SerializeField] float min_Y;
-	[Header("Y軸最大值")]
+	[Header("生成範圍Y軸最大值")]
 	[SerializeField] float max_Y;
 	[Header("與玩家的距離")]
 	[SerializeField] float playerDis;
@@ -94,8 +94,9 @@ public class SpawnSystem : MonoBehaviour
 
 		if (enemyCount < 3)
 		{
+			int randomEnemy = Random.Range(0, prefabItem.Length);
 			// 於生成範圍內生成怪物
-			Instantiate(prefabEnemy, monsterRange, Quaternion.identity);
+			Instantiate(prefabEnemy[randomEnemy], monsterRange, Quaternion.identity);
 		}
 		// 每生成一隻怪物 計數器就+1
 		enemyCount++;
