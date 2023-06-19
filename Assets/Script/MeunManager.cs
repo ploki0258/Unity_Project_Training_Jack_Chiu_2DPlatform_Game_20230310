@@ -18,4 +18,13 @@ public class MeunManager : MonoBehaviour
     {
         SceneManager.LoadScene("遊戲場景");
     }
+
+    /// <summary>
+    /// 繼續遊戲
+    /// </summary>
+    public void ContinueGame()
+	{
+        SaveManager.instance.LoadData();
+        SceneManager.LoadScene(SaveManager.instance.playerData.levelName);
+    }
 }

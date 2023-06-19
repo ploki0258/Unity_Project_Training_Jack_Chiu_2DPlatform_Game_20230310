@@ -64,6 +64,10 @@ public class Grid : MonoBehaviour
 	{
 		if (btnUse != null)
 		{
+			// 根據道具效果做各種事情
+			SaveManager.instance.playerData.playerHP += dataGrid.恢復HP;
+			SaveManager.instance.playerData.playerMP += dataGrid.恢復MP;
+
 			// 不可被使用的東西 就不執行
 			if (dataGrid.canUse == false)
 			{
@@ -75,7 +79,6 @@ public class Grid : MonoBehaviour
 				SaveManager.instance.playerData.RemoveItem(dataGrid.id);
 				Debug.Log("消耗" + dataGrid.title);
 			}
-			// 根據道具效果做各種事情
 		}
 	}
 }

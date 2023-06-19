@@ -183,12 +183,12 @@ public class PlayerCtrl : MonoBehaviour
 
             if (翻轉 != true)
             {
-                GameObject temp = Instantiate(atkObject, pointAtk.position, Quaternion.Euler(0, 0, 90f));
+                GameObject temp = Instantiate(atkObject, pointAtk.position, Quaternion.Euler(0f, 0f, 0f));
                 temp.GetComponent<Rigidbody2D>().AddForce(transform.right * speedAtk + transform.up * 10);
             }
             else
             {
-                GameObject temp = Instantiate(atkObject, pointAtk.position, Quaternion.Euler(0, 0, 270f));
+                GameObject temp = Instantiate(atkObject, pointAtk.position, Quaternion.Euler(0f, 0f, 180f));
                 temp.GetComponent<Rigidbody2D>().AddForce(transform.right * speedAtk + transform.up * 10);
             }
         }

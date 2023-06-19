@@ -1860,7 +1860,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2101053077}
         m_TargetAssemblyTypeName: MeunManager, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: ContinueGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
