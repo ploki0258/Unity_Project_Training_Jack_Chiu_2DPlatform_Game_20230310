@@ -39,7 +39,7 @@ public class SaveManager
 		if (json == "0")
 		{
 			// 這是一個新玩家 請給他基本數值
-			playerData = new PlayerData(0, 0, 100f, 100f);
+			playerData = new PlayerData(0, 0, 100f, 100f, new Vector3(0, 0, 0));
 			// Debug.Log("給予玩家預設值");
 		}
 		else
@@ -83,6 +83,8 @@ public struct PlayerData
 {
 	// public int moneyCount;   // 金幣數量
 	// public int skillPoint;   // 技能點數
+	public string levelName;    // 關卡名稱
+	public Vector3 playerPos;   // 玩家位置
 
 	/// <summary>
 	/// 金幣數量
@@ -331,7 +333,7 @@ public struct PlayerData
 	#endregion
 
 	// 建構式
-	public PlayerData(int coin, int skill, float maxHP, float maxMP)
+	public PlayerData(int coin, int skill, float maxHP, float maxMP, Vector3 pos)
 	{
 		_moneyCount = coin;
 		_skillPoint = skill;
@@ -346,6 +348,8 @@ public struct PlayerData
 		renewPlayerHP = null;
 		_playerMP = maxMP;
 		renewPlayerMP = null;
+		levelName = "遊戲場景";
+		playerPos = pos;
 
 		// this.moneyCount = coin;
 		// this.skillPoint = skill;
@@ -366,6 +370,8 @@ public struct PlayerData
 		renewPlayerHP = null;
 		_playerMP = 100f;
 		renewPlayerMP = null;
+		levelName = "遊戲場景";
+		playerPos = new Vector3(0, 0, 0);
 
 		// this.moneyCount = 0;
 		// this.skillPoint = 0;

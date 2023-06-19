@@ -102,6 +102,9 @@ public class SpawnSystem : MonoBehaviour
 		enemyCount++;
 	}
 
+	/// <summary>
+	/// 生成怪物道具
+	/// </summary>
 	void SpawnItem()
 	{
 		// 隨機X軸 Y軸的值

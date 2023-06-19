@@ -1,18 +1,18 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class ItemField : Windows<ItemField>
 {
-    [Header("®æ¤l¼ÒªO")]
+    [Header("æ ¼å­æ¨¡æ¿")]
     [SerializeField] GameObject tempGrid = null;
-    [Header("¹D¨ãÄæ­I´º")]
+    [Header("é“å…·æ¬„èƒŒæ™¯")]
     [SerializeField] RectTransform itemFieldBG = null;
 
     protected override void Awake()
     {
         base.Awake();
-        openSpeed = 15f;    // µøµ¡¶}±Ò³t«× = 15
+        openSpeed = 15f;    // è¦–çª—é–‹å•Ÿé€Ÿåº¦ = 15
         ItemManager.instance.Initialization();
     }
 
@@ -22,20 +22,20 @@ public class ItemField : Windows<ItemField>
         // Test
         // SaveManager.instance.playerData.AddItem(20);
 
-        ¨ê·s¹D¨ãÄæ();
+        åˆ·æ–°é“å…·æ¬„();
 
-        SaveManager.instance.playerData.Act_goodsChange += ¨ê·s¹D¨ãÄæ;
+        SaveManager.instance.playerData.Act_goodsChange += åˆ·æ–°é“å…·æ¬„;
     }
 
     private void OnDisable()
     {
-        SaveManager.instance.playerData.Act_goodsChange -= ¨ê·s¹D¨ãÄæ;
+        SaveManager.instance.playerData.Act_goodsChange -= åˆ·æ–°é“å…·æ¬„;
     }
 
     protected override void Update()
     {
         base.Update();
-        // «ö QÁä ¶}±Ò¹D¨ãÄæ¤¶­±
+        // æŒ‰ Qéµ é–‹å•Ÿé“å…·æ¬„ä»‹é¢
         if (Input.GetKeyDown(KeyCode.Q))
         {
             if (isOpen == false)
@@ -52,7 +52,7 @@ public class ItemField : Windows<ItemField>
             Close();
     }
 
-    // ¥´¶}µøµ¡®É Åã¥Ü·Æ¹« ®É¶¡¼È°±
+    // æ‰“é–‹è¦–çª—æ™‚ é¡¯ç¤ºæ»‘é¼  æ™‚é–“æš«åœ
     public override void Open()
     {
         base.Open();
@@ -60,7 +60,7 @@ public class ItemField : Windows<ItemField>
         Time.timeScale = 0f;
     }
 
-    // Ãö³¬µøµ¡®É ÁôÂÃ·Æ¹« ®É¶¡Ä~Äò
+    // é—œé–‰è¦–çª—æ™‚ éš±è—æ»‘é¼  æ™‚é–“ç¹¼çºŒ
     public override void Close()
     {
         base.Close();
@@ -68,58 +68,58 @@ public class ItemField : Windows<ItemField>
         Time.timeScale = 1f;
     }
 
-    List<GameObject> ©U§£±í = new List<GameObject>();
+    List<GameObject> åƒåœ¾æ¡¶ = new List<GameObject>();
 
-    void ¨ê·s¹D¨ãÄæ()
+    void åˆ·æ–°é“å…·æ¬„()
     {
-        foreach (var g in ©U§£±í)
+        foreach (var g in åƒåœ¾æ¡¶)
             DestroyImmediate(g);
-        ©U§£±í.Clear();
+        åƒåœ¾æ¡¶.Clear();
 
-        // ®æ¤l¼ÒªO¥»¨­¤£Åã¥Ü
+        // æ ¼å­æ¨¡æ¿æœ¬èº«ä¸é¡¯ç¤º
         tempGrid.SetActive(false);
-        // i¤p©ó®æ¤l¼Æ¶q 20
+        // iå°æ–¼æ ¼å­æ•¸é‡ 20
         for (int i = 0; i < 20; i++)
         {
-            // ¦pªGi¤p©óª±®a«ù¦³ªº¹D¨ã¼Æ¶q ´NÅã¥Ü¹D¨ã
+            // å¦‚æœiå°æ–¼ç©å®¶æŒæœ‰çš„é“å…·æ•¸é‡ å°±é¡¯ç¤ºé“å…·
             if (i < SaveManager.instance.playerData.goodsList.Count)
             {
-                // Åã¥Ü«ù¦³¹D¨ã
-                // ½Æ»s¤@­Ó®æ¤l¼ÒªO ¨Ã©ñ¶i¹D¨ãÄæ­I´º¤¤
-                GameObject ­è³Ğ«Øªº®æ¤l = Instantiate(tempGrid, itemFieldBG);
-                // ¥s¥X®æ¤l®É¥ı§â¥¦±Ò°Ê
-                ­è³Ğ«Øªº®æ¤l.SetActive(true);
-                // ±Nª««~¸ê®Æ¶Ç°eµ¹®æ¤l³B²z
-                ­è³Ğ«Øªº®æ¤l.GetComponent<Grid>().InputData(SaveManager.instance.playerData.goodsList[i]);
+                // é¡¯ç¤ºæŒæœ‰é“å…·
+                // è¤‡è£½ä¸€å€‹æ ¼å­æ¨¡æ¿ ä¸¦æ”¾é€²é“å…·æ¬„èƒŒæ™¯ä¸­
+                GameObject å‰›å‰µå»ºçš„æ ¼å­ = Instantiate(tempGrid, itemFieldBG);
+                // å«å‡ºæ ¼å­æ™‚å…ˆæŠŠå®ƒå•Ÿå‹•
+                å‰›å‰µå»ºçš„æ ¼å­.SetActive(true);
+                // å°‡ç‰©å“è³‡æ–™å‚³é€çµ¦æ ¼å­è™•ç†
+                å‰›å‰µå»ºçš„æ ¼å­.GetComponent<Grid>().InputData(SaveManager.instance.playerData.goodsList[i]);
 
-                ©U§£±í.Add(­è³Ğ«Øªº®æ¤l);
+                åƒåœ¾æ¡¶.Add(å‰›å‰µå»ºçš„æ ¼å­);
             }
-            // §_«hÅã¥ÜªÅ®æ¤l
+            // å¦å‰‡é¡¯ç¤ºç©ºæ ¼å­
             else
             {
-                // ½Æ»s¤@­Ó®æ¤l¼ÒªO¥X¨Ó ¨Ã¥B©ñ¶i¹D¨ãÄæ­I´º¤¤
-                GameObject ­è³Ğ«Øªº®æ¤l = Instantiate(tempGrid, itemFieldBG);
-                // ¥s¥X®æ¤l®É¥ı§â¥¦±Ò°Ê
-                ­è³Ğ«Øªº®æ¤l.SetActive(true);
+                // è¤‡è£½ä¸€å€‹æ ¼å­æ¨¡æ¿å‡ºä¾† ä¸¦ä¸”æ”¾é€²é“å…·æ¬„èƒŒæ™¯ä¸­
+                GameObject å‰›å‰µå»ºçš„æ ¼å­ = Instantiate(tempGrid, itemFieldBG);
+                // å«å‡ºæ ¼å­æ™‚å…ˆæŠŠå®ƒå•Ÿå‹•
+                å‰›å‰µå»ºçš„æ ¼å­.SetActive(true);
 
-                ©U§£±í.Add(­è³Ğ«Øªº®æ¤l);
+                åƒåœ¾æ¡¶.Add(å‰›å‰µå»ºçš„æ ¼å­);
             }
         }
     }
 
     /*
-    void ¨ê·s¹D¨ãÄæ()
+    void åˆ·æ–°é“å…·æ¬„()
     {
-        // ®Ú¾Ú¦³´X­Ó¹D¨ã¥Í¦¨´X­Ó°Ó«~
+        // æ ¹æ“šæœ‰å¹¾å€‹é“å…·ç”Ÿæˆå¹¾å€‹å•†å“
         for (int i = 0; i < ItemManager.instance.AllItem.Length; i++)
         {
-            GameObject ­è­è¥Í¦¨ªº°Ó«~ = Instantiate(tempGrid, itemFieldBG);
-            ­è­è¥Í¦¨ªº°Ó«~.SetActive(true);
-            RectTransform UI¦ì¸m = ­è­è¥Í¦¨ªº°Ó«~.GetComponent<RectTransform>();
+            GameObject å‰›å‰›ç”Ÿæˆçš„å•†å“ = Instantiate(tempGrid, itemFieldBG);
+            å‰›å‰›ç”Ÿæˆçš„å•†å“.SetActive(true);
+            RectTransform UIä½ç½® = å‰›å‰›ç”Ÿæˆçš„å•†å“.GetComponent<RectTransform>();
 
-            UI¦ì¸m.anchoredPosition = new Vector2(UI¦ì¸m.anchoredPosition.x, 20f + (i * 220f));
+            UIä½ç½®.anchoredPosition = new Vector2(UIä½ç½®.anchoredPosition.x, 20f + (i * 220f));
 
-            ­è­è¥Í¦¨ªº°Ó«~.GetComponent<Grid>().¿é¤J¸ê®Æ(SaveManager.instance.goodsList[i]);
+            å‰›å‰›ç”Ÿæˆçš„å•†å“.GetComponent<Grid>().è¼¸å…¥è³‡æ–™(SaveManager.instance.goodsList[i]);
         }
         itemFieldBG.sizeDelta = new Vector2(itemFieldBG.sizeDelta.x, 20f + (ItemManager.instance.AllItem.Length * 22f));
     }
