@@ -11687,6 +11687,7 @@ MonoBehaviour:
   isOpen: 0
   tempGrid: {fileID: 631978251980923607}
   itemFieldBG: {fileID: 631978252920529204}
+  "\u5783\u573E\u6876": []
 --- !u!114 &631978253253322596
 MonoBehaviour:
   m_ObjectHideFlags: 0

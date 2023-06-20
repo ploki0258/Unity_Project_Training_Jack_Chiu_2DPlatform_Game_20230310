@@ -78,9 +78,6 @@ public class Enemy : MonoBehaviour
         Move();
     }
 
-    // 
-    
-
     /// <summary>
     /// 追蹤玩家
     /// </summary>
@@ -146,7 +143,7 @@ public class Enemy : MonoBehaviour
 
             SaveManager.instance.playerData.moneyCount += coinNumber;
             SaveManager.instance.playerData.skillPoint += skillNumber;
-            SaveManager.instance.playerData.skillPoint += itemSkillValue.獲得額外點數;
+            // SaveManager.instance.playerData.skillPoint += itemSkillValue.獲得額外點數;
             // Debug.Log(coinNumber);
 
             /*if (aniCoin == true)

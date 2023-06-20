@@ -279,7 +279,6 @@ public class PlayerCtrl : MonoBehaviour
     void RenewPlayerHP()
 	{
         barHP.fillAmount = SaveManager.instance.playerData.playerHP / maxHP;
-
     }
     
     void RenewPlayerMP()

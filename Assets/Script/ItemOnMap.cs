@@ -5,13 +5,12 @@ using UnityEngine;
 public class ItemOnMap : MonoBehaviour
 {
 	// private List<Item> itemList = new List<Item>();
-	public int itemID = 0;
+	public int itemID = 20;
 	Item dataItem;
 
 	private void Start()
 	{
-		itemID = dataItem.id;
-
+		// itemID = dataItem.id;
 		// 載入玩家目前擁有的道具
 		/*ItemManager.instance.Initialization();
 

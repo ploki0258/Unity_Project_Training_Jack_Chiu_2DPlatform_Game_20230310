@@ -72,6 +72,7 @@ public class ItemField : Windows<ItemField>
         Time.timeScale = 1f;
     }
 
+    [SerializeField]
     List<GameObject> 垃圾桶 = new List<GameObject>();
 
     void 刷新道具欄()
