@@ -5,7 +5,7 @@ public class AttackObject : MonoBehaviour
 	[SerializeField, Header("傷害值")]
 	float damage = 0f;
 	[SerializeField, Header("物理攻擊")]
-	bool isWandAttack = false;  // 是否再物理攻擊(MP <= 0)
+	bool isWandAttack = false;  // 是否在物理攻擊(MP <= 0)
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
@@ -19,9 +19,10 @@ public class AttackObject : MonoBehaviour
 			}
 		}
 		// 如果 子彈 碰到 敵人 就給予傷害
-		if (collision.gameObject.tag == "enemy")
+		/*if (collision.gameObject.tag == "enemy")
 		{
-			// Enemy.instance.TakeDamageMonster(damage);
+			Enemy.instance.TakeDamageMonster(damage);
 		}
+		*/
 	}
 }

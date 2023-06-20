@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
     Transform player = null;
     Rigidbody2D rig = null;
     Animator ani = null;
+    Grid itemSkillValue;
     #endregion
 
     // 在整個專案全域宣告一個instance
@@ -136,8 +137,8 @@ public class Enemy : MonoBehaviour
     {
         if (isDeath == true)
         {
-            int coinNumber = Random.Range(10, 100) * 10;    // 獲得金幣數量
-            int skillNumber = Random.Range(1, 10) * 10;     // 獲得技能點數
+            int coinNumber = Random.Range(10, 100) * 10;    // 獲得隨機金幣數量
+            int skillNumber = Random.Range(1, 10) * 10;     // 獲得隨機技能點數
 
             // 顯示資訊欄文字
             PlayerCtrl.instance.coinInfo.text = "+" + coinNumber + "金幣";
@@ -145,6 +146,7 @@ public class Enemy : MonoBehaviour
 
             SaveManager.instance.playerData.moneyCount += coinNumber;
             SaveManager.instance.playerData.skillPoint += skillNumber;
+            SaveManager.instance.playerData.skillPoint += itemSkillValue.獲得額外點數;
             // Debug.Log(coinNumber);
 
             /*if (aniCoin == true)

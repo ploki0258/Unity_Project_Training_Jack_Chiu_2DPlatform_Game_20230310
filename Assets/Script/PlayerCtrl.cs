@@ -20,9 +20,9 @@ public class PlayerCtrl : MonoBehaviour
     [Header("魔力條")]
     public Image barMP = null;
     [Header("最大血量")]
-    [SerializeField] float maxHP = 100f;
+    public float maxHP = 100f;
     [Header("最大魔力")]
-    [SerializeField] float maxMP = 100f;
+    public float maxMP = 100f;
     [Header("魔力消耗")]
     [SerializeField] float costMP = 0f;
     // 怪物使用
@@ -50,6 +50,7 @@ public class PlayerCtrl : MonoBehaviour
     bool isWindowsOpen = WindowsManager.instance.IsWindowsOpen();   // 視窗是否被開啟
     Rigidbody2D rig;
     Animator ani;
+    Grid itemNormalValue;
     #endregion
 
     // 在整個專案全域宣告一個instance
@@ -95,6 +96,9 @@ public class PlayerCtrl : MonoBehaviour
         Attack();
         Panacea();
         Dead();
+
+        // speedAtk += itemNormalValue.提升攻擊速度;
+        // Debug.Log("以提升數值");
     }
 
     private void FixedUpdate()

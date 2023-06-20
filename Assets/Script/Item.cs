@@ -35,8 +35,8 @@ public class Item : ScriptableObject
     public float 提升攻擊速度;
     public float 提升移動速度;
     // 技能道具
-    public float 提升額外點數;
     public float 魔力消耗降低;
     public float 提升技能傷害;
+    public int 獲得額外點數;
     public int 增加欄位;
 }

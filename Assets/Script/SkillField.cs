@@ -56,12 +56,11 @@ public class SkillField : MonoBehaviour
 			SaveManager.instance.playerData.moneyCount -= skillData.skillCoinCost;
 			// 扣技能
 			SaveManager.instance.playerData.skillPoint -= skillData.skillPointCost;
-			// 到玩家紀錄中 添加商品資料(ID)
+			// 到玩家紀錄中 添加技能列表(ID)
 			SaveManager.instance.playerData.haveSkill.Add(skillData.id);
 			// 買完後進行存檔
 			SaveManager.instance.SaveData();
-
-			// 手動刷新一次商品
+			// 手動刷新一次技能列表
 			// 商城介面.ins.刷新商店();
 		}
 		else

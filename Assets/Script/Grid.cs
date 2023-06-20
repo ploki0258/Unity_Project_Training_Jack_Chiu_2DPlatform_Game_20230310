@@ -12,6 +12,17 @@ public class Grid : MonoBehaviour
 
 	Item dataGrid;
 	bool isNoneGrid = true; // 是否為空格子
+	public float 恢復HP;
+	public float 恢復MP;
+	public float 提升攻擊力;
+	public float 提升防禦力;
+	public float 提升跳躍力;
+	public float 提升攻擊速度;
+	public float 提升移動速度;
+	public float 魔力消耗降低;
+	public float 提升技能傷害;
+	public int 獲得額外點數;
+	public int 增加欄位;
 
 	public void InputData(Goods data)
 	{
@@ -66,7 +77,18 @@ public class Grid : MonoBehaviour
 		{
 			// 根據道具效果做各種事情
 			SaveManager.instance.playerData.playerHP += dataGrid.恢復HP;
+			Mathf.Clamp(SaveManager.instance.playerData.playerHP, SaveManager.instance.playerData.playerHP,PlayerCtrl.instance.maxHP);
 			SaveManager.instance.playerData.playerMP += dataGrid.恢復MP;
+			Mathf.Clamp(SaveManager.instance.playerData.playerMP, SaveManager.instance.playerData.playerMP, PlayerCtrl.instance.maxMP);
+			提升攻擊力 += dataGrid.提升攻擊力;
+			提升防禦力 += dataGrid.提升防禦力;
+			提升跳躍力 += dataGrid.提升跳躍力;
+			提升攻擊速度 += dataGrid.提升攻擊速度;
+			提升移動速度 += dataGrid.提升移動速度;
+			獲得額外點數 += dataGrid.獲得額外點數;
+			魔力消耗降低 += dataGrid.魔力消耗降低;
+			提升技能傷害 += dataGrid.提升技能傷害;
+			增加欄位 += dataGrid.增加欄位;
 
 			// 不可被使用的東西 就不執行
 			if (dataGrid.canUse == false)
