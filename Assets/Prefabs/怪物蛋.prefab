@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemID: 30
+  dataItem: {fileID: 11400000, guid: 166b7564795fdbe4696843b5615d95ae, type: 2}
 --- !u!58 &7405287216789157706
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -77,8 +77,18 @@ public class ItemField : Windows<ItemField>
 
     void 刷新道具欄()
     {
+		/*
         foreach (var g in 垃圾桶)
             DestroyImmediate(g);
+        垃圾桶.Clear();
+        */
+
+        // 清除上次戰存的格子
+		for (int i = 0; i < 垃圾桶.Count; i++)
+		{
+            Destroy(垃圾桶[i].gameObject);
+        }
+        // 重製陣列
         垃圾桶.Clear();
 
         // 格子模板本身不顯示

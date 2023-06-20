@@ -51,7 +51,7 @@ public class SkillField : MonoBehaviour
 		// 判斷能否學習技能
 		if (SaveManager.instance.playerData.moneyCount >= skillData.skillCoinCost && SaveManager.instance.playerData.skillPoint >= skillData.skillPointCost)
 		{
-			Debug.Log("升級技能： " + skillData.id);
+			Debug.Log("升級技能： " + skillData.id + "\n已習得：" + skillData.skillName);
 			// 扣錢
 			SaveManager.instance.playerData.moneyCount -= skillData.skillCoinCost;
 			// 扣技能
@@ -61,7 +61,7 @@ public class SkillField : MonoBehaviour
 			// 買完後進行存檔
 			SaveManager.instance.SaveData();
 			// 手動刷新一次技能列表
-			// 商城介面.ins.刷新商店();
+			// 商城介面.ins.刷新技能欄();
 		}
 		else
 		{

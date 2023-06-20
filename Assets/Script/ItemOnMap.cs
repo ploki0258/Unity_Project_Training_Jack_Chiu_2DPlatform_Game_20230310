@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class ItemOnMap : MonoBehaviour
 {
-	// private List<Item> itemList = new List<Item>();
-	public int itemID = 20;
-	Item dataItem;
+	private int itemID;
+	public Item dataItem;
 
-	private void Start()
+	private void Awake()
 	{
-		// itemID = dataItem.id;
-		// 載入玩家目前擁有的道具
-		/*ItemManager.instance.Initialization();
-
-		dataItem = ItemManager.instance.FindItemData(itemID);
+		itemID = dataItem.id;
+		// Debug.Log(itemID);
+		
+		/*dataItem = ItemManager.instance.FindItemData(itemID);
 		Debug.Log(dataItem);
 		*/
 	}
@@ -27,13 +25,12 @@ public class ItemOnMap : MonoBehaviour
 			if (successAdd)
 			{
 				Destroy(this.gameObject);
-				Debug.Log("道具+1");
+				// Debug.Log("道具+1");
 			}
 			else
 			{
 				Debug.Log("背包已滿，無法添加" + "\n請先消耗一些道具");
 			}
-
 		}
 	}
 }
