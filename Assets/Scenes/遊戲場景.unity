@@ -2234,7 +2234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &309256758
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2303,7 +2303,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.1
-  m_Text: "\u82B1\u8CBB\u91D1\u5E63\uFF1A2000\n\u82B1\u8CBB\u6280\u80FD\u9EDE\u6578\uFF1A200"
+  m_Text: 
 --- !u!222 &309256761
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5431,9 +5431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iconSkill: {fileID: 1961115898}
   titleSkill: {fileID: 236104079}
-  infoSkill:
-  - {fileID: 1871169562}
-  - {fileID: 309256760}
+  infoSkill: {fileID: 1871169562}
   btnSkill:
   - {fileID: 774273517}
   - {fileID: 55776621}
@@ -5450,6 +5448,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+  iconSkillArray:
+  - {fileID: 1884673266}
+  clolrNoSkill: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &819152929
 GameObject:
   m_ObjectHideFlags: 0
@@ -10964,8 +10965,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -87.00537, y: 11.899994}
-  m_SizeDelta: {x: -213.0476, y: -218.73}
+  m_AnchoredPosition: {x: -87.00537, y: -40.081}
+  m_SizeDelta: {x: -213.0476, y: -114.77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1871169562
 MonoBehaviour:
@@ -11000,7 +11001,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.1
-  m_Text: "\u767C\u5C04\u98A8\u5203\xD73\n\u5C0D\u524D/\u4E0A\u65B9\u4E09\u540D\u6575\u4EBA\u4F9D\u5E8F\u9020\u6210\u50B7\u5BB3\uFF0C\u7B2C\u4E00\u4F4D\u9020\u6210\u5927\u5E45\u5EA6\u50B7\u5BB3\uFF0C\u7B2C\u4E8C\u4F4D\u9020\u6210\u4E2D\u5E45\u5EA6\u50B7\u5BB3\uFF0C\u7B2C\u4E09\u4F4D\u9020\u6210\u5C0F\u5E45\u5EA6\u50B7\u5BB3"
+  m_Text: "\u767C\u5C04\u98A8\u5203\xD73\n\u5C0D\u524D/\u4E0A\u65B9\u4E09\u540D\u6575\u4EBA\u4F9D\u5E8F\u9020\u6210\u50B7\u5BB3\uFF0C\u7B2C\u4E00\u4F4D\u9020\u6210\u5927\u5E45\u5EA6\u50B7\u5BB3\uFF0C\u7B2C\u4E8C\u4F4D\u9020\u6210\u4E2D\u5E45\u5EA6\u50B7\u5BB3\uFF0C\u7B2C\u4E09\u4F4D\u9020\u6210\u5C0F\u5E45\u5EA6\u50B7\u5BB3\n\u82B1\u8CBB\u91D1\u5E63\uFF1A2000\n\u82B1\u8CBB\u6280\u80FD\u9EDE\u6578\uFF1A200"
 --- !u!222 &1871169563
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11285,22 +11286,6 @@ MonoBehaviour:
         - m_Target: {fileID: 776574426}
           m_TargetAssemblyTypeName: SkillField, Assembly-CSharp
           m_MethodName: "\u521D\u59CB\u5316\u6280\u80FD"
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 776574426}
-          m_TargetAssemblyTypeName: SkillField, Assembly-CSharp
-          m_MethodName: ShowSkillIcon
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -13758,4 +13743,4 @@ MonoBehaviour:
   "\u9B54\u529B\u6D88\u8017\u964D\u4F4E": 0
   "\u63D0\u5347\u6280\u80FD\u50B7\u5BB3": 0
   "\u7372\u5F97\u984D\u5916\u9EDE\u6578": 0
-  "\u589E\u52A0\u6B04\u4F4D": 0
+  "\u589E\u52A0\u6280\u80FD\u6B04\u4F4D": 0
