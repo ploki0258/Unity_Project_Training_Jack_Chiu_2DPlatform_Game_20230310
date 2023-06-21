@@ -170,11 +170,17 @@ public struct PlayerData
 	[SerializeField] float _playerMP;
 	public System.Action renewPlayerMP;
 
+	/// <summary>
+	/// 已擁有的技能列表
+	/// </summary>
 	public List<int> haveSkill; // 已擁有的技能
+	/// <summary>
+	/// 已擁有的道具列表
+	/// </summary>
 	public List<int> haveItem;  // 已擁有的道具
 
 	/// <summary>
-	/// 檢查該技能ID是否已購買
+	/// 檢查該技能ID是否已擁有
 	/// </summary>
 	/// <param name="id">技能ID</param>
 	/// <returns></returns>
@@ -191,7 +197,7 @@ public struct PlayerData
 	}
 
 	/// <summary>
-	/// 檢查該道具ID是否已購買
+	/// 檢查該道具ID是否已獲得
 	/// </summary>
 	/// <param name="id">道具ID</param>
 	/// <returns></returns>

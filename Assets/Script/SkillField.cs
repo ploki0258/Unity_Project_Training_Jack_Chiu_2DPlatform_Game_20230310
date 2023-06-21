@@ -19,6 +19,8 @@ public class SkillField : MonoBehaviour
 
 	private void Awake()
 	{
+
+		iconSkill.color = new Color(255, 255, 255, 50);
 		iconSkill.transform.localScale = Vector3.zero;
 		titleSkill.text = "";
 		infoSkill[0].text = "";
@@ -65,7 +67,19 @@ public class SkillField : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("金幣或點數不足");
+			Debug.Log("金幣或點數不足" + "\n無法學習此技能");
 		}
+	}
+
+	public void ShowSkillIcon(int id)
+	{
+		// 如果沒有該技能 且該技能無前置技能 則顯示
+		if (SaveManager.instance.playerData.IsHaveSkill(skillData.id) == false && skillData.Pre_Skill == false)
+		{
+			iconSkill.sprite = skillData.skillIcon;
+			Debug.Log("有可學習的技能");
+		}
+
+		// 如果沒有該技能 且該技能有前置技能 若有前置技能 則顯示 否則顯示"尚未解鎖"
 	}
 }

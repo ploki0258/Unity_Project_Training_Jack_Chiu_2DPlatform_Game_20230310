@@ -37,6 +37,8 @@ public class Item : ScriptableObject
     // 技能道具
     public float 魔力消耗降低;
     public float 提升技能傷害;
+    [Range(0, 10000)]
     public int 獲得額外點數;
-    public int 增加欄位;
+    [Range(0,5)]
+    public int 增加技能欄位;
 }

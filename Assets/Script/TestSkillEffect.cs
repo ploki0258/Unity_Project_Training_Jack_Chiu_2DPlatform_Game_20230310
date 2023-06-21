@@ -1,32 +1,32 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TestSkillEffect : MonoBehaviour
 {
-	[Header("§Ş¯à¦ì¸m")]
+	[Header("æŠ€èƒ½ä½ç½®")]
     [SerializeField] Transform pointSkill;
-    [Header("§Ş¯à¦WºÙ")]
+    [Header("æŠ€èƒ½åç¨±")]
     [SerializeField] string skillName = null;
-    [Header("¬Iªk«öÁä")]
+    [Header("æ–½æ³•æŒ‰éµ")]
     public KeyCode activationKey;
-    [Header("§Ş¯à¯S®Ä")]
+    [Header("æŠ€èƒ½ç‰¹æ•ˆ")]
     public GameObject skillPrefab = null;
-    [Header("·í«e§Ş¯à¯S®Ä")]
+    [Header("ç•¶å‰æŠ€èƒ½ç‰¹æ•ˆ")]
     SkillManager currentSkill;
 	
     /// <summary>
-    /// §Ş¯à¹w»sª«¡G¦s©ñ§Ş¯à¯S®Äªº¦Cªí
+    /// æŠ€èƒ½é è£½ç‰©ï¼šå­˜æ”¾æŠ€èƒ½ç‰¹æ•ˆçš„åˆ—è¡¨
     /// </summary>
     public List<GameObject> skillEffPrefab = new List<GameObject>();
 
     /// <summary>
-    /// ¬I©ñªk³N
+    /// æ–½æ”¾æ³•è¡“
     /// </summary>
     /// <param name="index"></param>
     public void CastSkill(int index)
     {
-        // ¦pªG index ¤p©ó 0  ©Î ¤j©óµ¥©ó ¦Cªí­Ó¼Æ ´N°±¤î°õ¦æ
+        // å¦‚æœ index å°æ–¼ 0  æˆ– å¤§æ–¼ç­‰æ–¼ åˆ—è¡¨å€‹æ•¸ å°±åœæ­¢åŸ·è¡Œ
         if (index < 0 || index >= skillEffPrefab.Count)
             return;
         GameObject skillPfb = skillEffPrefab[index];
@@ -39,7 +39,7 @@ public class TestSkillEffect : MonoBehaviour
     }
 
     /// <summary>
-    /// ¬I©ñªk³N(«öÁä)
+    /// æ–½æ”¾æ³•è¡“(æŒ‰éµ)
     /// </summary>
     public void CastSpell()
     {
