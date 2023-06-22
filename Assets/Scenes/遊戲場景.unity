@@ -4949,7 +4949,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 760676303}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -10080,9 +10080,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 182701505}
-        m_TargetAssemblyTypeName: TestSkill, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 182701508}
+        m_TargetAssemblyTypeName: TestSkillEffect, Assembly-CSharp
+        m_MethodName: CastSkill
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11201,6 +11201,7 @@ GameObject:
   - component: {fileID: 1884673267}
   - component: {fileID: 1884673266}
   - component: {fileID: 1884673268}
+  - component: {fileID: 1884673269}
   m_Layer: 5
   m_Name: FireSkill_0
   m_TagString: Untagged
@@ -11295,6 +11296,34 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1884673269}
+          m_TargetAssemblyTypeName: SkillField, Assembly-CSharp
+          m_MethodName: 
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1884673269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884673264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 946c0c2af191d344eb25cdb582ab03dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1909543455
 GameObject:
   m_ObjectHideFlags: 0
