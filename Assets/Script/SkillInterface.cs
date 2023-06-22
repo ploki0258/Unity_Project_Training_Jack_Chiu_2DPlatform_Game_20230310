@@ -11,6 +11,7 @@ public class SkillInterface : Windows<SkillInterface>
 	{
 		base.Open();
 		Opening = true;
+		// TalentTree.instance.ShowSkillIcon(4);
 		Time.timeScale = 0f;
 	}
 

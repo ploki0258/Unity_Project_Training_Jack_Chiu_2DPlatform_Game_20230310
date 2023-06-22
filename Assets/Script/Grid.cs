@@ -99,7 +99,7 @@ public class Grid : MonoBehaviour
 			else if (dataGrid.Consumables == true)
 			{
 				SaveManager.instance.playerData.RemoveItem(dataGrid.id);
-				Debug.Log("消耗" + dataGrid.title);
+				// Debug.Log("消耗" + dataGrid.title);
 			}
 		}
 	}

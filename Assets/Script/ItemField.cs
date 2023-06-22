@@ -21,10 +21,6 @@ public class ItemField : Windows<ItemField>
 		base.Start();
 		// Test
 		// SaveManager.instance.playerData.AddItem(21);
-		// SaveManager.instance.playerData.AddItem(21);
-		// SaveManager.instance.playerData.AddItem(21);
-		// SaveManager.instance.playerData.AddItem(21);
-		// SaveManager.instance.playerData.AddItem(21);
 
 		刷新道具欄();
 

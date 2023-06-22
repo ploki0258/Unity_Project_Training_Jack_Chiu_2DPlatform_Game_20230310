@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ItemOnMap : MonoBehaviour
 {
-	private int itemID;
-	public Item dataItem;
+	private int itemID;		// 道具ID
+	public Item dataItem;	// 道具的腳本化物件
 
 	private void Awake()
 	{
+		// 道具ID = 該道具的ID
 		itemID = dataItem.id;
 		// Debug.Log(itemID);
 		
@@ -21,7 +22,7 @@ public class ItemOnMap : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Player")
 		{
-			bool successAdd = SaveManager.instance.playerData.AddItem(itemID);
+			bool successAdd = SaveManager.instance.playerData.AddItem(itemID);	// 是否成功添加道具
 			if (successAdd)
 			{
 				Destroy(this.gameObject);

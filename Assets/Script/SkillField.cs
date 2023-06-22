@@ -31,14 +31,19 @@ public class SkillField : MonoBehaviour
 		// infoSkill[1].text = "";
 		btnSkill[0].SetActive(false);
 		btnSkill[1].SetActive(false);
+		btnSkill[2].SetActive(false);
 	}
 
 	private void Start()
 	{
-		btn1Text = btnSkill[0].GetComponentInChildren<Text>();
-		btn2Text = btnSkill[1].GetComponentInChildren<Text>();
+		// btn1Text = btnSkill[0].GetComponentInChildren<Text>();
+		// btn2Text = btnSkill[1].GetComponentInChildren<Text>();
 	}
 
+	/// <summary>
+	/// 點擊技能圖示初始化技能：顯示該技能的資訊
+	/// </summary>
+	/// <param name="id"></param>
 	public void 初始化技能(int id)
 	{
 		// 查找資料
@@ -50,15 +55,33 @@ public class SkillField : MonoBehaviour
 		infoSkill.text = skillData.skillDis + "\n" + "\n花費金幣：" + skillData.skillCoinCost.ToString() + "\n花費技能點數" + skillData.skillPointCost;
 		// infoSkill[1].text = "花費金幣：" + skillData.skillCoinCost.ToString() + "\n花費技能點數" + skillData.skillPointCost;
 		// 如果玩家沒有該技能的話 才顯示按鈕
-		/*alreSkill = SaveManager.instance.playerData.IsHaveSkill(id);
+		alreSkill = SaveManager.instance.playerData.IsHaveSkill(id);
 		btnSkill[0].SetActive(alreSkill == false);  // 顯示學習按鈕
 		btnSkill[1].SetActive(alreSkill == true);   // 顯示已習得按鈕
-		*/
+		// 如果玩家沒有該技能的話
+		if (alreSkill == false)
+		{
+			// Debug.Log("無此技能");
+			Skill currentlySkill = SkillManager.instance.FindSkillByID(id);
+			// 該技能有前置技能
+			if (currentlySkill.Pre_Skill == true)
+			{
+				// Debug.Log("該技能有前置技能");
+				// 尚未取得前置技能
+				if (SaveManager.instance.playerData.IsHaveSkill(currentlySkill.Pre_id) == false)
+				{
+					// Debug.Log("需先習得前一個技能");
+					btnSkill[0].SetActive(false);
+					btnSkill[1].SetActive(false);
+					btnSkill[2].SetActive(true);
+				}
+			}
+		}
 
 		// 如果玩家沒有該技能 且 沒有取得該技能的前置技能 則顯示"尚未解鎖"字樣
 		// 如果玩家沒有該技能 且 有取得該技能的前置技能 或 如果玩家沒有該技能 且 該技能的沒有前置技能 則顯示"學習"字樣
 		// 如果玩家已經取得該技能 則顯示"已習得"字樣
-		for (int i = 0; i < SkillManager.instance.AllSkillData.Length; i++)
+		/*for (int i = 0; i < SkillManager.instance.AllSkillData.Length; i++)
 		{
 			// 如果玩家沒有該技能
 			if (SaveManager.instance.playerData.IsHaveSkill(SkillManager.instance.AllSkillData[i].id) == false)
@@ -98,10 +121,11 @@ public class SkillField : MonoBehaviour
 				btn2Text.text = "已習得";
 			}
 		}
+		*/
 	}
 
 	/// <summary>
-	/// 學習技能
+	/// 學習技能：按下學習按鈕，可學習該技能
 	/// </summary>
 	public void LearnSkill()
 	{
@@ -117,8 +141,8 @@ public class SkillField : MonoBehaviour
 			SaveManager.instance.playerData.haveSkill.Add(skillData.id);
 			// 買完後進行存檔
 			SaveManager.instance.SaveData();
-			// 手動刷新一次技能列表
-			// 商城介面.ins.刷新技能欄();
+			// 手動刷新一次技能欄資訊
+			初始化技能(skillData.id);
 		}
 		else
 		{
