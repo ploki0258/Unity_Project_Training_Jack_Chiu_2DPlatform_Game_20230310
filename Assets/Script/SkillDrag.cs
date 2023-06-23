@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class SkillDrag : MonoBehaviour
+public class SkillDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public GameObject clonePrefab; // 要克隆的物件預置體
     public Collider2D targetArea; // 目標區域的碰撞器
@@ -13,7 +14,7 @@ public class SkillDrag : MonoBehaviour
 
     private GameObject reservedObject; // 保留的物件
 
-    private void OnMouseDown()
+    /*private void OnMouseDown()
     {
         // 生成克隆物件
         cloneObject = Instantiate(clonePrefab, transform.position, transform.rotation);
@@ -52,6 +53,7 @@ public class SkillDrag : MonoBehaviour
             cloneObject.transform.position = GetMouseWorldPosition() + offset;
         }
     }
+    */
 
     private Vector3 GetMouseWorldPosition()
     {
@@ -59,5 +61,45 @@ public class SkillDrag : MonoBehaviour
         Vector3 mousePosition = Input.mousePosition;
         mousePosition.z = -Camera.main.transform.position.z;
         return Camera.main.ScreenToWorldPoint(mousePosition);
+    }
+
+	public void OnBeginDrag(PointerEventData eventData)
+	{
+        // 生成克隆物件
+        cloneObject = Instantiate(clonePrefab, transform.position, transform.rotation);
+
+        // 計算拖曳的偏移量
+        offset = cloneObject.transform.position - GetMouseWorldPosition();
+
+        // 開始拖曳
+        isDragging = true;
+    }
+
+	public void OnDrag(PointerEventData eventData)
+	{
+        if (isDragging)
+        {
+            // 更新克隆物件位置為滑鼠位置加上偏移量
+            cloneObject.transform.position = GetMouseWorldPosition() + offset;
+        }
+    }
+
+	public void OnEndDrag(PointerEventData eventData)
+	{
+        // 停止拖曳
+        isDragging = false;
+
+        // 檢查是否在目標區域內
+        if (targetArea.bounds.Contains(cloneObject.transform.position))
+        {
+            // 在目標區域內，保留物件
+            reservedObject = cloneObject;
+            // 可以在這裡執行其他操作或觸發事件
+        }
+        else
+        {
+            // 不在目標區域內，銷毀物件
+            Destroy(cloneObject);
+        }
     }
 }

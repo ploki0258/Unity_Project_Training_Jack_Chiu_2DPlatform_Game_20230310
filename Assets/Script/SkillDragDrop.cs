@@ -5,41 +5,114 @@ using UnityEngine.EventSystems;
 
 public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-	private Transform originalParent; // 初始父物件
-	private Vector3 startPosition; // 初始位置
+	public GameObject clonePrefab;      // 要克隆的物件預置體
+	public Collider2D targetArea;       // 目標區域的碰撞器
 
+	private GameObject cloneObject;     // 生成的克隆物件
+	private GameObject reservedObject;  // 保留的物件
+	private bool isDragging = false;    // 是否正在拖曳
+	private Transform originalParent;   // 初始父物件
+	private Vector3 startPosition;      // 初始位置
+
+	/// <summary>
+	/// 開始拖拽
+	/// </summary>
+	/// <param name="eventData"></param>
 	public void OnBeginDrag(PointerEventData eventData)
 	{
-		originalParent = transform.parent; // 保存初始父物件
+		originalParent = transform.parent;  // 保存初始父物件
 		startPosition = transform.position; // 保存初始位置
 
-		// 將技能拖放物件的父物件設置為技能欄位
-		transform.SetParent(originalParent.parent);
+		// 生成克隆物件
+		cloneObject = Instantiate(clonePrefab, transform.position, transform.rotation);
+
+		// 更新技能拖放物件的位置
+		cloneObject.transform.position = eventData.position;
+
+		if (transform.parent.name == "技能樹")
+		{
+			// 將技能拖放物件的父物件設置為技能欄位
+			cloneObject.transform.SetParent(originalParent.parent.parent.parent.parent);
+		}
+
+		if (transform.parent.name == "技能欄按紐")
+		{
+			cloneObject.transform.SetParent(targetArea.transform.parent);
+		}
+
 		GetComponent<CanvasGroup>().blocksRaycasts = false; // 關閉射線檢測，以便拖放期間不會阻擋其他事件
+
+		// 開始拖曳
+		isDragging = true;
 	}
 
+	/// <summary>
+	/// 進行拖拽
+	/// </summary>
+	/// <param name="eventData"></param>
 	public void OnDrag(PointerEventData eventData)
 	{
-		// 更新技能拖放物件的位置
-		transform.position = eventData.position;
+		if (isDragging)
+		{
+			// 更新技能拖放物件的位置
+			cloneObject.transform.position = eventData.position;
+
+			Debug.Log(eventData.pointerCurrentRaycast.gameObject.tag);
+			Debug.Log(eventData.pointerCurrentRaycast.gameObject.gameObject);
+		}
 	}
 
+	/// <summary>
+	/// 結束拖拽
+	/// </summary>
+	/// <param name="eventData"></param>
 	public void OnEndDrag(PointerEventData eventData)
 	{
+		// 停止拖曳
+		isDragging = false;
+
 		transform.SetParent(originalParent); // 將技能拖放物件的父物件設置回初始父物件
 		transform.position = startPosition; // 將技能拖放物件的位置設置回初始位置
+		cloneObject.transform.SetParent(originalParent);
+		cloneObject.transform.position = startPosition;
 		GetComponent<CanvasGroup>().blocksRaycasts = true; // 打開射線檢測
 
 		// 確認技能是否放置在技能欄位內
 		if (eventData.pointerCurrentRaycast.gameObject.CompareTag("SkillSlot"))
 		{
+			// 如果技能欄位內有名稱含有 "Skill" 的話
+			// 調換位置
+			if (eventData.pointerCurrentRaycast.gameObject.name.Contains("Skill"))
+			{
+				cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
+				cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.parent.position;
+				eventData.pointerCurrentRaycast.gameObject.transform.parent.position = originalParent.position;
+				eventData.pointerCurrentRaycast.gameObject.transform.SetParent(originalParent);
+				GetComponent<CanvasGroup>().blocksRaycasts = true;
+				return;
+			}
+			// 如果技能欄位內沒有名稱含有 "Skill" 的話
+			// 設置位置
+			if (eventData.pointerCurrentRaycast.gameObject.name.Contains("Skill") == false)
+			{
+				cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
+				cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
+				GetComponent<CanvasGroup>().blocksRaycasts = true;
+				
+				// cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
+				// cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
+			}
+
 			// 獲取技能系統並設置當前選擇的技能
+			/*
 			SkillSystem skillSystem = FindObjectOfType<SkillSystem>();
 			if (skillSystem != null)
 			{
-				SkillManager skill = GetComponent<SkillManager>();
+				Skill skill = GetComponent<Skill>();
 				skillSystem.SetCurrentSkill(skill);
+				Debug.Log("技能名稱" + skill.name);
 			}
+			*/
 		}
 	}
 }
