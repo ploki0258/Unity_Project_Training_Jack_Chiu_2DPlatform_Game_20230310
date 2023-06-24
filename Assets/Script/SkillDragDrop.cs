@@ -7,12 +7,14 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 {
 	public GameObject clonePrefab;      // 要克隆的物件預置體
 	public Collider2D targetArea;       // 目標區域的碰撞器
+	public Skill skillData;
 
 	private GameObject cloneObject;     // 生成的克隆物件
 	private GameObject reservedObject;  // 保留的物件
 	private bool isDragging = false;    // 是否正在拖曳
 	private Transform originalParent;   // 初始父物件
 	private Vector3 startPosition;      // 初始位置
+	private int skillID;
 
 	/// <summary>
 	/// 開始拖拽
@@ -104,15 +106,13 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 			}
 
 			// 獲取技能系統並設置當前選擇的技能
-			/*
 			SkillSystem skillSystem = FindObjectOfType<SkillSystem>();
 			if (skillSystem != null)
 			{
-				Skill skill = GetComponent<Skill>();
-				skillSystem.SetCurrentSkill(skill);
-				Debug.Log("技能名稱" + skill.name);
+				skillID = skillData.id;
+				skillSystem.SetCurrentSkill(skillID);
+				Debug.Log("設置技能：" + skillData.name);
 			}
-			*/
 		}
 	}
 }

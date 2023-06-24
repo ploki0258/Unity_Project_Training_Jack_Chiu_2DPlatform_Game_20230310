@@ -830,6 +830,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011826580284}
   - component: {fileID: 95000013029897698}
+  - component: {fileID: 1811496962}
+  - component: {fileID: 1811496965}
+  - component: {fileID: 7881639025506428226}
   m_Layer: 0
   m_Name: Rogue_06
   m_TagString: Untagged
@@ -846,7 +849,7 @@ Transform:
   m_GameObject: {fileID: 1000011821036864}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -4.8, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4000013739681562}
@@ -873,6 +876,64 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!50 &1811496962
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011821036864}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!70 &1811496965
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011821036864}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 2.19}
+  m_Size: {x: 4.83, y: 0.23}
+  m_Direction: 0
+--- !u!114 &7881639025506428226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011821036864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 326291c50175f0d4aa952ec74e4ba60d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpMonsterMax: 100
+  barHP: {fileID: 0}
+  atkMonster: 5
+  point: {fileID: 0}
+  speedMonster: 5
+  disChase: 8
+  itemSkill: {fileID: 0}
+  probDrop: 5
+  damage: 0
 --- !u!1 &1000012079282026
 GameObject:
   m_ObjectHideFlags: 0

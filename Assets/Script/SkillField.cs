@@ -73,7 +73,7 @@ public class SkillField : MonoBehaviour
 					// Debug.Log("需先習得前一個技能");
 					btnSkill[0].SetActive(false);
 					btnSkill[1].SetActive(false);
-					btnSkill[2].SetActive(true);
+					btnSkill[2].SetActive(true);    // 顯示尚未解鎖按鈕
 				}
 			}
 		}

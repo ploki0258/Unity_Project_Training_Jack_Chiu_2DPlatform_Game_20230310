@@ -153,15 +153,11 @@ MonoBehaviour:
   atkMonster: 10
   point: {fileID: 1935043903081271564}
   speedMonster: 5
-  disBase: 8
-  coinInfo: {fileID: 0}
-  skillInfo: {fileID: 0}
-  coinCount: {fileID: 0}
-  skillCount: {fileID: 0}
-  itemNorm: {fileID: 4544073352136542978, guid: 12975e6074d5c3340b7b22a984ca9ce3,
+  disChase: 8
+  itemSkill: {fileID: 4671880185607488085, guid: b9058730acfdbdc45bba83fbcbe52e6f,
     type: 3}
-  showCoinAni: {fileID: 0}
-  showSkillPointAni: {fileID: 0}
+  probDrop: 5
+  damage: 5
 --- !u!1 &1935043901930004934
 GameObject:
   m_ObjectHideFlags: 0

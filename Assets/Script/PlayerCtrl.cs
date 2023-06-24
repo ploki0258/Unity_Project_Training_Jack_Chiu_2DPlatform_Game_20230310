@@ -4,139 +4,158 @@ using UnityEngine.UI;
 
 public class PlayerCtrl : MonoBehaviour
 {
-    #region 欄位
-    [Header("移動速度"), Range(0, 100)]
-    [SerializeField] float speed = 10f;
-    [Header("跳躍力量")]
-    [SerializeField] float powJump = 0f;
-    [Header("攻擊物件")]
-    [SerializeField] GameObject atkObject = null;
-    [Header("施法生成點")]
-    [SerializeField] Transform pointAtk = null;
-    [Header("攻擊速度")]
-    [SerializeField] float speedAtk = 500f;
-    [Header("血量條")]
-    public Image barHP = null;
-    [Header("魔力條")]
-    public Image barMP = null;
-    [Header("最大血量")]
-    public float maxHP = 100f;
-    [Header("最大魔力")]
-    public float maxMP = 100f;
-    [Header("魔力消耗")]
-    [SerializeField] float costMP = 0f;
-    // 怪物使用
-    [Header("資訊欄顯示")]
-    public Text coinInfo = null;
-    public Text skillInfo = null;
-    [Header("金幣數量")]
-    public TextMeshProUGUI coinCount = null;
-    [Header("技能點數")]
-    public TextMeshProUGUI skillCount = null;
-    [Header("金幣顯示動畫")]
-    public Animator showCoinAni = null;
-    [Header("技能點數顯示動畫")]
-    public Animator showSkillPointAni = null;
+	#region 欄位
+	[Header("移動速度"), Range(0, 100)]
+	public float speed = 10f;
+	[Header("跳躍力量"), Range(0, 100)]
+	public float jumpForce = 7f;
+	[Header("攻擊物件"), Tooltip("用來儲存攻擊物件的預製物")]
+	[SerializeField] GameObject atkObject = null;
+	[Header("攻擊生成點"), Tooltip("用來儲存攻擊物件的生成位置")]
+	[SerializeField] Transform atkPoint = null;
+	[Header("攻擊速度"), Range(0, 1000)]
+	public float atkSpeed = 500f;
+	[Header("攻擊力"), Range(10, 1000)]
+	public float attack = 100f;
+	[Header("防禦力"), Range(10, 1000)]
+	public float defense = 100f;
+	[Header("血量條")]
+	public Image barHP = null;
+	[Header("魔力條")]
+	public Image barMP = null;
+	[Header("最大血量"), Range(100, 1000)]
+	public float maxHP = 100f;
+	[Header("最大魔力"), Range(100, 1000)]
+	public float maxMP = 100f;
+	[Header("魔力消耗")]
+	[SerializeField] float costMP = 0f;
+	// 怪物使用
+	[Header("資訊欄顯示")]
+	public Text coinInfo = null;
+	public Text skillInfo = null;
+	[Header("金幣數量")]
+	public TextMeshProUGUI coinCount = null;
+	[Header("技能點數")]
+	public TextMeshProUGUI skillCount = null;
+	[Header("金幣顯示動畫")]
+	public Animator showCoinAni = null;
+	[Header("技能點數顯示動畫")]
+	public Animator showSkillPointAni = null;
+	[Header("技能資料")]
+	public Skill skillData;
 
-    /*[Header("血量值")]
+	/*
+	[Header("血量值文字")]
     [SerializeField] Text valueHP = null;
-    [Header("魔力值")]
+    [Header("魔力值文字")]
     [SerializeField] Text valueMP = null;
     */
 
-    [Tooltip("用來儲存玩家是否站在地板上")]
-    private bool onFloor = false;
-    bool 翻轉 = false;
-    bool isWindowsOpen = WindowsManager.instance.IsWindowsOpen();   // 視窗是否被開啟
-    Rigidbody2D rig;
-    Animator ani;
-    Grid itemNormalValue;
-    #endregion
+	[Tooltip("用來儲存玩家是否站在地板上")]
+	private bool onFloor = false;
+	bool 翻轉 = false;
+	bool isWindowsOpen = WindowsManager.instance.IsWindowsOpen();   // 視窗是否被開啟
+	int skillID;
+	Rigidbody2D rig;
+	Animator ani;
+	// Grid itemNormalValue;
+	#endregion
 
-    // 在整個專案全域宣告一個instance
-    public static PlayerCtrl instance = null;
+	// 在整個專案全域宣告一個instance
+	public static PlayerCtrl instance = null;
 
-    private void Awake()
-    {
-        instance = this;    // 讓單例等於自己
-        rig = GetComponent<Rigidbody2D>();
-        ani = GetComponent<Animator>();
-        // 角色出生時 讀檔一次
-        SaveManager.instance.LoadData();
-        // SaveManager.instance.SaveData();
-        WindowsManager.instance.Start();
-    }
+	private void Awake()
+	{
+		instance = this;    // 讓單例等於自己
+		rig = GetComponent<Rigidbody2D>();
+		ani = GetComponent<Animator>();
+		// 角色出生時 讀檔一次
+		SaveManager.instance.LoadData();
+		// SaveManager.instance.SaveData();
+		WindowsManager.instance.Start();
+	}
 
-    private void Start()
-    {
-        // SaveManager.instance.playerData.playerHP = maxHP;
-        // SaveManager.instance.playerData.playerMP = maxMP;
-        coinInfo.text = "";
+	private void Start()
+	{
+		// SaveManager.instance.playerData.playerHP = maxHP;
+		// SaveManager.instance.playerData.playerMP = maxMP;
+		coinInfo.text = "";
 
-        SaveManager.instance.playerData.renewCoin += RenewCoin;
-        SaveManager.instance.playerData.renewSkillPoint += RenewSkillPoint;
-        SaveManager.instance.playerData.renewPlayerHP += RenewPlayerHP;
-        SaveManager.instance.playerData.renewPlayerMP += RenewPlayerMP;
-        RenewPlayerHP();
-        RenewPlayerMP();
-    }
+		SaveManager.instance.playerData.renewCoin += RenewCoin;
+		SaveManager.instance.playerData.renewSkillPoint += RenewSkillPoint;
+		SaveManager.instance.playerData.renewPlayerHP += RenewPlayerHP;
+		SaveManager.instance.playerData.renewPlayerMP += RenewPlayerMP;
+		SaveManager.instance.playerData.renewPlayerSpeed += RenewPlayerMove;
+		SaveManager.instance.playerData.renewPlayerJump += RenewPlayerJump;
+		SaveManager.instance.playerData.renewPlayerAttackSpeed += RenewPlayerAttackSpeed;
+		SaveManager.instance.playerData.renewPlayerAttack += RenewPlayerAttack;
+		SaveManager.instance.playerData.renewPlayerDefense += RenewPlayerDefecse;
+		RenewPlayerHP();
+		RenewPlayerMP();
+	}
 
 	private void OnDisable()
 	{
-        SaveManager.instance.playerData.renewCoin -= RenewCoin;
-        SaveManager.instance.playerData.renewSkillPoint -= RenewSkillPoint;
-        SaveManager.instance.playerData.renewPlayerHP -= RenewPlayerHP;
-        SaveManager.instance.playerData.renewPlayerMP -= RenewPlayerMP;
-    }
+		SaveManager.instance.playerData.renewCoin -= RenewCoin;
+		SaveManager.instance.playerData.renewSkillPoint -= RenewSkillPoint;
+		SaveManager.instance.playerData.renewPlayerHP -= RenewPlayerHP;
+		SaveManager.instance.playerData.renewPlayerMP -= RenewPlayerMP;
+		SaveManager.instance.playerData.renewPlayerSpeed -= RenewPlayerMove;
+		SaveManager.instance.playerData.renewPlayerJump -= RenewPlayerJump;
+		SaveManager.instance.playerData.renewPlayerAttackSpeed -= RenewPlayerAttackSpeed;
+		SaveManager.instance.playerData.renewPlayerAttack -= RenewPlayerAttack;
+		SaveManager.instance.playerData.renewPlayerDefense -= RenewPlayerDefecse;
+	}
 
 	private void Update()
-    {
-        PlayerMove();
-        Jump();
-        Attack();
-        Panacea();
-        Dead();
+	{
+		PlayerMove();
+		Jump();
+		Attack();
+		ChangeAtkObject();
+		Panacea();
+		Dead();
 
-        // speedAtk += itemNormalValue.提升攻擊速度;
-        // Debug.Log("以提升數值");
-    }
+		// speedAtk += itemNormalValue.提升攻擊速度;
+		// Debug.Log("以提升數值");
+	}
 
-    private void FixedUpdate()
-    {
-        //偵測是否踩到地板
-        onFloor = Physics2D.Raycast(this.transform.position, new Vector2(0f, -1f), 0.9f);
-    }
+	private void FixedUpdate()
+	{
+		//偵測是否踩到地板
+		onFloor = Physics2D.Raycast(this.transform.position, new Vector2(0f, -1f), 0.9f);
+	}
 
-    /// <summary>
-    /// 角色移動
-    /// </summary>
-    void PlayerMove()
-    {
-        // 移動
-        float ad = Input.GetAxisRaw("Horizontal");                        // 取得水平值
-        // 如果有視窗被開啟 就不移動
-        if (isWindowsOpen)
-            ad = 0;
+	/// <summary>
+	/// 角色移動
+	/// </summary>
+	void PlayerMove()
+	{
+		// 移動
+		float ad = Input.GetAxisRaw("Horizontal");  // 取得水平值
 
-        rig.velocity = new Vector2(ad * speed, rig.velocity.y);
+		if (isWindowsOpen)                          // 如果有視窗被開啟 就不移動
+			ad = 0;
 
-        //移動動畫
-        ani.SetBool("isRun", ad != 0);
+		rig.velocity = new Vector2(ad * speed, rig.velocity.y);
 
-        // 翻轉
-        if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && isWindowsOpen == false)
-        {
-            this.transform.rotation = Quaternion.AngleAxis(0, new Vector3(0, 1, 0));
-            翻轉 = false;
-        }
+		//移動動畫
+		ani.SetBool("isRun", ad != 0);
 
-        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && isWindowsOpen == false)
-        {
-            this.transform.rotation = Quaternion.AngleAxis(180, new Vector3(0, 1, 0));
-            翻轉 = true;
-        }
+		// 翻轉
+		if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && isWindowsOpen == false)
+		{
+			this.transform.rotation = Quaternion.AngleAxis(0, new Vector3(0, 1, 0));
+			翻轉 = false;
+		}
 
-        /*
+		if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && isWindowsOpen == false)
+		{
+			this.transform.rotation = Quaternion.AngleAxis(180, new Vector3(0, 1, 0));
+			翻轉 = true;
+		}
+
+		/*
         if (Input.GetKeyDown(KeyCode.RightArrow))                         // 如果 按下右方向鍵
         {
             // rig.AddForce(transform.right * speed, ForceMode2D.Force);  // 向右側施加一個推力
@@ -149,103 +168,118 @@ public class PlayerCtrl : MonoBehaviour
             // print("向左移動");
         }
         */
-    }
+	}
 
-    /// <summary>
-    /// 跳躍功能
-    /// </summary>
-    void Jump()
-    {
-        // 如果 按下空白建(或上) 以及 onFloor = true 就跳躍
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && onFloor != false && isWindowsOpen == false)
-        {
-            // rig.velocity = new Vector2(rig.velocity.x, 跳躍力);
-            rig.AddForce(transform.up * powJump, ForceMode2D.Impulse);
-        }
+	/// <summary>
+	/// 跳躍功能
+	/// </summary>
+	void Jump()
+	{
+		// 如果 按下空白建(或上) 以及 onFloor = true 就跳躍
+		if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && onFloor != false && isWindowsOpen == false)
+		{
+			// rig.velocity = new Vector2(rig.velocity.x, 跳躍力);
+			rig.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+		}
 
-        //跳躍動畫
-        ani.SetBool("isJump", onFloor == false);
-        // Debug.Log("踩到地板" + onFloor);
-    }
+		//跳躍動畫
+		ani.SetBool("isJump", onFloor == false);
+		// Debug.Log("踩到地板" + onFloor);
+	}
 
-    /// <summary>
-    /// 攻擊功能：發射子彈
-    /// </summary>
-    void Attack()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && isWindowsOpen == false)
-        {
-            ani.SetTrigger("attack");
+	/// <summary>
+	/// 攻擊功能：發射子彈
+	/// </summary>
+	void Attack()
+	{
+		if (Input.GetKeyDown(KeyCode.Mouse0) && isWindowsOpen == false)
+		{
+			ani.SetTrigger("attack");
 
-            if (atkObject == true)
-            {
-                if (SaveManager.instance.playerData.playerMP <= 0)
-                    return;
+			if (atkObject == true)
+			{
+				if (SaveManager.instance.playerData.playerMP <= 0)
+					return;
 
-                SaveManager.instance.playerData.playerMP -= costMP;
-            }
+				SaveManager.instance.playerData.playerMP -= costMP;
+			}
 
-            if (翻轉 != true)
-            {
-                GameObject temp = Instantiate(atkObject, pointAtk.position, Quaternion.Euler(0f, 0f, 0f));
-                temp.GetComponent<Rigidbody2D>().AddForce(transform.right * speedAtk + transform.up * 10);
-            }
-            else
-            {
-                GameObject temp = Instantiate(atkObject, pointAtk.position, Quaternion.Euler(0f, 0f, 180f));
-                temp.GetComponent<Rigidbody2D>().AddForce(transform.right * speedAtk + transform.up * 10);
-            }
-        }
-    }
+			if (翻轉 != true)
+			{
+				GameObject temp = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 0f, 0f));
+				temp.GetComponent<Rigidbody2D>().AddForce(transform.right * atkSpeed + transform.up * 10);
+			}
+			else
+			{
+				GameObject temp = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 0f, 180f));
+				temp.GetComponent<Rigidbody2D>().AddForce(transform.right * atkSpeed + transform.up * 10);
+			}
+		}
+	}
 
-    /// <summary>
-    /// 死亡功能
-    /// </summary>
-    void Dead()
-    {
+	/// <summary>
+	/// 切換攻擊物件
+	/// </summary>
+	void ChangeAtkObject()
+	{
+		SkillSystem skillSystem = FindObjectOfType<SkillSystem>();
+		if (Input.GetKeyDown(KeyCode.Z))
+		{
+			atkObject = skillData.skillPrefab;
+			Debug.Log(skillData.skillPrefab.name);
+			skillID = skillData.id;
+			skillSystem.SetCurrentSkill(skillID);
+		}
+	}
+
+	/// <summary>
+	/// 死亡功能
+	/// </summary>
+	void Dead()
+	{
 		if (SaveManager.instance.playerData.playerHP <= 0)
 		{
-            ani.SetTrigger("die");
-            SaveManager.instance.SaveUser();
-            Destroy(this);
+			ani.SetTrigger("die");
+			SaveManager.instance.SaveUser();
+			Destroy(this);
 		}
-    }
+	}
 
-    /// <summary>
-    /// 受傷功能
-    /// </summary>
-    /// <param name="hurt">傷害量</param>
-    public void TakeDamage(float hurt)
-    {
-        SaveManager.instance.playerData.playerHP -= hurt;
-    }
+	/// <summary>
+	/// 受傷功能
+	/// </summary>
+	/// <param name="hurt">傷害量</param>
+	public void TakeDamage(float hurt)
+	{
+		SaveManager.instance.playerData.playerHP -= hurt;
+	}
 
-    /// <summary>
-    /// 萬能藥：MP全回滿
-    /// </summary>
-    /// Test
-    void Panacea()
-    {
-        if (Input.GetKeyDown(KeyCode.P) && SaveManager.instance.playerData.playerMP != maxMP)
-        {
-            SaveManager.instance.playerData.playerMP = maxMP;
-        }
-    }
+	/// <summary>
+	/// 萬能藥：MP全回滿
+	/// </summary>
+	/// Test
+	void Panacea()
+	{
+		if (Input.GetKeyDown(KeyCode.P) && SaveManager.instance.playerData.playerMP != maxMP)
+		{
+			SaveManager.instance.playerData.playerMP = maxMP;
+		}
+	}
 
-    /// <summary>
-    /// 儲存玩家資訊
-    /// </summary>
-    public void SaveBtn()
-    {
-        SaveManager.instance.SaveData();
-    }
+	/// <summary>
+	/// 儲存玩家資訊
+	/// </summary>
+	public void SaveBtn()
+	{
+		SaveManager.instance.SaveData();
+	}
 
-    /*public void Coin()
+	/*public void Coin()
     {
         countCoin.text = "× " + Enemy.instance.coinNumber.ToString();
     }*/
 
-    /*public float hp
+	/*public float hp
     {
         get { return maxHP * barHP.fillAmount; }
         set
@@ -264,25 +298,77 @@ public class PlayerCtrl : MonoBehaviour
     }
     */
 
-    void RenewCoin()
-    {
-        // 播放動畫
-        PlayerCtrl.instance.showCoinAni.SetTrigger("play");
-    }
-    
-    void RenewSkillPoint()
+	/// <summary>
+	/// 更新金幣顯示動畫
+	/// </summary>
+	void RenewCoin()
 	{
-        // 播放動畫
-        PlayerCtrl.instance.showSkillPointAni.SetTrigger("play");
-    }
+		// 播放動畫
+		PlayerCtrl.instance.showCoinAni.SetTrigger("play");
+	}
 
-    void RenewPlayerHP()
+	/// <summary>
+	/// 技能點數顯示動畫
+	/// </summary>
+	void RenewSkillPoint()
 	{
-        barHP.fillAmount = SaveManager.instance.playerData.playerHP / maxHP;
-    }
-    
-    void RenewPlayerMP()
+		// 播放動畫
+		PlayerCtrl.instance.showSkillPointAni.SetTrigger("play");
+	}
+
+	/// <summary>
+	/// 更新玩家血量
+	/// </summary>
+	void RenewPlayerHP()
 	{
-        barMP.fillAmount = SaveManager.instance.playerData.playerMP / maxMP;
+		barHP.fillAmount = SaveManager.instance.playerData.playerHP / maxHP;
+	}
+
+	/// <summary>
+	/// 更新玩家魔力
+	/// </summary>
+	void RenewPlayerMP()
+	{
+		barMP.fillAmount = SaveManager.instance.playerData.playerMP / maxMP;
+	}
+
+	/// <summary>
+	/// 更新玩家移動速度
+	/// </summary>
+	void RenewPlayerMove()
+	{
+		instance.speed += SaveManager.instance.playerData.playerSpeed;
+	}
+
+	/// <summary>
+	/// 更新玩家跳躍力
+	/// </summary>
+	void RenewPlayerJump()
+	{
+		instance.jumpForce += SaveManager.instance.playerData.playerJump;
+	}
+
+	/// <summary>
+	/// 更新玩家攻擊速度
+	/// </summary>
+	void RenewPlayerAttackSpeed()
+	{
+		instance.atkSpeed += SaveManager.instance.playerData.playerAttackSpeed;
+	}
+
+	/// <summary>
+	/// 更新玩家攻擊力
+	/// </summary>
+	void RenewPlayerAttack()
+	{
+		instance.attack += SaveManager.instance.playerData.playerAttack;
+	}
+
+	/// <summary>
+	/// 更新玩家防禦力
+	/// </summary>
+	void RenewPlayerDefecse()
+	{
+		instance.defense += SaveManager.instance.playerData.playerDefense;
 	}
 }

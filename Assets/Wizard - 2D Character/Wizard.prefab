@@ -169,11 +169,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  powJump: 7
-  atkObject: {fileID: 3505493634716584361, guid: bd8082de0d59f234da9264a27d99f0f1,
+  jumpForce: 7
+  atkObject: {fileID: 5761697363250273946, guid: a996465a381f11c4788d0c50d0d71d85,
     type: 3}
   pointAtk: {fileID: 139718891133977435}
   speedAtk: 500
+  attack: 100
+  defense: 100
   barHP: {fileID: 0}
   barMP: {fileID: 0}
   maxHP: 100

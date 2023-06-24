@@ -5,11 +5,11 @@ using TMPro;
 public class Enemy : MonoBehaviour
 {
     #region 欄位
-    [Header("怪物最大血量")]
+    [Header("怪物最大血量"),Range(100,1000)]
     [SerializeField] float hpMonsterMax = 100f;
     [Header("血條")]
     [SerializeField] Image barHP = null;
-    [Header("怪物攻擊力")]
+    [Header("怪物攻擊力"), Range(10, 1000)]
     [SerializeField] float atkMonster = 5f;
     [Header("生成點")]
     [SerializeField] Transform point = null;
@@ -19,10 +19,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] float disChase = 8f;
     [Header("掉落(技能)道具")]
     [SerializeField] GameObject itemSkill = null;
-    [Header("掉落機率")]
+    [Header("掉落機率"), Range(1, 10)]
     public float probDrop = 5f;
     [Header("被傷害值")]
-    [SerializeField] float damage = 5f;
+    [SerializeField] float damage;
+
     /*[Header("資訊欄顯示")]
     [SerializeField] Text coinInfo = null;
     [SerializeField] Text skillInfo = null;
@@ -34,9 +35,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] Animator showCoinAni = null;
     [Header("技能點數顯示動畫")]
     [SerializeField] Animator showSkillPointAni = null;
-    */
+
     // [Header("最大血量")]
     // [SerializeField] float maxHP = 200f;
+    */
 
     int coinNumber;
     int skillNumber;
@@ -63,7 +65,8 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         hpMonster = hpMonsterMax;
-        
+        damage = PlayerCtrl.instance.attack;
+
         // coinInfo.text = "";
         // skill = 0;
     }

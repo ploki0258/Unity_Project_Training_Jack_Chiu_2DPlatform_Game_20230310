@@ -39,7 +39,7 @@ public class SaveManager
 		if (json == "0")
 		{
 			// 這是一個新玩家 請給他基本數值
-			playerData = new PlayerData(0, 0, 100f, 100f, "遊戲場景", Vector3.zero);
+			playerData = new PlayerData(0, 0, 100f, 100f, 10f, 7f, 500f, 100f, 100f, "遊戲場景", Vector3.zero);
 			// Debug.Log("給予玩家預設值");
 		}
 		else
@@ -169,6 +169,106 @@ public struct PlayerData
 	}
 	[SerializeField] float _playerMP;
 	public System.Action renewPlayerMP;
+
+	/// <summary>
+	/// 玩家移動速度
+	/// </summary>
+	public float playerSpeed
+	{
+		get { return _playerSpeed; }
+		set 
+		{
+			_playerSpeed = value;
+
+			// 呼叫刷新玩家移動
+			if (renewPlayerSpeed != null)
+			{
+				renewPlayerSpeed.Invoke();
+			}
+		}
+	}
+	[SerializeField] float _playerSpeed;
+	public System.Action renewPlayerSpeed;
+
+	/// <summary>
+	/// 玩家跳躍力
+	/// </summary>
+	public float playerJump
+	{
+		get { return _playerJump; }
+		set
+		{
+			_playerJump = value;
+
+			// 呼叫刷新玩家跳躍力
+			if (renewPlayerJump != null)
+			{
+				renewPlayerJump.Invoke();
+			}
+		}
+	}
+	[SerializeField] float _playerJump;
+	public System.Action renewPlayerJump;
+
+	/// <summary>
+	/// 玩家攻擊速度
+	/// </summary>
+	public float playerAttackSpeed
+	{
+		get { return _playerAttackSpeed; }
+		set
+		{
+			_playerAttackSpeed = value;
+
+			// 呼叫刷新玩家攻擊速度
+			if (renewPlayerAttackSpeed != null)
+			{
+				renewPlayerAttackSpeed.Invoke();
+			}
+		}
+	}
+	[SerializeField] float _playerAttackSpeed;
+	public System.Action renewPlayerAttackSpeed;
+
+	/// <summary>
+	/// 玩家攻擊力
+	/// </summary>
+	public float playerAttack
+	{
+		get { return _playerAttack; }
+		set
+		{
+			_playerAttack = value;
+
+			// 呼叫刷新玩家攻擊力
+			if (renewPlayerAttack != null)
+			{
+				renewPlayerAttack.Invoke();
+			}
+		}
+	}
+	[SerializeField] float _playerAttack;
+	public System.Action renewPlayerAttack;
+
+	/// <summary>
+	/// 玩家防禦力
+	/// </summary>
+	public float playerDefense
+	{
+		get { return _playerDefense; }
+		set
+		{
+			_playerDefense = value;
+
+			// 呼叫刷新玩家防禦力
+			if (renewPlayerDefense != null)
+			{
+				renewPlayerDefense.Invoke();
+			}
+		}
+	}
+	[SerializeField] float _playerDefense;
+	public System.Action renewPlayerDefense;
 
 	/// <summary>
 	/// 已擁有的技能列表
@@ -339,7 +439,7 @@ public struct PlayerData
 	#endregion
 
 	// 建構式
-	public PlayerData(int coin, int skill, float maxHP, float maxMP, string nameLV, Vector3 pos)
+	public PlayerData(int coin, int skill, float maxHP, float maxMP, float moveSpeed, float jumpPower, float attackSpeed, float attack, float defense, string nameLV, Vector3 pos)
 	{
 		_moneyCount = coin;
 		_skillPoint = skill;
@@ -354,6 +454,16 @@ public struct PlayerData
 		renewPlayerHP = null;
 		_playerMP = maxMP;
 		renewPlayerMP = null;
+		_playerSpeed = moveSpeed;
+		renewPlayerSpeed = null;
+		_playerJump = jumpPower;
+		renewPlayerJump = null;
+		_playerAttackSpeed = attackSpeed;
+		renewPlayerAttackSpeed = null;
+		_playerAttack = attack;
+		renewPlayerAttack = null;
+		_playerDefense = defense;
+		renewPlayerDefense = null;
 		levelName = nameLV;
 		playerPos = pos;
 
@@ -376,6 +486,16 @@ public struct PlayerData
 		renewPlayerHP = null;
 		_playerMP = 100f;
 		renewPlayerMP = null;
+		_playerSpeed = 10f;
+		renewPlayerSpeed = null;
+		_playerJump = 7f;
+		renewPlayerJump = null;
+		_playerAttackSpeed = 500f;
+		renewPlayerAttackSpeed = null;
+		_playerAttack = 100f;
+		renewPlayerAttack = null;
+		_playerDefense = 100f;
+		renewPlayerDefense = null;
 		levelName = "遊戲場景";
 		playerPos = new Vector3(0, 0, 0);
 
