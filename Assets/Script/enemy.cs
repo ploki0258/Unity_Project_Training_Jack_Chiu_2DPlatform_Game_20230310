@@ -71,11 +71,6 @@ public class Enemy : MonoBehaviour
         // skill = 0;
     }
 
-    private void OnDisable()
-    {
-       
-    }
-
     private void Update()
     {
         Move();

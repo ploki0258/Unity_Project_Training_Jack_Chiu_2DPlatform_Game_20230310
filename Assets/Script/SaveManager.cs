@@ -40,7 +40,8 @@ public class SaveManager
 		{
 			// 這是一個新玩家 請給他基本數值
 			playerData = new PlayerData(0, 0, 100f, 100f, 10f, 7f, 500f, 100f, 100f, "遊戲場景", Vector3.zero);
-			// Debug.Log("給予玩家預設值");
+			playerData.moneyCount = 0;
+			playerData.playerHP = 100;
 		}
 		else
 		{
@@ -55,6 +56,7 @@ public class SaveManager
 	/// </summary>
 	public void SaveData()
 	{
+		playerData.playerPos = PlayerCtrl.instance.transform.position;
 		// 轉換資料為Json格式
 		string json = JsonUtility.ToJson(playerData, true);
 		Debug.Log(json);

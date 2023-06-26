@@ -46,6 +46,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
 		// 開始拖曳
 		isDragging = true;
+		Debug.Log("開始拖曳");
 	}
 
 	/// <summary>
@@ -61,6 +62,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
 			Debug.Log(eventData.pointerCurrentRaycast.gameObject.tag);
 			Debug.Log(eventData.pointerCurrentRaycast.gameObject.gameObject);
+			Debug.Log("拖曳中");
 		}
 	}
 
@@ -114,5 +116,6 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 				Debug.Log("設置技能：" + skillData.name);
 			}
 		}
+		Debug.Log("結束拖曳");
 	}
 }

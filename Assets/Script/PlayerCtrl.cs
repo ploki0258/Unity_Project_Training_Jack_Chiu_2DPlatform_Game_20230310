@@ -71,8 +71,13 @@ public class PlayerCtrl : MonoBehaviour
 		ani = GetComponent<Animator>();
 		// 角色出生時 讀檔一次
 		SaveManager.instance.LoadData();
+		// 瞬間移動到記錄中的位置
+		// 如果記錄中的位置是000表示可能沒有紀錄
+		if (SaveManager.instance.playerData.playerPos != Vector3.zero)
+			this.transform.position = SaveManager.instance.playerData.playerPos;
+		
 		// SaveManager.instance.SaveData();
-		WindowsManager.instance.Start();
+		// WindowsManager.instance.Start();
 	}
 
 	private void Start()

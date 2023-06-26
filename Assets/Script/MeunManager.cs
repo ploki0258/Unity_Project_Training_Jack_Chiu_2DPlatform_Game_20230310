@@ -11,11 +11,16 @@ public class MeunManager : MonoBehaviour
         Application.Quit();
     }
 
-    /// <summary>
-    /// 開始遊戲
-    /// </summary>
-    public void StartGame()
+	private void Awake()
+	{
+	}
+
+	/// <summary>
+	/// 開始遊戲
+	/// </summary>
+	public void StartGame()
     {
+        PlayerPrefs.DeleteKey("GameData");
         SceneManager.LoadScene("遊戲場景");
     }
 
@@ -24,6 +29,9 @@ public class MeunManager : MonoBehaviour
     /// </summary>
     public void ContinueGame()
 	{
+        // 
+        if (PlayerPrefs.GetString("GameData", "") == "")
+            return;
         SaveManager.instance.LoadData();
         SceneManager.LoadScene(SaveManager.instance.playerData.levelName);
     }
