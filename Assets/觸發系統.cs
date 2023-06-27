@@ -4,18 +4,22 @@ using UnityEngine;
 using UnityEngine.Events;
 public class 觸發系統 : MonoBehaviour
 {
-    public UnityEvent 要做的事情 = null;
-	[SerializeField] bool 是否可重複 = false;
+	[SerializeField,Header("事件可否重複")] bool 是否可重複 = false;
+    [Header("要執行的事件")]
+	public UnityEvent 要做的事情 = null;
+	
 	bool 觸發過 = false;
+
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		// 如果 玩家 經過的話
 		if (collision.gameObject.tag == "Player")
 		{
-			// 如果可重複或者尚未觸發過
+			// 如果是可重複 或者 尚未觸發過
 			if (是否可重複 || 觸發過 == false)
 			{
 				觸發過 = true;
-				要做的事情.Invoke();
+				要做的事情.Invoke(); // 執行要做的事情
 			}
 		}
 	}

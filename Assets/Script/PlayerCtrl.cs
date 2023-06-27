@@ -75,7 +75,7 @@ public class PlayerCtrl : MonoBehaviour
 		// 如果記錄中的位置是000表示可能沒有紀錄
 		if (SaveManager.instance.playerData.playerPos != Vector3.zero)
 			this.transform.position = SaveManager.instance.playerData.playerPos;
-		
+
 		// SaveManager.instance.SaveData();
 		// WindowsManager.instance.Start();
 	}
@@ -208,13 +208,17 @@ public class PlayerCtrl : MonoBehaviour
 
 				SaveManager.instance.playerData.playerMP -= costMP;
 			}
-
-			if (翻轉 != true)
+			else if (atkObject == null)
+			{
+				ani.SetTrigger("attack");
+			}
+			// 生成子彈並發射
+			if (atkObject != null && 翻轉 != true)
 			{
 				GameObject temp = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 0f, 0f));
 				temp.GetComponent<Rigidbody2D>().AddForce(transform.right * atkSpeed + transform.up * 10);
 			}
-			else
+			else if (atkObject != null && 翻轉 == true)
 			{
 				GameObject temp = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 0f, 180f));
 				temp.GetComponent<Rigidbody2D>().AddForce(transform.right * atkSpeed + transform.up * 10);

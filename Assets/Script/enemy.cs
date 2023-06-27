@@ -170,7 +170,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // 觸發事件
+    // 觸發事件 進入事件
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (isDeath)
@@ -178,6 +178,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "bullet")
         {
             TakeDamageMonster(damage);
+            Debug.Log(damage);
 
             if (hpMonster <= 0)
             {
