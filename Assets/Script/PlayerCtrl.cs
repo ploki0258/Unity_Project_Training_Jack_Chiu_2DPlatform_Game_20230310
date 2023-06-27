@@ -201,7 +201,7 @@ public class PlayerCtrl : MonoBehaviour
 		{
 			ani.SetTrigger("attack");
 
-			if (atkObject == true)
+			if (atkObject)
 			{
 				if (SaveManager.instance.playerData.playerMP <= 0)
 					return;

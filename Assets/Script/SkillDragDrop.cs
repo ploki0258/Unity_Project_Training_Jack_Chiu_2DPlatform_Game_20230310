@@ -75,24 +75,28 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		// 停止拖曳
 		isDragging = false;
 
-		transform.SetParent(originalParent); // 將技能拖放物件的父物件設置回初始父物件
-		transform.position = startPosition; // 將技能拖放物件的位置設置回初始位置
-		cloneObject.transform.SetParent(originalParent);
-		cloneObject.transform.position = startPosition;
-		GetComponent<CanvasGroup>().blocksRaycasts = true; // 打開射線檢測
+		transform.SetParent(originalParent);	// 將技能拖放物件的父物件設置回初始父物件
+		transform.position = startPosition;		// 將技能拖放物件的位置設置回初始位置
+		
+		cloneObject.transform.SetParent(originalParent);    // 複製物件的父物件設置回初始父物件
+		cloneObject.transform.position = startPosition;     // 複製物件的位置設置回初始位置
+		GetComponent<CanvasGroup>().blocksRaycasts = true;	// 打開射線檢測
 
 		// 確認技能是否放置在技能欄位內
 		if (eventData.pointerCurrentRaycast.gameObject.CompareTag("SkillSlot"))
 		{
+			GetComponent<CanvasGroup>().blocksRaycasts = false;
+
 			// 如果技能欄位內有名稱含有 "Skill" 的話
 			// 調換位置
-			if (eventData.pointerCurrentRaycast.gameObject.name.Contains("Skill"))
+			if (eventData.pointerCurrentRaycast.gameObject.name.Contains("Skill") == true)
 			{
-				cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
-				cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.parent.position;
+				cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent);			// 設置父集
+				cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.parent.position;  // 設置位置
 				eventData.pointerCurrentRaycast.gameObject.transform.parent.position = originalParent.position;
 				eventData.pointerCurrentRaycast.gameObject.transform.SetParent(originalParent);
 				GetComponent<CanvasGroup>().blocksRaycasts = true;
+				Debug.Log("對調");
 				return;
 			}
 			// 如果技能欄位內沒有名稱含有 "Skill" 的話
@@ -102,6 +106,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 				cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
 				cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
 				GetComponent<CanvasGroup>().blocksRaycasts = true;
+				Debug.Log("設置");
 				
 				// cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
 				// cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
