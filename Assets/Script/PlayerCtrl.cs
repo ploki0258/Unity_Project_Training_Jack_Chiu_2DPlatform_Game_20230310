@@ -10,7 +10,7 @@ public class PlayerCtrl : MonoBehaviour
 	[Header("跳躍力量"), Range(0, 100)]
 	public float jumpForce = 7f;
 	[Header("攻擊物件"), Tooltip("用來儲存攻擊物件的預製物")]
-	[SerializeField] GameObject atkObject = null;
+	public GameObject atkObject = null;
 	[Header("攻擊生成點"), Tooltip("用來儲存攻擊物件的生成位置")]
 	[SerializeField] Transform atkPoint = null;
 	[Header("攻擊速度"), Range(0, 1000)]
@@ -58,7 +58,6 @@ public class PlayerCtrl : MonoBehaviour
 	int skillID;
 	Rigidbody2D rig;
 	Animator ani;
-	// Grid itemNormalValue;
 	#endregion
 
 	// 在整個專案全域宣告一個instance
@@ -117,7 +116,6 @@ public class PlayerCtrl : MonoBehaviour
 		PlayerMove();
 		Jump();
 		Attack();
-		ChangeAtkObject();
 		Panacea();
 		Dead();
 
@@ -223,21 +221,6 @@ public class PlayerCtrl : MonoBehaviour
 				GameObject temp = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 0f, 180f));
 				temp.GetComponent<Rigidbody2D>().AddForce(transform.right * atkSpeed + transform.up * 10);
 			}
-		}
-	}
-
-	/// <summary>
-	/// 切換攻擊物件
-	/// </summary>
-	void ChangeAtkObject()
-	{
-		SkillSystem skillSystem = FindObjectOfType<SkillSystem>();
-		if (Input.GetKeyDown(KeyCode.Z))
-		{
-			atkObject = skillData.skillPrefab;
-			Debug.Log(skillData.skillPrefab.name);
-			skillID = skillData.id;
-			skillSystem.SetCurrentSkill(skillID);
 		}
 	}
 
