@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.Events;
 public class 觸發系統 : MonoBehaviour
 {
-	[SerializeField,Header("事件可否重複")] bool 是否可重複 = false;
-    [Header("要執行的事件")]
+	[SerializeField, Header("事件可否重複")] bool 是否可重複 = false;
+	[Header("要執行的事件")]
 	public UnityEvent 要做的事情 = null;
-	
+
 	bool 觸發過 = false;
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -22,5 +22,15 @@ public class 觸發系統 : MonoBehaviour
 				要做的事情.Invoke(); // 執行要做的事情
 			}
 		}
+	}
+
+	// 繪製圖形
+	private void OnDrawGizmos()
+	{
+		BoxCollider2D Cube2D = GetComponent<BoxCollider2D>();
+
+		Gizmos.color = Color.cyan;
+		Gizmos.DrawWireCube(new Vector3(Cube2D.transform.position.x, Cube2D.transform.position.y, Cube2D.transform.position.z),
+			Cube2D.size);
 	}
 }

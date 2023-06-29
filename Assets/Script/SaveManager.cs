@@ -39,13 +39,13 @@ public class SaveManager
 		if (json == "0")
 		{
 			// 這是一個新玩家 請給他基本數值
-			// playerData = new PlayerData(0, 0, 100f, 100f, 10f, 7f, 500f, 100f, 100f, "遊戲場景", Vector3.zero);
+			// playerData = new PlayerData(0, 0, 100f, 100f, 10f, 7f, 500f, 100f, 100f, "遊戲場景", Vector3.zero);	// 此為建構式的寫法
 			playerData.moneyCount = 0;					// 玩家金幣
 			playerData.skillPoint = 0;					// 玩家技能點數
 			playerData.playerHP = 100f;					// 玩家血量
 			playerData.playerMP = 100f;					// 玩家魔力
 			playerData.playerSpeed = 10f;				// 玩家移動速度
-			playerData.playerJump = 7f;					// 玩家跳躍力
+			playerData.playerJump = 10f;				// 玩家跳躍力
 			playerData.playerAttackSpeed = 500f;		// 玩家攻擊速度
 			playerData.playerAttack = 100f;				// 玩家攻擊力
 			playerData.playerDefense = 100f;			// 玩家防禦力

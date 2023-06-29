@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         hpMonster = hpMonsterMax;
-        damage = PlayerCtrl.instance.attack;
+        damage = SaveManager.instance.playerData.playerAttack;
 
         // coinInfo.text = "";
         // skill = 0;

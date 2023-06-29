@@ -19,11 +19,11 @@ public class Grid : MonoBehaviour
 	public float 提升跳躍力;
 	public float 提升攻擊速度;
 	public float 提升移動速度;
-	*/
 	public float 魔力消耗降低;
 	public float 提升技能傷害;
 	public int 獲得額外點數;
 	public int 增加技能欄位;
+	*/
 	
 	public void InputData(Goods data)
 	{
@@ -87,10 +87,11 @@ public class Grid : MonoBehaviour
 			SaveManager.instance.playerData.playerAttackSpeed += dataGrid.提升攻擊速度;
 			SaveManager.instance.playerData.playerSpeed += dataGrid.提升移動速度;
 			SaveManager.instance.playerData.skillPoint += dataGrid.獲得額外點數;
-			
+			/*
 			魔力消耗降低 += dataGrid.魔力消耗降低;
 			提升技能傷害 += dataGrid.提升技能傷害;
 			增加技能欄位 += dataGrid.增加技能欄位;
+			*/
 
 			// 不可被使用的東西 就不執行
 			if (dataGrid.canUse == false)

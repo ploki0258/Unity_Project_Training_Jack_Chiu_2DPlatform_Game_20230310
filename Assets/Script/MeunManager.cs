@@ -11,10 +11,6 @@ public class MeunManager : MonoBehaviour
         Application.Quit();
     }
 
-	private void Awake()
-	{
-	}
-
 	/// <summary>
 	/// 開始遊戲
 	/// </summary>
@@ -29,10 +25,12 @@ public class MeunManager : MonoBehaviour
     /// </summary>
     public void ContinueGame()
 	{
-        // 
+        // 如果 GameData 是空白 表示是新玩家
+        // 是新玩家的話 就不執行
         if (PlayerPrefs.GetString("GameData", "") == "")
             return;
-        SaveManager.instance.LoadData();
-        SceneManager.LoadScene(SaveManager.instance.playerData.levelName);
+
+        SaveManager.instance.LoadData();    // 讀取玩家資料
+        SceneManager.LoadScene(SaveManager.instance.playerData.levelName);  // 載入玩家上次儲存的關卡
     }
 }

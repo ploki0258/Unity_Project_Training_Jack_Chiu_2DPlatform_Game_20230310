@@ -5,20 +5,10 @@ using UnityEngine.UI;
 public class PlayerCtrl : MonoBehaviour
 {
 	#region 欄位
-	[Header("移動速度"), Range(0, 100)]
-	public float speed = 10f;
-	[Header("跳躍力量"), Range(0, 100)]
-	public float jumpForce = 7f;
 	[Header("攻擊物件"), Tooltip("用來儲存攻擊物件的預製物")]
 	public GameObject atkObject = null;
 	[Header("攻擊生成點"), Tooltip("用來儲存攻擊物件的生成位置")]
 	[SerializeField] Transform atkPoint = null;
-	[Header("攻擊速度"), Range(0, 1000)]
-	public float atkSpeed = 500f;
-	[Header("攻擊力"), Range(10, 1000)]
-	public float attack = 100f;
-	[Header("防禦力"), Range(10, 1000)]
-	public float defense = 100f;
 	[Header("血量條")]
 	public Image barHP = null;
 	[Header("魔力條")]
@@ -29,6 +19,18 @@ public class PlayerCtrl : MonoBehaviour
 	public float maxMP = 100f;
 	[Header("魔力消耗")]
 	[SerializeField] float costMP = 0f;
+	
+	[Header("移動速度"), Range(0, 100)]
+	public float speed = 10f;
+	[Header("跳躍力量"), Range(0, 100)]
+	public float jumpForce = 7f;
+	[Header("攻擊速度"), Range(0, 1000)]
+	public float atkSpeed = 500f;
+	[Header("攻擊力"), Range(10, 1000)]
+	public float attack = 100f;
+	[Header("防禦力"), Range(10, 1000)]
+	public float defense = 100f;
+	
 	// 怪物使用
 	[Header("資訊欄顯示")]
 	public Text coinInfo = null;
@@ -41,8 +43,6 @@ public class PlayerCtrl : MonoBehaviour
 	public Animator showCoinAni = null;
 	[Header("技能點數顯示動畫")]
 	public Animator showSkillPointAni = null;
-	[Header("技能資料")]
-	public Skill skillData;
 
 	/*
 	[Header("血量值文字")]
@@ -54,10 +54,10 @@ public class PlayerCtrl : MonoBehaviour
 	[Tooltip("用來儲存玩家是否站在地板上")]
 	private bool onFloor = false;
 	bool 翻轉 = false;
-	bool isWindowsOpen = WindowsManager.instance.IsWindowsOpen();   // 視窗是否被開啟
-	int skillID;
 	Rigidbody2D rig;
 	Animator ani;
+	bool isWindowsOpen = WindowsManager.instance.IsWindowsOpen();   // 視窗是否被開啟
+	int skillID;
 	#endregion
 
 	// 在整個專案全域宣告一個instance
@@ -70,10 +70,11 @@ public class PlayerCtrl : MonoBehaviour
 		ani = GetComponent<Animator>();
 		// 角色出生時 讀檔一次
 		SaveManager.instance.LoadData();
-		// 瞬間移動到記錄中的位置
+
+		// 如果記錄中的位置不是000 才瞬間移動到記錄中的位置
 		// 如果記錄中的位置是000表示可能沒有紀錄
 		if (SaveManager.instance.playerData.playerPos != Vector3.zero)
-			this.transform.position = SaveManager.instance.playerData.playerPos;
+			this.transform.position = SaveManager.instance.playerData.playerPos;    // 瞬間移動到記錄中的位置
 
 		// SaveManager.instance.SaveData();
 		// WindowsManager.instance.Start();
@@ -126,7 +127,7 @@ public class PlayerCtrl : MonoBehaviour
 	private void FixedUpdate()
 	{
 		//偵測是否踩到地板
-		onFloor = Physics2D.Raycast(this.transform.position, new Vector2(0f, -1f), 0.9f);
+		onFloor = Physics2D.Raycast(this.transform.position, new Vector2(0f, -1f), 0.1f);
 	}
 
 	/// <summary>
@@ -140,7 +141,7 @@ public class PlayerCtrl : MonoBehaviour
 		if (isWindowsOpen)                          // 如果有視窗被開啟 就不移動
 			ad = 0;
 
-		rig.velocity = new Vector2(ad * speed, rig.velocity.y);
+		rig.velocity = new Vector2(ad * SaveManager.instance.playerData.playerSpeed, rig.velocity.y);
 
 		//移動動畫
 		ani.SetBool("isRun", ad != 0);
@@ -182,12 +183,12 @@ public class PlayerCtrl : MonoBehaviour
 		if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && onFloor != false && isWindowsOpen == false)
 		{
 			// rig.velocity = new Vector2(rig.velocity.x, 跳躍力);
-			rig.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+			rig.AddForce(transform.up * SaveManager.instance.playerData.playerJump, ForceMode2D.Impulse);
 		}
 
 		//跳躍動畫
 		ani.SetBool("isJump", onFloor == false);
-		// Debug.Log("踩到地板" + onFloor);
+		Debug.Log("踩到地板" + onFloor);
 	}
 
 	/// <summary>
@@ -214,12 +215,12 @@ public class PlayerCtrl : MonoBehaviour
 			if (atkObject != null && 翻轉 != true)
 			{
 				GameObject temp = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 0f, 0f));
-				temp.GetComponent<Rigidbody2D>().AddForce(transform.right * atkSpeed + transform.up * 10);
+				temp.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
 			}
 			else if (atkObject != null && 翻轉 == true)
 			{
 				GameObject temp = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 0f, 180f));
-				temp.GetComponent<Rigidbody2D>().AddForce(transform.right * atkSpeed + transform.up * 10);
+				temp.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
 			}
 		}
 	}
@@ -261,10 +262,11 @@ public class PlayerCtrl : MonoBehaviour
 	/// <summary>
 	/// 儲存玩家資訊
 	/// </summary>
-	public void SaveBtn()
+	/*public void SaveBtn()
 	{
 		SaveManager.instance.SaveData();
 	}
+	*/
 
 	/*public void Coin()
     {

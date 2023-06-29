@@ -47,7 +47,7 @@ public class SkillSystem : MonoBehaviour
 		}
 
 		// 根據當前技能索引設置攻擊物件
-		if (currentSkillIndex >= 0 && currentSkillIndex < SaveManager.instance.playerData.haveSkill.Count)
+		if (currentSkillIndex >= 0 && currentSkillIndex < skillPrefabs.Count)
 		{
 			int skillID = skillData.id;
 			skillSystem.SetCurrentSkill(skillID);
