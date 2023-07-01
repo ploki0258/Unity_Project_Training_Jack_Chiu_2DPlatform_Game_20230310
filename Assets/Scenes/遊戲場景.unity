@@ -6920,7 +6920,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 760676303}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -15132,7 +15132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 133417029}
+  selectedFlowchart: {fileID: 2027400151}
 --- !u!4 &1970630130
 Transform:
   m_ObjectHideFlags: 1
@@ -15692,8 +15692,7 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 2027400153}
-  selectedCommands:
-  - {fileID: 2027400155}
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
@@ -15748,7 +15747,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 140.93814
     y: 101
-    width: 99.484535
+    width: 99.48453
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
