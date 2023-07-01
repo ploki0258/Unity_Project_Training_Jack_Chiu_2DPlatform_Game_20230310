@@ -19,7 +19,7 @@ public class PlayerCtrl : MonoBehaviour
 	public float maxMP = 100f;
 	[Header("魔力消耗")]
 	[SerializeField] float costMP = 0f;
-	
+
 	[Header("移動速度"), Range(0, 100)]
 	public float speed = 10f;
 	[Header("跳躍力量"), Range(0, 100)]
@@ -30,7 +30,7 @@ public class PlayerCtrl : MonoBehaviour
 	public float attack = 100f;
 	[Header("防禦力"), Range(10, 1000)]
 	public float defense = 100f;
-	
+
 	// 怪物使用
 	[Header("資訊欄顯示")]
 	public Text coinInfo = null;
@@ -126,8 +126,8 @@ public class PlayerCtrl : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		//偵測是否踩到地板
-		onFloor = Physics2D.Raycast(this.transform.position, new Vector2(0f, -1f), 0.1f);
+		//偵測是否踩到地板物件
+		onFloor = Physics2D.Raycast(this.transform.position, new Vector2(0f, -1f), 0.1f, 1 << 6);
 	}
 
 	/// <summary>
@@ -188,7 +188,7 @@ public class PlayerCtrl : MonoBehaviour
 
 		//跳躍動畫
 		ani.SetBool("isJump", onFloor == false);
-		Debug.Log("踩到地板" + onFloor);
+		// Debug.Log("踩到地板" + onFloor);
 	}
 
 	/// <summary>
