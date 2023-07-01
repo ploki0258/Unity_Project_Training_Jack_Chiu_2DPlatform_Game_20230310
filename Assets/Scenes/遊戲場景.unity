@@ -1050,8 +1050,7 @@ MonoBehaviour:
   interval: 1
   prefabEnemy: []
   prefabItem:
-  - {fileID: 1467135916629253400, guid: 634291ae0f00eae4a99998bbab8b67d7, type: 3}
-  - {fileID: 7220379217627899440, guid: 5f5e270bcecada04b9f60868d429ff39, type: 3}
+  - {fileID: 1422700199943533227, guid: e19ffe28ca7ff424e8dadc146c235626, type: 3}
   range_X: 4
   range_Y: 1.5
   posX: 0
