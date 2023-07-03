@@ -1,128 +1,128 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-	public GameObject clonePrefab;      // ­n§J¶©ªºª«¥ó¹w»sª«
-	public Collider2D targetArea;       // ¥Ø¼Ğ°Ï°ìªº¸I¼²¾¹
+	public GameObject clonePrefab;      // è¦å…‹éš†çš„ç‰©ä»¶é è£½ç‰©
+	public Collider2D targetArea;       // ç›®æ¨™å€åŸŸçš„ç¢°æ’å™¨
 	public Skill skillData;
 
-	private GameObject cloneObject;     // ¥Í¦¨ªº§J¶©ª«¥ó
-	private GameObject reservedObject;  // «O¯dªºª«¥ó
-	private bool isDragging = false;    // ¬O§_¥¿¦b©ì¦²
-	private Transform originalParent;   // ªì©l¤÷ª«¥ó
-	private Vector3 startPosition;      // ªì©l¦ì¸m
+	private GameObject cloneObject;     // ç”Ÿæˆçš„å…‹éš†ç‰©ä»¶
+	private GameObject reservedObject;  // ä¿ç•™çš„ç‰©ä»¶
+	private bool isDragging = false;    // æ˜¯å¦æ­£åœ¨æ‹–æ›³
+	private Transform originalParent;   // åˆå§‹çˆ¶ç‰©ä»¶
+	private Vector3 startPosition;      // åˆå§‹ä½ç½®
 	private int skillID;
 	
 	/// <summary>
-	/// ¶}©l©ì«û
+	/// é–‹å§‹æ‹–æ‹½
 	/// </summary>
 	/// <param name="eventData"></param>
 	public void OnBeginDrag(PointerEventData eventData)
 	{
-		originalParent = transform.parent;  // «O¦sªì©l¤÷ª«¥ó
-		startPosition = transform.position; // «O¦sªì©l¦ì¸m
+		originalParent = transform.parent;  // ä¿å­˜åˆå§‹çˆ¶ç‰©ä»¶
+		startPosition = transform.position; // ä¿å­˜åˆå§‹ä½ç½®
 											
-		// ¥Í¦¨§J¶©ª«¥ó
+		// ç”Ÿæˆå…‹éš†ç‰©ä»¶
 		cloneObject = Instantiate(clonePrefab, transform.position, transform.rotation);
 
-		if (transform.parent.name == "§Ş¯à¾ğ")
+		if (transform.parent.name == "æŠ€èƒ½æ¨¹")
 		{	
-			// ±N§Ş¯à©ì©ñª«¥óªº¤÷ª«¥ó³]¸m¬°§Ş¯àÄæ¦ì
+			// å°‡æŠ€èƒ½æ‹–æ”¾ç‰©ä»¶çš„çˆ¶ç‰©ä»¶è¨­ç½®ç‚ºæŠ€èƒ½æ¬„ä½
 			cloneObject.transform.SetParent(originalParent.parent.parent.parent.parent);
 		}
 
-		if (transform.parent.name == "§Ş¯àÄæ«ö¯Ã")
+		if (transform.parent.name == "æŠ€èƒ½æ¬„æŒ‰ç´")
 		{
-			// ³]¸m¤÷¶°
+			// è¨­ç½®çˆ¶é›†
 			cloneObject.transform.SetParent(transform.parent);
 			
-			// ¦Û¤v¦ì¸m¸òÀH·Æ¹«ªº¦ì¸m
+			// è‡ªå·±ä½ç½®è·Ÿéš¨æ»‘é¼ çš„ä½ç½®
 			transform.position = eventData.position;
 		}
 
-		// Ãö³¬®g½uÀË´ú¡A¥H«K©ì©ñ´Á¶¡¤£·|ªı¾×¨ä¥L¨Æ¥ó
+		// é—œé–‰å°„ç·šæª¢æ¸¬ï¼Œä»¥ä¾¿æ‹–æ”¾æœŸé–“ä¸æœƒé˜»æ“‹å…¶ä»–äº‹ä»¶
 		GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-		// ¶}©l©ì¦²
+		// é–‹å§‹æ‹–æ›³
 		isDragging = true;
-		// Debug.Log("¶}©l©ì¦²");
+		// Debug.Log("é–‹å§‹æ‹–æ›³");
 	}
 
 	/// <summary>
-	/// ¶i¦æ©ì«û
+	/// é€²è¡Œæ‹–æ‹½
 	/// </summary>
 	/// <param name="eventData"></param>
 	public void OnDrag(PointerEventData eventData)
 	{
 		if (isDragging)
 		{
-			// §ó·s§Ş¯à©ì©ñª«¥óªº¦ì¸m
+			// æ›´æ–°æŠ€èƒ½æ‹–æ”¾ç‰©ä»¶çš„ä½ç½®
 			cloneObject.transform.position = eventData.position;
 
-			Debug.Log("°»´úª«¥ó¼ĞÅÒ¡G" + eventData.pointerCurrentRaycast.gameObject.tag);
-			Debug.Log("°»´úª«¥ó¦WºÙ¡G" + eventData.pointerCurrentRaycast.gameObject.name);
-			// Debug.Log("©ì¦²¤¤");
+			Debug.Log("åµæ¸¬ç‰©ä»¶æ¨™ç±¤ï¼š" + eventData.pointerCurrentRaycast.gameObject.tag);
+			Debug.Log("åµæ¸¬ç‰©ä»¶åç¨±ï¼š" + eventData.pointerCurrentRaycast.gameObject.name);
+			// Debug.Log("æ‹–æ›³ä¸­");
 		}
 	}
 
 	/// <summary>
-	/// µ²§ô©ì«û
+	/// çµæŸæ‹–æ‹½
 	/// </summary>
 	/// <param name="eventData"></param>
 	public void OnEndDrag(PointerEventData eventData)
 	{
-		// °±¤î©ì¦²
+		// åœæ­¢æ‹–æ›³
 		isDragging = false;
 
-		// transform.SetParent(originalParent);    // ±N§Ş¯à©ì©ñª«¥óªº¤÷ª«¥ó³]¸m¦^ªì©l¤÷ª«¥ó
-		// transform.position = startPosition;     // ±N§Ş¯à©ì©ñª«¥óªº¦ì¸m³]¸m¦^ªì©l¦ì¸m
+		// transform.SetParent(originalParent);    // å°‡æŠ€èƒ½æ‹–æ”¾ç‰©ä»¶çš„çˆ¶ç‰©ä»¶è¨­ç½®å›åˆå§‹çˆ¶ç‰©ä»¶
+		// transform.position = startPosition;     // å°‡æŠ€èƒ½æ‹–æ”¾ç‰©ä»¶çš„ä½ç½®è¨­ç½®å›åˆå§‹ä½ç½®
 
-		cloneObject.transform.SetParent(originalParent);    // ½Æ»sª«¥óªº¤÷ª«¥ó³]¸m¦^ªì©l¤÷ª«¥ó
-		cloneObject.transform.position = startPosition;     // ½Æ»sª«¥óªº¦ì¸m³]¸m¦^ªì©l¦ì¸m
-		GetComponent<CanvasGroup>().blocksRaycasts = true;  // ¥´¶}®g½uÀË´ú
+		// cloneObject.transform.SetParent(originalParent);    // è¤‡è£½ç‰©ä»¶çš„çˆ¶ç‰©ä»¶è¨­ç½®å›åˆå§‹çˆ¶ç‰©ä»¶
+		// cloneObject.transform.position = startPosition;     // è¤‡è£½ç‰©ä»¶çš„ä½ç½®è¨­ç½®å›åˆå§‹ä½ç½®
+		GetComponent<CanvasGroup>().blocksRaycasts = true;  // æ‰“é–‹å°„ç·šæª¢æ¸¬
 
-		// ½T»{§Ş¯à¬O§_©ñ¸m¦b§Ş¯àÄæ¦ì¤º
+		// ç¢ºèªæŠ€èƒ½æ˜¯å¦æ”¾ç½®åœ¨æŠ€èƒ½æ¬„ä½å…§
 		if (eventData.pointerCurrentRaycast.gameObject.CompareTag("SkillSlot") == true)
 		{
 			GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-			// ¦pªG§Ş¯àÄæ¦ì¤º¦³¼ĞÅÒ¬° "Untagged" ªº¸Ü
-			// ½Õ´«¦ì¸m
+			// å¦‚æœæŠ€èƒ½æ¬„ä½å…§æœ‰æ¨™ç±¤ç‚º "Untagged" çš„è©±
+			// èª¿æ›ä½ç½®
 			if (eventData.pointerCurrentRaycast.gameObject.CompareTag("Untagged") == true)
 			{
-				cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);           // ³]¸m½Æ»sªºª«¥óªº¤÷¶°
-				cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.parent.position;  // ³]¸m½Æ»sªºª«¥óªº¦ì¸m
-				eventData.pointerCurrentRaycast.gameObject.transform.SetParent(originalParent);							// ½Õ´«½Æ»sªºª«¥óªº¤÷¶°
-				eventData.pointerCurrentRaycast.gameObject.transform.parent.position = startPosition;					// ½Õ´«½Æ»sªºª«¥óªº¦ì¸m
+				cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);           // è¨­ç½®è¤‡è£½çš„ç‰©ä»¶çš„çˆ¶é›†
+				cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.parent.position;  // è¨­ç½®è¤‡è£½çš„ç‰©ä»¶çš„ä½ç½®
+				eventData.pointerCurrentRaycast.gameObject.transform.SetParent(originalParent);							// èª¿æ›è¤‡è£½çš„ç‰©ä»¶çš„çˆ¶é›†
+				eventData.pointerCurrentRaycast.gameObject.transform.parent.position = startPosition;					// èª¿æ›è¤‡è£½çš„ç‰©ä»¶çš„ä½ç½®
 				GetComponent<CanvasGroup>().blocksRaycasts = true;
-				// Debug.Log("¹ï½Õ");
-				Debug.Log("¤÷ª«¥ó¡G" + originalParent.gameObject.name);
+				// Debug.Log("å°èª¿");
+				Debug.Log("çˆ¶ç‰©ä»¶ï¼š" + originalParent.gameObject.name);
 			}
-			// ¦pªG§Ş¯àÄæ¦ì¤º¨S¦³¦WºÙ§t¦³ "Skill" ªº¸Ü
-			// ³]¸m¦ì¸m
+			// å¦‚æœæŠ€èƒ½æ¬„ä½å…§æ²’æœ‰åç¨±å«æœ‰ "Skill" çš„è©±
+			// è¨­ç½®ä½ç½®
 			if (eventData.pointerCurrentRaycast.gameObject.name.Contains("Skill") == false)
 			{
 				cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
 				cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
 				GetComponent<CanvasGroup>().blocksRaycasts = true;
-				// Debug.Log("³]¸m");
+				// Debug.Log("è¨­ç½®");
 
 				// cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
 				// cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
 			}
 
-			// Àò¨ú§Ş¯à¨t²Î¨Ã³]¸m·í«e¿ï¾Üªº§Ş¯à
+			// ç²å–æŠ€èƒ½ç³»çµ±ä¸¦è¨­ç½®ç•¶å‰é¸æ“‡çš„æŠ€èƒ½
 			SkillSystem skillSystem = FindObjectOfType<SkillSystem>();
 			if (skillSystem != null)
 			{
 				skillID = skillData.id;
 				skillSystem.SetCurrentSkill(skillID);
-				Debug.Log("³]¸m§Ş¯à¡G" + skillData.name);
+				Debug.Log("è¨­ç½®æŠ€èƒ½ï¼š" + skillData.name);
 			}
 		}
-		// Debug.Log("µ²§ô©ì¦²");
+		// Debug.Log("çµæŸæ‹–æ›³");
 	}
 }

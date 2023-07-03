@@ -3886,7 +3886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1779921913d37db4b9e2c626de608ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionsNumber: 0
 --- !u!1 &468894844
 GameObject:
   m_ObjectHideFlags: 0
@@ -8666,6 +8665,7 @@ GameObject:
   - component: {fileID: 1001238743}
   - component: {fileID: 1001238745}
   - component: {fileID: 1001238746}
+  - component: {fileID: 1001238747}
   m_Layer: 5
   m_Name: WaterSkill_8
   m_TagString: Untagged
@@ -8772,6 +8772,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1001238747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001238741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 946c0c2af191d344eb25cdb582ab03dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clonePrefab: {fileID: 1001238741}
+  targetArea: {fileID: 1464402242}
+  skillData: {fileID: 11400000, guid: d37ae866f1f814d4db036a0bbc1f07f0, type: 2}
 --- !u!1 &1003636603
 GameObject:
   m_ObjectHideFlags: 0
