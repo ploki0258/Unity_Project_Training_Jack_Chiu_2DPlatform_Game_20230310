@@ -77,38 +77,39 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		// 停止拖曳
 		isDragging = false;
 
-		transform.SetParent(originalParent);    // 將技能拖放物件的父物件設置回初始父物件
-		transform.position = startPosition;     // 將技能拖放物件的位置設置回初始位置
+		// transform.SetParent(originalParent);    // 將技能拖放物件的父物件設置回初始父物件
+		// transform.position = startPosition;     // 將技能拖放物件的位置設置回初始位置
 
-		// cloneObject.transform.SetParent(originalParent);    // 複製物件的父物件設置回初始父物件
-		// cloneObject.transform.position = startPosition;     // 複製物件的位置設置回初始位置
-		GetComponent<CanvasGroup>().blocksRaycasts = true;  // 打開射線檢測
+		cloneObject.transform.SetParent(originalParent);    // 複製物件的父物件設置回初始父物件
+		cloneObject.transform.position = startPosition;     // 複製物件的位置設置回初始位置
+		
 
 		// 確認技能是否放置在技能欄位內
+		// layer == 1 << 5
 		if (eventData.pointerCurrentRaycast.gameObject.CompareTag("SkillSlot") == true)
 		{
-			// GetComponent<CanvasGroup>().blocksRaycasts = false;
-
-			// 如果技能欄位內有標籤為 "Untagged" 的話
+			// 如果技能欄位內有標籤為 "Skill" 的話
 			// 調換位置
-			if (eventData.pointerCurrentRaycast.gameObject.CompareTag("Untagged") == true)
+			if (eventData.pointerCurrentRaycast.gameObject.name == "Skill")
 			{
+				/*
 				cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);           // 設置複製的物件的父集
 				cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.parent.position;  // 設置複製的物件的位置
 				eventData.pointerCurrentRaycast.gameObject.transform.SetParent(originalParent);							// 調換複製的物件的父集
 				eventData.pointerCurrentRaycast.gameObject.transform.parent.position = startPosition;					// 調換複製的物件的位置
+				*/
 				GetComponent<CanvasGroup>().blocksRaycasts = true;
-				// Debug.Log("對調");
+				Debug.Log("對調");
 				Debug.Log("父物件：" + originalParent.gameObject.name);
 			}
 			// 如果技能欄位內沒有名稱含有 "Skill" 的話
 			// 設置位置
-			if (eventData.pointerCurrentRaycast.gameObject.name.Contains("Skill") == false)
+			if (eventData.pointerCurrentRaycast.gameObject.name.Contains("Btn") == true)
 			{
 				cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
 				cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
 				GetComponent<CanvasGroup>().blocksRaycasts = true;
-				// Debug.Log("設置");
+				Debug.Log("設置");
 
 				// cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
 				// cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
@@ -123,6 +124,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 				Debug.Log("設置技能：" + skillData.name);
 			}
 		}
-		// Debug.Log("結束拖曳");
+		GetComponent<CanvasGroup>().blocksRaycasts = true;  // 打開射線檢測
+															// Debug.Log("結束拖曳");
 	}
 }
