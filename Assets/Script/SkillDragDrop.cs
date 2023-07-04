@@ -77,8 +77,8 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		// 停止拖曳
 		isDragging = false;
 
-		// transform.SetParent(originalParent);    // 將技能拖放物件的父物件設置回初始父物件
-		// transform.position = startPosition;     // 將技能拖放物件的位置設置回初始位置
+		transform.SetParent(originalParent);    // 將技能拖放物件的父物件設置回初始父物件
+		transform.position = startPosition;     // 將技能拖放物件的位置設置回初始位置
 
 		// cloneObject.transform.SetParent(originalParent);    // 複製物件的父物件設置回初始父物件
 		// cloneObject.transform.position = startPosition;     // 複製物件的位置設置回初始位置
@@ -87,7 +87,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		// 確認技能是否放置在技能欄位內
 		if (eventData.pointerCurrentRaycast.gameObject.CompareTag("SkillSlot") == true)
 		{
-			GetComponent<CanvasGroup>().blocksRaycasts = false;
+			// GetComponent<CanvasGroup>().blocksRaycasts = false;
 
 			// 如果技能欄位內有標籤為 "Untagged" 的話
 			// 調換位置
