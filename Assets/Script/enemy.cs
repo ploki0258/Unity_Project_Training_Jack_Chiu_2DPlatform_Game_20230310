@@ -178,7 +178,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "bullet")
         {
             TakeDamageMonster(damage);
-            Debug.Log(damage);
+            // Debug.Log(damage);
 
             if (hpMonster <= 0)
             {

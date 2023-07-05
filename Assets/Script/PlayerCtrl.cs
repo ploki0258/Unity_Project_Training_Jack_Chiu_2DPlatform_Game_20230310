@@ -18,7 +18,7 @@ public class PlayerCtrl : MonoBehaviour
 	[Header("最大魔力"), Range(100, 1000)]
 	public float maxMP = 100f;
 	[Header("魔力消耗")]
-	[SerializeField] float costMP = 0f;
+	public float costMP = 0f;
 
 	[Header("移動速度"), Range(0, 100)]
 	public float speed = 10f;

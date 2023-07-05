@@ -31,7 +31,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		if (transform.parent.name == "技能樹")
 		{	
 			// 將技能拖放物件的父物件設置為技能欄位
-			cloneObject.transform.SetParent(originalParent.parent.parent.parent.parent);
+			cloneObject.transform.SetParent(originalParent.parent.parent.parent.parent.parent);
 		}
 
 		if (transform.parent.name == "技能欄按紐")
@@ -88,9 +88,9 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		// layer == 1 << 5
 		if (eventData.pointerCurrentRaycast.gameObject.CompareTag("SkillSlot") == true)
 		{
-			// 如果技能欄位內有標籤為 "Skill" 的話
+			// 如果技能欄位內有名稱有包含 "Skill_" 的話
 			// 調換位置
-			if (eventData.pointerCurrentRaycast.gameObject.name == "Skill")
+			if (eventData.pointerCurrentRaycast.gameObject.name.Contains("Skill_") == true)
 			{
 				/*
 				cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);           // 設置複製的物件的父集
@@ -98,17 +98,18 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 				eventData.pointerCurrentRaycast.gameObject.transform.SetParent(originalParent);							// 調換複製的物件的父集
 				eventData.pointerCurrentRaycast.gameObject.transform.parent.position = startPosition;					// 調換複製的物件的位置
 				*/
-				GetComponent<CanvasGroup>().blocksRaycasts = true;
+				// GetComponent<CanvasGroup>().blocksRaycasts = true;
 				Debug.Log("對調");
 				Debug.Log("父物件：" + originalParent.gameObject.name);
 			}
-			// 如果技能欄位內沒有名稱含有 "Skill" 的話
+			// 如果技能欄位內有名稱含有 "Btn_" 的話
 			// 設置位置
-			if (eventData.pointerCurrentRaycast.gameObject.name.Contains("Btn") == true)
+			if (eventData.pointerCurrentRaycast.gameObject.name.Contains("Btn_") == true)
 			{
 				cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
 				cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
 				GetComponent<CanvasGroup>().blocksRaycasts = true;
+				
 				Debug.Log("設置");
 
 				// cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
