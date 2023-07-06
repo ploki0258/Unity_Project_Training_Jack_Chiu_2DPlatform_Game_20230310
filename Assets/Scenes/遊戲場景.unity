@@ -4729,7 +4729,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mistImage: {fileID: 1506875296}
   timeGradient: 20
-  damage: 5
+  damage: 10
+  damageTime: 3
   cdWeight: 2
   speedWeight: 10
   minSpeed: 3
@@ -4737,8 +4738,8 @@ MonoBehaviour:
   minAttackSpeed: 100
   mistType_cyan: 0
   mistType_blue: 0
-  mistType_purple: 1
-  mistType_red: 0
+  mistType_purple: 0
+  mistType_red: 1
   mistType_gree: 0
   colorChange: {r: 0, g: 0, b: 0, a: 1}
   inMist: 0
@@ -7084,7 +7085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2405885, g: 0.031772807, b: 0.990566, a: 1}
+  m_Color: {r: 0.2405885, g: 0.6745098, b: 0.990566, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8585,7 +8586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2405885, g: 0.031772807, b: 0.990566, a: 1}
+  m_Color: {r: 0.2405885, g: 0.6745098, b: 0.990566, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

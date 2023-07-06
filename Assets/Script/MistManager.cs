@@ -10,6 +10,8 @@ public class MistManager : MonoBehaviour
 	float timeGradient = 1f;
 	[SerializeField, Header("傷害量")]
 	float damage = 0f;
+	[SerializeField, Header("傷害間隔")]
+	float damageTime = 0f;
 	[SerializeField, Header("CD加重倍數")]
 	float cdWeight = 0f;
 	[SerializeField, Header("降低移動速度倍數")]
@@ -34,7 +36,8 @@ public class MistManager : MonoBehaviour
 	[Tooltip("變化後的顏色")]
 	private Color tempColor;            // 漸變顏色
 	[Tooltip("是否在進行漸變 ")]
-	private bool transitioning = false; // 是否在漸變 
+	private bool transitioning = false; // 是否在漸變
+	private bool startDamage = false;   // 是否開始傷害
 	private float originalCostMP;       // 原來的MP消耗值
 	private float originalSpeed;        // 原來的移動速度
 	private float originalAttackSpeed;  // 原來的攻擊速度
@@ -65,6 +68,7 @@ public class MistManager : MonoBehaviour
 	{
 		// 呼叫協程 ColorGradient()
 		StartCoroutine(ColorGradient());
+		StartCoroutine(TakeDamage());
 
 		// 青色迷霧
 		if (collision.gameObject.CompareTag("Player") && mistType_cyan == true)
@@ -137,7 +141,11 @@ public class MistManager : MonoBehaviour
 			tempColor = mistImage.color;
 
 			// 減少玩家HP
-			SaveManager.instance.playerData.playerHP -= damage * Time.unscaledDeltaTime;
+			if (startDamage)
+			{
+				SaveManager.instance.playerData.playerHP -= damage * Time.unscaledDeltaTime;
+			}
+			Debug.Log(SaveManager.instance.playerData.playerHP);
 		}
 
 		// 綠色迷霧
@@ -210,5 +218,13 @@ public class MistManager : MonoBehaviour
 		yield return new WaitForSeconds(timeGradient);
 		// 漸變結束
 		transitioning = false;
+	}
+
+	IEnumerator TakeDamage()
+	{
+		yield return null;
+		startDamage = true;
+		yield return new WaitForSeconds(damageTime);
+		startDamage = false;
 	}
 }

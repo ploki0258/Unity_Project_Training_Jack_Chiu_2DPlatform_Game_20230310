@@ -15,7 +15,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 	private Transform originalParent;   // 初始父物件
 	private Vector3 startPosition;      // 初始位置
 	private int skillID;
-	
+
 	/// <summary>
 	/// 開始拖拽
 	/// </summary>
@@ -24,12 +24,12 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 	{
 		originalParent = transform.parent;  // 保存初始父物件
 		startPosition = transform.position; // 保存初始位置
-											
+
 		// 生成克隆物件
 		cloneObject = Instantiate(clonePrefab, transform.position, transform.rotation);
 
 		if (transform.parent.name == "技能樹")
-		{	
+		{
 			// 將技能拖放物件的父物件設置為技能欄位
 			cloneObject.transform.SetParent(originalParent.parent.parent.parent.parent.parent);
 		}
@@ -38,13 +38,13 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		{
 			// 設置父集
 			cloneObject.transform.SetParent(transform.parent);
-			
+
 			// 自己位置跟隨滑鼠的位置
-			transform.position = eventData.position;
+			// transform.position = eventData.position;
 		}
 
 		// 關閉射線檢測，以便拖放期間不會阻擋其他事件
-		GetComponent<CanvasGroup>().blocksRaycasts = false;
+		cloneObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
 		// 開始拖曳
 		isDragging = true;
@@ -62,7 +62,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 			// 更新技能拖放物件的位置
 			cloneObject.transform.position = eventData.position;
 
-			Debug.Log("偵測物件標籤：" + eventData.pointerCurrentRaycast.gameObject.tag);
+			// Debug.Log("偵測物件標籤：" + eventData.pointerCurrentRaycast.gameObject.tag);
 			Debug.Log("偵測物件名稱：" + eventData.pointerCurrentRaycast.gameObject.name);
 			// Debug.Log("拖曳中");
 		}
@@ -82,38 +82,40 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
 		cloneObject.transform.SetParent(originalParent);    // 複製物件的父物件設置回初始父物件
 		cloneObject.transform.position = startPosition;     // 複製物件的位置設置回初始位置
-		
+
 
 		// 確認技能是否放置在技能欄位內
 		// layer == 1 << 5
 		if (eventData.pointerCurrentRaycast.gameObject.CompareTag("SkillSlot") == true)
 		{
-			// 如果技能欄位內有名稱有包含 "Skill_" 的話
-			// 調換位置
-			if (eventData.pointerCurrentRaycast.gameObject.name.Contains("Skill_") == true)
-			{
-				/*
-				cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);           // 設置複製的物件的父集
-				cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.parent.position;  // 設置複製的物件的位置
-				eventData.pointerCurrentRaycast.gameObject.transform.SetParent(originalParent);							// 調換複製的物件的父集
-				eventData.pointerCurrentRaycast.gameObject.transform.parent.position = startPosition;					// 調換複製的物件的位置
-				*/
-				// GetComponent<CanvasGroup>().blocksRaycasts = true;
-				Debug.Log("對調");
-				Debug.Log("父物件：" + originalParent.gameObject.name);
-			}
 			// 如果技能欄位內有名稱含有 "Btn_" 的話
 			// 設置位置
 			if (eventData.pointerCurrentRaycast.gameObject.name.Contains("Btn_") == true)
 			{
 				cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
 				cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
-				GetComponent<CanvasGroup>().blocksRaycasts = true;
-				
+
+				cloneObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+
 				Debug.Log("設置");
 
 				// cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
 				// cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
+			}
+
+			// 如果技能欄位內有名稱有包含 "Skill_" 的話
+			// 調換位置
+			if (eventData.pointerCurrentRaycast.gameObject.name.Contains("(Clone)") == true)
+			{
+				Debug.Log("對調");
+				Debug.Log("父物件：" + originalParent.gameObject.name);
+
+				cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);           // 設置複製的物件的父集
+				cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.parent.position;  // 設置複製的物件的位置
+				eventData.pointerCurrentRaycast.gameObject.transform.SetParent(originalParent);                         // 調換複製的物件的父集
+				eventData.pointerCurrentRaycast.gameObject.transform.parent.position = startPosition;                   // 調換複製的物件的位置
+
+				cloneObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
 			}
 
 			// 獲取技能系統並設置當前選擇的技能
