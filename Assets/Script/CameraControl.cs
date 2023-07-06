@@ -1,14 +1,14 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    [Header("°lÂÜ¥Ø¼Ğ")]
+    [Header("è¿½è¹¤ç›®æ¨™")]
     [SerializeField] Transform target;
-    [Header("°lÂÜ³t«×"), Range(0, 100)]
+    [Header("è¿½è¹¤é€Ÿåº¦"), Range(0, 100)]
     [SerializeField] float speed = 1.5f;
-    [Header("Äá¼v¾÷­­¨î¤W¤U½d³ò")]
+    [Header("æ”å½±æ©Ÿé™åˆ¶ä¸Šä¸‹ç¯„åœ")]
     [SerializeField] Vector2 limitUD = new Vector2(-1.7f, 1.7f);
-    [Header("Äá¼v¾÷­­¨î¥ª¥k½d³ò")]
+    [Header("æ”å½±æ©Ÿé™åˆ¶å·¦å³ç¯„åœ")]
     [SerializeField] Vector2 limitLR = new Vector2(-1.19f, 1.19f);
 
     private void LateUpdate()
@@ -17,16 +17,16 @@ public class CameraControl : MonoBehaviour
     }
 
     /// <summary>
-    /// ª«¥ó°lÂÜ
+    /// ç‰©ä»¶è¿½è¹¤
     /// </summary>
     void Track()
     {
-        Vector3 posA = transform.position;                      // ¨ú±oÄá¼v¾÷®y¼Ğ
-        Vector3 posB = target.position;                         // ¨ú±o¥Ø¼Ğ®y¼Ğ
+        Vector3 posA = transform.position;                      // å–å¾—æ”å½±æ©Ÿåº§æ¨™
+        Vector3 posB = target.position;                         // å–å¾—ç›®æ¨™åº§æ¨™
 
         posB.z = -10;
-        posB.y = Mathf.Clamp(posB.y, limitUD.x, limitUD.y);     // ±N Y ¶b§¨¦b­­¨î½d³ò¤º
-        posB.x = Mathf.Clamp(posB.x, limitLR.x, limitLR.y);     // ±N X ¶b§¨¦b­­¨î½d³ò¤º
+        posB.y = Mathf.Clamp(posB.y, limitUD.x, limitUD.y);     // å°‡ Y è»¸å¤¾åœ¨é™åˆ¶ç¯„åœå…§
+        posB.x = Mathf.Clamp(posB.x, limitLR.x, limitLR.y);     // å°‡ X è»¸å¤¾åœ¨é™åˆ¶ç¯„åœå…§
 
         posA = Vector3.Lerp(posA, posB, speed * Time.deltaTime);
 

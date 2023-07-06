@@ -51,11 +51,11 @@ public class PlayerCtrl : MonoBehaviour
     [SerializeField] Text valueMP = null;
     */
 
+	public Animator ani;
 	[Tooltip("用來儲存玩家是否站在地板上")]
 	private bool onFloor = false;
 	bool 翻轉 = false;
 	Rigidbody2D rig;
-	Animator ani;
 	bool isWindowsOpen = WindowsManager.instance.IsWindowsOpen();   // 視窗是否被開啟
 	int skillID;
 	#endregion

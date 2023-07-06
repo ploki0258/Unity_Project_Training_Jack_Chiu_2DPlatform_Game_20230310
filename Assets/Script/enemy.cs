@@ -19,12 +19,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] float disChase = 8f;
     [Header("掉落(技能)道具")]
     [SerializeField] GameObject itemSkill = null;
-    [Header("掉落機率"), Range(1, 10)]
+    [Header("掉落機率"), Tooltip("怪物的掉落機率"), Range(1, 10)]
     public float probDrop = 5f;
     [Header("被傷害值")]
     [SerializeField] float damage;
 
-    /*[Header("資訊欄顯示")]
+    /*
+    [Header("資訊欄顯示")]
     [SerializeField] Text coinInfo = null;
     [SerializeField] Text skillInfo = null;
     [Header("金幣數量")]

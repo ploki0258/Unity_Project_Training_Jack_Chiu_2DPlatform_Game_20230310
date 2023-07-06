@@ -3,7 +3,7 @@
 public class SpawnSystem : MonoBehaviour
 {
 	[Header("生成間隔"), Range(0, 10)]
-	[SerializeField] float interval = 0f;
+	public float interval = 0f;
 	[Header("怪物預製物")]
 	[SerializeField] GameObject[] prefabEnemy = null;
 	[Header("道具預製物")]

@@ -4727,14 +4727,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a7ce285ab73784687d9c23c02bc600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mist: {fileID: 1506875296}
+  mistImage: {fileID: 1506875296}
+  timeGradient: 20
   damage: 5
-  cdWeight: 5
-  mistType_cyanogen: 0
+  cdWeight: 2
+  speedWeight: 10
+  minSpeed: 3
+  attackSpeedWeight: 100
+  minAttackSpeed: 100
+  mistType_cyan: 0
   mistType_blue: 0
-  mistType_purple: 0
+  mistType_purple: 1
   mistType_red: 0
   mistType_gree: 0
+  colorChange: {r: 0, g: 0, b: 0, a: 1}
   inMist: 0
 --- !u!4 &591532291
 Transform:
@@ -13487,6 +13493,7 @@ MonoBehaviour:
   skillCount: {fileID: 1282389590}
   showCoinAni: {fileID: 242122688}
   showSkillPointAni: {fileID: 242122688}
+  ani: {fileID: 0}
 --- !u!50 &1665437161
 Rigidbody2D:
   serializedVersion: 4
