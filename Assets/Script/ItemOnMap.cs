@@ -22,7 +22,8 @@ public class ItemOnMap : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Player")
 		{
-			bool successAdd = SaveManager.instance.playerData.AddItem(itemID);	// 是否成功添加道具
+			bool successAdd = SaveManager.instance.playerData.AddItem(itemID);  // 是否成功添加道具
+			// Debug.Log("是否成功添加：" + successAdd);
 			if (successAdd)
 			{
 				Destroy(this.gameObject);

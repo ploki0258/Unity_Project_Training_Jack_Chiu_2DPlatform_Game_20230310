@@ -6,21 +6,21 @@ public class MistManager : MonoBehaviour
 {
 	[SerializeField, Header("迷霧圖片")]
 	SpriteRenderer mistImage = null;
-	[SerializeField, Header("漸變時間")]
+	[SerializeField, Header("漸變時間"), Range(0,50)]
 	float timeGradient = 1f;
-	[SerializeField, Header("傷害量")]
+	[SerializeField, Header("傷害量"), Range(0, 100)]
 	float damage = 0f;
-	[SerializeField, Header("傷害間隔")]
-	float damageTime = 0f;
-	[SerializeField, Header("CD加重倍數")]
+	[SerializeField, Header("傷害間隔"), Range(0, 10)]
+	float damageInterval = 1f;
+	[SerializeField, Header("CD加重倍數"), Range(0, 10)]
 	float cdWeight = 0f;
-	[SerializeField, Header("降低移動速度倍數")]
+	[SerializeField, Header("降低移動速度倍數"), Range(0, 50)]
 	float speedWeight = 1f;
-	[SerializeField, Header("最低移動速度")]
+	[SerializeField, Header("最低移動速度"), Range(0, 5)]
 	float minSpeed = 1f;
-	[SerializeField, Header("降低攻擊速度倍數")]
+	[SerializeField, Header("降低攻擊速度倍數"), Range(10, 100)]
 	float attackSpeedWeight = 100f;
-	[SerializeField, Header("最低攻擊速度")]
+	[SerializeField, Header("最低攻擊速度"), Range(0, 100)]
 	float minAttackSpeed = 10f;
 	[Header("迷霧種類")]
 	[SerializeField] bool mistType_cyan;    // 青色
@@ -54,6 +54,7 @@ public class MistManager : MonoBehaviour
 		if (mistType_blue == true)
 			cdWeight = PlayerCtrl.instance.costMP * cdWeight;
 
+		originalCostMP = PlayerCtrl.instance.costMP;
 		originalSpeed = SaveManager.instance.playerData.playerSpeed;
 		originalAttackSpeed = SaveManager.instance.playerData.playerAttackSpeed;
 	}
@@ -143,6 +144,7 @@ public class MistManager : MonoBehaviour
 			// 減少玩家HP
 			if (startDamage)
 			{
+				Invoke("TakeDamage",5f);
 				SaveManager.instance.playerData.playerHP -= damage * Time.unscaledDeltaTime;
 			}
 			Debug.Log(SaveManager.instance.playerData.playerHP);
@@ -180,7 +182,7 @@ public class MistManager : MonoBehaviour
 			SaveManager.instance.playerData.playerAttackSpeed = originalAttackSpeed;
 			PlayerCtrl.instance.ani.speed = 1f;
 
-			if (transitioning == false)
+			if (transitioning == true)
 			{
 				ColorTransition(tempColor, Color.white);
 				// Debug.Log("從" + tempColor.ToString() + "漸變成" + Color.white.ToString());
@@ -197,6 +199,7 @@ public class MistManager : MonoBehaviour
 	private void ColorTransition(Color originalColor, Color changeColor)
 	{
 		float time = Mathf.Clamp01(Time.time / timeGradient);
+		// SpriteRenderer tempImage = Instantiate(mistImage, transform.position, transform.rotation);
 		mistImage.color = Color.Lerp(originalColor, changeColor, time);
 		tempColor = mistImage.color;
 
@@ -224,7 +227,7 @@ public class MistManager : MonoBehaviour
 	{
 		yield return null;
 		startDamage = true;
-		yield return new WaitForSeconds(damageTime);
+		yield return new WaitForSeconds(damageInterval);
 		startDamage = false;
 	}
 }

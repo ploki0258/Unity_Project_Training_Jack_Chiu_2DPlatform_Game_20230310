@@ -20,7 +20,7 @@ public class ItemField : Windows<ItemField>
 	{
 		base.Start();
 		// Test
-		// SaveManager.instance.playerData.AddItem(21);
+		// SaveManager.instance.playerData.AddItem(20);
 
 		刷新道具欄();
 
@@ -68,7 +68,6 @@ public class ItemField : Windows<ItemField>
 		Time.timeScale = 1f;
 	}
 
-	[SerializeField]
 	List<GameObject> 垃圾桶 = new List<GameObject>();
 
 	void 刷新道具欄()

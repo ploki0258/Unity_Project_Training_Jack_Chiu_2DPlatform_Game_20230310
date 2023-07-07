@@ -53,7 +53,8 @@ public class SaveManager
 			playerData.playerPos = Vector3.zero;		// 玩家位置
 			playerData.goodsList = new List<Goods>();	// 持有物列表
 			playerData.haveItem = new List<int>();		// 道具列表
-			playerData.haveSkill = new List<int>();		// 技能列表
+			playerData.haveSkill = new List<int>();     // 技能列表
+			playerData.itemNumberMax = 999;				// 最大持有道具數量
 		}
 		else
 		{

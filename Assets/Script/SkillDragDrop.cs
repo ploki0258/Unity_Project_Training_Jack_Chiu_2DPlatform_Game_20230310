@@ -62,8 +62,8 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 			// 更新技能拖放物件的位置
 			cloneObject.transform.position = eventData.position;
 
-			// Debug.Log("偵測物件標籤：" + eventData.pointerCurrentRaycast.gameObject.tag);
-			Debug.Log("偵測物件名稱：" + eventData.pointerCurrentRaycast.gameObject.name);
+			Debug.Log("偵測物件標籤：" + eventData.pointerCurrentRaycast.gameObject.tag);
+			// Debug.Log("偵測物件名稱：" + eventData.pointerCurrentRaycast.gameObject.name);
 			// Debug.Log("拖曳中");
 		}
 	}
@@ -105,7 +105,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
 			// 如果技能欄位內有名稱有包含 "Skill_" 的話
 			// 調換位置
-			if (eventData.pointerCurrentRaycast.gameObject.name.Contains("(Clone)") == true)
+			if (eventData.pointerCurrentRaycast.gameObject.CompareTag("SkillIcon"))
 			{
 				Debug.Log("對調");
 				Debug.Log("父物件：" + originalParent.gameObject.name);

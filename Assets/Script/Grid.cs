@@ -89,6 +89,9 @@ public class Grid : MonoBehaviour
 			SaveManager.instance.playerData.playerJump += dataGrid.提升跳躍力;
 			SaveManager.instance.playerData.playerAttackSpeed += dataGrid.提升攻擊速度;
 			SaveManager.instance.playerData.playerSpeed += dataGrid.提升移動速度;
+			// 如果此次獲得的技能點數為 0 則不呼叫事件更新
+			if (dataGrid.獲得額外點數 == 0)
+				SaveManager.instance.playerData.renewSkillPoint = null;
 			SaveManager.instance.playerData.skillPoint += dataGrid.獲得額外點數;
 
 			bool inMistType_gree = MistManager.instance.inMist;
@@ -98,7 +101,7 @@ public class Grid : MonoBehaviour
 				SaveManager.instance.playerData.playerHP =
 					Mathf.Clamp(SaveManager.instance.playerData.playerHP, SaveManager.instance.playerData.playerHP, PlayerCtrl.instance.maxHP);
 				SaveManager.instance.playerData.playerMP -= dataGrid.恢復MP;
-				SaveManager.instance.playerData.playerMP = 
+				SaveManager.instance.playerData.playerMP =
 					Mathf.Clamp(SaveManager.instance.playerData.playerMP, SaveManager.instance.playerData.playerMP, PlayerCtrl.instance.maxMP);
 			}
 

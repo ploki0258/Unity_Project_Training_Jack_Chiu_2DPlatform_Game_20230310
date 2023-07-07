@@ -82,8 +82,6 @@ public class PlayerCtrl : MonoBehaviour
 
 	private void Start()
 	{
-		// SaveManager.instance.playerData.playerHP = maxHP;
-		// SaveManager.instance.playerData.playerMP = maxMP;
 		coinInfo.text = "";
 
 		SaveManager.instance.playerData.renewCoin += RenewCoin;

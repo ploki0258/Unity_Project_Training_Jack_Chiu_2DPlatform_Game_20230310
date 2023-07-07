@@ -9,6 +9,7 @@ TagManager:
   - enemy
   - FxTemporaire
   - SkillSlot
+  - SkillIcon
   layers:
   - Default
   - TransparentFX
