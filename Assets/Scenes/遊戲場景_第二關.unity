@@ -1101,8 +1101,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a7ce285ab73784687d9c23c02bc600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mist: {fileID: 1598168213}
+  mistImage: {fileID: 1598168213}
+  timeGradient: 1
   damage: 1
+  damageInterval: 1
+  cdWeight: 2
+  speedWeight: 1
+  minSpeed: 1
+  attackSpeedWeight: 100
+  minAttackSpeed: 10
+  mistType_cyan: 0
+  mistType_blue: 0
+  mistType_purple: 0
+  mistType_red: 0
+  mistType_gree: 0
+  colorChange: {r: 0, g: 0, b: 0, a: 0}
+  inMist: 0
 --- !u!61 &1636884308
 BoxCollider2D:
   m_ObjectHideFlags: 0

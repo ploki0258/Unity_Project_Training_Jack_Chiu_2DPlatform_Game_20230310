@@ -168,8 +168,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40f9af641938b546b9f357240c7463f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atkObject: {fileID: 0}
+  atkObject: {fileID: 5761697363250273946, guid: a996465a381f11c4788d0c50d0d71d85,
+    type: 3}
   atkPoint: {fileID: 3297663825925896963}
+  dieWindos: {fileID: 0}
   barHP: {fileID: 0}
   barMP: {fileID: 0}
   maxHP: 100
@@ -186,6 +188,7 @@ MonoBehaviour:
   skillCount: {fileID: 0}
   showCoinAni: {fileID: 0}
   showSkillPointAni: {fileID: 0}
+  ani: {fileID: 0}
 --- !u!1001 &1498268801052391168
 PrefabInstance:
   m_ObjectHideFlags: 0

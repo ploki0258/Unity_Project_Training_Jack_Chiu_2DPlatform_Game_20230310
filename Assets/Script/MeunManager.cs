@@ -33,4 +33,12 @@ public class MeunManager : MonoBehaviour
         SaveManager.instance.LoadData();    // 讀取玩家資料
         SceneManager.LoadScene(SaveManager.instance.playerData.levelName);  // 載入玩家上次儲存的關卡
     }
+
+    /// <summary>
+    /// 返回主畫面
+    /// </summary>
+    public void ReturnToHome()
+	{
+        SceneManager.LoadScene("開始畫面");
+    }
 }

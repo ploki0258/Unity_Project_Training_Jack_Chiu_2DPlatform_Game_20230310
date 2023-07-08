@@ -7,8 +7,8 @@ public class PlayerCtrl : MonoBehaviour
 	#region 欄位
 	[Header("攻擊物件"), Tooltip("用來儲存攻擊物件的預製物")]
 	public GameObject atkObject = null;
-	[Header("攻擊生成點"), Tooltip("用來儲存攻擊物件的生成位置")]
-	[SerializeField] Transform atkPoint = null;
+	[SerializeField, Header("攻擊生成點"), Tooltip("用來儲存攻擊物件的生成位置")]
+	Transform atkPoint = null;
 	[Header("血量條")]
 	public Image barHP = null;
 	[Header("魔力條")]
@@ -52,10 +52,10 @@ public class PlayerCtrl : MonoBehaviour
     */
 
 	public Animator ani;
+	Rigidbody2D rig;
 	[Tooltip("用來儲存玩家是否站在地板上")]
 	private bool onFloor = false;
 	bool 翻轉 = false;
-	Rigidbody2D rig;
 	bool isWindowsOpen = WindowsManager.instance.IsWindowsOpen();   // 視窗是否被開啟
 	int skillID;
 	#endregion
@@ -231,8 +231,10 @@ public class PlayerCtrl : MonoBehaviour
 		if (SaveManager.instance.playerData.playerHP <= 0)
 		{
 			ani.SetTrigger("die");
-			SaveManager.instance.SaveUser();
-			Destroy(this);
+			// SaveManager.instance.SaveUser();
+			Destroy(this);              // 關閉此腳本
+			
+			GameManager.instance.PlayerDead();
 		}
 	}
 
