@@ -62,8 +62,6 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 			// 更新技能拖放物件的位置
 			cloneObject.transform.position = eventData.position;
 
-			// cloneObject.transform.GetComponent<CanvasGroup>().blocksRaycasts = true;
-
 			Debug.Log("偵測物件標籤：" + eventData.pointerCurrentRaycast.gameObject.tag);
 			// Debug.Log("偵測物件名稱：" + eventData.pointerCurrentRaycast.gameObject.name);
 			// Debug.Log("拖曳中");
@@ -97,7 +95,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 				cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
 				cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
 
-				cloneObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+				// cloneObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
 				Debug.Log("設置");
 
@@ -129,7 +127,8 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 				Debug.Log("設置技能：" + skillData.name);
 			}
 		}
-		// GetComponent<CanvasGroup>().blocksRaycasts = true;  // 打開射線檢測
+		
+		// cloneObject.GetComponent<CanvasGroup>().blocksRaycasts = true;  // 打開射線檢測
 															// Debug.Log("結束拖曳");
 	}
 }

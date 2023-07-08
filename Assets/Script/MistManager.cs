@@ -6,7 +6,7 @@ public class MistManager : MonoBehaviour
 {
 	[SerializeField, Header("迷霧圖片")]
 	SpriteRenderer mistImage = null;
-	[SerializeField, Header("漸變時間"), Range(0,50)]
+	[SerializeField, Header("漸變時間"), Range(0, 50)]
 	float timeGradient = 1f;
 	[SerializeField, Header("傷害量"), Range(0, 100)]
 	float damage = 0f;
@@ -22,6 +22,8 @@ public class MistManager : MonoBehaviour
 	float attackSpeedWeight = 100f;
 	[SerializeField, Header("最低攻擊速度"), Range(0, 100)]
 	float minAttackSpeed = 10f;
+	[SerializeField, Header("生成提升倍數"), Range(0, 20)]
+	float spawnWeight = 0f;
 	[Header("迷霧種類")]
 	[SerializeField] bool mistType_cyan;    // 青色
 	[SerializeField] bool mistType_blue;    // 藍色
@@ -33,6 +35,7 @@ public class MistManager : MonoBehaviour
 
 	public bool inMist = false;
 
+	SpawnSystem spawnSystem;
 	[Tooltip("變化後的顏色")]
 	private Color tempColor;            // 漸變顏色
 	[Tooltip("是否在進行漸變 ")]
@@ -41,22 +44,27 @@ public class MistManager : MonoBehaviour
 	private float originalCostMP;       // 原來的MP消耗值
 	private float originalSpeed;        // 原來的移動速度
 	private float originalAttackSpeed;  // 原來的攻擊速度
+	private float originalSpawn;        // 原來的生成數量
 
 	public static MistManager instance; // 單例
 
 	private void Awake()
 	{
 		instance = this;
+		spawnSystem = GameObject.Find("怪物生成點 史萊姆").GetComponent<SpawnSystem>();
 	}
 
 	private void Start()
 	{
 		if (mistType_blue == true)
 			cdWeight = PlayerCtrl.instance.costMP * cdWeight;
+		if (mistType_cyan == true)
+			spawnWeight = spawnSystem.enemyCountMax * spawnWeight;
 
 		originalCostMP = PlayerCtrl.instance.costMP;
 		originalSpeed = SaveManager.instance.playerData.playerSpeed;
 		originalAttackSpeed = SaveManager.instance.playerData.playerAttackSpeed;
+		originalSpawn = (float)spawnSystem.enemyCountMax;
 	}
 
 	private void Update()
@@ -82,6 +90,9 @@ public class MistManager : MonoBehaviour
 			}
 			// mistImage.color = Color.Lerp(Color.white, new Color(00, 10, 90), 100f * Time.deltaTime);
 			tempColor = mistImage.color;
+
+			// 提升怪物數量
+			spawnSystem.enemyCountMax = (int)spawnWeight;
 		}
 
 		// 藍色迷霧
@@ -144,7 +155,7 @@ public class MistManager : MonoBehaviour
 			// 減少玩家HP
 			if (startDamage)
 			{
-				Invoke("TakeDamage",5f);
+				Invoke("TakeDamage", 5f);
 				SaveManager.instance.playerData.playerHP -= damage * Time.unscaledDeltaTime;
 			}
 			Debug.Log(SaveManager.instance.playerData.playerHP);
@@ -181,6 +192,7 @@ public class MistManager : MonoBehaviour
 			SaveManager.instance.playerData.playerSpeed = originalSpeed;
 			SaveManager.instance.playerData.playerAttackSpeed = originalAttackSpeed;
 			PlayerCtrl.instance.ani.speed = 1f;
+			spawnSystem.enemyCountMax = (int)originalSpawn;
 
 			if (transitioning == true)
 			{

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // 單例設計模式 不可重複存在 任何地方皆可呼叫
-public class GameManager : MonoBehaviour
+public class GameManager
 {
 	private GameObject dieWindos = null;
 
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
 	private void Awake()
 	{
-		dieWindos = GameObject.Find("死亡介面切換");
+		dieWindos = GameObject.Find("死亡介面切換").gameObject;
 	}
 
 	public void PlayerDead()

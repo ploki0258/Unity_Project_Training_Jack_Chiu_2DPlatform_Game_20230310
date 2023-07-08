@@ -2,6 +2,7 @@
 
 public class SpawnSystem : MonoBehaviour
 {
+	// 基本欄位
 	[Header("生成間隔"), Range(0, 10)]
 	public float interval = 0f;
 	[Header("怪物預製物")]
@@ -30,12 +31,14 @@ public class SpawnSystem : MonoBehaviour
 	[SerializeField] float max_Y;
 	[Header("與玩家的距離")]
 	[SerializeField] float playerDis;
-	[Header("生成類別")]
+	[Header("生成類別"), Tooltip("是否生成道具")]
 	[SerializeField] bool isItem = false;
+	[Header("最大敵人生成數量")]
+	public int enemyCountMax;
 
 	private Vector2 monsterRange;   // 怪物生成範圍
 	private Vector2 itemRange;      // 道具生成範圍
-	int enemyCount = 0;             // 計算敵人個數
+	public int enemyCount = 0;      // 計算敵人個數
 	Transform player;
 
 	private void Awake()
@@ -57,7 +60,6 @@ public class SpawnSystem : MonoBehaviour
 		}
 
 		// float dis = Vector2.Distance(player.position, transform.position);
-
 		/*if (dis < playerDis)
 		{
 			
@@ -76,7 +78,7 @@ public class SpawnSystem : MonoBehaviour
 		Gizmos.color = Color.red;
 		// 繪製(框線)矩形
 		Gizmos.DrawWireCube(new Vector2(transform.position.x, transform.position.y) + offset, new Vector3(range_X, range_Y, 0f));
-
+		// 圖示.顏色 = new Color(00, 10, 99)
 		Gizmos.color = new Color(00, 10, 99);
 		// 繪製圓形
 		Gizmos.DrawSphere((new Vector2(transform.position.x, transform.position.y)) + new Vector2(posX, posY), 0.3f);
@@ -85,25 +87,25 @@ public class SpawnSystem : MonoBehaviour
 	/// <summary>
 	/// 生成怪物
 	/// </summary>
-	void SpawnEnemy()
+	public void SpawnEnemy()
 	{
 		// 隨機X軸 Y軸的值
 		float random_X = Random.Range(this.transform.position.x + min_X, this.transform.position.x + max_X);
 		float random_Y = Random.Range(this.transform.position.y + min_Y, this.transform.position.y + max_Y);
 		monsterRange = new Vector3(random_X, random_Y);
 
-		if (enemyCount < 3)
+		if (enemyCount < enemyCountMax)
 		{
 			int randomEnemy = Random.Range(0, prefabItem.Length);
 			// 於生成範圍內生成怪物
 			Instantiate(prefabEnemy[randomEnemy], monsterRange, Quaternion.identity);
+			// 每生成一隻怪物 計數器就+1
+			enemyCount++;
 		}
-		// 每生成一隻怪物 計數器就+1
-		enemyCount++;
 	}
 
 	/// <summary>
-	/// 生成怪物道具
+	/// 生成技能道具
 	/// </summary>
 	void SpawnItem()
 	{

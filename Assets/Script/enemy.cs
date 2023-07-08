@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
     Transform player = null;
     Rigidbody2D rig = null;
     Animator ani = null;
-    Grid itemSkillValue;
+    SpawnSystem spawnSystem;
     #endregion
 
     // 在整個專案全域宣告一個instance
@@ -61,6 +61,7 @@ public class Enemy : MonoBehaviour
         player = GameObject.Find("玩家").transform;
         rig = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
+        spawnSystem = GameObject.Find("怪物生成點 史萊姆").GetComponent<SpawnSystem>();
     }
 
     private void Start()
@@ -174,15 +175,22 @@ public class Enemy : MonoBehaviour
     // 觸發事件 進入事件
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        spawnSystem.SpawnEnemy();
         if (isDeath)
             return;
         if (collision.gameObject.tag == "bullet")
         {
             TakeDamageMonster(damage);
-            // Debug.Log(damage);
+			// Debug.Log(damage);
+
+			if (spawnSystem.enemyCount < spawnSystem.enemyCountMax)
+			{
+                InvokeRepeating("SpawnEnemy", 0, spawnSystem.interval);
+            }
 
             if (hpMonster <= 0)
             {
+                spawnSystem.enemyCount--;
                 ani.SetTrigger("damage");
                 isDeath = true;
                 Invoke("Dead", 1f);
