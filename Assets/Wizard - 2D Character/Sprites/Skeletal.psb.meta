@@ -4105,7 +4105,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 265, y: 270}
-    spritePosition: {x: 207, y: -2}
+    spritePosition: {x: 207, y: 0}
   - name: 06 leg front up
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -4510,7 +4510,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 265
-      y: 390
+      y: 388
       width: 32
       height: 116
     spriteID: f26ae5003706cd64786ed6f729d85530
@@ -4905,7 +4905,7 @@ ScriptedImporter:
     - {x: 34, y: 22}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 265, y: 390}
+    uvTransform: {x: 265, y: 388}
     spritePosition: {x: 272, y: 1}
   - name: 04 leg back up
     originalName: 
@@ -6744,7 +6744,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: f26ae5003706cd64786ed6f729d85530
     layerID: 7
-    mosaicPosition: {x: 265, y: 390}
+    mosaicPosition: {x: 265, y: 388}
     flatten: 0
     isImported: 1
     isVisible: 1
