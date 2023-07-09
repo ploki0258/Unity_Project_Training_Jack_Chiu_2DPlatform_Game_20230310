@@ -171,7 +171,6 @@ MonoBehaviour:
   atkObject: {fileID: 5761697363250273946, guid: a996465a381f11c4788d0c50d0d71d85,
     type: 3}
   atkPoint: {fileID: 3297663825925896963}
-  dieWindos: {fileID: 0}
   barHP: {fileID: 0}
   barMP: {fileID: 0}
   maxHP: 100

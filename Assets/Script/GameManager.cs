@@ -3,8 +3,6 @@ using UnityEngine;
 // 單例設計模式 不可重複存在 任何地方皆可呼叫
 public class GameManager
 {
-	private GameObject dieWindos = null;
-
 	static public GameManager instance
 	{
 		// 當有人使用我的時候
@@ -21,14 +19,4 @@ public class GameManager
 		}
 	}
 	static GameManager _instance = null;
-
-	private void Awake()
-	{
-		dieWindos = GameObject.Find("死亡介面切換").gameObject;
-	}
-
-	public void PlayerDead()
-	{
-		dieWindos.SetActive(true);  // 開啟死亡畫面
-	}
 }

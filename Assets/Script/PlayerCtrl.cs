@@ -232,9 +232,7 @@ public class PlayerCtrl : MonoBehaviour
 		{
 			ani.SetTrigger("die");
 			// SaveManager.instance.SaveUser();
-			Destroy(this);              // 關閉此腳本
-			
-			GameManager.instance.PlayerDead();
+			Destroy(this);	// 關閉此腳本
 		}
 	}
 
