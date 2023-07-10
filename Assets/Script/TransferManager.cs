@@ -29,34 +29,17 @@ public class TransferManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// 傳送關卡至下一關
-	/// </summary>
-	/*
-	void TransferNextLevel()
-	{
-		if (Input.GetKeyDown(KeyCode.O) && inArea)
-		{
-			// 取得當前關卡編號
-			int indexLevel = SceneManager.GetActiveScene().buildIndex;
-			// 關卡編號 加一
-			indexLevel++;
-			// 載入下一關
-			SceneManager.LoadScene(indexLevel);
-		}
-	}
-	*/
-
-	/// <summary>
 	/// 前往至關卡
 	/// </summary>
 	/// <param name="level">關卡編號</param>
-	void TransferToLevel(int level)
+	public void TransferToLevel(int level)
 	{
+		// 如果 按下O鍵 且 在區域內
 		if (Input.GetKeyDown(KeyCode.O) && inArea)
 		{
 			// 取得當前關卡編號
 			indexLevel = SceneManager.GetActiveScene().buildIndex;
-			// 如果 取得的關卡編號 不為 0 則關卡編號 加1
+			// 如果 取得的關卡編號 不為 0 則關卡編號+1
 			if (indexLevel != 0)
 			{
 				indexLevel++;
@@ -73,4 +56,22 @@ public class TransferManager : MonoBehaviour
 			}
 		}
 	}
+
+	/// <summary>
+	/// 傳送關卡至下一關
+	/// </summary>
+	/*
+	void TransferNextLevel()
+	{
+		if (Input.GetKeyDown(KeyCode.O) && inArea)
+		{
+			// 取得當前關卡編號
+			int indexLevel = SceneManager.GetActiveScene().buildIndex;
+			// 關卡編號 加一
+			indexLevel++;
+			// 載入下一關
+			SceneManager.LoadScene(indexLevel);
+		}
+	}
+	*/
 }
