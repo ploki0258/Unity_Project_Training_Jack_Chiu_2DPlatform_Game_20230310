@@ -8,9 +8,14 @@ public class SkillSystem : MonoBehaviour
 	public int currentSkillIndex; // 當前選擇的技能
 	Skill skillData;
 
+	private void Awake()
+	{
+		skillData = FindObjectOfType<Skill>();
+	}
+
 	private void Update()
 	{
-		SwithAtkObject();
+		SwitchAtkObject();
 	}
 
 	/// <summary>
@@ -26,7 +31,7 @@ public class SkillSystem : MonoBehaviour
 	/// <summary>
 	/// 切換攻擊物件
 	/// </summary>
-	void SwithAtkObject()
+	void SwitchAtkObject()
 	{
 		List<int> skillPrefabs = SaveManager.instance.playerData.haveSkill;
 
@@ -35,26 +40,41 @@ public class SkillSystem : MonoBehaviour
 		
 		if (Input.GetKeyDown(KeyCode.Z))
 		{
-			currentSkillIndex = 0;
+			currentSkillIndex = skillSlot[0].GetComponentInChildren<SkillDragDrop>().skillData.id;
+			SetCurrentSkill(currentSkillIndex);
+			// PlayerCtrl.instance.atkObject = skillSlot[0].GetComponent<Skill>().skillPrefab;
+			Debug.Log("快捷鍵Z： " + currentSkillIndex);
+			// currentSkillIndex = 0;
 		}
-		else if (Input.GetKeyDown(KeyCode.X))
+		if (Input.GetKeyDown(KeyCode.X))
 		{
-			currentSkillIndex = 1;
+			currentSkillIndex = skillSlot[1].GetComponentInChildren<SkillDragDrop>().skillData.id;
+			SetCurrentSkill(currentSkillIndex);
+			// PlayerCtrl.instance.atkObject = skillSlot[1].GetComponent<Skill>().skillPrefab;
+			Debug.Log("快捷鍵X： " + currentSkillIndex);
+			// currentSkillIndex = 1;
 		}
-		else if (Input.GetKeyDown(KeyCode.C))
+		if (Input.GetKeyDown(KeyCode.C))
 		{
-			currentSkillIndex = 2;
+			currentSkillIndex = skillSlot[2].GetComponentInChildren<SkillDragDrop>().skillData.id;
+			SetCurrentSkill(currentSkillIndex);
+			// PlayerCtrl.instance.atkObject = skillSlot[2].GetComponent<Skill>().skillPrefab;
+			Debug.Log("快捷鍵C： " + currentSkillIndex);
+			// currentSkillIndex = 2;
 		}
 
+		PlayerCtrl.instance.atkObject = skillSlot[currentSkillIndex].GetComponentInChildren<SkillDragDrop>().skillData.skillPrefab;
+		Debug.Log(currentSkillIndex + PlayerCtrl.instance.atkObject.name);
 		// 根據當前技能索引設置攻擊物件
-		if (currentSkillIndex >= 0 && currentSkillIndex < skillPrefabs.Count)
-		{
-			int skillID = skillData.id;
-			skillSystem.SetCurrentSkill(skillID);
-
-			PlayerCtrl.instance.atkObject = skill.skillPrefab;
-			Debug.Log("切換為：" + skill.skillPrefab.name);
-		}
+		// if (currentSkillIndex >= 0)
+		// {
+		/*
+		int skillID = skillData.id;
+		skillSystem.SetCurrentSkill(skillID);
+		PlayerCtrl.instance.atkObject = skillSlot[currentSkillIndex].GetComponent<SkillDragDrop>().skillData.skillPrefab;
+		Debug.Log("切換為：" + skill.skillPrefab.name);
+		*/
+		// }
 	}
 
 }

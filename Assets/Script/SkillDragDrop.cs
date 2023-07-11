@@ -7,14 +7,14 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 {
 	public GameObject clonePrefab;      // 要克隆的物件預製物
 	public Collider2D targetArea;       // 目標區域的碰撞器
-	public Skill skillData;
+	public Skill skillData;				// 技能資料
 
 	private GameObject cloneObject;     // 生成的克隆物件
 	private GameObject reservedObject;  // 保留的物件
-	private bool isDragging = false;    // 是否正在拖曳
 	private Transform originalParent;   // 初始父物件
 	private Vector3 startPosition;      // 初始位置
-	private int skillID;
+	private bool isDragging = false;    // 是否正在拖曳
+	private int skillID;				// 技能ID
 
 	/// <summary>
 	/// 開始拖拽
@@ -92,7 +92,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 			// 設置位置
 			if (eventData.pointerCurrentRaycast.gameObject.name.Contains("Btn_") == true)
 			{
-				cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
+				cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
 				cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
 
 				// cloneObject.GetComponent<CanvasGroup>().blocksRaycasts = true;

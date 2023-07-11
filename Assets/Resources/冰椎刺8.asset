@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: "\u51B0\u690E\u523A8"
   m_EditorClassIdentifier: 
   id: 8
+  Pre_Skill: 0
+  Pre_id: 0
   skillName: "\u51B0\u690E\u523A"
-  skillIcon: {fileID: 0}
-  skillPrefab: {fileID: 0}
+  skillIcon: {fileID: 21300000, guid: 4e12a1f4f5b9f68439949bb5d03a2283, type: 3}
+  skillPrefab: {fileID: 6721646784831770407, guid: db5f628dae4f1444396dbf88e43967ec,
+    type: 3}
   skillCate: {r: 0.023584902, g: 0.4605793, b: 1, a: 1}
   isSpecial: 0
   attackDis: "\u767C\u5C04\u51B0\u523A"
