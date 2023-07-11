@@ -8,7 +8,7 @@ public class MeunManager : MonoBehaviour
 
 	private void Awake()
 	{
-		ani = GameObject.Find("場景切換").GetComponent<Animator>();
+		// ani = GameObject.Find("場景切換").GetComponent<Animator>();
 	}
 
 	/// <summary>
@@ -50,11 +50,4 @@ public class MeunManager : MonoBehaviour
 		// ani.SetTrigger("Play");
 		SceneManager.LoadScene("開始畫面");
 	}
-
-	/*
-	void ChangeScene()
-	{
-		StartCoroutine(ChangeSceneAni());
-	}
-	*/
 }

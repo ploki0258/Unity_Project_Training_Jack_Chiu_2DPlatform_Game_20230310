@@ -33,7 +33,8 @@ public class MistManager : MonoBehaviour
 	[SerializeField, Header("改變的顏色")]
 	Color colorChange;
 
-	public bool inMist = false;
+	public bool inMist_gree = false;
+	public bool inMist_cyan = false;
 
 	SpawnSystem spawnSystem;
 	[Tooltip("變化後的顏色")]
@@ -79,7 +80,7 @@ public class MistManager : MonoBehaviour
 		StartCoroutine(ColorGradient());
 		StartCoroutine(TakeDamage());
 
-		// 青色迷霧
+		// 青色迷霧：提升怪物數量
 		if (collision.gameObject.CompareTag("Player") && mistType_cyan == true)
 		{
 			// inMist = true;
@@ -95,7 +96,7 @@ public class MistManager : MonoBehaviour
 			spawnSystem.enemyCountMax = (int)spawnWeight;
 		}
 
-		// 藍色迷霧
+		// 藍色迷霧：加重技能消耗費用
 		if (collision.gameObject.CompareTag("Player") && mistType_blue == true)
 		{
 			// inMist = true;
@@ -111,7 +112,7 @@ public class MistManager : MonoBehaviour
 			PlayerCtrl.instance.costMP = instance.cdWeight;
 		}
 
-		// 紫色迷霧
+		// 紫色迷霧：減速
 		if (collision.gameObject.CompareTag("Player") && mistType_purple == true)
 		{
 			// inMist = true;
@@ -139,7 +140,7 @@ public class MistManager : MonoBehaviour
 			// Debug.Log("動畫速度：" + PlayerCtrl.instance.ani.speed);
 		}
 
-		// 紅色迷霧
+		// 紅色迷霧：減少HP
 		if (collision.gameObject.CompareTag("Player") && mistType_red == true)
 		{
 			// inMist = true;
@@ -161,10 +162,10 @@ public class MistManager : MonoBehaviour
 			Debug.Log(SaveManager.instance.playerData.playerHP);
 		}
 
-		// 綠色迷霧
+		// 綠色迷霧：道具回復效果相反
 		if (collision.gameObject.CompareTag("Player") && mistType_gree == true)
 		{
-			inMist = true;
+			inMist_gree = true;
 
 			if (transitioning)
 			{
@@ -182,17 +183,21 @@ public class MistManager : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// 離開事件
+	/// </summary>
+	/// <param name="collision">碰到的物件</param>
 	private void OnTriggerExit2D(Collider2D collision)
 	{
 		if (collision.gameObject.CompareTag("Player"))
 		{
-			inMist = false;
+			inMist_gree = false;
 
-			PlayerCtrl.instance.costMP = originalCostMP;
-			SaveManager.instance.playerData.playerSpeed = originalSpeed;
-			SaveManager.instance.playerData.playerAttackSpeed = originalAttackSpeed;
-			PlayerCtrl.instance.ani.speed = 1f;
-			spawnSystem.enemyCountMax = (int)originalSpawn;
+			PlayerCtrl.instance.costMP = originalCostMP;								// 變回原本魔力消耗
+			SaveManager.instance.playerData.playerSpeed = originalSpeed;                // 變回原本移動速度
+			SaveManager.instance.playerData.playerAttackSpeed = originalAttackSpeed;    // 變回原本攻擊速度
+			PlayerCtrl.instance.ani.speed = 1f;                                         // 變回原本動畫播放
+			spawnSystem.enemyCountMax = (int)originalSpawn;                             // 變回原本最大敵人生成數量
 
 			if (transitioning == true)
 			{
@@ -235,6 +240,10 @@ public class MistManager : MonoBehaviour
 		transitioning = false;
 	}
 
+	/// <summary>
+	/// 持續扣血協程
+	/// </summary>
+	/// <returns></returns>
 	IEnumerator TakeDamage()
 	{
 		yield return null;

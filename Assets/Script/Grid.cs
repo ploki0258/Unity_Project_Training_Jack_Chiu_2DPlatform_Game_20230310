@@ -94,7 +94,7 @@ public class Grid : MonoBehaviour
 				SaveManager.instance.playerData.renewSkillPoint = null;
 			SaveManager.instance.playerData.skillPoint += dataGrid.獲得額外點數;
 
-			bool inMistType_gree = MistManager.instance.inMist;
+			bool inMistType_gree = MistManager.instance.inMist_gree;
 			if (inMistType_gree == true)
 			{
 				SaveManager.instance.playerData.playerHP -= dataGrid.恢復HP;

@@ -33,17 +33,18 @@ public class SpawnSystem : MonoBehaviour
 	[SerializeField] float playerDis;
 	[Header("生成類別"), Tooltip("是否生成道具")]
 	[SerializeField] bool isItem = false;
-	[Header("最大敵人生成數量")]
+	[Header("最大敵人生成數量"), Tooltip("敵人生成最大數量")]
 	public int enemyCountMax;
 
+	[Tooltip("計算敵人生成數量")]
+	public int enemyCount = 0;      // 計算敵人個數
 	private Vector2 monsterRange;   // 怪物生成範圍
 	private Vector2 itemRange;      // 道具生成範圍
-	public int enemyCount = 0;      // 計算敵人個數
 	Transform player;
 
 	private void Awake()
 	{
-		player = GameObject.Find("玩家").transform;
+		// player = GameObject.Find("玩家").transform;
 		enemyCount = 0;
 	}
 
@@ -51,11 +52,12 @@ public class SpawnSystem : MonoBehaviour
 	{
 		if (isItem)
 		{
+			// 延遲重複呼叫-生成技能道具
 			InvokeRepeating("SpawnItem", 0, interval);
 		}
 		else
 		{
-			// 延遲重複呼叫
+			// 延遲重複呼叫-生成怪物
 			InvokeRepeating("SpawnEnemy", 0, interval);
 		}
 
@@ -94,6 +96,7 @@ public class SpawnSystem : MonoBehaviour
 		float random_Y = Random.Range(this.transform.position.y + min_Y, this.transform.position.y + max_Y);
 		monsterRange = new Vector3(random_X, random_Y);
 
+		// 如果 目前生成的怪物數量 小於 最大生成數量的話 則生成怪物 
 		if (enemyCount < enemyCountMax)
 		{
 			int randomEnemy = Random.Range(0, prefabItem.Length);

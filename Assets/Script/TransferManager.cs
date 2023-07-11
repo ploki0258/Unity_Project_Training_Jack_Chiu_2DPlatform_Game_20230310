@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -56,6 +57,18 @@ public class TransferManager : MonoBehaviour
 			}
 		}
 	}
+
+	/*
+	void ChangeScene()
+	{
+		StartCoroutine(ChangeSceneAni());
+	}
+	
+	IEnumerator ChangeSceneAni()
+	{
+
+	}
+	*/
 
 	/// <summary>
 	/// 傳送關卡至下一關
