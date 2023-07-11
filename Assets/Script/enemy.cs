@@ -200,7 +200,7 @@ public class Enemy : MonoBehaviour
 					// 如果 目前生成的怪物數量 小於 最大生成數量的話 則生成怪物
 					if (spawnSystem.enemyCount < spawnSystem.enemyCountMax)
 					{
-						InvokeRepeating("SpawnEnemy", 0, spawnSystem.interval);
+						InvokeRepeating("spawnSystem.SpawnEnemy", 0, spawnSystem.interval);
 					}
 				}
 			}

@@ -4,11 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class MeunManager : MonoBehaviour
 {
-	Animator ani = null;
+	TransferManager transferManager = null;
 
 	private void Awake()
 	{
-		// ani = GameObject.Find("場景切換").GetComponent<Animator>();
+		transferManager = GameObject.Find("傳送區").GetComponent<TransferManager>();
 	}
 
 	/// <summary>
@@ -47,7 +47,7 @@ public class MeunManager : MonoBehaviour
 	/// </summary>
 	public void ReturnToHome()
 	{
-		// ani.SetTrigger("Play");
+		transferManager.ChangeScene();
 		SceneManager.LoadScene("開始畫面");
 	}
 }

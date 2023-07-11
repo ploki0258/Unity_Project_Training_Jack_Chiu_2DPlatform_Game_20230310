@@ -1,16 +1,22 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class TransferManager : MonoBehaviour
 {
-	[SerializeField, Header("¬O§_«e©¹¤U¤@Ãö"), Tooltip("¬O§_­n«e©¹¤U¤@Ãö¥d")]
+	[SerializeField, Header("æ˜¯å¦å‰å¾€ä¸‹ä¸€é—œ"), Tooltip("æ˜¯å¦è¦å‰å¾€ä¸‹ä¸€é—œå¡")]
 	private bool isToNext = true;
-	[SerializeField, Header("­n«e©¹ªºÃö¥d½s¸¹")]
+	[SerializeField, Header("è¦å‰å¾€çš„é—œå¡ç·¨è™Ÿ")]
 	int indexLevel = 0;
 
-	[Tooltip("¬O§_¦b°Ï°ì¤º")]
+	[Tooltip("æ˜¯å¦åœ¨å€åŸŸå…§")]
 	private bool inArea;
+	Animator ani;
+
+	private void Awake()
+	{
+		ani = GameObject.Find("å ´æ™¯åˆ‡æ›").GetComponent<Animator>();
+	}
 
 	private void Update()
 	{
@@ -30,23 +36,26 @@ public class TransferManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// «e©¹¦ÜÃö¥d
+	/// å‰å¾€è‡³é—œå¡
 	/// </summary>
-	/// <param name="level">Ãö¥d½s¸¹</param>
+	/// <param name="level">é—œå¡ç·¨è™Ÿ</param>
 	public void TransferToLevel(int level)
 	{
-		// ¦pªG «ö¤UOÁä ¥B ¦b°Ï°ì¤º
+		// å¦‚æœ æŒ‰ä¸‹Oéµ ä¸” åœ¨å€åŸŸå…§
 		if (Input.GetKeyDown(KeyCode.O) && inArea)
 		{
-			// ¨ú±o·í«eÃö¥d½s¸¹
+			// å–å¾—ç•¶å‰é—œå¡ç·¨è™Ÿ
 			indexLevel = SceneManager.GetActiveScene().buildIndex;
-			// ¦pªG ¨ú±oªºÃö¥d½s¸¹ ¤£¬° 0 «hÃö¥d½s¸¹+1
+			// å¦‚æœ å–å¾—çš„é—œå¡ç·¨è™Ÿ ä¸ç‚º 0 å‰‡é—œå¡ç·¨è™Ÿ+1
 			if (indexLevel != 0)
 			{
 				indexLevel++;
 			}
-			// ¦pªG ¬O­n«e©¹¤U¤@Ãö ´N¸ü¤J¤U¤@Ãö
-			// §_«h ´N¸ü¤J­n«e©¹ªºÃö¥d
+			
+			ChangeScene();
+
+			// å¦‚æœ æ˜¯è¦å‰å¾€ä¸‹ä¸€é—œ å°±è¼‰å…¥ä¸‹ä¸€é—œ
+			// å¦å‰‡ å°±è¼‰å…¥è¦å‰å¾€çš„é—œå¡
 			if (isToNext)
 			{
 				SceneManager.LoadScene(indexLevel);
@@ -58,31 +67,38 @@ public class TransferManager : MonoBehaviour
 		}
 	}
 
-	/*
-	void ChangeScene()
+	/// <summary>
+	/// åˆ‡æ›å ´æ™¯
+	/// </summary>
+	public void ChangeScene()
 	{
 		StartCoroutine(ChangeSceneAni());
 	}
-	
-	IEnumerator ChangeSceneAni()
-	{
-
-	}
-	*/
 
 	/// <summary>
-	/// ¶Ç°eÃö¥d¦Ü¤U¤@Ãö
+	/// åˆ‡æ›å ´æ™¯å‹•ç•«
+	/// </summary>
+	/// <returns></returns>
+	IEnumerator ChangeSceneAni()
+	{
+		// åˆ‡æ›å‹•ç•«æ’­å®Œå¾Œ ç­‰å¾…5ç§’ æ‰åŸ·è¡Œ
+		ani.SetTrigger("Play");
+		yield return new WaitForSeconds(5f);
+	}
+
+	/// <summary>
+	/// å‚³é€é—œå¡è‡³ä¸‹ä¸€é—œ
 	/// </summary>
 	/*
 	void TransferNextLevel()
 	{
 		if (Input.GetKeyDown(KeyCode.O) && inArea)
 		{
-			// ¨ú±o·í«eÃö¥d½s¸¹
+			// å–å¾—ç•¶å‰é—œå¡ç·¨è™Ÿ
 			int indexLevel = SceneManager.GetActiveScene().buildIndex;
-			// Ãö¥d½s¸¹ ¥[¤@
+			// é—œå¡ç·¨è™Ÿ åŠ ä¸€
 			indexLevel++;
-			// ¸ü¤J¤U¤@Ãö
+			// è¼‰å…¥ä¸‹ä¸€é—œ
 			SceneManager.LoadScene(indexLevel);
 		}
 	}

@@ -10,7 +10,7 @@ public class SkillSystem : MonoBehaviour
 
 	private void Update()
 	{
-		ChangeAtkObject();
+		SwithAtkObject();
 	}
 
 	/// <summary>
@@ -26,7 +26,7 @@ public class SkillSystem : MonoBehaviour
 	/// <summary>
 	/// ¤Á´«§ðÀ»ª«¥ó
 	/// </summary>
-	void ChangeAtkObject()
+	void SwithAtkObject()
 	{
 		List<int> skillPrefabs = SaveManager.instance.playerData.haveSkill;
 
