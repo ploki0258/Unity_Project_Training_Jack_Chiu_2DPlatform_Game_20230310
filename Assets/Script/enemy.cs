@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
 	private void Awake()
 	{
 		instance = this;    // 讓單例等於自己
-		player = GameObject.Find("玩家").transform;
+		player = GameObject.Find("女主角").transform;
 		rig = GetComponent<Rigidbody2D>();
 		ani = GetComponent<Animator>();
 		spawnSystem = GameObject.Find("怪物生成點 史萊姆").GetComponent<SpawnSystem>();
@@ -213,6 +213,7 @@ public class Enemy : MonoBehaviour
 		// 如果碰到玩家 就依據怪物攻擊力扣玩家血量
 		if (collision.gameObject.tag == "Player")
 		{
+			PlayerCtrl.instance.ani.SetTrigger("hurt");
 			PlayerCtrl.instance.TakeDamage(atkMonster);
 		}
 	}

@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SkillSystem : MonoBehaviour
 {
-	public Transform[] skillSlot; // §Ş¯àÄæ¦ì¡A¥Î©ó±µ¨ü§Ş¯àªº©ì©ñ
-	public int currentSkillIndex; // ·í«e¿ï¾Üªº§Ş¯à
+	public Transform[] skillSlot; // æŠ€èƒ½æ¬„ä½ï¼Œç”¨æ–¼æ¥å—æŠ€èƒ½çš„æ‹–æ”¾
+	public int currentSkillIndex; // ç•¶å‰é¸æ“‡çš„æŠ€èƒ½
 	Skill skillData;
 
 	private void Awake()
@@ -19,17 +19,17 @@ public class SkillSystem : MonoBehaviour
 	}
 
 	/// <summary>
-	/// ³]¸m·í«e§Ş¯à
+	/// è¨­ç½®ç•¶å‰æŠ€èƒ½
 	/// </summary>
-	/// <param name="skill">§Ş¯àID</param>
+	/// <param name="skill">æŠ€èƒ½ID</param>
 	public void SetCurrentSkill(int skill)
 	{
-		// ¦b³o¸Ì¥i¥H°õ¦æ¬ÛÀ³ªº¬I©ñ§Ş¯àªº¦æ¬°
+		// åœ¨é€™è£¡å¯ä»¥åŸ·è¡Œç›¸æ‡‰çš„æ–½æ”¾æŠ€èƒ½çš„è¡Œç‚º
 		currentSkillIndex = skill;
 	}
 
 	/// <summary>
-	/// ¤Á´«§ğÀ»ª«¥ó
+	/// åˆ‡æ›æ”»æ“Šç‰©ä»¶
 	/// </summary>
 	void SwitchAtkObject()
 	{
@@ -37,13 +37,13 @@ public class SkillSystem : MonoBehaviour
 
 		SkillSystem skillSystem = FindObjectOfType<SkillSystem>();
 		Skill skill = FindObjectOfType<Skill>();
-		
+
 		if (Input.GetKeyDown(KeyCode.Z))
 		{
 			currentSkillIndex = skillSlot[0].GetComponentInChildren<SkillDragDrop>().skillData.id;
 			SetCurrentSkill(currentSkillIndex);
 			// PlayerCtrl.instance.atkObject = skillSlot[0].GetComponent<Skill>().skillPrefab;
-			Debug.Log("§Ö±¶ÁäZ¡G " + currentSkillIndex);
+			Debug.Log("å¿«æ·éµZï¼š " + currentSkillIndex);
 			// currentSkillIndex = 0;
 		}
 		if (Input.GetKeyDown(KeyCode.X))
@@ -51,7 +51,7 @@ public class SkillSystem : MonoBehaviour
 			currentSkillIndex = skillSlot[1].GetComponentInChildren<SkillDragDrop>().skillData.id;
 			SetCurrentSkill(currentSkillIndex);
 			// PlayerCtrl.instance.atkObject = skillSlot[1].GetComponent<Skill>().skillPrefab;
-			Debug.Log("§Ö±¶ÁäX¡G " + currentSkillIndex);
+			Debug.Log("å¿«æ·éµXï¼š " + currentSkillIndex);
 			// currentSkillIndex = 1;
 		}
 		if (Input.GetKeyDown(KeyCode.C))
@@ -59,22 +59,23 @@ public class SkillSystem : MonoBehaviour
 			currentSkillIndex = skillSlot[2].GetComponentInChildren<SkillDragDrop>().skillData.id;
 			SetCurrentSkill(currentSkillIndex);
 			// PlayerCtrl.instance.atkObject = skillSlot[2].GetComponent<Skill>().skillPrefab;
-			Debug.Log("§Ö±¶ÁäC¡G " + currentSkillIndex);
+			Debug.Log("å¿«æ·éµCï¼š " + currentSkillIndex);
 			// currentSkillIndex = 2;
 		}
 
-		// PlayerCtrl.instance.atkObject = skillSlot[currentSkillIndex].GetComponentInChildren<SkillDragDrop>().skillData.skillPrefab;
-		Debug.Log(currentSkillIndex + PlayerCtrl.instance.atkObject.name);
-		// ®Ú¾Ú·í«e§Ş¯à¯Á¤Ş³]¸m§ğÀ»ª«¥ó
-		// if (currentSkillIndex >= 0)
-		// {
+		PlayerCtrl.instance.atkObject = skillSlot[currentSkillIndex].GetComponentInChildren<SkillDragDrop>().skillData.skillPrefab;
+		// Debug.Log(currentSkillIndex + PlayerCtrl.instance.atkObject.name);
+		
+		// æ ¹æ“šç•¶å‰æŠ€èƒ½ç´¢å¼•è¨­ç½®æ”»æ“Šç‰©ä»¶
 		/*
+		if (currentSkillIndex >= 0)
+		   {
 		int skillID = skillData.id;
 		skillSystem.SetCurrentSkill(skillID);
 		PlayerCtrl.instance.atkObject = skillSlot[currentSkillIndex].GetComponent<SkillDragDrop>().skillData.skillPrefab;
-		Debug.Log("¤Á´«¬°¡G" + skill.skillPrefab.name);
+		Debug.Log("åˆ‡æ›ç‚ºï¼š" + skill.skillPrefab.name);
+		   }
 		*/
-		// }
 	}
 
 }

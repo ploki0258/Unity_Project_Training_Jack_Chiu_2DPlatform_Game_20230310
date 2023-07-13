@@ -125,7 +125,7 @@ public class PlayerCtrl : MonoBehaviour
 	private void FixedUpdate()
 	{
 		//偵測是否踩到地板物件
-		onFloor = Physics2D.Raycast(this.transform.position, new Vector2(0f, -1f), 0.1f, 1 << 6);
+		onFloor = Physics2D.Raycast(this.transform.position, new Vector2(0f, -1f), -1f, 1 << 6);
 	}
 
 	/// <summary>
