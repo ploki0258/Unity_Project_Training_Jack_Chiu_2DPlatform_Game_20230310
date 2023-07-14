@@ -63,7 +63,7 @@ public class SkillSystem : MonoBehaviour
 			// currentSkillIndex = 2;
 		}
 
-		PlayerCtrl.instance.atkObject = skillSlot[currentSkillIndex].GetComponentInChildren<SkillDragDrop>().skillData.skillPrefab;
+		// PlayerCtrl.instance.atkObject = skillSlot[currentSkillIndex].GetComponentInChildren<SkillDragDrop>().skillData.skillPrefab;
 		// Debug.Log(currentSkillIndex + PlayerCtrl.instance.atkObject.name);
 		
 		// 根據當前技能索引設置攻擊物件

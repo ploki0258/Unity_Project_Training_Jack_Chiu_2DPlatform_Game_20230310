@@ -141,6 +141,12 @@ public class PlayerCtrl : MonoBehaviour
 
 		rig.velocity = new Vector2(ad * SaveManager.instance.playerData.playerSpeed, rig.velocity.y);
 
+		if (ad != 0)
+		{
+			AudioClip sound = SoundManager.instance.run;
+			SoundManager.instance.PlaySound(sound, 0.7f, 1f);
+		}
+
 		//移動動畫
 		ani.SetBool("isRun", ad != 0);
 
@@ -214,11 +220,17 @@ public class PlayerCtrl : MonoBehaviour
 			{
 				GameObject temp = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 0f, 0f));
 				temp.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
+
+				AudioClip sound = SoundManager.instance.attack;
+				SoundManager.instance.PlaySound(sound, 0.7f, 2f);
 			}
 			else if (atkObject != null && 翻轉 == true)
 			{
 				GameObject temp = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 0f, 180f));
 				temp.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
+
+				AudioClip sound = SoundManager.instance.attack;
+				SoundManager.instance.PlaySound(sound, 0.7f, 2f);
 			}
 		}
 	}
@@ -232,7 +244,7 @@ public class PlayerCtrl : MonoBehaviour
 		{
 			ani.SetTrigger("die");
 			// SaveManager.instance.SaveUser();
-			Destroy(this);	// 關閉此腳本
+			Destroy(this);  // 關閉此腳本
 		}
 	}
 
