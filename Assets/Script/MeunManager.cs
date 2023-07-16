@@ -4,11 +4,14 @@ using UnityEngine.SceneManagement;
 
 public class MeunManager : MonoBehaviour
 {
+	[SerializeField, Header("尋找物件的名稱")]
+	string objectName;
+
 	TransferManager transferManager = null;
 
 	private void Awake()
 	{
-		transferManager = GameObject.Find("傳送區").GetComponent<TransferManager>();
+		transferManager = GameObject.Find(objectName).GetComponent<TransferManager>();
 	}
 
 	/// <summary>

@@ -32,6 +32,8 @@ public class MistManager : MonoBehaviour
 	[SerializeField] bool mistType_gree;    // 綠色
 	[SerializeField, Header("改變的顏色")]
 	Color colorChange;
+	[SerializeField, Header("尋找物件的名稱")]
+	string objectName;
 
 	public bool inMist_gree = false;
 	public bool inMist_cyan = false;
@@ -52,7 +54,7 @@ public class MistManager : MonoBehaviour
 	private void Awake()
 	{
 		instance = this;
-		spawnSystem = GameObject.Find("怪物生成點 史萊姆").GetComponent<SpawnSystem>();
+		spawnSystem = GameObject.Find(objectName).GetComponent<SpawnSystem>();
 	}
 
 	private void Start()

@@ -5164,6 +5164,7 @@ MonoBehaviour:
   mistType_red: 0
   mistType_gree: 0
   colorChange: {r: 1, g: 1, b: 1, a: 1}
+  objectName: "\u602A\u7269\u751F\u6210\u9EDE \u53F2\u840A\u59C6"
   inMist_gree: 0
   inMist_cyan: 0
 --- !u!4 &591532291
@@ -5210,6 +5211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fb6da7fc6f6354eb440ac915b882bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectName: "\u50B3\u9001\u5340\u7FA4\u7D44"
 --- !u!4 &593385762
 Transform:
   m_ObjectHideFlags: 0

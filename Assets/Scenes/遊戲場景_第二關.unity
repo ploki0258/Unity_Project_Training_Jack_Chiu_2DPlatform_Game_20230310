@@ -5147,6 +5147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fb6da7fc6f6354eb440ac915b882bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectName: "\u50B3\u9001\u5340\u7FA4\u7D44"
 --- !u!4 &608459330
 Transform:
   m_ObjectHideFlags: 0
@@ -6132,6 +6133,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733743693}
   m_CullTransparentMesh: 1
+--- !u!1001 &743035280
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7016565574537943436, guid: 8c99bba25199ee04d89e29487cd0033e,
+        type: 3}
+      propertyPath: m_Name
+      value: "\u50B3\u9001\u5340\u7FA4\u7D44"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7016565574537943474, guid: 8c99bba25199ee04d89e29487cd0033e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7016565574537943474, guid: 8c99bba25199ee04d89e29487cd0033e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 176.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7016565574537943474, guid: 8c99bba25199ee04d89e29487cd0033e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7016565574537943474, guid: 8c99bba25199ee04d89e29487cd0033e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7016565574537943474, guid: 8c99bba25199ee04d89e29487cd0033e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7016565574537943474, guid: 8c99bba25199ee04d89e29487cd0033e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7016565574537943474, guid: 8c99bba25199ee04d89e29487cd0033e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7016565574537943474, guid: 8c99bba25199ee04d89e29487cd0033e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7016565574537943474, guid: 8c99bba25199ee04d89e29487cd0033e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7016565574537943474, guid: 8c99bba25199ee04d89e29487cd0033e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7016565574537943474, guid: 8c99bba25199ee04d89e29487cd0033e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8c99bba25199ee04d89e29487cd0033e, type: 3}
 --- !u!1 &752061783
 GameObject:
   m_ObjectHideFlags: 0
@@ -12314,6 +12384,7 @@ MonoBehaviour:
   mistType_red: 0
   mistType_gree: 0
   colorChange: {r: 0, g: 0, b: 0, a: 0}
+  objectName: "\u602A\u7269\u751F\u6210\u9EDE"
   inMist_gree: 0
   inMist_cyan: 0
 --- !u!61 &1636884308
@@ -13360,14 +13431,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8301887, g: 0.2929156, b: 0.2929156, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c55683ae1c8bff946b616e953268b175, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 86647bfc58fe78f44a58d1aa09fc6a1f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

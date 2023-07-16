@@ -16,7 +16,7 @@ MonoBehaviour:
   Pre_Skill: 0
   Pre_id: 0
   skillName: "\u706B\u7403\u8853"
-  skillIcon: {fileID: 21300000, guid: 93e139652ed044f43ad8656445027bce, type: 3}
+  skillIcon: {fileID: 21300000, guid: 86647bfc58fe78f44a58d1aa09fc6a1f, type: 3}
   skillPrefab: {fileID: 5761697363250273946, guid: a996465a381f11c4788d0c50d0d71d85,
     type: 3}
   skillCate: {r: 0.9056604, g: 0, b: 0, a: 1}
