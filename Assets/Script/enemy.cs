@@ -176,6 +176,7 @@ public class Enemy : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		spawnSystem.SpawnEnemy();
+
 		if (isDeath)
 			return;
 		if (collision.gameObject.tag == "bullet")
@@ -218,6 +219,7 @@ public class Enemy : MonoBehaviour
 		}
 	}
 
+	// 怪物血量
 	public float hpMonster
 	{
 		// 取得時

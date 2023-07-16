@@ -6,6 +6,8 @@ public class AttackObject : MonoBehaviour
 	float damage = 0f;
 	[SerializeField, Header("物理攻擊")]
 	bool isWandAttack = false;  // 是否在物理攻擊(MP <= 0)
+	[SerializeField, Header("技能資料")]
+	Skill skillData;
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
@@ -24,5 +26,14 @@ public class AttackObject : MonoBehaviour
 			Enemy.instance.TakeDamageMonster(damage);
 		}
 		*/
+	}
+
+	void SkillAttackEffect(int ID)
+	{
+		ID = skillData.id;
+		if (ID == 0)
+		{
+			Debug.Log("這是" + skillData.skillName);
+		}
 	}
 }

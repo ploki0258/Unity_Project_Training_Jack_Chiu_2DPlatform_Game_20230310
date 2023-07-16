@@ -13,6 +13,10 @@ public class PlayerCtrl : MonoBehaviour
 	public Image barHP = null;
 	[Header("魔力條")]
 	public Image barMP = null;
+	[Header("金幣數量")]
+	public TextMeshProUGUI coinCount = null;
+	[Header("技能點數")]
+	public TextMeshProUGUI skillCount = null;
 	[Header("最大血量"), Range(100, 1000)]
 	public float maxHP = 100f;
 	[Header("最大魔力"), Range(100, 1000)]
@@ -35,10 +39,6 @@ public class PlayerCtrl : MonoBehaviour
 	[Header("資訊欄顯示")]
 	public Text coinInfo = null;
 	public Text skillInfo = null;
-	[Header("金幣數量")]
-	public TextMeshProUGUI coinCount = null;
-	[Header("技能點數")]
-	public TextMeshProUGUI skillCount = null;
 	[Header("金幣顯示動畫")]
 	public Animator showCoinAni = null;
 	[Header("技能點數顯示動畫")]

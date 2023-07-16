@@ -373,6 +373,8 @@ MonoBehaviour:
   atkPoint: {fileID: 5252116328570202490}
   barHP: {fileID: 0}
   barMP: {fileID: 0}
+  coinCount: {fileID: 0}
+  skillCount: {fileID: 0}
   maxHP: 100
   maxMP: 100
   costMP: 10
@@ -383,8 +385,6 @@ MonoBehaviour:
   defense: 100
   coinInfo: {fileID: 0}
   skillInfo: {fileID: 0}
-  coinCount: {fileID: 0}
-  skillCount: {fileID: 0}
   showCoinAni: {fileID: 0}
   showSkillPointAni: {fileID: 0}
   ani: {fileID: 0}
