@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 21
   title: "\u9B54\u529B\u85E5\u6C34"
   icon: {fileID: 21300000, guid: b7f77607c82ea4142a2070c0e37e1756, type: 3}
-  info: "\u6062\u5FA920\u9EDE\u9B54\u529B\u503C"
+  info: "\u6062\u5FA920\u9EDE\u9B54\u529B\u503C\u3002"
   itemSkill: 0
   colorBG: {r: 0.764151, g: 0.5688525, b: 0.49309364, a: 1}
   canUse: 1

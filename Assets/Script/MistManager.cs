@@ -32,7 +32,7 @@ public class MistManager : MonoBehaviour
 	[SerializeField] bool mistType_gree;    // 綠色
 	[SerializeField, Header("改變的顏色")]
 	Color colorChange;
-	[SerializeField, Header("尋找物件的名稱")]
+	[SerializeField, Header("尋找物件名稱")]
 	string objectName;
 
 	public bool inMist_gree = false;

@@ -8,14 +8,17 @@ public class TransferManager : MonoBehaviour
 	private bool isToNext = true;
 	[SerializeField, Header("要前往的關卡編號")]
 	int indexLevel = 0;
+	
 
 	[Tooltip("是否在區域內")]
 	private bool inArea;
 	Animator ani;
+	Animator aniTransform;
 
 	private void Awake()
 	{
-		ani = GameObject.Find("場景切換").GetComponent<Animator>();
+		ani = GameObject.Find("傳送區群組").GetComponent<Animator>();
+		aniTransform = GameObject.Find("場景切換").GetComponent<Animator>();
 	}
 
 	private void Update()
@@ -27,12 +30,16 @@ public class TransferManager : MonoBehaviour
 	{
 		if (collision.CompareTag("Player"))
 			inArea = true;
+
+		ani.SetBool("play", inArea);
 	}
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
 		if (collision.CompareTag("Player"))
 			inArea = false;
+
+		ani.SetBool("play", inArea);
 	}
 
 	/// <summary>
@@ -82,7 +89,7 @@ public class TransferManager : MonoBehaviour
 	IEnumerator ChangeSceneAni()
 	{
 		// 切換動畫播完後 等待5秒 才執行
-		ani.SetTrigger("Play");
+		aniTransform.SetTrigger("Play");
 		yield return new WaitForSeconds(5f);
 	}
 

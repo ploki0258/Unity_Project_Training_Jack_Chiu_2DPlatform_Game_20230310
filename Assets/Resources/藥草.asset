@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: adbf9ce8cc1e02b4b8620f7dab4df277, type: 3}
-  m_Name: "\u5410\u53F8"
+  m_Name: "\u85E5\u8349"
   m_EditorClassIdentifier: 
   id: 23
-  title: "\u5410\u53F8"
-  icon: {fileID: 21300000, guid: 1a58749f555f75e48baa41893215b26e, type: 3}
-  info: "\u6062\u5FA95\u9EDE\u751F\u547D\u503C"
+  title: "\u85E5\u8349"
+  icon: {fileID: 21300000, guid: 74673f9934429b64cb1f34ae3f958274, type: 3}
+  info: "\u5728\u68EE\u6797\u4E2D\u51FA\u73FE\u7684\u672A\u77E5\u690D\u7269\u3002\n\u807D\u8AAA\u8981\u662F\u7D93\u904E\u7279\u6B8A\u8655\u7406\u7684\u8A71\uFF0C\u6703\u6709\u795E\u5947\u7684\u529F\u6548\u3002"
   itemSkill: 0
   colorBG: {r: 0.764151, g: 0.5688525, b: 0.49309364, a: 1}
-  canUse: 1
-  Consumables: 1
-  "\u6062\u5FA9HP": 5
+  canUse: 0
+  Consumables: 0
+  "\u6062\u5FA9HP": 0
   "\u6062\u5FA9MP": 0
   "\u63D0\u5347\u653B\u64CA\u529B": 0
   "\u63D0\u5347\u9632\u79A6\u529B": 0
   "\u63D0\u5347\u8DF3\u8E8D\u529B": 0
   "\u63D0\u5347\u653B\u64CA\u901F\u5EA6": 0
   "\u63D0\u5347\u79FB\u52D5\u901F\u5EA6": 0
-  "\u63D0\u5347\u984D\u5916\u9EDE\u6578": 0
   "\u9B54\u529B\u6D88\u8017\u964D\u4F4E": 0
   "\u63D0\u5347\u6280\u80FD\u50B7\u5BB3": 0
-  "\u589E\u52A0\u6B04\u4F4D": 0
+  "\u7372\u5F97\u984D\u5916\u9EDE\u6578": 0
+  "\u589E\u52A0\u6280\u80FD\u6B04\u4F4D": 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 20
   title: "\u56DE\u8840\u85E5\u6C34"
   icon: {fileID: 21300000, guid: 117b17facff65dc42b1b57deb7c21551, type: 3}
-  info: "\u6062\u5FA910\u9EDE\u751F\u547D\u503C"
+  info: "\u6062\u5FA910\u9EDE\u751F\u547D\u503C\u3002"
   itemSkill: 0
   colorBG: {r: 0.764151, g: 0.5688525, b: 0.49309364, a: 1}
   canUse: 1
@@ -27,7 +27,7 @@ MonoBehaviour:
   "\u63D0\u5347\u8DF3\u8E8D\u529B": 0
   "\u63D0\u5347\u653B\u64CA\u901F\u5EA6": 0
   "\u63D0\u5347\u79FB\u52D5\u901F\u5EA6": 0
-  "\u63D0\u5347\u984D\u5916\u9EDE\u6578": 0
   "\u9B54\u529B\u6D88\u8017\u964D\u4F4E": 0
   "\u63D0\u5347\u6280\u80FD\u50B7\u5BB3": 0
-  "\u589E\u52A0\u6B04\u4F4D": 0
+  "\u7372\u5F97\u984D\u5916\u9EDE\u6578": 0
+  "\u589E\u52A0\u6280\u80FD\u6B04\u4F4D": 0
