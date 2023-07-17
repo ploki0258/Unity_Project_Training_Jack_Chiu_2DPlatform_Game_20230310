@@ -31,6 +31,9 @@ public class TalkButton : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 記錄點功能
+    /// </summary>
     public void Archive()
     {
         if (Button.activeSelf && Input.GetKeyDown(KeyCode.E))

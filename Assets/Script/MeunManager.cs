@@ -50,7 +50,7 @@ public class MeunManager : MonoBehaviour
 	/// </summary>
 	public void ReturnToHome()
 	{
-		transferManager.ChangeScene();
+		// transferManager.ChangeScene();
 		SceneManager.LoadScene("開始畫面");
 	}
 }
