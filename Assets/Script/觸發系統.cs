@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.Events;
 public class 觸發系統 : MonoBehaviour
 {
-	[SerializeField, Header("事件可否重複")] bool 是否可重複 = false;
+	[SerializeField, Header("事件可否重複")]
+	bool isRepeatable = false;
 	[Header("要執行的事件")]
-	public UnityEvent 要做的事情 = null;
+	public UnityEvent thingsToDo = null;
 
+	[Tooltip("該事件是否已被觸發過")]
 	bool 觸發過 = false;
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -16,10 +18,10 @@ public class 觸發系統 : MonoBehaviour
 		if (collision.gameObject.tag == "Player")
 		{
 			// 如果是可重複 或者 尚未觸發過
-			if (是否可重複 || 觸發過 == false)
+			if (isRepeatable || 觸發過 == false)
 			{
-				觸發過 = true;
-				要做的事情.Invoke(); // 執行要做的事情
+				觸發過 = true;			// 該事件變成已觸發
+				thingsToDo.Invoke();	// 執行要做的事情
 			}
 		}
 	}

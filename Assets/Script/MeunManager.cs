@@ -27,8 +27,8 @@ public class MeunManager : MonoBehaviour
 	/// </summary>
 	public void StartGame()
 	{
-		PlayerPrefs.DeleteKey("GameData");
-		SceneManager.LoadScene("遊戲場景");
+		PlayerPrefs.DeleteKey("GameData");	// 刪除玩家資料
+		SceneManager.LoadScene("遊戲場景");	// 載入遊戲場景
 	}
 
 	/// <summary>

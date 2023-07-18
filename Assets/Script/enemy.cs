@@ -199,7 +199,7 @@ public class Enemy : MonoBehaviour
 				if (MistManager.instance.inMist_cyan == false)
 				{
 					// 如果 目前生成的怪物數量 小於 最大生成數量的話 則生成怪物
-					if (spawnSystem.enemyCount < spawnSystem.enemyCountMax)
+					if (spawnSystem.enemyCount < spawnSystem.enemyCountMax && spawnSystem.enemyCount == 0)
 					{
 						InvokeRepeating("spawnSystem.SpawnEnemy", 0, spawnSystem.interval);
 					}
