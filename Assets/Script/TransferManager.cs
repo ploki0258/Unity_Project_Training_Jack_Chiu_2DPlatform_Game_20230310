@@ -67,7 +67,7 @@ public class TransferManager : MonoBehaviour
 			if (isToNext)
 			{
 				// 設置下一關玩家的起始位置
-				SaveManager.instance.playerData.playerPos = new Vector3(-180f,0f , 0f);
+				SaveManager.instance.playerData.playerPos = new Vector3(0f, 0f, 0f);
 				SceneManager.LoadScene(indexLevel);
 			}
 			// 否則 就載入要前往的關卡

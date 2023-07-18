@@ -1,20 +1,20 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
-// ³æ¨Ò³]­p¼Ò¦¡ ¤£¥i­«½Æ¦s¦b ¥ô¦ó¦a¤è¬Ò¥i©I¥s
+// å–®ä¾‹è¨­è¨ˆæ¨¡å¼ ä¸å¯é‡è¤‡å­˜åœ¨ ä»»ä½•åœ°æ–¹çš†å¯å‘¼å«
 public class GameManager
 {
 	static public GameManager instance
 	{
-		// ·í¦³¤H¨Ï¥Î§Úªº®É­Ô
+		// ç•¶æœ‰äººä½¿ç”¨æˆ‘çš„æ™‚å€™
 		get
 		{
-			// ¦pªG§Ú¤£¦s¦b
+			// å¦‚æœæˆ‘ä¸å­˜åœ¨
 			if (_instance == null)
 			{
-				// ´N¦Û§Ú¾ÌªÅ«Ø¥ß
+				// å°±è‡ªæˆ‘æ†‘ç©ºå»ºç«‹
 				_instance = new GameManager();
 			}
-			// ¦^¶Ç§Ú¥iµ¹¹ï¤è¨Ï¥Î
+			// å›å‚³æˆ‘å¯çµ¦å°æ–¹ä½¿ç”¨
 			return _instance;
 		}
 	}

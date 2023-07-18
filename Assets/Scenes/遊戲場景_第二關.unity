@@ -1110,6 +1110,7 @@ GameObject:
   - component: {fileID: 156506608}
   - component: {fileID: 156506610}
   - component: {fileID: 156506609}
+  - component: {fileID: 156506612}
   m_Layer: 0
   m_Name: "\u65B0\u624B\u6559\u7A0B_\u904A\u6232\u7D50\u675F"
   m_TagString: Untagged
@@ -1144,7 +1145,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 156506610}
   selectedCommands:
-  - {fileID: 156506609}
+  - {fileID: 156506612}
   variables: []
   description: 
   stepPause: 0
@@ -1209,6 +1210,7 @@ MonoBehaviour:
   eventHandler: {fileID: 0}
   commandList:
   - {fileID: 156506609}
+  - {fileID: 156506612}
   suppressAllAutoSelections: 0
 --- !u!4 &156506611
 Transform:
@@ -1225,6 +1227,33 @@ Transform:
   m_Father: {fileID: 1985582024}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &156506612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156506607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 4
+  indentLevel: 0
+  storyText: "\u53EF\u6309\u4E0B\"O\u9375\"\u8FD4\u56DE\u4E3B\u9078\u55AE"
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &176147437
 GameObject:
   m_ObjectHideFlags: 0
@@ -6588,6 +6617,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8900014455266164106, guid: 8c99bba25199ee04d89e29487cd0033e,
+        type: 3}
+      propertyPath: isToNext
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c99bba25199ee04d89e29487cd0033e, type: 3}
 --- !u!1 &752061783
@@ -7840,11 +7874,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 45.784683, y: 5.478936}
-      - {x: -25.218554, y: 5.333025}
-      - {x: -25.239931, y: -5.335294}
-      - {x: 174.63579, y: -5.363209}
-      - {x: 174.62222, y: 5.374157}
+    - - {x: 114.79984, y: -0.12648815}
+      - {x: 114.64231, y: 5.3949046}
+      - {x: 45.784683, y: 5.478936}
+      - {x: -25.424015, y: 5.384618}
+      - {x: -25.448484, y: -5.358148}
+      - {x: 114.74201, y: -5.411275}
+      - {x: 114.80433, y: -5.265757}
 --- !u!4 &851756844
 Transform:
   m_ObjectHideFlags: 0
@@ -8542,7 +8578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 823465336}
+  selectedFlowchart: {fileID: 156506608}
 --- !u!4 &939783646
 Transform:
   m_ObjectHideFlags: 1
@@ -15501,6 +15537,7 @@ GameObject:
   - component: {fileID: 1997043515}
   - component: {fileID: 1997043514}
   - component: {fileID: 1997043517}
+  - component: {fileID: 1997043518}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -15543,7 +15580,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.36241
+  orthographic size: 5.24
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -15566,7 +15603,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997043513}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15607,6 +15644,40 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &1997043518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997043513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowDebugText: 0
+  m_ShowCameraFrustum: 1
+  m_IgnoreTimeScale: 0
+  m_WorldUpOverride: {fileID: 0}
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 1
+  m_DefaultBlend:
+    m_Style: 1
+    m_Time: 2
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_CustomBlends: {fileID: 0}
+  m_CameraCutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2012258632
 GameObject:
   m_ObjectHideFlags: 0
