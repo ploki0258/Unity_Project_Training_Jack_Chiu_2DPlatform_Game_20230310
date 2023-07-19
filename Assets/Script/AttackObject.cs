@@ -4,7 +4,7 @@ public class AttackObject : MonoBehaviour
 {
 	[SerializeField, Header("傷害值")]
 	float damage = 0f;
-	[SerializeField, Header("物理攻擊")]
+	[SerializeField, Header("物理攻擊"), Tooltip("是否在物理攻擊")]
 	bool isWandAttack = false;  // 是否在物理攻擊(MP <= 0)
 	[SerializeField, Header("技能資料")]
 	Skill skillData;

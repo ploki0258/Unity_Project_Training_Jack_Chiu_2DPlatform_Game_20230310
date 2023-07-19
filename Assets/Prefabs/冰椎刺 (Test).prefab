@@ -435,7 +435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8521017748734315390}
   m_Layer: 0
-  m_Name: "\u51B0\u690E\u523A"
+  m_Name: "\u51B0\u690E\u523A (Test)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
