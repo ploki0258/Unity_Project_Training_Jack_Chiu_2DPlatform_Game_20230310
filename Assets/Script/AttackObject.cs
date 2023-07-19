@@ -9,6 +9,18 @@ public class AttackObject : MonoBehaviour
 	[SerializeField, Header("技能資料")]
 	Skill skillData;
 
+	private float timer;
+
+	// 土牆技能
+	private void Update()
+	{
+		timer -= Time.deltaTime;
+		if (timer <= 0)
+		{
+			Destroy(this.gameObject);
+		}
+	}
+
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		// 如果 子彈 碰到 地板 或 敵人 就消失

@@ -38,7 +38,6 @@ public class MistManager : MonoBehaviour
 	public bool inMist_gree = false;
 	public bool inMist_cyan = false;
 
-	SpawnSystem spawnSystem;
 	[Tooltip("變化後的顏色")]
 	private Color tempColor;            // 漸變顏色
 	[Tooltip("是否在進行漸變 ")]
@@ -48,6 +47,7 @@ public class MistManager : MonoBehaviour
 	private float originalSpeed;        // 原來的移動速度
 	private float originalAttackSpeed;  // 原來的攻擊速度
 	private float originalSpawn;        // 原來的生成數量
+	SpawnSystem spawnSystem;
 
 	public static MistManager instance; // 單例
 

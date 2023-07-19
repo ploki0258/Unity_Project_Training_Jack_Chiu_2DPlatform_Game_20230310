@@ -51,7 +51,9 @@ public class TransferManager : MonoBehaviour
 		// 如果 按下O鍵 且 在區域內
 		if (Input.GetKeyDown(KeyCode.O) && inArea)
 		{
-			SaveManager.instance.SaveData();
+			// 設置下一關玩家的起始位置
+			SaveManager.instance.playerData.playerPos = new Vector3(0f, 0f, 0f);
+			PlayerCtrl.instance.transform.position = SaveManager.instance.playerData.playerPos;
 
 			// 取得當前關卡編號
 			indexLevel = SceneManager.GetActiveScene().buildIndex;
@@ -66,8 +68,6 @@ public class TransferManager : MonoBehaviour
 			// 如果 是要前往下一關 就載入下一關
 			if (isToNext)
 			{
-				// 設置下一關玩家的起始位置
-				SaveManager.instance.playerData.playerPos = new Vector3(0f, 0f, 0f);
 				SceneManager.LoadScene(indexLevel);
 			}
 			// 否則 就載入要前往的關卡
@@ -75,6 +75,8 @@ public class TransferManager : MonoBehaviour
 			{
 				SceneManager.LoadScene(level);
 			}
+
+			SaveManager.instance.SaveData();
 		}
 	}
 
