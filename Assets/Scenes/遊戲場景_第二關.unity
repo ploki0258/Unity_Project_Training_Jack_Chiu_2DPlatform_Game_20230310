@@ -3309,7 +3309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 76.88091, y: 78.50241}
+  scrollPos: {x: -10.619065, y: 161.31491}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
@@ -3376,7 +3376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 75.888535
+    x: 74.326035
     y: 68
     width: 112.49998
     height: 40
@@ -3640,7 +3640,8 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
+  selectedBlocks:
+  - {fileID: 425082777}
   selectedCommands: []
   variables: []
   description: 
@@ -3696,7 +3697,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 73.615814
     y: 66.86364
-    width: 91.81818
+    width: 93.181816
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -7401,7 +7402,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 72.479454
     y: 66.86364
-    width: 91.81818
+    width: 93.181816
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -7714,6 +7715,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2690844787877948597, guid: 0648648337d78ce4f813692eda58c245,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1997043515}
     - target: {fileID: 2690844787877948597, guid: 0648648337d78ce4f813692eda58c245,
         type: 3}
       propertyPath: barHP
@@ -8387,7 +8393,7 @@ GameObject:
   - component: {fileID: 926821856}
   - component: {fileID: 926821855}
   m_Layer: 0
-  m_Name: "\u8FF7\u9727\u5340\u57DF"
+  m_Name: "\u8FF7\u9727\u5340\u57DF_\u85CD"
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -8458,7 +8464,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 926821854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 122.19, y: -5, z: 0}
+  m_LocalPosition: {x: 81.75, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8578,7 +8584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 156506608}
+  selectedFlowchart: {fileID: 823465336}
 --- !u!4 &939783646
 Transform:
   m_ObjectHideFlags: 1
@@ -13293,7 +13299,7 @@ GameObject:
   - component: {fileID: 1636884308}
   - component: {fileID: 1636884307}
   m_Layer: 0
-  m_Name: "\u8FF7\u9727\u5340\u57DF"
+  m_Name: "\u8FF7\u9727\u5340\u57DF_\u9752"
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -15889,7 +15895,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 2030208033}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 2030208032}
   variables: []
   description: 
   stepPause: 0
@@ -15944,7 +15951,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 74.752174
     y: 68
-    width: 99.09091
+    width: 100
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0

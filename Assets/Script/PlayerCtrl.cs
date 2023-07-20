@@ -273,9 +273,9 @@ public class PlayerCtrl : MonoBehaviour
 		Vector3 pos = transform.position + traDirectionIconOffset;
 		traDirectionIcon.position = pos;
 
-		mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-		iconDirection = (mousePos - transform.position).normalized;
-		float angle = Mathf.Atan2(iconDirection.y, iconDirection.x) * Mathf.Rad2Deg;
+		mousePos = cam.ScreenToWorldPoint(Input.mousePosition);							// 取得滑鼠座標轉換為世界座標
+		iconDirection = (mousePos - transform.position).normalized;						// 計算差值並標準化(只取其方向，但長度為1)
+		float angle = Mathf.Atan2(iconDirection.y, iconDirection.x) * Mathf.Rad2Deg;	// 計算旋轉角度
 		traDirectionIcon.eulerAngles = new Vector3(0, 0, angle);
 
 		// 取得當前物件的角度
