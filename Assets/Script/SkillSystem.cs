@@ -6,7 +6,9 @@ public class SkillSystem : MonoBehaviour
 {
 	public Transform[] skillSlot; // 技能欄位，用於接受技能的拖放
 	public int currentSkillIndex; // 當前選擇的技能
+
 	Skill skillData;
+	int keyboard;
 
 	private void Awake()
 	{
@@ -40,14 +42,14 @@ public class SkillSystem : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Z))
 		{
+			keyboard = 0;
 			currentSkillIndex = skillSlot[0].GetComponentInChildren<SkillDragDrop>().skillData.id;
 			SetCurrentSkill(currentSkillIndex);
-			// PlayerCtrl.instance.atkObject = skillSlot[0].GetComponent<Skill>().skillPrefab;
 			Debug.Log("快捷鍵Z： " + currentSkillIndex);
-			// currentSkillIndex = 0;
 		}
 		if (Input.GetKeyDown(KeyCode.X))
 		{
+			keyboard = 1;
 			currentSkillIndex = skillSlot[1].GetComponentInChildren<SkillDragDrop>().skillData.id;
 			SetCurrentSkill(currentSkillIndex);
 			// PlayerCtrl.instance.atkObject = skillSlot[1].GetComponent<Skill>().skillPrefab;
@@ -56,6 +58,7 @@ public class SkillSystem : MonoBehaviour
 		}
 		if (Input.GetKeyDown(KeyCode.C))
 		{
+			keyboard = 2;
 			currentSkillIndex = skillSlot[2].GetComponentInChildren<SkillDragDrop>().skillData.id;
 			SetCurrentSkill(currentSkillIndex);
 			// PlayerCtrl.instance.atkObject = skillSlot[2].GetComponent<Skill>().skillPrefab;
@@ -63,15 +66,11 @@ public class SkillSystem : MonoBehaviour
 			// currentSkillIndex = 2;
 		}
 
-		if (currentSkillIndex == 0)
+		if (currentSkillIndex >= 0 && currentSkillIndex < SaveManager.instance.playerData.haveSkill.Count)
 		{
-			return;
+			PlayerCtrl.instance.atkObject = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.skillPrefab;
+			Debug.Log(currentSkillIndex + PlayerCtrl.instance.atkObject.name);
 		}
-		else
-		{
-			PlayerCtrl.instance.atkObject = skillSlot[currentSkillIndex].GetComponentInChildren<SkillDragDrop>().skillData.skillPrefab;
-		}
-		// Debug.Log(currentSkillIndex + PlayerCtrl.instance.atkObject.name);
 
 		// 根據當前技能索引設置攻擊物件
 		/*

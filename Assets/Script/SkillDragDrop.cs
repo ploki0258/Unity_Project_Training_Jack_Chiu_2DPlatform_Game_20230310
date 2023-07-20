@@ -129,6 +129,6 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		}
 		
 		// cloneObject.GetComponent<CanvasGroup>().blocksRaycasts = true;  // 打開射線檢測
-															// Debug.Log("結束拖曳");
+		// Debug.Log("結束拖曳");
 	}
 }
