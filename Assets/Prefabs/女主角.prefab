@@ -383,6 +383,9 @@ MonoBehaviour:
   atkSpeed: 500
   attack: 100
   defense: 100
+  traDirectionIcon: {fileID: 0}
+  traDirectionIconOffset: {x: 1, y: 1, z: 0}
+  cam: {fileID: 0}
   coinInfo: {fileID: 0}
   skillInfo: {fileID: 0}
   showCoinAni: {fileID: 0}

@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,6 +35,11 @@ public class PlayerCtrl : MonoBehaviour
 	public float attack = 100f;
 	[Header("防禦力"), Range(10, 1000)]
 	public float defense = 100f;
+	[SerializeField, Header("攻擊方向圖示")]
+	Transform traDirectionIcon = null;
+	[SerializeField, Header("攻擊方向圖示位移")]
+	Vector3 traDirectionIconOffset;
+	public Camera cam;
 
 	// 怪物使用
 	[Header("資訊欄顯示")]
@@ -58,6 +64,8 @@ public class PlayerCtrl : MonoBehaviour
 	bool 翻轉 = false;
 	bool isWindowsOpen = WindowsManager.instance.IsWindowsOpen();   // 視窗是否被開啟
 	int skillID;
+	Vector3 mousePos;
+	Vector2 iconDirection;
 	#endregion
 
 	// 在整個專案全域宣告一個instance
@@ -115,8 +123,9 @@ public class PlayerCtrl : MonoBehaviour
 		PlayerMove();
 		Jump();
 		Attack();
-		Panacea();
 		Dead();
+		Panacea();
+		UpdateDirectionIconPos();
 
 		// speedAtk += itemNormalValue.提升攻擊速度;
 		// Debug.Log("以提升數值");
@@ -243,7 +252,6 @@ public class PlayerCtrl : MonoBehaviour
 		if (SaveManager.instance.playerData.playerHP <= 0)
 		{
 			ani.SetTrigger("die");
-			// SaveManager.instance.SaveUser();
 			Destroy(this);  // 關閉此腳本
 		}
 	}
@@ -255,6 +263,32 @@ public class PlayerCtrl : MonoBehaviour
 	public void TakeDamage(float hurt)
 	{
 		SaveManager.instance.playerData.playerHP -= hurt;
+	}
+
+	/// <summary>
+	/// 更新攻擊方向圖示的座標
+	/// </summary>
+	void UpdateDirectionIconPos()
+	{
+		Vector3 pos = transform.position + traDirectionIconOffset;
+		traDirectionIcon.position = pos;
+
+		mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+		iconDirection = (mousePos - transform.position).normalized;
+		float angle = Mathf.Atan2(iconDirection.y, iconDirection.x) * Mathf.Rad2Deg;
+		traDirectionIcon.eulerAngles = new Vector3(0, 0, angle);
+
+		// 取得當前物件的角度
+		// float degree = traDirectionIcon.rotation.eulerAngles.z;
+		// float radian = Mathf.PI / 180 * degree;
+
+		// traDirectionIcon.rotation = degree;
+
+		// float x = (float)Math.Cos(radian);
+		// float x = Mathf.Cos(radian);
+		// float y = Mathf.Sin(radian);
+		// Vector3 movent = new Vector3(x, y, 0f) * SaveManager.instance.playerData.playerAttackSpeed * Time.deltaTime;
+		// traDirectionIcon.position += movent;
 	}
 
 	/// <summary>

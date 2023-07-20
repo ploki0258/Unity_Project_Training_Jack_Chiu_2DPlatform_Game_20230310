@@ -14,11 +14,14 @@ public class AttackObject : MonoBehaviour
 	// 土牆技能
 	private void Update()
 	{
-		timer -= Time.deltaTime;
-		if (timer <= 0)
+		/*if (skillData.id == 12)
 		{
-			Destroy(this.gameObject);
-		}
+			timer -= Time.deltaTime;
+			if (timer <= 0)
+			{
+				Destroy(this.gameObject);
+			}
+		}*/
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
