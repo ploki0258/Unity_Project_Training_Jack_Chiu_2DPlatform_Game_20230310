@@ -17,7 +17,8 @@ MonoBehaviour:
   Pre_id: 0
   skillName: "\u571F\u7246"
   skillIcon: {fileID: 21300000, guid: 77f8cd2d220d3da46afa5b8cf419d79a, type: 3}
-  skillPrefab: {fileID: 0}
+  skillPrefab: {fileID: 2966934018895787912, guid: 98c4f356b4e69d24780327cc938df57e,
+    type: 3}
   skillCate: {r: 0.9433962, g: 0.60973054, b: 0.084549636, a: 1}
   isSpecial: 0
   attackDis: "\u9577\u51FA\u4E00\u9053\u571F\u7246"

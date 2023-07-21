@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SkillSystem : MonoBehaviour
 {
 	public Transform[] skillSlot; // 技能欄位，用於接受技能的拖放
-	public int currentSkillIndex; // 當前選擇的技能
+	public int currentSkillIndex; // 當前選擇的技能ID
+	public Color textColor = new Color();
 
 	Skill skillData;
 	int keyboard;
@@ -28,12 +30,21 @@ public class SkillSystem : MonoBehaviour
 	{
 		// 在這裡可以執行相應的施放技能的行為
 		currentSkillIndex = skill;
+
+		// 如果 技能ID >= 0 且 已擁有該技能時
+		// 才設置攻擊物件
+		if (currentSkillIndex >= 0 && SaveManager.instance.playerData.IsHaveSkill(currentSkillIndex))
+		{
+			PlayerCtrl.instance.atkObject = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.skillPrefab;
+			Debug.Log($"<color=yellow>{currentSkillIndex + PlayerCtrl.instance.atkObject.name}</color>");
+			Debug.Log($"<Color=blue>{keyboard}</color>");
+		}
 	}
 
 	/// <summary>
 	/// 切換攻擊物件
 	/// </summary>
-	void SwitchAtkObject()
+	public void SwitchAtkObject()
 	{
 		List<int> skillPrefabs = SaveManager.instance.playerData.haveSkill;
 
@@ -43,45 +54,61 @@ public class SkillSystem : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Z))
 		{
 			keyboard = 0;
-			currentSkillIndex = skillSlot[0].GetComponentInChildren<SkillDragDrop>().skillData.id;
-			SetCurrentSkill(currentSkillIndex);
+
+			if (skillSlot[0].GetComponentInChildren<SkillDragDrop>())
+			{
+				currentSkillIndex = skillSlot[0].GetComponentInChildren<SkillDragDrop>().skillData.id;
+				SetCurrentSkill(currentSkillIndex);
+			}
 			Debug.Log("快捷鍵Z： " + currentSkillIndex);
 		}
 		if (Input.GetKeyDown(KeyCode.X))
 		{
 			keyboard = 1;
-			currentSkillIndex = skillSlot[1].GetComponentInChildren<SkillDragDrop>().skillData.id;
-			SetCurrentSkill(currentSkillIndex);
-			// PlayerCtrl.instance.atkObject = skillSlot[1].GetComponent<Skill>().skillPrefab;
+
+			if (skillSlot[1].GetComponentInChildren<SkillDragDrop>())
+			{
+				currentSkillIndex = skillSlot[1].GetComponentInChildren<SkillDragDrop>().skillData.id;
+				SetCurrentSkill(currentSkillIndex);
+			}
 			Debug.Log("快捷鍵X： " + currentSkillIndex);
-			// currentSkillIndex = 1;
 		}
 		if (Input.GetKeyDown(KeyCode.C))
 		{
 			keyboard = 2;
-			currentSkillIndex = skillSlot[2].GetComponentInChildren<SkillDragDrop>().skillData.id;
-			SetCurrentSkill(currentSkillIndex);
-			// PlayerCtrl.instance.atkObject = skillSlot[2].GetComponent<Skill>().skillPrefab;
+
+			if (skillSlot[2].GetComponentInChildren<SkillDragDrop>())
+			{
+				currentSkillIndex = skillSlot[2].GetComponentInChildren<SkillDragDrop>().skillData.id;
+				SetCurrentSkill(currentSkillIndex);
+			}
 			Debug.Log("快捷鍵C： " + currentSkillIndex);
+
+			// PlayerCtrl.instance.atkObject = skillSlot[2].GetComponent<Skill>().skillPrefab;
 			// currentSkillIndex = 2;
 		}
-
-		if (currentSkillIndex >= 0 && currentSkillIndex < SaveManager.instance.playerData.haveSkill.Count)
+		/*
+		for (int i = 0; i < 3; i++)
 		{
-			PlayerCtrl.instance.atkObject = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.skillPrefab;
-			Debug.Log(currentSkillIndex + PlayerCtrl.instance.atkObject.name);
-		}
+			if (i == keyboard)
+			{
+				skillSlot[i].GetComponentInChildren<Image>().color = new Color(255f, 255f, 255f, 1f);
+			}
+			else
+			{
+				skillSlot[i].GetComponentInChildren<Image>().color = new Color(255f, 255f, 255f, 0.8f);
+			}
+		}*/
 
 		// 根據當前技能索引設置攻擊物件
 		/*
 		if (currentSkillIndex >= 0)
-		   {
-		int skillID = skillData.id;
-		skillSystem.SetCurrentSkill(skillID);
-		PlayerCtrl.instance.atkObject = skillSlot[currentSkillIndex].GetComponent<SkillDragDrop>().skillData.skillPrefab;
-		Debug.Log("切換為：" + skill.skillPrefab.name);
-		   }
+		{
+			int skillID = skillData.id;
+			skillSystem.SetCurrentSkill(skillID);
+			PlayerCtrl.instance.atkObject = skillSlot[currentSkillIndex].GetComponent<SkillDragDrop>().skillData.skillPrefab;
+			Debug.Log("切換為：" + skill.skillPrefab.name);
+		}
 		*/
 	}
-
 }

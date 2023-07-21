@@ -6,23 +6,23 @@ public class Enemy : MonoBehaviour
 {
 	#region 欄位
 	[Header("怪物最大血量"), Range(100, 1000)]
-	[SerializeField] float hpMonsterMax = 100f;
+	public float hpMonsterMax = 100f;
 	[Header("血條")]
-	[SerializeField] Image barHP = null;
+	public Image barHP = null;
 	[Header("怪物攻擊力"), Range(10, 1000)]
-	[SerializeField] float atkMonster = 5f;
+	public float atkMonster = 5f;
 	[Header("生成點")]
-	[SerializeField] Transform point = null;
+	public Transform point = null;
 	[Header("怪物移動速度"), Range(0, 30)]
-	[SerializeField] float speedMonster = 5f;
+	public float speedMonster = 5f;
 	[Header("追蹤距離")]
-	[SerializeField] float disChase = 8f;
+	public float disChase = 8f;
 	[Header("掉落(技能)道具")]
-	[SerializeField] GameObject itemSkill = null;
+	public GameObject itemSkill = null;
 	[Header("掉落機率"), Tooltip("怪物的掉落機率"), Range(1, 10)]
 	public float probDrop = 5f;
 	[Header("被傷害值")]
-	[SerializeField] float damage;
+	public float damage;
 
 	/*
     [Header("資訊欄顯示")]
@@ -184,24 +184,24 @@ public class Enemy : MonoBehaviour
 			TakeDamageMonster(damage);
 			// Debug.Log(damage);
 
-
 			if (hpMonster <= 0)
 			{
-				// 每消失一隻怪物 計數器就-1
-				spawnSystem.enemyCount--;
+				/*if (MistManager.instance.inMist_cyan == false)
+					// 每消失一隻怪物 計數器就-1
+					spawnSystem.enemyCount--;
+				*/
+
 				ani.SetTrigger("damage");
 				isDeath = true;
 				Invoke("Dead", 1f);
 
-				if (MistManager.instance.inMist_cyan == true)
-					return;
-
 				if (MistManager.instance.inMist_cyan == false)
 				{
-					// 如果 目前生成的怪物數量 小於 最大生成數量的話 則生成怪物
-					if (spawnSystem.enemyCount < spawnSystem.enemyCountMax && spawnSystem.enemyCount == 0)
+					// 如果 目前生成的怪物數量 小於 最大生成數量的話 而且 生成的怪物數量為0 則於5秒後生成怪物
+					if (spawnSystem.enemyCount == 0)
 					{
-						InvokeRepeating("spawnSystem.SpawnEnemy", 0, spawnSystem.interval);
+						spawnSystem.interval = 10;
+						// InvokeRepeating("spawnSystem.SpawnEnemy", 5f, spawnSystem.interval);
 					}
 				}
 			}

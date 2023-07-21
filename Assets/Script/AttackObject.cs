@@ -11,17 +11,9 @@ public class AttackObject : MonoBehaviour
 
 	private float timer;
 
-	// 土牆技能
 	private void Update()
 	{
-		/*if (skillData.id == 12)
-		{
-			timer -= Time.deltaTime;
-			if (timer <= 0)
-			{
-				Destroy(this.gameObject);
-			}
-		}*/
+		// SkillEffectButton();
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -43,12 +35,45 @@ public class AttackObject : MonoBehaviour
 		*/
 	}
 
-	void SkillAttackEffect(int ID)
+	void SkillEffectButton()
 	{
-		ID = skillData.id;
-		if (ID == 0)
+		if (skillData != null)
 		{
-			Debug.Log("這是" + skillData.skillName);
+			if (skillData.skillName == "火球術") FireSkill();
+			if (skillData.skillName == "風刃") WindSkill();
+			if (skillData.skillName == "冰椎刺") IceSkill();
+			if (skillData.skillName == "土牆") TerraSkill();
 		}
+	}
+
+	// 火球術技能
+	void FireSkill()
+	{
+
+	}
+
+	// 風刃技能
+	void WindSkill()
+	{
+
+	}
+
+	// 冰椎刺技能
+	void IceSkill()
+	{
+		Enemy.instance.speedMonster -= skillData.enemySlowSpeed;
+	}
+
+	// 土牆技能
+	void TerraSkill()
+	{
+		/*if (skillData.id == 12)
+		{
+			timer -= Time.deltaTime;
+			if (timer <= 0)
+			{
+				Destroy(this.gameObject);
+			}
+		}*/
 	}
 }
