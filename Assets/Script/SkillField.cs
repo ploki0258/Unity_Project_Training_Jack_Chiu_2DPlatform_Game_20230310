@@ -132,7 +132,7 @@ public class SkillField : MonoBehaviour
 		// 判斷能否學習技能
 		if (SaveManager.instance.playerData.moneyCount >= skillData.skillCoinCost && SaveManager.instance.playerData.skillPoint >= skillData.skillPointCost)
 		{
-			Debug.Log($"<color=#9006ff>升級技能： { + skillData.id + "\n已習得：" + skillData.skillName}</color>");
+			Debug.Log($"<color=#90ff06>升級技能： { + skillData.id + "\n已習得：" + skillData.skillName}</color>");
 			// 扣錢
 			SaveManager.instance.playerData.moneyCount -= skillData.skillCoinCost;
 			// 扣技能

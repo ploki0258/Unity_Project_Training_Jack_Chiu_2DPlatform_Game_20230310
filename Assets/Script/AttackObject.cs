@@ -13,7 +13,7 @@ public class AttackObject : MonoBehaviour
 
 	private void Update()
 	{
-		// SkillEffectButton();
+		SkillEffectButton();
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)

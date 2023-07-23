@@ -43,9 +43,9 @@ public class Enemy : MonoBehaviour
 
 	int coinNumber;
 	int skillNumber;
-	bool aniCoin = false;       // 播放金幣動畫
-	bool aniSkill = false;      // 播放技能點數動畫
 	bool isDeath = false;       // 是否死亡
+	// bool aniCoin = false;       // 播放金幣動畫
+	// bool aniSkill = false;      // 播放技能點數動畫
 	Transform player = null;
 	Rigidbody2D rig = null;
 	Animator ani = null;
@@ -134,8 +134,8 @@ public class Enemy : MonoBehaviour
 	{
 		if (isDeath == true)
 		{
-			int coinNumber = Random.Range(10, 100) * 10;    // 獲得隨機金幣數量
-			int skillNumber = Random.Range(1, 10) * 10;     // 獲得隨機技能點數
+			coinNumber = Random.Range(10, 100) * 10;    // 獲得隨機金幣數量
+			skillNumber = Random.Range(1, 10) * 10;     // 獲得隨機技能點數
 
 			// 顯示資訊欄文字
 			PlayerCtrl.instance.coinInfo.text = "+" + coinNumber + "金幣";

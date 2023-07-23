@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SkillSystem : MonoBehaviour
 {
 	public Transform[] skillSlot; // 技能欄位，用於接受技能的拖放
+	[Tooltip("當前選擇的技能ID")]
 	public int currentSkillIndex; // 當前選擇的技能ID
 	public Color textColor = new Color();
 
@@ -57,7 +58,7 @@ public class SkillSystem : MonoBehaviour
 
 			if (skillSlot[0].GetComponentInChildren<SkillDragDrop>())
 			{
-				currentSkillIndex = skillSlot[0].GetComponentInChildren<SkillDragDrop>().skillData.id;
+				currentSkillIndex = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.id;
 				SetCurrentSkill(currentSkillIndex);
 			}
 			Debug.Log("快捷鍵Z： " + currentSkillIndex);
@@ -68,7 +69,7 @@ public class SkillSystem : MonoBehaviour
 
 			if (skillSlot[1].GetComponentInChildren<SkillDragDrop>())
 			{
-				currentSkillIndex = skillSlot[1].GetComponentInChildren<SkillDragDrop>().skillData.id;
+				currentSkillIndex = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.id;
 				SetCurrentSkill(currentSkillIndex);
 			}
 			Debug.Log("快捷鍵X： " + currentSkillIndex);
@@ -79,7 +80,7 @@ public class SkillSystem : MonoBehaviour
 
 			if (skillSlot[2].GetComponentInChildren<SkillDragDrop>())
 			{
-				currentSkillIndex = skillSlot[2].GetComponentInChildren<SkillDragDrop>().skillData.id;
+				currentSkillIndex = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.id;
 				SetCurrentSkill(currentSkillIndex);
 			}
 			Debug.Log("快捷鍵C： " + currentSkillIndex);
