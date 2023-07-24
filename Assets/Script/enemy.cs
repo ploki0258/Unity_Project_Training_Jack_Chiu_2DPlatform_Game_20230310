@@ -23,7 +23,8 @@ public class Enemy : MonoBehaviour
 	public float probDrop = 5f;
 	[Header("被傷害值")]
 	public float damage;
-
+	[SerializeField, Header("尋找物件的名稱")]
+	string objectName;
 	/*
     [Header("資訊欄顯示")]
     [SerializeField] Text coinInfo = null;
@@ -61,7 +62,7 @@ public class Enemy : MonoBehaviour
 		player = GameObject.Find("女主角").transform;
 		rig = GetComponent<Rigidbody2D>();
 		ani = GetComponent<Animator>();
-		spawnSystem = GameObject.Find("怪物生成點 史萊姆").GetComponent<SpawnSystem>();
+		spawnSystem = GameObject.Find(objectName).GetComponent<SpawnSystem>();
 	}
 
 	private void Start()

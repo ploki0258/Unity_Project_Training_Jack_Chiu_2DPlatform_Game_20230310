@@ -125,7 +125,7 @@ public class PlayerCtrl : MonoBehaviour
 		Attack();
 		Dead();
 		Panacea();
-		UpdateDirectionIconPos();
+		// UpdateDirectionIconPos();
 
 		// speedAtk += itemNormalValue.提升攻擊速度;
 		// Debug.Log("以提升數值");

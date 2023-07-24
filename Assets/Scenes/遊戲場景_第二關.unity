@@ -2546,7 +2546,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 608459329}
         m_TargetAssemblyTypeName: MeunManager, Assembly-CSharp
         m_MethodName: ReturnToHome
         m_Mode: 1
@@ -4952,7 +4952,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 571178722}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -7880,13 +7880,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 114.79984, y: -0.12648815}
-      - {x: 114.64231, y: 5.3949046}
-      - {x: 45.784683, y: 5.478936}
-      - {x: -25.424015, y: 5.384618}
-      - {x: -25.448484, y: -5.358148}
-      - {x: 114.74201, y: -5.411275}
-      - {x: 114.80433, y: -5.265757}
+    - - {x: -25.379208, y: -5.3826437}
+      - {x: 114.57371, y: -5.350169}
+      - {x: 114.58811, y: 5.3858}
+      - {x: -25.390951, y: 5.391747}
 --- !u!4 &851756844
 Transform:
   m_ObjectHideFlags: 0
@@ -8617,7 +8614,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &957820373
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8995,6 +8992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interval: 2
+  isItem: 0
   prefabEnemy:
   - {fileID: 3456010384803124554, guid: 7f07cdb854e62c54f936d0bd125b7b12, type: 3}
   prefabItem: []
@@ -9005,12 +9003,13 @@ MonoBehaviour:
   offset: {x: 0, y: 2}
   min_X: -5
   max_X: 5
-  min_Y: 3
-  max_Y: 3
+  min_Y: 4
+  max_Y: 4
   playerDis: 0
-  isItem: 0
-  enemyCountMax: 0
+  enemyCountMax: 5
+  itemCountMax: 0
   enemyCount: 0
+  itemCount: 0
 --- !u!1 &995428741
 GameObject:
   m_ObjectHideFlags: 0
@@ -11247,6 +11246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interval: 2
+  isItem: 0
   prefabEnemy:
   - {fileID: 3456010384803124554, guid: 7f07cdb854e62c54f936d0bd125b7b12, type: 3}
   prefabItem: []
@@ -11257,12 +11257,13 @@ MonoBehaviour:
   offset: {x: 0, y: 2}
   min_X: -5
   max_X: 5
-  min_Y: 3
-  max_Y: 3
+  min_Y: 4
+  max_Y: 4
   playerDis: 0
-  isItem: 0
-  enemyCountMax: 0
+  enemyCountMax: 3
+  itemCountMax: 0
   enemyCount: 0
+  itemCount: 0
 --- !u!1 &1412352393
 GameObject:
   m_ObjectHideFlags: 0
@@ -16265,6 +16266,7 @@ MonoBehaviour:
   - {fileID: 1094736747}
   - {fileID: 16488959}
   currentSkillIndex: 0
+  textColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &2074715994
 MonoBehaviour:
   m_ObjectHideFlags: 0

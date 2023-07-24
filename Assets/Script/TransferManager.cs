@@ -18,7 +18,7 @@ public class TransferManager : MonoBehaviour
 	private void Awake()
 	{
 		ani = GameObject.Find("傳送區群組").GetComponentInChildren<Animator>();
-		aniTransform = GameObject.Find("場景切換").GetComponent<Animator>();
+		// aniTransform = GameObject.Find("場景切換").GetComponent<Animator>();
 	}
 
 	private void Update()
@@ -85,7 +85,7 @@ public class TransferManager : MonoBehaviour
 	/// </summary>
 	public void ChangeScene()
 	{
-		StartCoroutine(ChangeSceneAni());
+		// StartCoroutine(ChangeSceneAni());
 	}
 
 	/// <summary>

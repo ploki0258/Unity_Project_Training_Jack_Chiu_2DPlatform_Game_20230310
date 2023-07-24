@@ -1,8 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class WindowsManager
 {
+	#region å–®ä¾‹
 	public static WindowsManager instance
 	{
 		get
@@ -13,38 +15,45 @@ public class WindowsManager
 		}
 	}
 	static WindowsManager _instance = null;
+	#endregion
 
+	public List<int> windowsList = new List<int>();
+	
 	public void Start()
 	{
-		// ªì©l¤Æ®É­«¸mµøµ¡¦Cªí Á×§K¤W¤@Ãöªºµøµ¡¼vÅT³o¤@Ãö
+		// åˆå§‹åŒ–æ™‚é‡ç½®è¦–çª—åˆ—è¡¨ é¿å…ä¸Šä¸€é—œçš„è¦–çª—å½±éŸ¿é€™ä¸€é—œ
 		windowsList = new List<int>();
 	}
 
-	List<int> windowsList = new List<int>();
+	public void Update()
+	{
+		Debug.Log(windowsList);
+	}
 
 	public void AddWindows(int transformID)
 	{
-		for(int i = 0; i < windowsList.Count; i++)
+		for (int i = 0; i < windowsList.Count; i++)
 		{
 			if (transformID == windowsList[i])
 				return;
 		}
 		windowsList.Add(transformID);
-		// Debug.Log("²{¦b¦³ " + windowsList.Count + " ­Óµøµ¡");
+		Debug.Log($"<color=yellow>ç¾åœ¨æœ‰ {windowsList.Count} å€‹è¦–çª—</color>");
 	}
+
 	public void RemoveWindows(int transformID)
 	{
-		for (int i = windowsList.Count - 1; i >= 0 ; i--)
+		for (int i = windowsList.Count - 1; i >= 0; i--)
 		{
 			if (transformID == windowsList[i])
 			{
 				windowsList.RemoveAt(i);
 			}
 		}
-		// Debug.Log("²{¦b¦³ " + windowsList.Count + " ­Óµøµ¡");
+		Debug.Log($"<color=#00ffff>ç¾åœ¨æœ‰ {windowsList.Count} å€‹è¦–çª—</color>");
 	}
 
-	/// <summary>¬O§_¦³µøµ¡³Q¶}±Ò</summary>
+	/// <summary>æ˜¯å¦æœ‰è¦–çª—è¢«é–‹å•Ÿ</summary>
 	public bool IsWindowsOpen()
 	{
 		return windowsList.Count > 0;

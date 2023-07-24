@@ -5,6 +5,8 @@ public class SpawnSystem : MonoBehaviour
 	// 基本欄位
 	[Header("生成間隔"), Range(0, 10)]
 	public float interval = 0f;
+	[Header("生成類別"), Tooltip("是否生成道具")]
+	[SerializeField] bool isItem = false;
 	[Header("怪物預製物")]
 	[SerializeField] GameObject[] prefabEnemy = null;
 	[Header("道具預製物")]
@@ -31,8 +33,6 @@ public class SpawnSystem : MonoBehaviour
 	[SerializeField] float max_Y;
 	[Header("與玩家的距離")]
 	[SerializeField] float playerDis;
-	[Header("生成類別"), Tooltip("是否生成道具")]
-	[SerializeField] bool isItem = false;
 	[Header("最大敵人生成數量"), Tooltip("敵人生成最大數量"), Range(0, 10)]
 	public int enemyCountMax;
 	[Header("最大道具生成數量"), Tooltip("道具生成最大數量"), Range(0, 10)]
