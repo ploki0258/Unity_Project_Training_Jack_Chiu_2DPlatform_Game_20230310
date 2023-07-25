@@ -62,7 +62,8 @@ public class Enemy : MonoBehaviour
 		player = GameObject.Find("女主角").transform;
 		rig = GetComponent<Rigidbody2D>();
 		ani = GetComponent<Animator>();
-		spawnSystem = GameObject.Find(objectName).GetComponent<SpawnSystem>();
+		spawnSystem = FindObjectOfType<SpawnSystem>();
+		// spawnSystem = GameObject.Find(objectName).GetComponent<SpawnSystem>();
 	}
 
 	private void Start()

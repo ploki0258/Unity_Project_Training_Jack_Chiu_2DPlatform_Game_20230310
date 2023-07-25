@@ -18,7 +18,7 @@ public class WindowsManager
 	#endregion
 
 	public List<int> windowsList = new List<int>();
-	
+
 	public void Start()
 	{
 		// 初始化時重置視窗列表 避免上一關的視窗影響這一關
