@@ -329,14 +329,12 @@ public class PlayerCtrl : MonoBehaviour
 				AudioClip sound = SoundManager.instance.attack;
 				SoundManager.instance.PlaySound(sound, 0.7f, 2f);
 			}
-
-			// Enemy.instance.speedMonster -= skillData.enemySlowSpeed;
 		}
 
 		if (atkObject.name == "土牆_12")
 		{
-			mousePos = cam.ScreenToWorldPoint(Input.mousePosition);     // 取得滑鼠座標轉換為世界座標
-			iconDirection = (mousePos - transform.position).normalized; // 計算差值並標準化(只取其方向，但長度為1)
+			mousePos = cam.ScreenToWorldPoint(Input.mousePosition);			// 取得滑鼠座標轉換為世界座標
+			// iconDirection = (mousePos - transform.position).normalized;	// 計算差值並標準化(只取其方向，但長度為1)
 
 			// 生成子彈並發射
 			if (atkObject != null && 翻轉 != true)
@@ -352,12 +350,12 @@ public class PlayerCtrl : MonoBehaviour
 			{
 				// tempAtkObject = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
 				tempAtkObject = Instantiate(atkObject, new Vector3(mousePos.x, -2.7f, 0f), Quaternion.Euler(0f, 180f, 0f));
+				// Attack(atkObject, new Vector3(atkPoint.position.x, 0f, atkPoint.position.z) + new Vector3(1.5f, 0f, 0f), Quaternion.Euler(0f, 0f, 0f));
 				// tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
 
 				AudioClip sound = SoundManager.instance.attack;
 				SoundManager.instance.PlaySound(sound, 0.7f, 2f);
 			}
-			// Attack(atkObject, new Vector3(atkPoint.position.x, 0f, atkPoint.position.z) + new Vector3(1.5f, 0f, 0f), Quaternion.Euler(0f, 0f, 0f));
 		}
 	}
 

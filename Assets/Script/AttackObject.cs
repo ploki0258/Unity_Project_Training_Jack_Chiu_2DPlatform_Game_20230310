@@ -10,6 +10,7 @@ public class AttackObject : MonoBehaviour
 	Skill skillData;
 
 	private float timer;
+	private bool isTerraSkill = false;
 	private float originalSpeedMonster;
 	PolygonCollider2D polygonCollider;
 
@@ -38,7 +39,7 @@ public class AttackObject : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		// 如果 子彈 碰到 地板 或 敵人 就消失
-		if (collision.gameObject.tag == "Floor" || collision.gameObject.tag == "enemy" || skillData.skillName != "土牆")
+		if (collision.gameObject.tag == "Floor" || collision.gameObject.tag == "enemy" || isTerraSkill == false)
 		{
 			// 如果 不在物理攻擊(MP <= 0)時 消失自己
 			if (isWandAttack == false)
@@ -77,7 +78,8 @@ public class AttackObject : MonoBehaviour
 	// 風刃技能
 	void WindSkill()
 	{
-		// PlayerCtrl.instance.traDirectionIcon.gameObject.SetActive(true);
+		Vector3 movent = PlayerCtrl.instance.traDirectionIcon.eulerAngles * SaveManager.instance.playerData.playerAttackSpeed * Time.deltaTime;
+		transform.position += movent;
 	}
 
 	// 冰椎刺技能
@@ -103,6 +105,7 @@ public class AttackObject : MonoBehaviour
 	// 土牆技能
 	void TerraSkill()
 	{
+		isTerraSkill = true;
 		if (timer > 0)
 		{
 			polygonCollider.isTrigger = false;
