@@ -30,5 +30,5 @@ MonoBehaviour:
   burntPos: {fileID: 0}
   enemyDis: 0
   enemySlowSpeed: 5
-  enemyDelayTime: 2
+  enemyDelayTime: 3
   skillHoldTime: 0

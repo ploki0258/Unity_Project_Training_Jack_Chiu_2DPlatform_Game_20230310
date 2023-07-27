@@ -10,6 +10,25 @@ public class AttackObject : MonoBehaviour
 	Skill skillData;
 
 	private float timer;
+	private float originalSpeedMonster;
+	PolygonCollider2D polygonCollider;
+
+	private void Awake()
+	{
+		if (isWandAttack == false)
+			polygonCollider = GameObject.Find("土牆_12").GetComponent<PolygonCollider2D>();
+
+		if (skillData)
+		{
+			originalSpeedMonster = Enemy.instance.speedMonster;
+		}
+	}
+
+	private void Start()
+	{
+		if (isWandAttack == false)
+			timer = skillData.skillHoldTime;
+	}
 
 	private void Update()
 	{
@@ -19,7 +38,7 @@ public class AttackObject : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		// 如果 子彈 碰到 地板 或 敵人 就消失
-		if (collision.gameObject.tag == "Floor" || collision.gameObject.tag == "enemy")
+		if (collision.gameObject.tag == "Floor" || collision.gameObject.tag == "enemy" || skillData.skillName != "土牆")
 		{
 			// 如果 不在物理攻擊(MP <= 0)時 消失自己
 			if (isWandAttack == false)
@@ -35,6 +54,9 @@ public class AttackObject : MonoBehaviour
 		*/
 	}
 
+	/// <summary>
+	/// 技能效果：各個技能效果
+	/// </summary>
 	void SkillEffectButton()
 	{
 		if (skillData != null)
@@ -55,27 +77,42 @@ public class AttackObject : MonoBehaviour
 	// 風刃技能
 	void WindSkill()
 	{
-		PlayerCtrl.instance.traDirectionIcon.gameObject.SetActive(true);
-
-
+		// PlayerCtrl.instance.traDirectionIcon.gameObject.SetActive(true);
 	}
 
 	// 冰椎刺技能
 	void IceSkill()
 	{
-		Enemy.instance.speedMonster -= skillData.enemySlowSpeed;
+		bool speed = Enemy.instance.speedMonster == originalSpeedMonster;
+
+		if (skillData.enemyDelayTime > 0)
+		{
+			Enemy.instance.speedMonster -= skillData.enemySlowSpeed;
+			Debug.Log("降低敵人速度" + speed);
+		}
+
+		skillData.enemyDelayTime -= Time.deltaTime;
+
+		if (skillData.enemyDelayTime <= 0)
+		{
+			Enemy.instance.speedMonster = originalSpeedMonster;
+			Debug.Log("恢復敵人速度" + speed);
+		}
 	}
 
 	// 土牆技能
 	void TerraSkill()
 	{
-		/*if (skillData.id == 12)
+		if (timer > 0)
 		{
-			timer -= Time.deltaTime;
-			if (timer <= 0)
-			{
-				Destroy(this.gameObject);
-			}
-		}*/
+			polygonCollider.isTrigger = false;
+		}
+
+		timer -= Time.deltaTime;
+
+		if (timer <= 0)
+		{
+			Destroy(this.gameObject);
+		}
 	}
 }

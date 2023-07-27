@@ -368,8 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40f9af641938b546b9f357240c7463f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atkObject: {fileID: 2274585281840268798, guid: 26d604379cbae5545a77beae96d4be67,
-    type: 3}
+  atkObject: {fileID: 0}
   atkPoint: {fileID: 5252116328570202490}
   barHP: {fileID: 0}
   barMP: {fileID: 0}
