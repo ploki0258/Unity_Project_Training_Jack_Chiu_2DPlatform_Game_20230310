@@ -55,6 +55,8 @@ public class AttackObject : MonoBehaviour
 	// 風刃技能
 	void WindSkill()
 	{
+		PlayerCtrl.instance.traDirectionIcon.gameObject.SetActive(true);
+
 
 	}
 

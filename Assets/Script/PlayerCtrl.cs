@@ -35,8 +35,8 @@ public class PlayerCtrl : MonoBehaviour
 	public float attack = 100f;
 	[Header("防禦力"), Range(10, 1000)]
 	public float defense = 100f;
-	[SerializeField, Header("攻擊方向圖示")]
-	Transform traDirectionIcon = null;
+	[Header("攻擊方向圖示")]
+	public Transform traDirectionIcon = null;
 	[SerializeField, Header("攻擊方向圖示位移")]
 	Vector3 traDirectionIconOffset;
 	public Camera cam;
@@ -62,8 +62,9 @@ public class PlayerCtrl : MonoBehaviour
 	[Tooltip("用來儲存玩家是否站在地板上")]
 	private bool onFloor = false;
 	bool 翻轉 = false;
-	bool isWindowsOpen = WindowsManager.instance.IsWindowsOpen();   // 視窗是否被開啟
+	// bool isWindowsOpen = WindowsManager.instance.IsWindowsOpen();   // 視窗是否被開啟
 	int skillID;
+	GameObject tempAtkObject;
 	Vector3 mousePos;
 	Vector2 iconDirection;
 	#endregion
@@ -122,10 +123,9 @@ public class PlayerCtrl : MonoBehaviour
 	{
 		PlayerMove();
 		Jump();
-		Attack();
+		SpellAttack();
 		Dead();
 		Panacea();
-		// UpdateDirectionIconPos();
 
 		// speedAtk += itemNormalValue.提升攻擊速度;
 		// Debug.Log("以提升數值");
@@ -145,8 +145,9 @@ public class PlayerCtrl : MonoBehaviour
 		// 移動
 		float ad = Input.GetAxisRaw("Horizontal");  // 取得水平值
 
-		if (isWindowsOpen)                          // 如果有視窗被開啟 就不移動
+		/*if (isWindowsOpen)                          // 如果有視窗被開啟 就不移動
 			ad = 0;
+		*/
 
 		rig.velocity = new Vector2(ad * SaveManager.instance.playerData.playerSpeed, rig.velocity.y);
 
@@ -160,13 +161,13 @@ public class PlayerCtrl : MonoBehaviour
 		ani.SetBool("isRun", ad != 0);
 
 		// 翻轉
-		if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && isWindowsOpen == false)
+		if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)))
 		{
 			this.transform.rotation = Quaternion.AngleAxis(0, new Vector3(0, 1, 0));
 			翻轉 = false;
 		}
 
-		if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && isWindowsOpen == false)
+		if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)))
 		{
 			this.transform.rotation = Quaternion.AngleAxis(180, new Vector3(0, 1, 0));
 			翻轉 = true;
@@ -193,7 +194,7 @@ public class PlayerCtrl : MonoBehaviour
 	void Jump()
 	{
 		// 如果 按下空白建(或上) 以及 onFloor = true 就跳躍
-		if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && onFloor != false && isWindowsOpen == false)
+		if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && onFloor != false)
 		{
 			// rig.velocity = new Vector2(rig.velocity.x, 跳躍力);
 			rig.AddForce(transform.up * SaveManager.instance.playerData.playerJump, ForceMode2D.Impulse);
@@ -205,11 +206,14 @@ public class PlayerCtrl : MonoBehaviour
 	}
 
 	/// <summary>
-	/// 攻擊功能：發射子彈
+	/// 攻擊功能：施放法術
 	/// </summary>
-	void Attack()
+	/// <param name="atkObject">攻擊物件</param>
+	/// <param name="position">生成座標</param>
+	/// <param name="rotation">生成角度</param>
+	void Attack(GameObject atkObject, Vector3 position, Quaternion rotation)
 	{
-		if (Input.GetKeyDown(KeyCode.Mouse0) && isWindowsOpen == false)
+		if (Input.GetKeyDown(KeyCode.Mouse0))
 		{
 			ani.SetTrigger("attack");
 
@@ -227,20 +231,59 @@ public class PlayerCtrl : MonoBehaviour
 			// 生成子彈並發射
 			if (atkObject != null && 翻轉 != true)
 			{
-				GameObject temp = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 0f, 0f));
-				temp.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
+				tempAtkObject = Instantiate(atkObject, position, rotation);
+				// tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
 
 				AudioClip sound = SoundManager.instance.attack;
 				SoundManager.instance.PlaySound(sound, 0.7f, 2f);
 			}
 			else if (atkObject != null && 翻轉 == true)
 			{
-				GameObject temp = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 0f, 180f));
-				temp.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
+				tempAtkObject = Instantiate(atkObject, position, rotation);
+				// temp.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
 
 				AudioClip sound = SoundManager.instance.attack;
 				SoundManager.instance.PlaySound(sound, 0.7f, 2f);
 			}
+		}
+	}
+
+	private void SpellAttack()
+	{
+
+		if (atkObject != null)
+		{
+			if (atkObject.name == "火球_0")
+			{
+				Attack(atkObject, atkPoint.position, atkPoint.rotation);
+				tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
+			}
+
+			if (atkObject.name == "風刃_4")
+			{
+				traDirectionIcon.gameObject.SetActive(true);
+				UpdateDirectionIconPos();
+			}
+			else
+			{
+				traDirectionIcon.gameObject.SetActive(false);
+			}
+
+			if (atkObject.name == "冰椎刺_8")
+			{
+				Attack(atkObject, atkPoint.position, atkPoint.rotation);
+				tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
+			}
+
+			if (atkObject.name == "土牆_12")
+			{
+				Attack(atkObject, new Vector3(atkPoint.position.x, 0f, atkPoint.position.z) + new Vector3(1.5f, 0f, 0f), Quaternion.Euler(0f, 0f, 0f));
+				tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
+			}
+		}
+		else
+		{
+			Attack(atkObject, atkPoint.position, atkPoint.rotation);
 		}
 	}
 
@@ -273,10 +316,13 @@ public class PlayerCtrl : MonoBehaviour
 		Vector3 pos = transform.position + traDirectionIconOffset;
 		traDirectionIcon.position = pos;
 
-		mousePos = cam.ScreenToWorldPoint(Input.mousePosition);							// 取得滑鼠座標轉換為世界座標
-		iconDirection = (mousePos - transform.position).normalized;						// 計算差值並標準化(只取其方向，但長度為1)
-		float angle = Mathf.Atan2(iconDirection.y, iconDirection.x) * Mathf.Rad2Deg;	// 計算旋轉角度
+		mousePos = cam.ScreenToWorldPoint(Input.mousePosition);                         // 取得滑鼠座標轉換為世界座標
+		iconDirection = (mousePos - transform.position).normalized;                     // 計算差值並標準化(只取其方向，但長度為1)
+		float angle = Mathf.Atan2(iconDirection.y, iconDirection.x) * Mathf.Rad2Deg;    // 計算旋轉角度
 		traDirectionIcon.eulerAngles = new Vector3(0, 0, angle);
+
+		Attack(atkObject, atkPoint.position, traDirectionIcon.rotation);
+		tempAtkObject.GetComponent<Rigidbody2D>().AddForce(traDirectionIcon.eulerAngles * SaveManager.instance.playerData.playerAttackSpeed);
 
 		// 取得當前物件的角度
 		// float degree = traDirectionIcon.rotation.eulerAngles.z;
