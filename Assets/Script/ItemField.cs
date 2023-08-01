@@ -9,11 +9,14 @@ public class ItemField : Windows<ItemField>
 	[Header("道具欄背景")]
 	[SerializeField] RectTransform itemFieldBG = null;
 
+	public bool isPaused;
+
 	protected override void Awake()
 	{
 		base.Awake();
 		openSpeed = 15f;    // 視窗開啟速度 = 15
 		ItemManager.instance.Initialization();
+		isPaused = FindObjectOfType<PlayerCtrl>().isPaused;
 	}
 
 	protected override void Start()
@@ -57,6 +60,7 @@ public class ItemField : Windows<ItemField>
 	{
 		base.Open();
 		// Cursor.lockState = CursorLockMode.None;
+		isPaused = true;
 		Time.timeScale = 0f;
 	}
 
@@ -65,6 +69,7 @@ public class ItemField : Windows<ItemField>
 	{
 		base.Close();
 		// Cursor.lockState = CursorLockMode.Locked;
+		isPaused = false;
 		Time.timeScale = 1f;
 	}
 

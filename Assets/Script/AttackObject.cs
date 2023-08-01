@@ -16,10 +16,6 @@ public class AttackObject : MonoBehaviour
 
 	private void Awake()
 	{
-		if (isWandAttack == false && skillData.skillName == "土牆")
-			boxCollider = FindObjectOfType<SkillDragDrop>().skillData.skillPrefab.GetComponent<BoxCollider2D>();
-		Debug.Log(boxCollider);
-
 		if (skillData)
 		{
 			originalSpeedMonster = Enemy.instance.speedMonster;
@@ -57,7 +53,7 @@ public class AttackObject : MonoBehaviour
 	}
 
 	/// <summary>
-	/// 技能效果：各個技能效果
+	/// 技能效果：執行各個技能效果
 	/// </summary>
 	void SkillEffectButton()
 	{
@@ -106,6 +102,10 @@ public class AttackObject : MonoBehaviour
 	// 土牆技能
 	void TerraSkill()
 	{
+		if (isWandAttack == false && skillData.skillName == "土牆")
+			boxCollider = FindObjectOfType<SkillDragDrop>().skillData.skillPrefab.GetComponent<BoxCollider2D>();
+		Debug.Log(boxCollider);
+
 		isTerraSkill = true;
 		if (timer > 0)
 		{
@@ -116,6 +116,7 @@ public class AttackObject : MonoBehaviour
 
 		if (timer <= 0)
 		{
+			boxCollider.isTrigger = true;
 			Destroy(this.gameObject);
 		}
 	}
