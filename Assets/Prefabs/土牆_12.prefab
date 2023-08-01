@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3948277096316094391}
   - component: {fileID: 4867005323339088687}
   - component: {fileID: 8460640480509477603}
-  - component: {fileID: 4538972507830093111}
+  - component: {fileID: 711204191067703065}
   m_Layer: 0
   m_Name: "\u571F\u7246_12"
   m_TagString: bullet
@@ -71,8 +71,8 @@ MonoBehaviour:
   damage: 10
   isWandAttack: 0
   skillData: {fileID: 11400000, guid: ef50dfe609123f54ea8a11de15bc5181, type: 2}
---- !u!60 &4538972507830093111
-PolygonCollider2D:
+--- !u!61 &711204191067703065
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -84,7 +84,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.23, y: -0.7}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -94,20 +94,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.6723528, y: 0.20802277}
-      - {x: 0.0426324, y: 0.1302988}
-      - {x: -0.21990593, y: 0.098524556}
-      - {x: -0.65027684, y: -0.011085555}
-      - {x: -1.010742, y: -0.5265783}
-      - {x: -1.2067752, y: -0.8167255}
-      - {x: -1.2403177, y: -1.0349816}
-      - {x: -0.9920693, y: -1.4715896}
-      - {x: 1.5183516, y: -1.5384877}
-      - {x: 1.6305968, y: -1.269732}
-      - {x: 1.7000021, y: -0.44994226}
-      - {x: 1.3857734, y: 0.2456584}
+  serializedVersion: 2
+  m_Size: {x: 2.88, y: 1.75}
+  m_EdgeRadius: 0
 --- !u!1 &8480483517356212546
 GameObject:
   m_ObjectHideFlags: 0

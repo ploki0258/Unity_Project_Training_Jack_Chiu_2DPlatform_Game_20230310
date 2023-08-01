@@ -12,12 +12,13 @@ public class AttackObject : MonoBehaviour
 	private float timer;
 	private bool isTerraSkill = false;
 	private float originalSpeedMonster;
-	PolygonCollider2D polygonCollider;
+	BoxCollider2D boxCollider;
 
 	private void Awake()
 	{
-		if (isWandAttack == false)
-			polygonCollider = GameObject.Find("土牆_12").GetComponent<PolygonCollider2D>();
+		if (isWandAttack == false && skillData.skillName == "土牆")
+			boxCollider = FindObjectOfType<SkillDragDrop>().skillData.skillPrefab.GetComponent<BoxCollider2D>();
+		Debug.Log(boxCollider);
 
 		if (skillData)
 		{
@@ -108,7 +109,7 @@ public class AttackObject : MonoBehaviour
 		isTerraSkill = true;
 		if (timer > 0)
 		{
-			polygonCollider.isTrigger = false;
+			boxCollider.isTrigger = false;
 		}
 
 		timer -= Time.deltaTime;
