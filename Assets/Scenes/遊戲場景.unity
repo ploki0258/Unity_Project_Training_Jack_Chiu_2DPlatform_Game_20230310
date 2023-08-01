@@ -1874,6 +1874,7 @@ GameObject:
   - component: {fileID: 152821478}
   - component: {fileID: 152821477}
   - component: {fileID: 152821476}
+  - component: {fileID: 152821479}
   m_Layer: 5
   m_Name: WindSkill_5
   m_TagString: SkillIcon
@@ -1968,6 +1969,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152821474}
   m_CullTransparentMesh: 1
+--- !u!61 &152821479
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152821474}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &158425463
 GameObject:
   m_ObjectHideFlags: 0
@@ -3143,6 +3170,7 @@ GameObject:
   - component: {fileID: 263476996}
   - component: {fileID: 263476997}
   - component: {fileID: 263476998}
+  - component: {fileID: 263476999}
   m_Layer: 5
   m_Name: TerraSkill_12
   m_TagString: SkillIcon
@@ -3264,6 +3292,32 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!61 &263476999
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263476992}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.9472351, y: -0.3651123}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 79.37677, y: 82.0542}
+  m_EdgeRadius: 0
 --- !u!1 &266643472
 GameObject:
   m_ObjectHideFlags: 0
@@ -4669,9 +4723,9 @@ GameObject:
   m_Component:
   - component: {fileID: 449570994}
   - component: {fileID: 449570997}
-  - component: {fileID: 449570996}
   - component: {fileID: 449570995}
   - component: {fileID: 449570998}
+  - component: {fileID: 449570999}
   m_Layer: 0
   m_Name: "\u5DE8\u77F3"
   m_TagString: Untagged
@@ -4715,40 +4769,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!60 &449570996
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 449570993}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 20.48, y: 20.48}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.07041322, y: 0.4172754}
-      - {x: -0.050531007, y: 0.37699392}
-      - {x: -0.48271483, y: -0.029256102}
-      - {x: -0.47406924, y: -0.2466751}
-      - {x: -0.2519928, y: -0.41868895}
-      - {x: 0.23137207, y: -0.41940802}
-      - {x: 0.47839049, y: -0.10438767}
-      - {x: 0.47839049, y: 0.23703441}
-      - {x: 0.28377378, y: 0.41615942}
 --- !u!212 &449570997
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4813,6 +4833,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1779921913d37db4b9e2c626de608ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!60 &449570999
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449570993}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 20.48, y: 20.48}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -2.6800835, y: 2.9250927}
+      - {x: 0.45571846, y: 4.053574}
+      - {x: 3.2387908, y: 3.101865}
+      - {x: 5.1099663, y: -3.5716324}
+      - {x: 4.8008695, y: -7.707623}
+      - {x: -4.6745605, y: -7.5634937}
+      - {x: -4.828478, y: -6.5580125}
+      - {x: -4.3254085, y: -2.5628939}
+      - {x: -3.1806183, y: 1.7243903}
 --- !u!1 &468276307
 GameObject:
   m_ObjectHideFlags: 0
@@ -5092,7 +5146,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.15596962, y: 0.07442856}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5103,7 +5157,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 99.70079, y: 99.84724}
   m_EdgeRadius: 0
 --- !u!1 &470587485
 GameObject:
@@ -6595,7 +6649,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.06342316, y: 0.051403046}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6606,7 +6660,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 100.02278, y: 99.86465}
   m_EdgeRadius: 0
 --- !u!225 &652453737
 CanvasGroup:
@@ -6890,6 +6944,7 @@ GameObject:
   - component: {fileID: 684445178}
   - component: {fileID: 684445179}
   - component: {fileID: 684445180}
+  - component: {fileID: 684445181}
   m_Layer: 5
   m_Name: WindSkill_4
   m_TagString: SkillIcon
@@ -7011,6 +7066,32 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!61 &684445181
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684445174}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.7388611, y: -0.10525513}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 79.98407, y: 81.739685}
+  m_EdgeRadius: 0
 --- !u!1 &685116280
 GameObject:
   m_ObjectHideFlags: 0
@@ -7959,7 +8040,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 760676303}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -7990,6 +8071,7 @@ GameObject:
   - component: {fileID: 771769216}
   - component: {fileID: 771769215}
   - component: {fileID: 771769214}
+  - component: {fileID: 771769217}
   m_Layer: 5
   m_Name: IceSkill_9
   m_TagString: SkillIcon
@@ -8084,6 +8166,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 771769212}
   m_CullTransparentMesh: 1
+--- !u!61 &771769217
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771769212}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &774273517
 GameObject:
   m_ObjectHideFlags: 0
@@ -9591,6 +9699,7 @@ GameObject:
   - component: {fileID: 1001238745}
   - component: {fileID: 1001238746}
   - component: {fileID: 1001238747}
+  - component: {fileID: 1001238748}
   m_Layer: 5
   m_Name: IceSkill_8
   m_TagString: SkillIcon
@@ -9712,6 +9821,32 @@ MonoBehaviour:
   clonePrefab: {fileID: 1001238741}
   targetArea: {fileID: 1464402242}
   skillData: {fileID: 11400000, guid: d37ae866f1f814d4db036a0bbc1f07f0, type: 2}
+--- !u!61 &1001238748
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001238741}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.578949, y: -0.35006714}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 79.98688, y: 81.57001}
+  m_EdgeRadius: 0
 --- !u!1 &1003636603
 GameObject:
   m_ObjectHideFlags: 0
@@ -12803,6 +12938,7 @@ GameObject:
   - component: {fileID: 1438298754}
   - component: {fileID: 1438298753}
   - component: {fileID: 1438298752}
+  - component: {fileID: 1438298755}
   m_Layer: 5
   m_Name: TerraSkill_13
   m_TagString: SkillIcon
@@ -12897,6 +13033,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438298750}
   m_CullTransparentMesh: 1
+--- !u!61 &1438298755
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438298750}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1439415219
 GameObject:
   m_ObjectHideFlags: 0
@@ -13034,7 +13196,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.05608368, y: 0.010551453}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -13045,7 +13207,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 100.283356, y: 100.13893}
   m_EdgeRadius: 0
 --- !u!114 &1464402243
 MonoBehaviour:
@@ -15613,6 +15775,7 @@ GameObject:
   - component: {fileID: 1838186453}
   - component: {fileID: 1838186452}
   - component: {fileID: 1838186451}
+  - component: {fileID: 1838186454}
   m_Layer: 5
   m_Name: FireSkill_1
   m_TagString: SkillIcon
@@ -15707,6 +15870,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838186449}
   m_CullTransparentMesh: 1
+--- !u!61 &1838186454
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838186449}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1853256374
 GameObject:
   m_ObjectHideFlags: 0
@@ -16284,6 +16473,7 @@ GameObject:
   - component: {fileID: 1884673268}
   - component: {fileID: 1884673271}
   - component: {fileID: 1884673270}
+  - component: {fileID: 1884673272}
   m_Layer: 5
   m_Name: FireSkill_0
   m_TagString: SkillIcon
@@ -16405,6 +16595,32 @@ MonoBehaviour:
   clonePrefab: {fileID: 1884673264}
   targetArea: {fileID: 468894849}
   skillData: {fileID: 11400000, guid: 41c976254d70bdf45a03f7a076fe44eb, type: 2}
+--- !u!61 &1884673272
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884673264}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.3440247, y: -0.2272644}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 79.890076, y: 81.09076}
+  m_EdgeRadius: 0
 --- !u!1 &1909543455
 GameObject:
   m_ObjectHideFlags: 0

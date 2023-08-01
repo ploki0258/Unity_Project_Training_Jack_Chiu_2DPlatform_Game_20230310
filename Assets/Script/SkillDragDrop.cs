@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
@@ -15,6 +16,12 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 	private Vector3 startPosition;      // 初始位置
 	private bool isDragging = false;    // 是否正在拖曳
 	private int skillID;                // 技能ID
+	bool raycastTarget;
+
+	private void Start()
+	{
+		raycastTarget = GetComponent<Image>().raycastTarget;
+	}
 
 	/// <summary>
 	/// 開始拖拽
@@ -110,8 +117,8 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 				// 設置複製物件的位置
 				cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
 
-				// 如果技能欄位內有名稱有包含 "SkillIcon" 的話 (無法偵測到子物件)
-				if (eventData.pointerCurrentRaycast.gameObject.CompareTag("SkillIcon"))
+				// 如果技能欄位內有名稱有包含 "SkillIcon" 的話
+				/*if (eventData.pointerCurrentRaycast.gameObject.CompareTag("SkillIcon"))
 				{
 					// Destroy(eventData.pointerCurrentRaycast.gameObject);
 
@@ -121,26 +128,33 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 					eventData.pointerCurrentRaycast.gameObject.transform.position = startPosition;
 					// cloneObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-				}
+				}*/
 				Debug.Log("設置");
 
 				// cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
 				// cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
 			}
+			raycastTarget = false;
 
-			// 如果技能欄位內有名稱有包含 "Skill_" 的話
+			// 如果技能欄位內有名稱有包含 "SkillIcon" 的話
 			// 調換位置
 			if (eventData.pointerCurrentRaycast.gameObject.CompareTag("SkillIcon"))
 			{
 				Debug.Log("對調");
 				Debug.Log("父物件：" + originalParent.gameObject.name);
-
+				
 				cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);           // 設置複製的物件的父集
-				cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.parent.position;  // 設置複製的物件的位置
-				eventData.pointerCurrentRaycast.gameObject.transform.SetParent(originalParent);                         // 調換複製的物件的父集
+				cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;			// 設置複製的物件的位置
+				eventData.pointerCurrentRaycast.gameObject.transform.SetParent(null);                         // 調換複製的物件的父集
 				eventData.pointerCurrentRaycast.gameObject.transform.parent.position = startPosition;                   // 調換複製的物件的位置
 
-				cloneObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+				/*
+				cloneObject.transform.SetParent(originalParent);           // 設置複製的物件的父集
+				cloneObject.transform.position = startPosition;         // 設置複製的物件的位置
+				eventData.pointerCurrentRaycast.gameObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);                         // 調換複製的物件的父集
+				eventData.pointerCurrentRaycast.gameObject.transform.parent.position = eventData.pointerCurrentRaycast.gameObject.transform.position;                    // 調換複製的物件的位置
+				*/
+				// cloneObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
 			}
 
 			// 獲取技能系統並設置當前選擇的技能
@@ -153,7 +167,16 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 				skillSystem.SwitchAtkObject();
 			}
 		}
-		// cloneObject.GetComponent<CanvasGroup>().blocksRaycasts = true;  // 打開射線檢測
-		// Debug.Log("結束拖曳");
+		cloneObject.GetComponent<CanvasGroup>().blocksRaycasts = true;  // 打開射線檢測
 	}
+	/*
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.CompareTag("SkillIcon"))
+		{
+			transform.position = collision.gameObject.transform.position;
+			Destroy(collision.gameObject);
+		}
+	}
+	*/
 }

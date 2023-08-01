@@ -46,7 +46,7 @@ public class SaveManager
 			playerData.playerMP = 100f;					// 玩家魔力
 			playerData.playerSpeed = 10f;				// 玩家移動速度
 			playerData.playerJump = 10f;				// 玩家跳躍力
-			playerData.playerAttackSpeed = 500f;		// 玩家攻擊速度
+			playerData.playerAttackSpeed = 50f;			// 玩家攻擊速度
 			playerData.playerAttack = 100f;				// 玩家攻擊力
 			playerData.playerDefense = 100f;			// 玩家防禦力
 			playerData.levelName = "遊戲場景";			// 關卡名稱
