@@ -199,7 +199,7 @@ public class Enemy : MonoBehaviour
 		if (collision.gameObject.tag == "bullet")
 		{
 			TakeDamageMonster(damage);
-			Debug.Log($"<color=#f11>收到的傷害：{damage}</color>");
+			Debug.Log($"<color=#ff9669>受到的傷害：{damage}</color>");
 
 			if (hpMonster <= 1)
 			{

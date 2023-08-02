@@ -13,6 +13,7 @@ public class AttackObject : MonoBehaviour
 	private bool isTerraSkill = false;
 	private float originalSpeedMonster;
 	BoxCollider2D boxCollider;
+	Rigidbody2D rg2D;
 
 	private void Awake()
 	{
@@ -28,6 +29,11 @@ public class AttackObject : MonoBehaviour
 		{
 			timer = skillData.skillHoldTime;
 			boxCollider = FindObjectOfType<SkillDragDrop>().skillData.skillPrefab.GetComponent<BoxCollider2D>();
+		}
+
+		if (isWandAttack == false && skillData.skillName == "風刃")
+		{
+			rg2D = GetComponent<Rigidbody2D>();
 		}
 	}
 
@@ -79,8 +85,10 @@ public class AttackObject : MonoBehaviour
 	// 風刃技能
 	void WindSkill()
 	{
-		Vector3 movent = PlayerCtrl.instance.traDirectionIcon.eulerAngles * SaveManager.instance.playerData.playerAttackSpeed * Time.deltaTime;
-		transform.position += movent;
+		PlayerCtrl.instance.UpdateDirectionIconPos();
+		rg2D.velocity = transform.right * SaveManager.instance.playerData.playerAttackSpeed * 3f * Time.unscaledDeltaTime;
+		//Vector3 movent = PlayerCtrl.instance.traDirectionIcon.eulerAngles * SaveManager.instance.playerData.playerAttackSpeed;
+		//transform.position += movent;
 	}
 
 	// 冰椎刺技能
@@ -107,7 +115,7 @@ public class AttackObject : MonoBehaviour
 	void TerraSkill()
 	{
 		isTerraSkill = true;
-		
+
 		if (timer > 0)
 		{
 			boxCollider.isTrigger = false;

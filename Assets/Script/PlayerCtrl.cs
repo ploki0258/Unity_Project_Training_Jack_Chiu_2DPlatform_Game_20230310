@@ -154,7 +154,7 @@ public class PlayerCtrl : MonoBehaviour
 		if (ad != 0)
 		{
 			AudioClip sound = SoundManager.instance.run;
-			SoundManager.instance.PlaySound(sound, 0.7f, 1f);
+			// SoundManager.instance.PlaySound(sound, 0.7f, 1f);
 		}
 
 		//移動動畫
@@ -253,16 +253,15 @@ public class PlayerCtrl : MonoBehaviour
 					if (atkObject.name == "風刃_4")
 					{
 						traDirectionIcon.gameObject.SetActive(true);
-						UpdateDirectionIconPos();
+						// UpdateDirectionIconPos();
 
 						// 生成子彈並發射
 						if (atkObject != null && 翻轉 != true)
 						{
 							// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(攻擊方向圖示.角度))
 							GameObject tempAtkObject = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(traDirectionIcon.eulerAngles));
-							tempAtkObject.GetComponent<Rigidbody2D>().AddForce(traDirectionIcon.eulerAngles * SaveManager.instance.playerData.playerAttackSpeed * 100f, ForceMode2D.Impulse);
-							Debug.Log(tempAtkObject.name);
-							Debug.Log(atkObject.name);
+							// tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
+							
 							AudioClip sound = SoundManager.instance.attack;
 							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
 						}
@@ -270,9 +269,8 @@ public class PlayerCtrl : MonoBehaviour
 						{
 							// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
 							GameObject tempAtkObject = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(traDirectionIcon.eulerAngles));
-							tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
-							Debug.Log(tempAtkObject.name);
-							Debug.Log(atkObject.name);
+							// tempAtkObject.GetComponent<Rigidbody2D>().AddForce(traDirectionIcon.eulerAngles * SaveManager.instance.playerData.playerAttackSpeed * 100f, ForceMode2D.Impulse);
+							
 							AudioClip sound = SoundManager.instance.attack;
 							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
 						}
@@ -290,8 +288,7 @@ public class PlayerCtrl : MonoBehaviour
 							// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
 							GameObject tempAtkObject = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 0f, 0f));
 							tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
-							Debug.Log(tempAtkObject.name);
-							Debug.Log(atkObject.name);
+
 							AudioClip sound = SoundManager.instance.attack;
 							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
 						}
@@ -300,8 +297,7 @@ public class PlayerCtrl : MonoBehaviour
 							// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
 							GameObject tempAtkObject = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 180f, 0f));
 							tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
-							Debug.Log(tempAtkObject.name);
-							Debug.Log(atkObject.name);
+
 							AudioClip sound = SoundManager.instance.attack;
 							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
 						}
@@ -320,7 +316,7 @@ public class PlayerCtrl : MonoBehaviour
 							// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
 							GameObject tempAtkObject = Instantiate(atkObject, new Vector3(mousePos.x, -2.7f, 0f), Quaternion.Euler(0f, 0f, 0f));
 							// tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
-							
+
 							AudioClip sound = SoundManager.instance.attack;
 							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
 						}
@@ -330,7 +326,7 @@ public class PlayerCtrl : MonoBehaviour
 							GameObject tempAtkObject = Instantiate(atkObject, new Vector3(mousePos.x, -2.7f, 0f), Quaternion.Euler(0f, 180f, 0f));
 							// Attack(atkObject, new Vector3(atkPoint.position.x, 0f, atkPoint.position.z) + new Vector3(1.5f, 0f, 0f), Quaternion.Euler(0f, 0f, 0f));
 							// tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
-							
+
 							AudioClip sound = SoundManager.instance.attack;
 							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
 						}
@@ -401,7 +397,7 @@ public class PlayerCtrl : MonoBehaviour
 	/// <summary>
 	/// 更新攻擊方向圖示的座標
 	/// </summary>
-	void UpdateDirectionIconPos()
+	public void UpdateDirectionIconPos()
 	{
 		Vector3 pos = transform.position + traDirectionIconOffset;
 		traDirectionIcon.position = pos;
