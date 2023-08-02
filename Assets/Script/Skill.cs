@@ -30,8 +30,8 @@ public class Skill : ScriptableObject
     [Header("技能費用")]
     public int skillCoinCost;
     public int skillPointCost;
-    [Header("傷害值")]
-    public float skillAttack;
+    [Header("技能傷害值")]
+    public float skillDamage;
     [Header("施法速度")]
     public float skillSpeed;
     // 火

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3948277096316094391}
   - component: {fileID: 4867005323339088687}
-  - component: {fileID: 8460640480509477603}
   - component: {fileID: 711204191067703065}
+  - component: {fileID: 8460640480509477603}
   m_Layer: 0
   m_Name: "\u571F\u7246_12"
   m_TagString: bullet
@@ -56,21 +56,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8460640480509477603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2966934018895787912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74734cba1600ebc4a9dde95788aded22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
-  isWandAttack: 0
-  skillData: {fileID: 11400000, guid: ef50dfe609123f54ea8a11de15bc5181, type: 2}
 --- !u!61 &711204191067703065
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -81,7 +66,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.23, y: -0.7}
@@ -97,6 +82,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.88, y: 1.75}
   m_EdgeRadius: 0
+--- !u!114 &8460640480509477603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2966934018895787912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74734cba1600ebc4a9dde95788aded22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWandAttack: 0
+  skillData: {fileID: 11400000, guid: ef50dfe609123f54ea8a11de15bc5181, type: 2}
 --- !u!1 &8480483517356212546
 GameObject:
   m_ObjectHideFlags: 0

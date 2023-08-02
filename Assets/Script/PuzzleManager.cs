@@ -8,7 +8,10 @@ public class PuzzleManager : MonoBehaviour
 	{
 		if (collision.gameObject.CompareTag("bullet") == true)
 		{
-			collisionsCount++;
+			if (PlayerCtrl.instance.atkObject != false && collision.gameObject.name != "¤gÀð_12")
+			{
+				collisionsCount++;
+			}
 		}
 
 		if (collision.gameObject.CompareTag("bullet") && collisionsCount >= 3)

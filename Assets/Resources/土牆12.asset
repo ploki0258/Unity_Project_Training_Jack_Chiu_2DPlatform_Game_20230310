@@ -26,7 +26,7 @@ MonoBehaviour:
   skillCoinCost: 100
   skillPointCost: 100
   skillAttack: 0
-  skillSpeed: 0
+  skillSpeed: 1
   burntPos: {fileID: 0}
   enemyDis: 0
   enemySlowSpeed: 0

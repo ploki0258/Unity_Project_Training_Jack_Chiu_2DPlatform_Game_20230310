@@ -390,6 +390,7 @@ MonoBehaviour:
   showCoinAni: {fileID: 0}
   showSkillPointAni: {fileID: 0}
   ani: {fileID: 0}
+  isPaused: 0
 --- !u!1 &2642865332799799427
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,7 +607,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74734cba1600ebc4a9dde95788aded22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
   isWandAttack: 1
   skillData: {fileID: 0}
 --- !u!1 &4760120117778973225

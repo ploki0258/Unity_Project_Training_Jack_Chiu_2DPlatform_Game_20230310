@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 	#region 欄位
 	[Header("怪物最大血量"), Range(100, 1000)]
 	public float hpMonsterMax = 100f;
-	[Header("血條")]
+	[Header("怪物血條")]
 	public Image barHP = null;
 	[Header("怪物攻擊力"), Range(10, 1000)]
 	public float atkMonster = 5f;
@@ -45,8 +45,8 @@ public class Enemy : MonoBehaviour
 	int coinNumber;
 	int skillNumber;
 	bool isDeath = false;       // 是否死亡
-	// bool aniCoin = false;       // 播放金幣動畫
-	// bool aniSkill = false;      // 播放技能點數動畫
+								// bool aniCoin = false;       // 播放金幣動畫
+								// bool aniSkill = false;      // 播放技能點數動畫
 	Transform player = null;
 	Rigidbody2D rig = null;
 	Animator ani = null;
@@ -69,8 +69,7 @@ public class Enemy : MonoBehaviour
 	private void Start()
 	{
 		hpMonster = hpMonsterMax;
-		damage = SaveManager.instance.playerData.playerAttack;
-
+		
 		// coinInfo.text = "";
 		// skill = 0;
 	}
@@ -78,6 +77,22 @@ public class Enemy : MonoBehaviour
 	private void Update()
 	{
 		Move();
+		AttackDamage();
+	}
+
+	/// <summary>
+	/// 受到的攻擊傷害：依據玩家的攻擊力給予傷害值
+	/// </summary>
+	void AttackDamage()
+	{
+		if (PlayerCtrl.instance.atkObject == null)
+		{
+			damage = SaveManager.instance.playerData.playerAttack;
+		}
+		else if (PlayerCtrl.instance.atkObject != null)
+		{
+			damage = GameObject.Find("女主角").GetComponent<PlayerCtrl>().atkObject.GetComponent<AttackObject>().skillData.skillDamage;
+		}
 	}
 
 	/// <summary>
@@ -184,9 +199,9 @@ public class Enemy : MonoBehaviour
 		if (collision.gameObject.tag == "bullet")
 		{
 			TakeDamageMonster(damage);
-			// Debug.Log(damage);
+			Debug.Log($"<color=#f11>收到的傷害：{damage}</color>");
 
-			if (hpMonster <= 0)
+			if (hpMonster <= 1)
 			{
 				/*if (MistManager.instance.inMist_cyan == false)
 					// 每消失一隻怪物 計數器就-1

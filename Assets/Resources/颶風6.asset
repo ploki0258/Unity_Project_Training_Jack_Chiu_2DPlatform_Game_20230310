@@ -24,7 +24,7 @@ MonoBehaviour:
   skillDis: "\u5C0D\u524D/\u4E0A\u65B9\u8DEF\u5F91\u4E0A\u7684\u6240\u6709\u6575\u4EBA\u9020\u6210\u5927\u5E45\u5EA6\u50B7\u5BB3\uFF0C\u4E26\u64CA\u9000\u6575\u4EBA"
   skillCoinCost: 2500
   skillPointCost: 500
-  skillAttack: 500
+  skillDamage: 500
   skillSpeed: 5
   burntPos: {fileID: 0}
   enemyDis: 5

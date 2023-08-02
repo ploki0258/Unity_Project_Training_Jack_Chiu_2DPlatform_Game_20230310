@@ -6,8 +6,8 @@ public class TestSkillEffect : MonoBehaviour
 {
 	[Header("技能位置")]
 	[SerializeField] Transform pointSkill;
-	[Header("技能名稱")]
-	[SerializeField] string skillName = null;
+	//[Header("技能名稱")]
+	//[SerializeField] string skillName = null;
 	[Header("施法按鍵")]
 	public KeyCode activationKey;
 	[Header("技能特效")]

@@ -1082,7 +1082,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 565692407}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &70890003
 MonoBehaviour:
@@ -2493,7 +2493,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &182701507
 Transform:
   m_ObjectHideFlags: 0
@@ -2522,7 +2522,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointSkill: {fileID: 139718891760945431}
-  skillName: 
   activationKey: 0
   skillPrefab: {fileID: 0}
   skillEffPrefab:
@@ -4913,7 +4912,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &468276310
 AudioSource:
@@ -5543,8 +5542,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 70890002}
   - {fileID: 1102899724}
+  - {fileID: 70890002}
   - {fileID: 1162234037}
   - {fileID: 2021542953}
   - {fileID: 126378232}
@@ -6146,10 +6145,6 @@ PrefabInstance:
     - target: {fileID: 188902, guid: 8a005a9e0713f4cc1b5ad29fb07657d3, type: 3}
       propertyPath: m_Name
       value: SayDialog
-      objectReference: {fileID: 0}
-    - target: {fileID: 188902, guid: 8a005a9e0713f4cc1b5ad29fb07657d3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22488902, guid: 8a005a9e0713f4cc1b5ad29fb07657d3, type: 3}
       propertyPath: m_Pivot.x
@@ -8040,7 +8035,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 760676303}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -8059,6 +8054,7 @@ MonoBehaviour:
   mainUI: {fileID: 760676307}
   openSpeed: 5
   isOpen: 0
+  isPaused: 0
 --- !u!1 &771769212
 GameObject:
   m_ObjectHideFlags: 0
@@ -10725,7 +10721,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 565692407}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1102899725
 MonoBehaviour:
@@ -19721,6 +19717,7 @@ MonoBehaviour:
   isOpen: 0
   tempGrid: {fileID: 631978251980923607}
   itemFieldBG: {fileID: 631978252920529204}
+  isPaused: 0
 --- !u!114 &631978253253322596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19865,7 +19862,7 @@ PrefabInstance:
     - target: {fileID: 1078623060332271216, guid: e1175d1b202f9eb42afac09b80bd1f14,
         type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 1078623060332271216, guid: e1175d1b202f9eb42afac09b80bd1f14,
         type: 3}

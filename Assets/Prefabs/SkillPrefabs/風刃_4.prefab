@@ -109,7 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   isWandAttack: 0
-  skillData: {fileID: 0}
+  skillData: {fileID: 11400000, guid: fbd3d176bac77df4189bf6c1deb12776, type: 2}
 --- !u!1 &8567189409466869013
 GameObject:
   m_ObjectHideFlags: 0

@@ -110,11 +110,11 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 			// 打開射線檢測
 			cloneObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
 			// Debug.Log("設置");
-
+			#region 測試保留
 			// cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
 			// cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
 			// raycastTarget = false;
-
+			#endregion
 			// 獲取技能系統並設置當前選擇的技能
 			SkillSystem skillSystem = FindObjectOfType<SkillSystem>();
 			if (skillSystem != null)
@@ -135,21 +135,21 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 			eventData.pointerCurrentRaycast.gameObject.transform.SetParent(null);                           // 移除偵測的物件的父集
 
 			cloneObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-			// Debug.Log("對調");
+			// Debug.Log("調換");
 
-			// 獲取技能系統並設置當前選擇的技能
+			// 獲取技能系統並調換當前選擇的技能
 			SkillSystem skillSystem = FindObjectOfType<SkillSystem>();
 			if (skillSystem != null)
 			{
 				skillID = skillData.id;
 				skillSystem.SetCurrentSkill(skillID);
-				Debug.Log("<color=#f69>對調技能：</color>" + skillData.name);
+				Debug.Log("<color=#f69>調換技能：</color>" + skillData.name);
 				skillSystem.SwitchAtkObject();
 			}
 		}
 
 		cloneObject.GetComponent<CanvasGroup>().blocksRaycasts = true;  // 打開射線檢測
-
+		#region 測試保留
 		// 如果技能欄位內有名稱有包含 "SkillIcon" 的話
 		/*if (eventData.pointerCurrentRaycast.gameObject.CompareTag("SkillIcon"))
 		{
@@ -162,5 +162,6 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 			// cloneObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
 		}*/
+		#endregion
 	}
 }
