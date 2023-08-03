@@ -16,7 +16,7 @@ public class ItemField : Windows<ItemField>
 		base.Awake();
 		openSpeed = 15f;    // 視窗開啟速度 = 15
 		ItemManager.instance.Initialization();
-		isPaused = FindObjectOfType<PlayerCtrl>().isPaused;
+		isPaused = FindObjectOfType<PlayerCtrl>().isPausedGame;
 	}
 
 	protected override void Start()
@@ -53,6 +53,8 @@ public class ItemField : Windows<ItemField>
 
 		if (Input.GetKeyDown(KeyCode.Escape))
 			Close();
+
+		Debug.Log("是否暫停(道具)：" + isPaused);
 	}
 
 	// 打開視窗時 顯示滑鼠 時間暫停

@@ -20228,11 +20228,6 @@ PrefabInstance:
       propertyPath: showSkillPointAni
       value: 
       objectReference: {fileID: 242122688}
-    - target: {fileID: 6122708130379374194, guid: 0648648337d78ce4f813692eda58c245,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0648648337d78ce4f813692eda58c245, type: 3}
 --- !u!4 &7018586114965633488 stripped

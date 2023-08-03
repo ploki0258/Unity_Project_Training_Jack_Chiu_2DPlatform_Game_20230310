@@ -391,7 +391,7 @@ MonoBehaviour:
   showCoinAni: {fileID: 0}
   showSkillPointAni: {fileID: 0}
   ani: {fileID: 0}
-  isPaused: 0
+  isPausedGame: 0
 --- !u!1 &2642865332799799427
 GameObject:
   m_ObjectHideFlags: 0
@@ -2152,7 +2152,7 @@ PrefabInstance:
     - target: {fileID: 2234766442508907193, guid: c1c385253ca7a2f41831c65c65dddf18,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2234766442508907199, guid: c1c385253ca7a2f41831c65c65dddf18,
         type: 3}

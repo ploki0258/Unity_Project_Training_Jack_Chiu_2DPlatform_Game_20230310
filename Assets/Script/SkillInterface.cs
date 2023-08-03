@@ -9,7 +9,7 @@ public class SkillInterface : Windows<SkillInterface>
 	{
 		base.Awake();
 		SkillManager.instance.Initialization();
-		isPaused = FindObjectOfType<PlayerCtrl>().isPaused;
+		isPaused = FindObjectOfType<PlayerCtrl>().isPausedGame;
 	}
 
 	protected override void Update()
@@ -31,6 +31,8 @@ public class SkillInterface : Windows<SkillInterface>
 		{
 			Close();
 		}
+
+		Debug.Log("¬O§_¼È°±(§Þ¯à)¡G" + isPaused);
 	}
 
 	public override void Open()
@@ -38,8 +40,8 @@ public class SkillInterface : Windows<SkillInterface>
 		base.Open();
 		Opening = true;
 		isPaused = true;
-		// TalentTree.instance.ShowSkillIcon(4);
 		Time.timeScale = 0f;
+		// TalentTree.instance.ShowSkillIcon(4);
 	}
 
 	public override void Close()
