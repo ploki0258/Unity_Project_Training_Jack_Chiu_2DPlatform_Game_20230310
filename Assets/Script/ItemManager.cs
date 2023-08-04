@@ -1,13 +1,13 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ¹D¨ãºŞ²z¾¹
+/// é“å…·ç®¡ç†å™¨
 /// </summary>
 public class ItemManager
 {
-	#region ³æ¨Ò
+	#region å–®ä¾‹
 	public static ItemManager instance
 	{
 		get
@@ -22,11 +22,11 @@ public class ItemManager
 	static ItemManager _instance = null;
 	#endregion
 
-	// ©Ò¦³¹D¨ãªº¸ê®Æ
+	// æ‰€æœ‰é“å…·çš„è³‡æ–™
 	public Item[] AllItemData = new Item[0];
 
 	/// <summary>
-	/// ªì©l¤Æ¡G¸ü¤J©Ò¦³¹D¨ã¸ê®Æ
+	/// åˆå§‹åŒ–ï¼šè¼‰å…¥æ‰€æœ‰é“å…·è³‡æ–™
 	/// </summary>
 	public void Initialization()
 	{
@@ -34,9 +34,9 @@ public class ItemManager
 	}
 
 	/// <summary>
-	/// §ä¹D¨ã¸ê®Æ
+	/// æ‰¾é“å…·è³‡æ–™
 	/// </summary>
-	/// <param name="id">¹D¨ãID</param>
+	/// <param name="id">é“å…·ID</param>
 	/// <returns></returns>
 	public Item FindItemData(int id)
 	{
@@ -47,7 +47,7 @@ public class ItemManager
 				return AllItemData[i];
 			}
 		}
-		Debug.LogError("ID¡G" + id + "¬dµL¦¹ID");
+		Debug.LogError("IDï¼š" + id + "æŸ¥ç„¡æ­¤ID");
 		return new Item();
 	}
 }

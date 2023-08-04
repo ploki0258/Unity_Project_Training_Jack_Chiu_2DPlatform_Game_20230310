@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,14 +9,14 @@ public class ShowMoney : MonoBehaviour
 
 	private void Start()
 	{
-		// µn°O­n¸òµÛª÷¿úÅÜ¤Æ¨Ã¥B¤â°Ê¨ê·s¤@¦¸
+		// ç™»è¨˜è¦è·Ÿè‘—é‡‘éŒ¢è®ŠåŒ–ä¸¦ä¸”æ‰‹å‹•åˆ·æ–°ä¸€æ¬¡
 		SaveManager.instance.playerData.renewCoin += UpdateUI;
 		UpdateUI();
 	}
 
 	private void OnDisable()
 	{
-		// °h¥Xµn°O
+		// é€€å‡ºç™»è¨˜
 		SaveManager.instance.playerData.renewCoin -= UpdateUI;
 	}
 
@@ -25,7 +25,7 @@ public class ShowMoney : MonoBehaviour
 		coinText = GetComponent<TextMeshProUGUI>();
 	}
 
-	/// <summary>¨ê·sª÷¿ú¼Æ¶q</summary>
+	/// <summary>åˆ·æ–°é‡‘éŒ¢æ•¸é‡</summary>
 	void UpdateUI()
 	{
 		coinText.text = SaveManager.instance.playerData.moneyCount.ToString("N0");

@@ -8,7 +8,7 @@ public class TalentTree : MonoBehaviour
 	[Header("技能ID")]
 	public int[] id;
 	[Header("技能圖示")]
-	public Image[] iconSkillArray = null;
+	public SpriteRenderer[] iconSkillArray = null;
 	[SerializeField, Header("尚未擁有之顏色")]
 	Color clolrNoSkill;
 

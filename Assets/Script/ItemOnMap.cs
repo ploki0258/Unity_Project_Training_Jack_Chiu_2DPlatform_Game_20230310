@@ -1,15 +1,15 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemOnMap : MonoBehaviour
 {
-	private int itemID;		// ¹D¨ãID
-	public Item dataItem;	// ¹D¨ãªº¸}¥»¤Æª«¥ó
+	private int itemID;		// é“å…·ID
+	public Item dataItem;	// é“å…·çš„è…³æœ¬åŒ–ç‰©ä»¶
 
 	private void Awake()
 	{
-		// ¹D¨ãID = ¸Ó¹D¨ãªºID
+		// é“å…·ID = è©²é“å…·çš„ID
 		itemID = dataItem.id;
 		// Debug.Log(itemID);
 		
@@ -22,16 +22,16 @@ public class ItemOnMap : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Player")
 		{
-			bool successAdd = SaveManager.instance.playerData.AddItem(itemID);  // ¬O§_¦¨¥\²K¥[¹D¨ã
-			// Debug.Log("¬O§_¦¨¥\²K¥[¡G" + successAdd);
+			bool successAdd = SaveManager.instance.playerData.AddItem(itemID);  // æ˜¯å¦æˆåŠŸæ·»åŠ é“å…·
+			// Debug.Log("æ˜¯å¦æˆåŠŸæ·»åŠ ï¼š" + successAdd);
 			if (successAdd)
 			{
 				Destroy(this.gameObject);
-				// Debug.Log("¹D¨ã+1");
+				// Debug.Log("é“å…·+1");
 			}
 			else
 			{
-				Debug.Log("­I¥]¤wº¡¡AµLªk²K¥[" + "\n½Ğ¥ı®ø¯Ó¤@¨Ç¹D¨ã");
+				Debug.Log("èƒŒåŒ…å·²æ»¿ï¼Œç„¡æ³•æ·»åŠ " + "\nè«‹å…ˆæ¶ˆè€—ä¸€äº›é“å…·");
 			}
 		}
 	}

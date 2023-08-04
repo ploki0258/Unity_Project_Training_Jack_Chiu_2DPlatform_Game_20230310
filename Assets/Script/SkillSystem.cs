@@ -11,6 +11,7 @@ public class SkillSystem : MonoBehaviour
 	public Color textColor = new Color();
 
 	Skill skillData;
+	SpriteRenderer iconSkill = null;
 	int keyboard;
 
 	private void Awake()
@@ -60,6 +61,8 @@ public class SkillSystem : MonoBehaviour
 			{
 				currentSkillIndex = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.id;
 				SetCurrentSkill(currentSkillIndex);
+				iconSkill.sprite = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
+				iconSkill.color = new Color(1f, 1f, 1f, 1f);
 			}
 			Debug.Log("快捷鍵Z： " + currentSkillIndex);
 		}
@@ -71,6 +74,8 @@ public class SkillSystem : MonoBehaviour
 			{
 				currentSkillIndex = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.id;
 				SetCurrentSkill(currentSkillIndex);
+				iconSkill.sprite = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
+				iconSkill.color = new Color(1f, 1f, 1f, 1f);
 			}
 			Debug.Log("快捷鍵X： " + currentSkillIndex);
 		}
@@ -82,12 +87,28 @@ public class SkillSystem : MonoBehaviour
 			{
 				currentSkillIndex = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.id;
 				SetCurrentSkill(currentSkillIndex);
+				iconSkill.sprite = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
+				iconSkill.color = new Color(1f, 1f, 1f, 1f);
 			}
 			Debug.Log("快捷鍵C： " + currentSkillIndex);
 
 			// PlayerCtrl.instance.atkObject = skillSlot[2].GetComponent<Skill>().skillPrefab;
 			// currentSkillIndex = 2;
 		}
+		/*
+		for (int i = 0; i < skillSlot.Length; i++)
+		{
+			if (keyboard == i)
+			{
+				iconSkill.color = new Color(1f, 1f, 1f, 1f);
+			}
+			else
+			{
+				iconSkill.color = new Color(1f, 1f, 1f, 0.6f);
+			}
+		}*/
+
+		#region 測試
 		/*
 		for (int i = 0; i < 3; i++)
 		{
@@ -111,5 +132,6 @@ public class SkillSystem : MonoBehaviour
 			Debug.Log("切換為：" + skill.skillPrefab.name);
 		}
 		*/
+		#endregion
 	}
 }

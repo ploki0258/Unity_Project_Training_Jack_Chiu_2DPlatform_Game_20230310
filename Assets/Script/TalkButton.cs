@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class TalkButton : MonoBehaviour
 {
@@ -11,28 +11,28 @@ public class TalkButton : MonoBehaviour
         Archive();
     }
 
-    // ·í ª±®a ¾aªñNPC®É ´NÅã¥Ü¹ï¸Ü´£¥Ü«ö¶s
+    // ç•¶ ç©å®¶ é è¿‘NPCæ™‚ å°±é¡¯ç¤ºå°è©±æç¤ºæŒ‰éˆ•
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            Button.SetActive(true);     //Åã¥Ü´£¥Ü«ö¶s
+            Button.SetActive(true);     //é¡¯ç¤ºæç¤ºæŒ‰éˆ•
             archiveAni.SetBool("play", true);
         }
     }
 
-    // ·í ª±®a Â÷¶}NPC®É ´NÁôÂÃ¹ï¸Ü´£¥Ü«ö¶s
+    // ç•¶ ç©å®¶ é›¢é–‹NPCæ™‚ å°±éš±è—å°è©±æç¤ºæŒ‰éˆ•
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            Button.SetActive(false);    //ÁôÂÃ´£¥Ü«ö¶s
+            Button.SetActive(false);    //éš±è—æç¤ºæŒ‰éˆ•
             archiveAni.SetBool("play", false);
         }
     }
 
     /// <summary>
-    /// °O¿ıÂI¥\¯à
+    /// è¨˜éŒ„é»åŠŸèƒ½
     /// </summary>
     public void Archive()
     {
@@ -43,17 +43,17 @@ public class TalkButton : MonoBehaviour
     }
 
     /// <summary>
-    /// Åã¥Ü¹ï¸Ü¤¶­±¡A¨Ã°õ¦æ¶}©l¹ï¸Ü
+    /// é¡¯ç¤ºå°è©±ä»‹é¢ï¼Œä¸¦åŸ·è¡Œé–‹å§‹å°è©±
     /// </summary>
     /*public void HideUI()
     {
         if (Button.activeSelf && Input.GetKeyDown(KeyCode.E))
         {
-            // ¦pªG¤w¸g¶}©l¹ï¸Ü
-            if (DialogSystem.instance.¹ï¸Ü¤¤ == false)
+            // å¦‚æœå·²ç¶“é–‹å§‹å°è©±
+            if (DialogSystem.instance.å°è©±ä¸­ == false)
             {
-                // °õ¦æ¹ï¸Ü¨t²Î¤¤ªº ¶}©l¹ï¸Ü
-                DialogSystem.instance.¶}©l¹ï¸Ü(lines);
+                // åŸ·è¡Œå°è©±ç³»çµ±ä¸­çš„ é–‹å§‹å°è©±
+                DialogSystem.instance.é–‹å§‹å°è©±(lines);
             }
         }
     }

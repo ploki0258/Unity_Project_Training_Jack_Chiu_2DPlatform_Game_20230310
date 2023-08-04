@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class PuzzleManager : MonoBehaviour
 {
@@ -8,7 +8,7 @@ public class PuzzleManager : MonoBehaviour
 	{
 		if (collision.gameObject.CompareTag("bullet") == true)
 		{
-			if (PlayerCtrl.instance.atkObject != false && collision.gameObject.name != "¤gÀð_12")
+			if (PlayerCtrl.instance.atkObject != false && collision.gameObject.name != "åœŸç‰†_12")
 			{
 				collisionsCount++;
 			}

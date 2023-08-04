@@ -1,44 +1,44 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// ¹D¨ã®æ¦¡
+/// é“å…·æ ¼å¼
 /// </summary>
 [CreateAssetMenu(fileName = "New Item", menuName = "Add New Item")]
 public class Item : ScriptableObject
 {
-    [Header("¹D¨ãID")]
+    [Header("é“å…·ID")]
     public int id;
-    [Header("¹D¨ã¦WºÙ")]
+    [Header("é“å…·åç¨±")]
     public string title;
-    [Header("¹D¨ã¹Ï¥Ü")]
+    [Header("é“å…·åœ–ç¤º")]
     public Sprite icon;
-    [TextArea(5, 5), Header("¹D¨ã±Ô­z")]
+    [TextArea(5, 5), Header("é“å…·æ•˜è¿°")]
     public string info;
-    [Header("¹D¨ãÃş§O")]
+    [Header("é“å…·é¡åˆ¥")]
     public bool itemSkill;
-    [Header("©³¹ÏÃC¦â")]
+    [Header("åº•åœ–é¡è‰²")]
     public Color colorBG;
-    [Header("¹D¨ã¥i§_¨Ï¥Î")]
-    public bool canUse;                 // ¬O§_¥i¨Ï¥Î
-    [Header("¹D¨ã¬O§_·|®ø¯Ó")]
-    public bool Consumables;            // ¨Ï¥Î«á¬O§_·|®ø¯Ó
+    [Header("é“å…·å¯å¦ä½¿ç”¨")]
+    public bool canUse;                 // æ˜¯å¦å¯ä½¿ç”¨
+    [Header("é“å…·æ˜¯å¦æœƒæ¶ˆè€—")]
+    public bool Consumables;            // ä½¿ç”¨å¾Œæ˜¯å¦æœƒæ¶ˆè€—
 
-    // ¤@¯ë¹D¨ã
-    public float «ì´_HP;
-    public float «ì´_MP;
-    public float ´£¤É§ğÀ»¤O;
-    public float ´£¤É¨¾¿m¤O;
-    public float ´£¤É¸õÅD¤O;
-    public float ´£¤É§ğÀ»³t«×;
-    public float ´£¤É²¾°Ê³t«×;
-    // §Ş¯à¹D¨ã
-    public float Å]¤O®ø¯Ó­°§C;
-    public float ´£¤É§Ş¯à¶Ë®`;
+    // ä¸€èˆ¬é“å…·
+    public float æ¢å¾©HP;
+    public float æ¢å¾©MP;
+    public float æå‡æ”»æ“ŠåŠ›;
+    public float æå‡é˜²ç¦¦åŠ›;
+    public float æå‡è·³èºåŠ›;
+    public float æå‡æ”»æ“Šé€Ÿåº¦;
+    public float æå‡ç§»å‹•é€Ÿåº¦;
+    // æŠ€èƒ½é“å…·
+    public float é­”åŠ›æ¶ˆè€—é™ä½;
+    public float æå‡æŠ€èƒ½å‚·å®³;
     [Range(0, 10000)]
-    public int Àò±oÃB¥~ÂI¼Æ;
+    public int ç²å¾—é¡å¤–é»æ•¸;
     [Range(0,5)]
-    public int ¼W¥[§Ş¯àÄæ¦ì;
+    public int å¢åŠ æŠ€èƒ½æ¬„ä½;
 }

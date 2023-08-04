@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class SkillInterface : Windows<SkillInterface>
 {
@@ -32,7 +32,7 @@ public class SkillInterface : Windows<SkillInterface>
 			Close();
 		}
 
-		Debug.Log("¬O§_¼È°±(§Ş¯à)¡G" + isPaused);
+		Debug.Log("æ˜¯å¦æš«åœ(æŠ€èƒ½)ï¼š" + isPaused);
 	}
 
 	public override void Open()

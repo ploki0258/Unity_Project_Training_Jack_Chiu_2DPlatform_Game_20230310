@@ -1,21 +1,22 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
 public class ShowSp : MonoBehaviour
 {
 	[SerializeField] TextMeshProUGUI spText = null;
 
 	private void Start()
 	{
-		// µn°O­n¸òµÛ§Ş¯àÂIÅÜ¤Æ¨Ã¥B¤â°Ê¨ê·s¤@¦¸
+		// ç™»è¨˜è¦è·Ÿè‘—æŠ€èƒ½é»è®ŠåŒ–ä¸¦ä¸”æ‰‹å‹•åˆ·æ–°ä¸€æ¬¡
 		SaveManager.instance.playerData.renewSkillPoint += UpdateUI;
 		UpdateUI();
 	}
 	private void OnDisable()
 	{
-		// °h¥Xµn°O
+		// é€€å‡ºç™»è¨˜
 		SaveManager.instance.playerData.renewSkillPoint -= UpdateUI;
 	}
 	
@@ -24,9 +25,9 @@ public class ShowSp : MonoBehaviour
 		spText = GetComponent<TextMeshProUGUI>();
 	}
 
-	/// <summary>¨ê·s§Ş¯àÂI¼Æ</summary>
+	/// <summary>åˆ·æ–°æŠ€èƒ½é»æ•¸</summary>
 	void UpdateUI()
 	{
-		spText.text = SaveManager.instance.playerData.skillPoint.ToString("N0");
+		spText.text = SaveManager.instance.playerData.skillPoint.ToString("N0") + " é»";
 	}
 }

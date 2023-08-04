@@ -1,23 +1,23 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SkillField : MonoBehaviour
 {
-	[SerializeField, Header("§Ş¯à¹Ï¥Ü")]
+	[SerializeField, Header("æŠ€èƒ½åœ–ç¤º")]
 	Image iconSkill;
-	[SerializeField, Header("§Ş¯à¦WºÙ")]
+	[SerializeField, Header("æŠ€èƒ½åç¨±")]
 	Text titleSkill;
-	[SerializeField, Header("§Ş¯à»¡©ú")]
+	[SerializeField, Header("æŠ€èƒ½èªªæ˜")]
 	Text infoSkill;
-	[SerializeField, Header("§Ş¯à«ö¶s")]
+	[SerializeField, Header("æŠ€èƒ½æŒ‰éˆ•")]
 	GameObject[] btnSkill;
-	// [SerializeField, Header("«ö¶s¤å¦r")]
+	// [SerializeField, Header("æŒ‰éˆ•æ–‡å­—")]
 	// Text btnText;
 
-	bool alreSkill;     // ¬O§_¤w¾Ç²ß¸Ó§Ş¯à
-	Skill skillData;    // §Ş¯à¸ê®Æ
+	bool alreSkill;     // æ˜¯å¦å·²å­¸ç¿’è©²æŠ€èƒ½
+	Skill skillData;    // æŠ€èƒ½è³‡æ–™
 	Text btn1Text;
 	Text btn2Text;
 
@@ -41,112 +41,113 @@ public class SkillField : MonoBehaviour
 	}
 
 	/// <summary>
-	/// ÂIÀ»§Ş¯à¹Ï¥Üªì©l¤Æ§Ş¯à¡GÅã¥Ü¸Ó§Ş¯àªº¸ê°T
+	/// é»æ“ŠæŠ€èƒ½åœ–ç¤ºåˆå§‹åŒ–æŠ€èƒ½ï¼šé¡¯ç¤ºè©²æŠ€èƒ½çš„è³‡è¨Š
 	/// </summary>
 	/// <param name="id"></param>
-	public void ªì©l¤Æ§Ş¯à(int id)
+	public void åˆå§‹åŒ–æŠ€èƒ½(int id)
 	{
-		// ¬d§ä¸ê®Æ
+		// æŸ¥æ‰¾è³‡æ–™
 		skillData = SkillManager.instance.FindSkillByID(id);
 
 		iconSkill.sprite = skillData.skillIcon;
 		iconSkill.transform.localScale = (iconSkill.sprite == null) ? Vector3.zero : Vector3.one;
 		titleSkill.text = skillData.skillName;
-		infoSkill.text = skillData.skillDis + "\n" + "\nªá¶Oª÷¹ô¡G" + skillData.skillCoinCost.ToString() + "\nªá¶O§Ş¯àÂI¼Æ" + skillData.skillPointCost;
-		// infoSkill[1].text = "ªá¶Oª÷¹ô¡G" + skillData.skillCoinCost.ToString() + "\nªá¶O§Ş¯àÂI¼Æ" + skillData.skillPointCost;
-		// ¦pªGª±®a¨S¦³¸Ó§Ş¯àªº¸Ü ¤~Åã¥Ü«ö¶s
+		infoSkill.text = skillData.skillDis + "\n" + "\nèŠ±è²»é‡‘å¹£ï¼š" + skillData.skillCoinCost.ToString() + "\nèŠ±è²»æŠ€èƒ½é»æ•¸" + skillData.skillPointCost;
+		// infoSkill[1].text = "èŠ±è²»é‡‘å¹£ï¼š" + skillData.skillCoinCost.ToString() + "\nèŠ±è²»æŠ€èƒ½é»æ•¸" + skillData.skillPointCost;
+		// å¦‚æœç©å®¶æ²’æœ‰è©²æŠ€èƒ½çš„è©± æ‰é¡¯ç¤ºæŒ‰éˆ•
 		alreSkill = SaveManager.instance.playerData.IsHaveSkill(id);
-		btnSkill[0].SetActive(alreSkill == false);  // Åã¥Ü¾Ç²ß«ö¶s
-		btnSkill[1].SetActive(alreSkill == true);   // Åã¥Ü¤w²ß±o«ö¶s
-		// ¦pªGª±®a¨S¦³¸Ó§Ş¯àªº¸Ü
+		btnSkill[0].SetActive(alreSkill == false);  // é¡¯ç¤ºå­¸ç¿’æŒ‰éˆ•
+		btnSkill[1].SetActive(alreSkill == true);   // é¡¯ç¤ºå·²ç¿’å¾—æŒ‰éˆ•
+		// å¦‚æœç©å®¶æ²’æœ‰è©²æŠ€èƒ½çš„è©±
 		if (alreSkill == false)
 		{
-			// Debug.Log("µL¦¹§Ş¯à");
+			// Debug.Log("ç„¡æ­¤æŠ€èƒ½");
 			Skill currentlySkill = SkillManager.instance.FindSkillByID(id);
-			// ¸Ó§Ş¯à¦³«e¸m§Ş¯à
+			// è©²æŠ€èƒ½æœ‰å‰ç½®æŠ€èƒ½
 			if (currentlySkill.Pre_Skill == true)
 			{
-				// Debug.Log("¸Ó§Ş¯à¦³«e¸m§Ş¯à");
-				// ©|¥¼¨ú±o«e¸m§Ş¯à
+				// Debug.Log("è©²æŠ€èƒ½æœ‰å‰ç½®æŠ€èƒ½");
+				// å°šæœªå–å¾—å‰ç½®æŠ€èƒ½
 				if (SaveManager.instance.playerData.IsHaveSkill(currentlySkill.Pre_id) == false)
 				{
-					// Debug.Log("»İ¥ı²ß±o«e¤@­Ó§Ş¯à");
+					// Debug.Log("éœ€å…ˆç¿’å¾—å‰ä¸€å€‹æŠ€èƒ½");
 					btnSkill[0].SetActive(false);
 					btnSkill[1].SetActive(false);
-					btnSkill[2].SetActive(true);    // Åã¥Ü©|¥¼¸ÑÂê«ö¶s
+					btnSkill[2].SetActive(true);    // é¡¯ç¤ºå°šæœªè§£é–æŒ‰éˆ•
 				}
 			}
 		}
-
-		// ¦pªGª±®a¨S¦³¸Ó§Ş¯à ¥B ¨S¦³¨ú±o¸Ó§Ş¯àªº«e¸m§Ş¯à «hÅã¥Ü"©|¥¼¸ÑÂê"¦r¼Ë
-		// ¦pªGª±®a¨S¦³¸Ó§Ş¯à ¥B ¦³¨ú±o¸Ó§Ş¯àªº«e¸m§Ş¯à ©Î ¦pªGª±®a¨S¦³¸Ó§Ş¯à ¥B ¸Ó§Ş¯àªº¨S¦³«e¸m§Ş¯à «hÅã¥Ü"¾Ç²ß"¦r¼Ë
-		// ¦pªGª±®a¤w¸g¨ú±o¸Ó§Ş¯à «hÅã¥Ü"¤w²ß±o"¦r¼Ë
+		#region æ¸¬è©¦(åŸ)
+		// å¦‚æœç©å®¶æ²’æœ‰è©²æŠ€èƒ½ ä¸” æ²’æœ‰å–å¾—è©²æŠ€èƒ½çš„å‰ç½®æŠ€èƒ½ å‰‡é¡¯ç¤º"å°šæœªè§£é–"å­—æ¨£
+		// å¦‚æœç©å®¶æ²’æœ‰è©²æŠ€èƒ½ ä¸” æœ‰å–å¾—è©²æŠ€èƒ½çš„å‰ç½®æŠ€èƒ½ æˆ– å¦‚æœç©å®¶æ²’æœ‰è©²æŠ€èƒ½ ä¸” è©²æŠ€èƒ½çš„æ²’æœ‰å‰ç½®æŠ€èƒ½ å‰‡é¡¯ç¤º"å­¸ç¿’"å­—æ¨£
+		// å¦‚æœç©å®¶å·²ç¶“å–å¾—è©²æŠ€èƒ½ å‰‡é¡¯ç¤º"å·²ç¿’å¾—"å­—æ¨£
 		/*for (int i = 0; i < SkillManager.instance.AllSkillData.Length; i++)
 		{
-			// ¦pªGª±®a¨S¦³¸Ó§Ş¯à
+			// å¦‚æœç©å®¶æ²’æœ‰è©²æŠ€èƒ½
 			if (SaveManager.instance.playerData.IsHaveSkill(SkillManager.instance.AllSkillData[i].id) == false)
 			{
 				Skill currentlySkill = SkillManager.instance.FindSkillByID(SkillManager.instance.AllSkillData[i].id);
-				// ¸Ó§Ş¯à¦³«e¸m§Ş¯à
+				// è©²æŠ€èƒ½æœ‰å‰ç½®æŠ€èƒ½
 				if (currentlySkill.Pre_Skill == true)
 				{
-					// ©|¥¼¨ú±o«e¸m§Ş¯à
+					// å°šæœªå–å¾—å‰ç½®æŠ€èƒ½
 					if (SaveManager.instance.playerData.IsHaveSkill(currentlySkill.Pre_id) == false)
 					{
 						btnSkill[1].SetActive(true);
 						btnSkill[0].SetActive(false);
-						btn2Text.text = "©|¥¼¸ÑÂê";
+						btn2Text.text = "å°šæœªè§£é–";
 					}
-					// ¤w¨ú±o«e¸m§Ş¯à
+					// å·²å–å¾—å‰ç½®æŠ€èƒ½
 					else if (SaveManager.instance.playerData.IsHaveSkill(currentlySkill.Pre_id) == true)
 					{
 						btnSkill[0].SetActive(true);
 						btnSkill[1].SetActive(false);
-						btn1Text.text = "¾Ç²ß";
+						btn1Text.text = "å­¸ç¿’";
 					}
 				}
-				// ¸Ó§Ş¯à¨S¦³«e¸m§Ş¯à
+				// è©²æŠ€èƒ½æ²’æœ‰å‰ç½®æŠ€èƒ½
 				else if (currentlySkill.Pre_Skill == false)
 				{
 					btnSkill[0].SetActive(true);
 					btnSkill[1].SetActive(false);
-					btn1Text.text = "¾Ç²ß";
+					btn1Text.text = "å­¸ç¿’";
 				}
 			}
-			// ¦pªGª±®a¦³¸Ó§Ş¯à
+			// å¦‚æœç©å®¶æœ‰è©²æŠ€èƒ½
 			else if (SaveManager.instance.playerData.IsHaveSkill(SkillManager.instance.AllSkillData[i].id) == true)
 			{
 				btnSkill[1].SetActive(true);
 				btnSkill[0].SetActive(false);
-				btn2Text.text = "¤w²ß±o";
+				btn2Text.text = "å·²ç¿’å¾—";
 			}
 		}
 		*/
+		#endregion
 	}
 
 	/// <summary>
-	/// ¾Ç²ß§Ş¯à¡G«ö¤U¾Ç²ß«ö¶s¡A¥i¾Ç²ß¸Ó§Ş¯à
+	/// å­¸ç¿’æŠ€èƒ½ï¼šæŒ‰ä¸‹å­¸ç¿’æŒ‰éˆ•ï¼Œå¯å­¸ç¿’è©²æŠ€èƒ½
 	/// </summary>
 	public void LearnSkill()
 	{
-		// §PÂ_¯à§_¾Ç²ß§Ş¯à
+		// åˆ¤æ–·èƒ½å¦å­¸ç¿’æŠ€èƒ½
 		if (SaveManager.instance.playerData.moneyCount >= skillData.skillCoinCost && SaveManager.instance.playerData.skillPoint >= skillData.skillPointCost)
 		{
-			Debug.Log($"<color=#90ff06>¤É¯Å§Ş¯à¡G { + skillData.id + "\n¤w²ß±o¡G" + skillData.skillName}</color>");
-			// ¦©¿ú
+			Debug.Log($"<color=#90ff06>å‡ç´šæŠ€èƒ½ï¼š { + skillData.id + "\nå·²ç¿’å¾—ï¼š" + skillData.skillName}</color>");
+			// æ‰£éŒ¢
 			SaveManager.instance.playerData.moneyCount -= skillData.skillCoinCost;
-			// ¦©§Ş¯à
+			// æ‰£æŠ€èƒ½
 			SaveManager.instance.playerData.skillPoint -= skillData.skillPointCost;
-			// ¨ìª±®a¬ö¿ı¤¤ ²K¥[§Ş¯à¦Cªí(ID)
+			// åˆ°ç©å®¶ç´€éŒ„ä¸­ æ·»åŠ æŠ€èƒ½åˆ—è¡¨(ID)
 			SaveManager.instance.playerData.haveSkill.Add(skillData.id);
-			// ¶R§¹«á¶i¦æ¦sÀÉ
+			// è²·å®Œå¾Œé€²è¡Œå­˜æª”
 			SaveManager.instance.SaveData();
-			// ¤â°Ê¨ê·s¤@¦¸§Ş¯àÄæ¸ê°T
-			ªì©l¤Æ§Ş¯à(skillData.id);
+			// æ‰‹å‹•åˆ·æ–°ä¸€æ¬¡æŠ€èƒ½æ¬„è³‡è¨Š
+			åˆå§‹åŒ–æŠ€èƒ½(skillData.id);
 		}
 		else
 		{
-			Debug.Log("ª÷¹ô©ÎÂI¼Æ¤£¨¬" + "\nµLªk¾Ç²ß¦¹§Ş¯à");
+			Debug.Log("é‡‘å¹£æˆ–é»æ•¸ä¸è¶³" + "\nç„¡æ³•å­¸ç¿’æ­¤æŠ€èƒ½");
 		}
 	}
 }
