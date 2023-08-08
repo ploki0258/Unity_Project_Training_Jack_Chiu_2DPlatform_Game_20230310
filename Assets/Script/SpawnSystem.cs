@@ -41,8 +41,8 @@ public class SpawnSystem : MonoBehaviour
 	[Tooltip("計算敵人生成數量")]
 	public int enemyCount = 0;      // 計算敵人個數
 	[Tooltip("計算道具生成數量")]
-	public int itemCount = 0;		// 計算道具個數
-	private Vector2 monsterRange;	// 怪物生成範圍
+	public int itemCount = 0;       // 計算道具個數
+	private Vector2 monsterRange;   // 怪物生成範圍
 	private Vector2 itemRange;      // 道具生成範圍
 	Transform player;
 
@@ -114,7 +114,7 @@ public class SpawnSystem : MonoBehaviour
 	/// <summary>
 	/// 生成技能道具
 	/// </summary>
-	void SpawnItem()
+	public void SpawnItem()
 	{
 		// 隨機X軸 Y軸的值
 		float random_X = Random.Range(this.transform.position.x + min_X, this.transform.position.x + max_X);
@@ -129,6 +129,6 @@ public class SpawnSystem : MonoBehaviour
 			// 每生成一個道具 計數器就+1
 			itemCount++;
 		}
-		
+
 	}
 }
