@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class Enemy : MonoBehaviour
 {
@@ -76,7 +75,7 @@ public class Enemy : MonoBehaviour
 
 	private void Update()
 	{
-		Move();
+		TrackingPlayer();
 		AttackDamage();
 	}
 
@@ -98,7 +97,7 @@ public class Enemy : MonoBehaviour
 	/// <summary>
 	/// 追蹤玩家
 	/// </summary>
-	private void Move()
+	private void TrackingPlayer()
 	{
 		// 面向玩家：如果玩家的 X 大於 敵人的 X 角度 0，否則 角度 180
 		if (player.position.x > this.transform.position.x)

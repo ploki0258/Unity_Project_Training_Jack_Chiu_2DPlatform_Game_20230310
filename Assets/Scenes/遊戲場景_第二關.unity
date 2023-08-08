@@ -4180,7 +4180,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -109.64241
     y: -260.07214
-    width: 139.1803
+    width: 136.88521
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -4220,8 +4220,7 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 444702736}
-  selectedCommands:
-  - {fileID: 444702733}
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
@@ -5949,7 +5948,7 @@ MonoBehaviour:
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_CameraDistance: 10
-  m_DeadZoneWidth: 0.56
+  m_DeadZoneWidth: 0.22
   m_DeadZoneHeight: 0.97
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
