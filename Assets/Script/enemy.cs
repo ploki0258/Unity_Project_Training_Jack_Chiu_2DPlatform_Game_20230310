@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
 	public GameObject itemSkill = null;
 	[Header("掉落機率"), Tooltip("怪物的掉落機率"), Range(1, 10)]
 	public float probDrop = 5f;
-	[Header("被傷害值")]
+	[Header("被傷害值"), Tooltip("受到的傷害值")]
 	public float damage;
 	[SerializeField, Header("尋找物件的名稱")]
 	string objectName;
@@ -44,9 +44,9 @@ public class Enemy : MonoBehaviour
 
 	int coinNumber;
 	int skillNumber;
+	// bool aniCoin = false;       // 播放金幣動畫
+	// bool aniSkill = false;      // 播放技能點數動畫
 	bool isDeath = false;       // 是否死亡
-								// bool aniCoin = false;       // 播放金幣動畫
-								// bool aniSkill = false;      // 播放技能點數動畫
 	Transform player = null;
 	Rigidbody2D rig = null;
 	Animator ani = null;
@@ -199,7 +199,7 @@ public class Enemy : MonoBehaviour
 		if (collision.gameObject.tag == "bullet")
 		{
 			TakeDamageMonster(damage);
-			Debug.Log($"<color=#ff9669>受到的傷害：{damage}</color>");
+			// Debug.Log($"<color=#ff9669>受到的傷害：{damage}</color>");
 
 			if (hpMonster <= 1)
 			{
