@@ -63,7 +63,7 @@ public class PlayerCtrl : MonoBehaviour
 	[Tooltip("用來儲存玩家是否站在地板上")]
 	private bool onFloor = false;
 	bool 翻轉 = false;
-	// bool isWindowsOpen = WindowsManager.instance.IsWindowsOpen();   // 視窗是否被開啟
+	bool isWindowsOpen = WindowsManager.instance.IsWindowsOpen();   // 視窗是否被開啟
 	Vector3 mousePos;
 	Vector2 iconDirection;
 	#endregion
@@ -366,10 +366,10 @@ public class PlayerCtrl : MonoBehaviour
 	/// <summary>
 	/// 法術功能：各個法術的效果
 	/// </summary>
-	private void SpellAttack()
-	{
+	//private void SpellAttack()
+	//{
 
-	}
+	//}
 
 	/// <summary>
 	/// 死亡功能
@@ -404,7 +404,7 @@ public class PlayerCtrl : MonoBehaviour
 		iconDirection = (mousePos - transform.position).normalized;                     // 計算差值並標準化(只取其方向，但長度為1)
 		float angle = Mathf.Atan2(iconDirection.y, iconDirection.x) * Mathf.Rad2Deg;    // 計算旋轉角度
 		traDirectionIcon.eulerAngles = new Vector3(0, 0, angle);
-
+		#region 測試
 		// 取得當前物件的角度
 		// float degree = traDirectionIcon.rotation.eulerAngles.z;
 		// float radian = Mathf.PI / 180 * degree;
@@ -416,6 +416,7 @@ public class PlayerCtrl : MonoBehaviour
 		// float y = Mathf.Sin(radian);
 		// Vector3 movent = new Vector3(x, y, 0f) * SaveManager.instance.playerData.playerAttackSpeed * Time.deltaTime;
 		// traDirectionIcon.position += movent;
+		#endregion
 	}
 
 	/// <summary>
@@ -429,39 +430,6 @@ public class PlayerCtrl : MonoBehaviour
 			SaveManager.instance.playerData.playerMP = maxMP;
 		}
 	}
-
-	/// <summary>
-	/// 儲存玩家資訊
-	/// </summary>
-	/*public void SaveBtn()
-	{
-		SaveManager.instance.SaveData();
-	}
-	*/
-
-	/*public void Coin()
-	{
-		countCoin.text = "× " + Enemy.instance.coinNumber.ToString();
-	}*/
-
-	/*public float hp
-	{
-		get { return maxHP * barHP.fillAmount; }
-		set
-		{
-			barHP.fillAmount = value / maxHP;
-		}
-	}
-
-	public float mp
-	{
-		get { return maxMP * barMP.fillAmount; }
-		set
-		{
-			barMP.fillAmount = value / maxMP;
-		}
-	}
-	*/
 
 	/// <summary>
 	/// 更新金幣顯示動畫
@@ -536,4 +504,37 @@ public class PlayerCtrl : MonoBehaviour
 	{
 		instance.defense += SaveManager.instance.playerData.playerDefense;
 	}
+
+	/// <summary>
+	/// 儲存玩家資訊
+	/// </summary>
+	/*public void SaveBtn()
+	{
+		SaveManager.instance.SaveData();
+	}
+	*/
+
+	/*public void Coin()
+	{
+		countCoin.text = "× " + Enemy.instance.coinNumber.ToString();
+	}*/
+
+	/*public float hp
+	{
+		get { return maxHP * barHP.fillAmount; }
+		set
+		{
+			barHP.fillAmount = value / maxHP;
+		}
+	}
+
+	public float mp
+	{
+		get { return maxMP * barMP.fillAmount; }
+		set
+		{
+			barMP.fillAmount = value / maxMP;
+		}
+	}
+	*/
 }
