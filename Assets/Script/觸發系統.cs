@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+
 public class 觸發系統 : MonoBehaviour
 {
 	[SerializeField, Header("事件可否重複"), Tooltip("是否可重複")]

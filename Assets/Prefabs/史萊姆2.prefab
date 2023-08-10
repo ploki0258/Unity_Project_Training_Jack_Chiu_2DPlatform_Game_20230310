@@ -153,7 +153,7 @@ MonoBehaviour:
   atkMonster: 10
   point: {fileID: 1935043903081271564}
   speedMonster: 5
-  disChase: 8
+  disChase: 6
   itemSkill: {fileID: 4671880185607488085, guid: b9058730acfdbdc45bba83fbcbe52e6f,
     type: 3}
   probDrop: 9
