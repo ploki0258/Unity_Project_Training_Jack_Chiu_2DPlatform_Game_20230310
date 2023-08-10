@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class ItemOnMap : MonoBehaviour
 {
-	private int itemID;		// 道具ID
 	public Item dataItem;	// 道具的腳本化物件
+	
+	private int itemID;		// 道具ID
 
 	private void Awake()
 	{
-		// 道具ID = 該道具的ID
 		itemID = dataItem.id;
+		// 道具ID = 該道具的ID
 		// Debug.Log(itemID);
 		
 		/*dataItem = ItemManager.instance.FindItemData(itemID);
