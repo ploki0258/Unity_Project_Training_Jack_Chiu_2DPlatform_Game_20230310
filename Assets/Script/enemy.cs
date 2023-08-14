@@ -202,11 +202,10 @@ public class Enemy : MonoBehaviour
 
 			if (hpMonster <= 1)
 			{
-				/*if (MistManager.instance.inMist_cyan == false)
-					// 每消失一隻怪物 計數器就-1
-					spawnSystem.enemyCount--;
-				*/
-
+				//if (MistManager.instance.inMist_cyan == false)
+				//	// 每消失一隻怪物 計數器就-1
+				//	spawnSystem.enemyCount--;
+				
 				ani.SetTrigger("damage");
 				isDeath = true;
 				Invoke("Dead", 1f);

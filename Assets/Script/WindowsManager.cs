@@ -38,7 +38,7 @@ public class WindowsManager
 				return;
 		}
 		windowsList.Add(transformID);
-		Debug.Log($"<color=yellow>現在有 {windowsList.Count} 個視窗</color>");
+		Debug.Log($"<color=yellow>現在有 {windowsList.ToString()} 個視窗</color>");
 	}
 
 	public void RemoveWindows(int transformID)
@@ -50,7 +50,7 @@ public class WindowsManager
 				windowsList.RemoveAt(i);
 			}
 		}
-		Debug.Log($"<color=#00ffff>現在有 {windowsList.Count} 個視窗</color>");
+		Debug.Log($"<color=#00ffff>現在有 {windowsList.ToString()} 個視窗</color>");
 	}
 
 	/// <summary>是否有視窗被開啟</summary>

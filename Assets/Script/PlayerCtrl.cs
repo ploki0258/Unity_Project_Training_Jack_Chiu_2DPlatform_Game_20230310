@@ -211,155 +211,158 @@ public class PlayerCtrl : MonoBehaviour
 	/// </summary>
 	void Attack()
 	{
-		// 如果按下左鍵
-		if (Input.GetKeyDown(KeyCode.Mouse0) && isPausedGame == false)
+		if (isPausedGame == false)
 		{
-			ani.SetTrigger("attack");
-
-			// 如果有攻擊物件
-			if (atkObject)
-			{
-				// 如果魔力值 小於等於 零 就不執行
-				if (SaveManager.instance.playerData.playerMP <= 0)
-					return;
-				// 扣魔力消耗
-				SaveManager.instance.playerData.playerMP -= costMP;
-
-				#region// 依據攻擊物件的種類 將攻擊物件生成點生成在特定座標
-				if (atkObject.name == "火球_0")
-				{
-					// 生成子彈並發射
-					if (atkObject != null && 翻轉 != true)
-					{
-						// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
-						GameObject tempAtkObject = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 0f, 0f));
-						tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
-
-						AudioClip sound = SoundManager.instance.attack;
-						SoundManager.instance.PlaySound(sound, 0.7f, 2f);
-					}
-					else if (atkObject != null && 翻轉 == true)
-					{
-						// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
-						GameObject tempAtkObject = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 180f, 0f));
-						tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
-
-						AudioClip sound = SoundManager.instance.attack;
-						SoundManager.instance.PlaySound(sound, 0.7f, 2f);
-					}
-				}
-
-				if (atkObject.name == "風刃_4")
-				{
-					traDirectionIcon.gameObject.SetActive(true);
-					// UpdateDirectionIconPos();
-
-					// 生成子彈並發射
-					if (atkObject != null && 翻轉 != true)
-					{
-						// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(攻擊方向圖示.角度))
-						GameObject tempAtkObject = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(traDirectionIcon.eulerAngles));
-						// tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
-
-						AudioClip sound = SoundManager.instance.attack;
-						SoundManager.instance.PlaySound(sound, 0.7f, 2f);
-					}
-					else if (atkObject != null && 翻轉 == true)
-					{
-						// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
-						GameObject tempAtkObject = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(traDirectionIcon.eulerAngles));
-						// tempAtkObject.GetComponent<Rigidbody2D>().AddForce(traDirectionIcon.eulerAngles * SaveManager.instance.playerData.playerAttackSpeed * 100f, ForceMode2D.Impulse);
-
-						AudioClip sound = SoundManager.instance.attack;
-						SoundManager.instance.PlaySound(sound, 0.7f, 2f);
-					}
-				}
-				else
-				{
-					traDirectionIcon.gameObject.SetActive(false);
-				}
-
-				if (atkObject.name == "冰椎刺_8")
-				{
-					// 生成子彈並發射
-					if (atkObject != null && 翻轉 != true)
-					{
-						// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
-						GameObject tempAtkObject = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 0f, 0f));
-						tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
-
-						AudioClip sound = SoundManager.instance.attack;
-						SoundManager.instance.PlaySound(sound, 0.7f, 2f);
-					}
-					else if (atkObject != null && 翻轉 == true)
-					{
-						// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
-						GameObject tempAtkObject = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 180f, 0f));
-						tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
-
-						AudioClip sound = SoundManager.instance.attack;
-						SoundManager.instance.PlaySound(sound, 0.7f, 2f);
-					}
-				}
-
-				if (atkObject.name == "土牆_12")
-				{
-					// 取得滑鼠座標轉換為世界座標
-					mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-					// 計算差值並標準化(只取其方向，但長度為1)
-					// iconDirection = (mousePos - transform.position).normalized;
-
-					// 生成子彈並發射
-					if (atkObject != null && 翻轉 != true)
-					{
-						// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
-						GameObject tempAtkObject = Instantiate(atkObject, new Vector3(mousePos.x, -2.7f, 0f), Quaternion.Euler(0f, 0f, 0f));
-						// tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
-
-						AudioClip sound = SoundManager.instance.attack;
-						SoundManager.instance.PlaySound(sound, 0.7f, 2f);
-					}
-					else if (atkObject != null && 翻轉 == true)
-					{
-						// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
-						GameObject tempAtkObject = Instantiate(atkObject, new Vector3(mousePos.x, -2.7f, 0f), Quaternion.Euler(0f, 180f, 0f));
-						// Attack(atkObject, new Vector3(atkPoint.position.x, 0f, atkPoint.position.z) + new Vector3(1.5f, 0f, 0f), Quaternion.Euler(0f, 0f, 0f));
-						// tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
-
-						AudioClip sound = SoundManager.instance.attack;
-						SoundManager.instance.PlaySound(sound, 0.7f, 2f);
-					}
-				}
-				#endregion
-
-				// SpellAttack();
-			}
-			else if (atkObject == null)
+			// 如果按下左鍵
+			if (Input.GetKeyDown(KeyCode.Mouse0))
 			{
 				ani.SetTrigger("attack");
+
+				// 如果有攻擊物件
+				if (atkObject)
+				{
+					// 如果魔力值 小於等於 零 就不執行
+					if (SaveManager.instance.playerData.playerMP <= 0)
+						return;
+					// 扣魔力消耗
+					SaveManager.instance.playerData.playerMP -= costMP;
+
+					#region// 依據攻擊物件的種類 將攻擊物件生成點生成在特定座標
+					if (atkObject.name == "火球_0")
+					{
+						// 生成子彈並發射
+						if (atkObject != null && 翻轉 != true)
+						{
+							// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
+							GameObject tempAtkObject = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 0f, 0f));
+							tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
+
+							AudioClip sound = SoundManager.instance.attack;
+							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
+						}
+						else if (atkObject != null && 翻轉 == true)
+						{
+							// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
+							GameObject tempAtkObject = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 180f, 0f));
+							tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
+
+							AudioClip sound = SoundManager.instance.attack;
+							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
+						}
+					}
+
+					if (atkObject.name == "風刃_4")
+					{
+						traDirectionIcon.gameObject.SetActive(true);
+						// UpdateDirectionIconPos();
+
+						// 生成子彈並發射
+						if (atkObject != null && 翻轉 != true)
+						{
+							// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(攻擊方向圖示.角度))
+							GameObject tempAtkObject = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(traDirectionIcon.eulerAngles));
+							// tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
+
+							AudioClip sound = SoundManager.instance.attack;
+							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
+						}
+						else if (atkObject != null && 翻轉 == true)
+						{
+							// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
+							GameObject tempAtkObject = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(traDirectionIcon.eulerAngles));
+							// tempAtkObject.GetComponent<Rigidbody2D>().AddForce(traDirectionIcon.eulerAngles * SaveManager.instance.playerData.playerAttackSpeed * 100f, ForceMode2D.Impulse);
+
+							AudioClip sound = SoundManager.instance.attack;
+							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
+						}
+					}
+					else
+					{
+						traDirectionIcon.gameObject.SetActive(false);
+					}
+
+					if (atkObject.name == "冰椎刺_8")
+					{
+						// 生成子彈並發射
+						if (atkObject != null && 翻轉 != true)
+						{
+							// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
+							GameObject tempAtkObject = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 0f, 0f));
+							tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
+
+							AudioClip sound = SoundManager.instance.attack;
+							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
+						}
+						else if (atkObject != null && 翻轉 == true)
+						{
+							// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
+							GameObject tempAtkObject = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 180f, 0f));
+							tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
+
+							AudioClip sound = SoundManager.instance.attack;
+							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
+						}
+					}
+
+					if (atkObject.name == "土牆_12")
+					{
+						// 取得滑鼠座標轉換為世界座標
+						mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+						// 計算差值並標準化(只取其方向，但長度為1)
+						// iconDirection = (mousePos - transform.position).normalized;
+
+						// 生成子彈並發射
+						if (atkObject != null && 翻轉 != true)
+						{
+							// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
+							GameObject tempAtkObject = Instantiate(atkObject, new Vector3(mousePos.x, -2.7f, 0f), Quaternion.Euler(0f, 0f, 0f));
+							// tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
+
+							AudioClip sound = SoundManager.instance.attack;
+							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
+						}
+						else if (atkObject != null && 翻轉 == true)
+						{
+							// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
+							GameObject tempAtkObject = Instantiate(atkObject, new Vector3(mousePos.x, -2.7f, 0f), Quaternion.Euler(0f, 180f, 0f));
+							// Attack(atkObject, new Vector3(atkPoint.position.x, 0f, atkPoint.position.z) + new Vector3(1.5f, 0f, 0f), Quaternion.Euler(0f, 0f, 0f));
+							// tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
+
+							AudioClip sound = SoundManager.instance.attack;
+							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
+						}
+					}
+					#endregion
+
+					// SpellAttack();
+				}
+				else if (atkObject == null)
+				{
+					ani.SetTrigger("attack");
+				}
+
+				#region // 生成子彈並發射(原)
+				/*
+				if (atkObject != null && 翻轉 != true)
+				{
+					// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
+					GameObject tempAtkObject = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 0f, 0f));
+					tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
+
+					AudioClip sound = SoundManager.instance.attack;
+					SoundManager.instance.PlaySound(sound, 0.7f, 2f);
+				}
+				else if (atkObject != null && 翻轉 == true)
+				{
+					// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
+					GameObject tempAtkObject = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 180f, 0f));
+					tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
+
+					AudioClip sound = SoundManager.instance.attack;
+					SoundManager.instance.PlaySound(sound, 0.7f, 2f);
+				}*/
+				#endregion
 			}
-
-			#region // 生成子彈並發射(原)
-			/*
-			if (atkObject != null && 翻轉 != true)
-			{
-				// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
-				GameObject tempAtkObject = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 0f, 0f));
-				tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
-
-				AudioClip sound = SoundManager.instance.attack;
-				SoundManager.instance.PlaySound(sound, 0.7f, 2f);
-			}
-			else if (atkObject != null && 翻轉 == true)
-			{
-				// 暫存攻擊物件 = 實例化(攻擊物件, 攻擊生成點.位置, Quaternion.尤拉角(0f, 0f, 0f))
-				GameObject tempAtkObject = Instantiate(atkObject, atkPoint.position, Quaternion.Euler(0f, 180f, 0f));
-				tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
-
-				AudioClip sound = SoundManager.instance.attack;
-				SoundManager.instance.PlaySound(sound, 0.7f, 2f);
-			}*/
-			#endregion
 		}
 	}
 
@@ -455,6 +458,7 @@ public class PlayerCtrl : MonoBehaviour
 	void RenewPlayerHP()
 	{
 		barHP.fillAmount = SaveManager.instance.playerData.playerHP / maxHP;
+		Debug.Log($"<color=red>血量：{barHP.fillAmount * 100}</color>");
 	}
 
 	/// <summary>
@@ -463,6 +467,7 @@ public class PlayerCtrl : MonoBehaviour
 	void RenewPlayerMP()
 	{
 		barMP.fillAmount = SaveManager.instance.playerData.playerMP / maxMP;
+		Debug.Log($"<color=blue>魔力：{barHP.fillAmount * 100}</color>");
 	}
 
 	/// <summary>

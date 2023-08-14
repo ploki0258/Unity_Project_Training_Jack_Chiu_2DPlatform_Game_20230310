@@ -18077,7 +18077,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 608459329}
         m_TargetAssemblyTypeName: MeunManager, Assembly-CSharp
         m_MethodName: ReturnToHome
         m_Mode: 1
