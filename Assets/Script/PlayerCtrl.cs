@@ -86,7 +86,6 @@ public class PlayerCtrl : MonoBehaviour
 			this.transform.position = SaveManager.instance.playerData.playerPos;    // 瞬間移動到記錄中的位置
 
 		// SaveManager.instance.SaveData();
-		// WindowsManager.instance.Start();
 
 		//barHP = GameObject.Find("血條").GetComponent<Image>();
 		//barMP = GameObject.Find("魔力條").GetComponent<Image>();
@@ -118,15 +117,15 @@ public class PlayerCtrl : MonoBehaviour
 
 	private void OnDisable()
 	{
-		SaveManager.instance.playerData.renewCoin -= RenewCoin;
-		SaveManager.instance.playerData.renewSkillPoint -= RenewSkillPoint;
-		SaveManager.instance.playerData.renewPlayerHP -= RenewPlayerHP;
-		SaveManager.instance.playerData.renewPlayerMP -= RenewPlayerMP;
-		SaveManager.instance.playerData.renewPlayerSpeed -= RenewPlayerMove;
-		SaveManager.instance.playerData.renewPlayerJump -= RenewPlayerJump;
-		SaveManager.instance.playerData.renewPlayerAttackSpeed -= RenewPlayerAttackSpeed;
-		SaveManager.instance.playerData.renewPlayerAttack -= RenewPlayerAttack;
-		SaveManager.instance.playerData.renewPlayerDefense -= RenewPlayerDefecse;
+		//SaveManager.instance.playerData.renewCoin -= RenewCoin;
+		//SaveManager.instance.playerData.renewSkillPoint -= RenewSkillPoint;
+		//SaveManager.instance.playerData.renewPlayerHP -= RenewPlayerHP;
+		//SaveManager.instance.playerData.renewPlayerMP -= RenewPlayerMP;
+		//SaveManager.instance.playerData.renewPlayerSpeed -= RenewPlayerMove;
+		//SaveManager.instance.playerData.renewPlayerJump -= RenewPlayerJump;
+		//SaveManager.instance.playerData.renewPlayerAttackSpeed -= RenewPlayerAttackSpeed;
+		//SaveManager.instance.playerData.renewPlayerAttack -= RenewPlayerAttack;
+		//SaveManager.instance.playerData.renewPlayerDefense -= RenewPlayerDefecse;
 	}
 
 	private void Update()
@@ -140,7 +139,10 @@ public class PlayerCtrl : MonoBehaviour
 #endif
 		// speedAtk += itemNormalValue.提升攻擊速度;
 		// Debug.Log("以提升數值");
-		Debug.Log("是否暫停：" + isPausedGame);
+		// Debug.Log("是否暫停：" + isPausedGame);
+
+		Debug.Log("玩家血量：" + SaveManager.instance.playerData.playerHP);
+		Debug.Log("最大血量：" + maxHP);
 	}
 
 	private void FixedUpdate()
@@ -236,7 +238,7 @@ public class PlayerCtrl : MonoBehaviour
 					if (SaveManager.instance.playerData.playerMP <= 0)
 						return;
 					// 魔力消耗 等於 攻擊物件的魔力消耗
-					costMP = atkObject.GetComponent<AttackObject>().skillData.skillCost;
+					// costMP = atkObject.GetComponent<AttackObject>().skillData.skillCost;
 					// 扣魔力消耗
 					SaveManager.instance.playerData.playerMP -= costMP;
 
@@ -471,7 +473,9 @@ public class PlayerCtrl : MonoBehaviour
 	void RenewPlayerHP()
 	{
 		barHP.fillAmount = SaveManager.instance.playerData.playerHP / maxHP;
-		Debug.Log($"<color=red>血量：{barHP.fillAmount * 100}</color>");
+		//Debug.Log($"<color=red>玩家血量： {SaveManager.instance.playerData.playerHP}</color>");
+		//Debug.Log("<color=red>最大血量：</color>" + maxHP);
+		//Debug.Log($"<color=red>當前血量：{barHP.fillAmount * 100}</color>");
 	}
 
 	/// <summary>
@@ -480,7 +484,9 @@ public class PlayerCtrl : MonoBehaviour
 	void RenewPlayerMP()
 	{
 		barMP.fillAmount = SaveManager.instance.playerData.playerMP / maxMP;
-		Debug.Log($"<color=blue>魔力：{barHP.fillAmount * 100}</color>");
+		//Debug.Log($"<color=blue>玩家魔力： {SaveManager.instance.playerData.playerMP}</color>");
+		//Debug.Log("<color=blue>最大魔力：</color>" + maxMP);
+		//Debug.Log($"<color=blue>當前魔力：{barMP.fillAmount * 100}</color>");
 	}
 
 	/// <summary>

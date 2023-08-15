@@ -54,7 +54,7 @@ public class ItemField : Windows<ItemField>
 		if (Input.GetKeyDown(KeyCode.Escape))
 			Close();
 
-		Debug.Log("是否暫停(道具)：" + isPaused);
+		// Debug.Log("是否暫停(道具)：" + isPaused);
 	}
 
 	// 打開視窗時 顯示滑鼠 時間暫停

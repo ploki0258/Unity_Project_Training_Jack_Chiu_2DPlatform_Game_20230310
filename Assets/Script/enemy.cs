@@ -87,10 +87,12 @@ public class Enemy : MonoBehaviour
 		if (PlayerCtrl.instance.atkObject == null)
 		{
 			damage = SaveManager.instance.playerData.playerAttack;
+			Debug.Log("玩家傷害：" + SaveManager.instance.playerData.playerAttack);
 		}
 		else if (PlayerCtrl.instance.atkObject != null)
 		{
 			damage = GameObject.Find("女主角").GetComponent<PlayerCtrl>().atkObject.GetComponent<AttackObject>().skillData.skillDamage;
+			Debug.Log("技能傷害：" + GameObject.Find("女主角").GetComponent<PlayerCtrl>().atkObject.GetComponent<AttackObject>().skillData.skillDamage);
 		}
 	}
 

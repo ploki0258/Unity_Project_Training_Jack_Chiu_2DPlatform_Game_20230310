@@ -32,7 +32,7 @@ public class SkillInterface : Windows<SkillInterface>
 			Close();
 		}
 
-		Debug.Log("是否暫停(技能)：" + isPaused);
+		// Debug.Log("是否暫停(技能)：" + isPaused);
 	}
 
 	public override void Open()
