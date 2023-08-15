@@ -23,9 +23,10 @@ MonoBehaviour:
   isSpecial: 0
   attackDis: "\u9577\u51FA\u4E00\u9053\u571F\u7246"
   skillDis: "\u5EFA\u7ACB\u571F\u7246\uFF0C\u963B\u64CB\u6575\u4EBA\u524D\u9032\uFF0C\u7DAD\u6301\u6578\u79D2"
+  skillCost: 10
   skillCoinCost: 100
   skillPointCost: 100
-  skillAttack: 0
+  skillDamage: 0
   skillSpeed: 1
   burntPos: {fileID: 0}
   enemyDis: 0

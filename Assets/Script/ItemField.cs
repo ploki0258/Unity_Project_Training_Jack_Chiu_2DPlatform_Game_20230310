@@ -64,6 +64,7 @@ public class ItemField : Windows<ItemField>
 		// Cursor.lockState = CursorLockMode.None;
 		isPaused = true;
 		Time.timeScale = 0f;
+		PlayerCtrl.instance.enabled = false;
 	}
 
 	// 關閉視窗時 隱藏滑鼠 時間繼續
@@ -73,6 +74,7 @@ public class ItemField : Windows<ItemField>
 		// Cursor.lockState = CursorLockMode.Locked;
 		isPaused = false;
 		Time.timeScale = 1f;
+		PlayerCtrl.instance.enabled = true;
 	}
 
 	List<GameObject> 垃圾桶 = new List<GameObject>();

@@ -27,6 +27,8 @@ public class Skill : ScriptableObject
     public string attackDis;
     [Header("技能敘述"), TextArea(5, 5)]
     public string skillDis;
+    [Header("魔力消耗")]
+    public int skillCost;
     [Header("技能費用")]
     public int skillCoinCost;
     public int skillPointCost;

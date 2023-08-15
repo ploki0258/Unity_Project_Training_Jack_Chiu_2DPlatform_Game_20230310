@@ -22,6 +22,7 @@ MonoBehaviour:
   isSpecial: 0
   attackDis: "\u5F9E\u5929\u964D\u4E0B\u51B0\u96EA\u66B4\u98A8"
   skillDis: "\u5C0D\u524D\u65B9\u7BC4\u570D\u5167\u7684\u6575\u4EBA\u9020\u6210\u4E2D\u5E45\u5EA6\u50B7\u5BB3\uFF0C\u4E26\u4E2D\u5E45\u5EA6\u964D\u4F4E\u884C\u52D5\u901F\u5EA6\uFF0C\u7DAD\u6301\u6578\u79D2"
+  skillCost: 20
   skillCoinCost: 2000
   skillPointCost: 200
   skillDamage: 200

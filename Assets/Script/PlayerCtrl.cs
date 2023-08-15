@@ -87,6 +87,16 @@ public class PlayerCtrl : MonoBehaviour
 
 		// SaveManager.instance.SaveData();
 		// WindowsManager.instance.Start();
+
+		//barHP = GameObject.Find("血條").GetComponent<Image>();
+		//barMP = GameObject.Find("魔力條").GetComponent<Image>();
+		//coinCount = GameObject.Find("金幣數量").GetComponent<TextMeshProUGUI>();
+		//skillCount = GameObject.Find("技能點數").GetComponent<TextMeshProUGUI>();
+		//cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+		//coinInfo = GameObject.Find("金幣顯示").GetComponent<Text>();
+		//skillInfo = GameObject.Find("技能點數顯示").GetComponent<Text>();
+		//showCoinAni = GameObject.Find("資訊顯示動畫").GetComponent<Animator>();
+		//showSkillPointAni = GameObject.Find("資訊顯示動畫").GetComponent<Animator>();
 	}
 
 	private void Start()
@@ -125,8 +135,9 @@ public class PlayerCtrl : MonoBehaviour
 		Jump();
 		Attack();
 		Dead();
+#if UNITY_EDITOR
 		Panacea();
-
+#endif
 		// speedAtk += itemNormalValue.提升攻擊速度;
 		// Debug.Log("以提升數值");
 		Debug.Log("是否暫停：" + isPausedGame);
@@ -224,6 +235,8 @@ public class PlayerCtrl : MonoBehaviour
 					// 如果魔力值 小於等於 零 就不執行
 					if (SaveManager.instance.playerData.playerMP <= 0)
 						return;
+					// 魔力消耗 等於 攻擊物件的魔力消耗
+					costMP = atkObject.GetComponent<AttackObject>().skillData.skillCost;
 					// 扣魔力消耗
 					SaveManager.instance.playerData.playerMP -= costMP;
 
