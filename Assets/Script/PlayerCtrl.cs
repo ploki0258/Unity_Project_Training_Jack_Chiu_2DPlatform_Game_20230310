@@ -238,7 +238,7 @@ public class PlayerCtrl : MonoBehaviour
 					if (SaveManager.instance.playerData.playerMP <= 0)
 						return;
 					// 魔力消耗 等於 攻擊物件的魔力消耗
-					// costMP = atkObject.GetComponent<AttackObject>().skillData.skillCost;
+					costMP = atkObject.GetComponent<AttackObject>().skillData.skillCost;
 					// 扣魔力消耗
 					SaveManager.instance.playerData.playerMP -= costMP;
 

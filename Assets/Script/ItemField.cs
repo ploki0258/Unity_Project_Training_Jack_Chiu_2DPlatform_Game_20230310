@@ -77,6 +77,7 @@ public class ItemField : Windows<ItemField>
 		PlayerCtrl.instance.enabled = true;
 	}
 
+	// 建立"垃圾桶"列表 用於暫存要清除的格子
 	List<GameObject> 垃圾桶 = new List<GameObject>();
 
 	void 刷新道具欄()
@@ -86,7 +87,7 @@ public class ItemField : Windows<ItemField>
            Destroy(g);
        // 重製陣列
        垃圾桶.Clear();
-
+		#region 測試
 		// 清除上次暫存的格子
 		/*
        for (int i = 0; i < 垃圾桶.Count; i++)
@@ -96,7 +97,7 @@ public class ItemField : Windows<ItemField>
 		// 重製陣列
 		垃圾桶.Clear();
        */
-
+		#endregion
 		// 格子模板本身不顯示
 		tempGrid.SetActive(false);
 		// i小於格子數量 20

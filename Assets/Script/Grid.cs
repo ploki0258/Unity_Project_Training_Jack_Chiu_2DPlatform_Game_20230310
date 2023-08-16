@@ -12,7 +12,7 @@ public class Grid : MonoBehaviour
 
 	Item dataGrid;
 	bool isNoneGrid = true; // 是否為空格子
-	GameObject mist;
+							// GameObject mist;
 	/*
 	public float 恢復HP;
 	public float 恢復MP;
@@ -41,6 +41,7 @@ public class Grid : MonoBehaviour
 
 	private void OnEnable()
 	{
+		// 如果是空格子的話 就隱藏格子資訊
 		if (isNoneGrid == true)
 		{
 			圖示.transform.localScale = Vector3.zero;
@@ -57,6 +58,8 @@ public class Grid : MonoBehaviour
 	public void PressGrid()
 	{
 		// 如果是空格子 就不執行
+		// 否則就顯示該道具的描述
+		// 目前選到的格子 等於 自己
 		if (isNoneGrid)
 		{
 			btnUse.目前選到的格子 = null;
@@ -89,11 +92,20 @@ public class Grid : MonoBehaviour
 			SaveManager.instance.playerData.playerJump += dataGrid.提升跳躍力;
 			SaveManager.instance.playerData.playerAttackSpeed += dataGrid.提升攻擊速度;
 			SaveManager.instance.playerData.playerSpeed += dataGrid.提升移動速度;
+			
+			// 如果玩家有攻擊物件時 攻擊物件的魔力消耗 降低 道具資料的魔力消耗降低的值
+			if (PlayerCtrl.instance.atkObject != null)
+				PlayerCtrl.instance.atkObject.GetComponent<AttackObject>().skillData.skillCost += -dataGrid.魔力消耗降低;
+			// 如果玩家有攻擊物件時 攻擊物件的技能傷害 增加 道具資料的提升技能傷害的值
+			if (PlayerCtrl.instance.atkObject != null)
+				PlayerCtrl.instance.atkObject.GetComponent<AttackObject>().skillData.skillDamage += dataGrid.提升技能傷害;
+
 			// 如果此次獲得的技能點數為 0 則不呼叫事件更新
 			if (dataGrid.獲得額外點數 == 0)
 				SaveManager.instance.playerData.renewSkillPoint = null;
 			SaveManager.instance.playerData.skillPoint += dataGrid.獲得額外點數;
 
+			// 如果是綠色迷霧的話 道具的恢復效果變為扣除效果(負面效果)
 			bool inMistType_gree = MistManager.instance.inMist_gree;
 			if (inMistType_gree == true)
 			{
@@ -105,11 +117,7 @@ public class Grid : MonoBehaviour
 					Mathf.Clamp(SaveManager.instance.playerData.playerMP, SaveManager.instance.playerData.playerMP, PlayerCtrl.instance.maxMP);
 			}
 
-			/*
-			魔力消耗降低 += dataGrid.魔力消耗降低;
-			提升技能傷害 += dataGrid.提升技能傷害;
-			增加技能欄位 += dataGrid.增加技能欄位;
-			*/
+			//增加技能欄位 += dataGrid.增加技能欄位;
 
 			// 不可被使用的東西 就不執行
 			if (dataGrid.canUse == false)

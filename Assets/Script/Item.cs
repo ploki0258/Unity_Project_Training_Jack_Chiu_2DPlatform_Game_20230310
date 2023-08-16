@@ -17,7 +17,7 @@ public class Item : ScriptableObject
     public Sprite icon;
     [TextArea(5, 5), Header("道具敘述")]
     public string info;
-    [Header("道具類別")]
+    [Header("技能道具")]
     public bool itemSkill;
     [Header("底圖顏色")]
     public Color colorBG;
@@ -35,7 +35,7 @@ public class Item : ScriptableObject
     public float 提升攻擊速度;
     public float 提升移動速度;
     // 技能道具
-    public float 魔力消耗降低;
+    public int 魔力消耗降低;
     public float 提升技能傷害;
     [Range(0, 10000)]
     public int 獲得額外點數;

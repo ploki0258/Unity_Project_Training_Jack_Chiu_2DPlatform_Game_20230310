@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: adbf9ce8cc1e02b4b8620f7dab4df277, type: 3}
-  m_Name: "\u7F8E\u5473\u7684\u679C\u5BE6"
+  m_Name: "\u9B54\u529B\u85E5\u6C3421"
   m_EditorClassIdentifier: 
-  id: 22
-  title: "\u7F8E\u5473\u7684\u679C\u5BE6"
-  icon: {fileID: 21300000, guid: da7129ed6a246f048a49d8d97de2d2d4, type: 3}
-  info: "\u6062\u5FA910\u9EDE\u751F\u547D\u503C\u53CA5\u9EDE\u9B54\u529B\u503C\u3002"
+  id: 21
+  title: "\u9B54\u529B\u85E5\u6C34"
+  icon: {fileID: 21300000, guid: b7f77607c82ea4142a2070c0e37e1756, type: 3}
+  info: "\u6062\u5FA920\u9EDE\u9B54\u529B\u503C\u3002"
   itemSkill: 0
   colorBG: {r: 0.764151, g: 0.5688525, b: 0.49309364, a: 1}
   canUse: 1
   Consumables: 1
-  "\u6062\u5FA9HP": 10
-  "\u6062\u5FA9MP": 5
+  "\u6062\u5FA9HP": 0
+  "\u6062\u5FA9MP": 20
   "\u63D0\u5347\u653B\u64CA\u529B": 0
   "\u63D0\u5347\u9632\u79A6\u529B": 0
   "\u63D0\u5347\u8DF3\u8E8D\u529B": 0

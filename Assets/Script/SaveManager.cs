@@ -353,7 +353,7 @@ public struct PlayerData
 				if (goodsList[i].id == id && goodsList[i].number <= itemNumberMax)
 				{
 					Goods temp = goodsList[i];  // 複製一個陣列
-					temp.number++;              // 將複製的陣列進行修改
+					temp.number++;              // 將複製的陣列進行修改(數量加一)
 					goodsList[i] = temp;        // 將修改後的陣列覆蓋回去
 					break;                      // 已成功完成堆疊 結束迴圈
 				}
@@ -387,7 +387,7 @@ public struct PlayerData
 	}
 
 	/// <summary>
-	/// 減少道具
+	/// 減少道具(By ID)
 	/// </summary>
 	/// <param name="id">道具編號</param>
 	public void RemoveItem(int id)
@@ -402,7 +402,7 @@ public struct PlayerData
 				if (goodsList[i].id == id)
 				{
 					Goods temp = goodsList[i];  // 複製一個陣列
-					temp.number--;              // 將複製的陣列進行修改
+					temp.number--;              // 將複製的陣列進行修改(數量減一)
 					goodsList[i] = temp;        // 將修改後的陣列覆蓋回去
 					break;                      // 已成功完成堆疊 結束迴圈
 				}

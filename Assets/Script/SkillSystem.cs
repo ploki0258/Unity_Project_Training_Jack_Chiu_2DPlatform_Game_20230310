@@ -95,18 +95,6 @@ public class SkillSystem : MonoBehaviour
 			// PlayerCtrl.instance.atkObject = skillSlot[2].GetComponent<Skill>().skillPrefab;
 			// currentSkillIndex = 2;
 		}
-		/*
-		for (int i = 0; i < skillSlot.Length; i++)
-		{
-			if (keyboard == i)
-			{
-				iconSkill.color = new Color(1f, 1f, 1f, 1f);
-			}
-			else
-			{
-				iconSkill.color = new Color(1f, 1f, 1f, 0.6f);
-			}
-		}*/
 
 		#region 測試
 		/*
