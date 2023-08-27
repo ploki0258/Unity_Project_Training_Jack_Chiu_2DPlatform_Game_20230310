@@ -9,11 +9,12 @@ public class AttackObject : MonoBehaviour
 	[Header("技能資料")]
 	public Skill skillData;
 
+	[Tooltip("原本怪物移動速度")]
+	private float originalSpeedMonster;
 	private float timer;
 	private bool isTerraSkill = false;
-	private float originalSpeedMonster;
-	BoxCollider2D boxCollider;
-	Rigidbody2D rg2D;
+	private BoxCollider2D boxCollider;
+	private Rigidbody2D rg2D;
 
 	private void Awake()
 	{
@@ -65,7 +66,7 @@ public class AttackObject : MonoBehaviour
 	/// <summary>
 	/// 技能效果：執行各個技能效果
 	/// </summary>
-	void SkillEffectButton()
+	private void SkillEffectButton()
 	{
 		if (skillData != null)
 		{
@@ -75,7 +76,7 @@ public class AttackObject : MonoBehaviour
 			if (skillData.skillName == "土牆") TerraSkill();
 		}
 	}
-
+	#region 各屬性技能效果
 	// 火球術技能
 	void FireSkill()
 	{
@@ -96,18 +97,23 @@ public class AttackObject : MonoBehaviour
 	{
 		bool speed = Enemy.instance.speedMonster == originalSpeedMonster;
 
+		// 如果降速秒數 大於 零
 		if (skillData.enemyDelayTime > 0)
 		{
+			// (擊中敵人時)降低敵人的移動速度
 			Enemy.instance.speedMonster -= skillData.enemySlowSpeed;
-			Debug.Log("降低敵人速度" + speed);
+			// Debug.Log("降低敵人速度" + speed);
 		}
 
+		// 降速秒數隨時間(秒)減少
 		skillData.enemyDelayTime -= Time.deltaTime;
 
+		// 如果降速秒數 小於等於 零
 		if (skillData.enemyDelayTime <= 0)
 		{
+			// 恢復敵人的移動速度
 			Enemy.instance.speedMonster = originalSpeedMonster;
-			Debug.Log("恢復敵人速度" + speed);
+			// Debug.Log("恢復敵人速度" + speed);
 		}
 	}
 
@@ -116,7 +122,7 @@ public class AttackObject : MonoBehaviour
 	{
 		isTerraSkill = true;
 
-		if (timer > 0)
+		if (timer >= 0)
 		{
 			boxCollider.isTrigger = false;
 		}
@@ -129,4 +135,5 @@ public class AttackObject : MonoBehaviour
 			Destroy(this.gameObject);
 		}
 	}
+	#endregion
 }

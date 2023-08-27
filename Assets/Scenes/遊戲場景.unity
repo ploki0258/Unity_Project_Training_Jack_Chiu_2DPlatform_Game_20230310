@@ -1664,7 +1664,7 @@ MonoBehaviour:
   max_Y: 1.5
   playerDis: 0
   enemyCountMax: 0
-  itemCountMax: 10
+  itemCountMax: 15
   enemyCount: 0
   itemCount: 0
 --- !u!4 &126378232
@@ -16614,6 +16614,10 @@ GameObject:
   - component: {fileID: 1584783423}
   - component: {fileID: 1584783422}
   - component: {fileID: 1584783424}
+  - component: {fileID: 1584783427}
+  - component: {fileID: 1584783425}
+  - component: {fileID: 1584783426}
+  - component: {fileID: 1584783428}
   m_Layer: 0
   m_Name: "\u65B0\u624B\u6559\u7A0B_\u6280\u80FD\u4F7F\u7528"
   m_TagString: Untagged
@@ -16634,7 +16638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 52.668034, y: -18.350626}
+  scrollPos: {x: -4.2939835, y: 22.155695}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
@@ -16648,7 +16652,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1584783404}
   selectedCommands:
-  - {fileID: 1584783422}
+  - {fileID: 1584783409}
   variables: []
   description: 
   stepPause: 0
@@ -16719,9 +16723,13 @@ MonoBehaviour:
   - {fileID: 1584783411}
   - {fileID: 1584783410}
   - {fileID: 1584783414}
+  - {fileID: 1584783420}
+  - {fileID: 1584783427}
   - {fileID: 1584783419}
   - {fileID: 1584783417}
+  - {fileID: 1584783426}
   - {fileID: 1584783423}
+  - {fileID: 1584783428}
   - {fileID: 1584783409}
   - {fileID: 1584783408}
   - {fileID: 1584783407}
@@ -16729,7 +16737,7 @@ MonoBehaviour:
   - {fileID: 1584783405}
   - {fileID: 1584783403}
   - {fileID: 1584783418}
-  - {fileID: 1584783420}
+  - {fileID: 1584783425}
   - {fileID: 1584783422}
   suppressAllAutoSelections: 0
 --- !u!114 &1584783405
@@ -16968,6 +16976,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1283335293890577668}
+        m_TargetAssemblyTypeName: UnityEngine.Rigidbody2D, UnityEngine
+        m_MethodName: WakeUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   booleanParameter:
     booleanRef: {fileID: 0}
     booleanVal: 0
@@ -17102,6 +17122,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1283335293890577668}
+        m_TargetAssemblyTypeName: UnityEngine.Rigidbody2D, UnityEngine
+        m_MethodName: Sleep
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -17322,7 +17354,7 @@ MonoBehaviour:
   parameterNameOLD: 
 --- !u!114 &1584783424
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -17345,6 +17377,99 @@ MonoBehaviour:
     booleanVal: 0
   animatorOLD: {fileID: 0}
   parameterNameOLD: 
+--- !u!114 &1584783425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584783401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee63e642958494f1ebed8116ae4b1103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 22
+  indentLevel: 0
+  _animator:
+    animatorRef: {fileID: 0}
+    animatorVal: {fileID: 4919912017055793581}
+  _parameterName:
+    stringRef: {fileID: 0}
+    stringVal: isRun
+  value:
+    booleanRef: {fileID: 0}
+    booleanVal: 1
+  animatorOLD: {fileID: 0}
+  parameterNameOLD: 
+--- !u!114 &1584783426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584783401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee63e642958494f1ebed8116ae4b1103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 23
+  indentLevel: 0
+  _animator:
+    animatorRef: {fileID: 0}
+    animatorVal: {fileID: 4919912017055793581}
+  _parameterName:
+    stringRef: {fileID: 0}
+    stringVal: isRun
+  value:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  animatorOLD: {fileID: 0}
+  parameterNameOLD: 
+--- !u!114 &1584783427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584783401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee63e642958494f1ebed8116ae4b1103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 21
+  indentLevel: 0
+  _animator:
+    animatorRef: {fileID: 0}
+    animatorVal: {fileID: 4919912017055793581}
+  _parameterName:
+    stringRef: {fileID: 0}
+    stringVal: isJump
+  value:
+    booleanRef: {fileID: 0}
+    booleanVal: 1
+  animatorOLD: {fileID: 0}
+  parameterNameOLD: 
+--- !u!114 &1584783428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584783401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3315ad2ebb85443909a1203d56d9344e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 24
+  indentLevel: 0
+  _duration:
+    floatRef: {fileID: 0}
+    floatVal: 0.1
+  durationOLD: 0
 --- !u!1 &1596128007
 GameObject:
   m_ObjectHideFlags: 0
@@ -20578,7 +20703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 2027400151}
+  selectedFlowchart: {fileID: 1584783402}
 --- !u!4 &1970630130
 Transform:
   m_ObjectHideFlags: 1
@@ -21271,7 +21396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: -72.40577, y: -59.02547}
+  scrollPos: {x: -225.59723, y: 43.10219}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
@@ -21285,7 +21410,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 2027400153}
   selectedCommands:
-  - {fileID: 2027400157}
+  - {fileID: 2027400169}
   variables: []
   description: 
   stepPause: 0
@@ -21338,8 +21463,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 140.93814
-    y: 99.96907
+    x: 254.7679
+    y: 70.18183
     width: 97.65958
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}

@@ -84,15 +84,15 @@ public class Enemy : MonoBehaviour
 	/// </summary>
 	void AttackDamage()
 	{
-		if (PlayerCtrl.instance.atkObject == null)
+		if (PlayerCtrl.instance.atkObject == null || SaveManager.instance.playerData.playerMP == 0)
 		{
 			damage = SaveManager.instance.playerData.playerAttack;
-			Debug.Log("玩家傷害：" + SaveManager.instance.playerData.playerAttack);
+			// Debug.Log("玩家傷害：" + SaveManager.instance.playerData.playerAttack);
 		}
 		else if (PlayerCtrl.instance.atkObject != null)
 		{
 			damage = GameObject.Find("女主角").GetComponent<PlayerCtrl>().atkObject.GetComponent<AttackObject>().skillData.skillDamage;
-			Debug.Log("技能傷害：" + GameObject.Find("女主角").GetComponent<PlayerCtrl>().atkObject.GetComponent<AttackObject>().skillData.skillDamage);
+			// Debug.Log("技能傷害：" + GameObject.Find("女主角").GetComponent<PlayerCtrl>().atkObject.GetComponent<AttackObject>().skillData.skillDamage);
 		}
 	}
 

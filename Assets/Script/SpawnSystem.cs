@@ -33,9 +33,9 @@ public class SpawnSystem : MonoBehaviour
 	[SerializeField] float max_Y;
 	[Header("與玩家的距離")]
 	[SerializeField] float playerDis;
-	[Header("最大敵人生成數量"), Tooltip("敵人生成最大數量"), Range(0, 10)]
+	[Header("最大敵人生成數量"), Tooltip("敵人生成最大數量"), Range(0, 30)]
 	public int enemyCountMax;
-	[Header("最大道具生成數量"), Tooltip("道具生成最大數量"), Range(0, 10)]
+	[Header("最大道具生成數量"), Tooltip("道具生成最大數量"), Range(0, 30)]
 	public int itemCountMax;
 
 	[Tooltip("計算敵人生成數量")]
