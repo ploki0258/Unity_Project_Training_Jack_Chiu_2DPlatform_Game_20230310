@@ -6,12 +6,26 @@ public class MeunManager : MonoBehaviour
 {
 	[SerializeField, Header("尋找物件的名稱")]
 	string objectName;
+	[SerializeField, Header("遊戲設定介面")]
+	GameObject settingWindows;
 
 	TransferManager transferManager = null;
 
 	private void Awake()
 	{
 		transferManager = GameObject.Find(objectName).GetComponent<TransferManager>();
+	}
+
+	private void Update()
+	{
+		if (settingWindows == true)
+		{
+			if (Input.GetKeyDown(KeyCode.Escape))
+			{
+				settingWindows.SetActive(false);
+				Time.timeScale = 1f;
+			}
+		}
 	}
 
 	/// <summary>
@@ -27,8 +41,8 @@ public class MeunManager : MonoBehaviour
 	/// </summary>
 	public void StartGame()
 	{
-		PlayerPrefs.DeleteKey("GameData");	// 刪除玩家資料
-		SceneManager.LoadScene("遊戲場景");	// 載入遊戲場景
+		PlayerPrefs.DeleteKey("GameData");  // 刪除玩家資料
+		SceneManager.LoadScene("遊戲場景"); // 載入遊戲場景
 	}
 
 	/// <summary>
@@ -46,11 +60,23 @@ public class MeunManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// 返回主畫面
+	/// 返回主畫面(死亡介面)
 	/// </summary>
 	public void ReturnToHome()
 	{
 		// transferManager.ChangeScene();
 		SceneManager.LoadScene("開始畫面");
+	}
+
+	public void SettingGame()
+	{
+		settingWindows.SetActive(true);
+		Time.timeScale = 0f;
+	}
+
+	public void CloseWindows()
+	{
+		settingWindows.SetActive(false);
+		Time.timeScale = 1f;
 	}
 }
