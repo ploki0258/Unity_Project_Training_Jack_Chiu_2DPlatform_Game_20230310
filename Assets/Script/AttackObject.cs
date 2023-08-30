@@ -122,12 +122,12 @@ public class AttackObject : MonoBehaviour
 	{
 		isTerraSkill = true;
 
+		timer -= Time.deltaTime;
+
 		if (timer >= 0)
 		{
 			boxCollider.isTrigger = false;
 		}
-
-		timer -= Time.deltaTime;
 		// Debug.Log($"<color=#01f>計時器：{timer}</color>");
 		if (timer <= 0)
 		{
