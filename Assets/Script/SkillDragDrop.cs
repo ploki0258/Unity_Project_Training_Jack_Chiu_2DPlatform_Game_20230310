@@ -92,6 +92,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		// transform.SetParent(originalParent);    // 將技能拖放物件的父物件設置回初始父物件
 		// transform.position = startPosition;     // 將技能拖放物件的位置設置回初始位置
 
+		// 如果沒有克隆物件 就不執行
 		if (cloneObject == null)
 			return;
 
