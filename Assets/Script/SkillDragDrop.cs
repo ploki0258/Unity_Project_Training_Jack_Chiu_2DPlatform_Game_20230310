@@ -6,9 +6,14 @@ using UnityEngine.EventSystems;
 
 public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+	[Header("克隆物件")]
 	public GameObject clonePrefab;      // 要克隆的物件預製物
+	[Header("技能放置區")]
 	public Collider2D targetArea;       // 目標區域的碰撞器
+	[Header("技能資料")]
 	public Skill skillData;             // 技能資料
+	//[Header("提示文字")]
+	//public Text textTip;                // 提醒訊息
 
 	private GameObject cloneObject;     // 生成的克隆物件
 	private GameObject reservedObject;  // 保留的物件
@@ -20,7 +25,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
 	private void Start()
 	{
-		raycastTarget = GetComponent<Image>().raycastTarget;
+		// raycastTarget = GetComponent<Image>().raycastTarget;
 	}
 
 	/// <summary>
@@ -42,6 +47,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 			Debug.Log($"<color=#ff90ff>技能：{skillData.skillName + "未持有，無法設置"}</color>");
 		}
 
+		// 如果克隆物件為空 就不執行
 		if (cloneObject == null)
 			return;
 
@@ -54,7 +60,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		else if (transform.parent.name == "技能欄按紐")	// 父物件的名稱是"技能欄按紐"的話
 		{
 			// 設置父集
-			cloneObject.transform.SetParent(transform.parent);
+			//cloneObject.transform.SetParent(transform.parent);
 		}
 
 		// 關閉射線檢測，以便拖放期間不會阻擋其他事件

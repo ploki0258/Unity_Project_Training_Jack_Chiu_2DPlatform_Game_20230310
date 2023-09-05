@@ -45,10 +45,15 @@ public class PlayerCtrl : MonoBehaviour
 	[Header("資訊欄顯示")]
 	public Text coinInfo = null;
 	public Text skillInfo = null;
+	[Header("訊息提示文字")]
+	public Text textMessageTip;                // 提醒訊息
 	[Header("金幣顯示動畫")]
 	public Animator showCoinAni = null;
 	[Header("技能點數顯示動畫")]
 	public Animator showSkillPointAni = null;
+	[Header("提示訊息顯示動畫")]
+	public Animator showMessageTipAni = null;
+
 
 	/*
 	[Header("血量值文字")]
@@ -101,9 +106,11 @@ public class PlayerCtrl : MonoBehaviour
 	private void Start()
 	{
 		coinInfo.text = "";
+		textMessageTip.text = "";
 
 		SaveManager.instance.playerData.renewCoin += RenewCoin;
 		SaveManager.instance.playerData.renewSkillPoint += RenewSkillPoint;
+		//SaveManager.instance.playerData.renewSkillPoint += RenewMessageTip;
 		SaveManager.instance.playerData.renewPlayerHP += RenewPlayerHP;
 		SaveManager.instance.playerData.renewPlayerMP += RenewPlayerMP;
 		SaveManager.instance.playerData.renewPlayerSpeed += RenewPlayerMove;
@@ -119,6 +126,7 @@ public class PlayerCtrl : MonoBehaviour
 	{
 		//SaveManager.instance.playerData.renewCoin -= RenewCoin;
 		//SaveManager.instance.playerData.renewSkillPoint -= RenewSkillPoint;
+		//SaveManager.instance.playerData.renewSkillPoint -= RenewMessageTip;
 		//SaveManager.instance.playerData.renewPlayerHP -= RenewPlayerHP;
 		//SaveManager.instance.playerData.renewPlayerMP -= RenewPlayerMP;
 		//SaveManager.instance.playerData.renewPlayerSpeed -= RenewPlayerMove;
@@ -465,6 +473,15 @@ public class PlayerCtrl : MonoBehaviour
 	{
 		// 播放動畫
 		PlayerCtrl.instance.showSkillPointAni.SetTrigger("play");
+	}
+
+	/// <summary>
+	/// 提示訊息顯示動畫
+	/// </summary>
+	public void RenewMessageTip()
+	{
+		// 播放動畫
+		PlayerCtrl.instance.showMessageTipAni.SetTrigger("play");
 	}
 
 	/// <summary>

@@ -388,8 +388,10 @@ MonoBehaviour:
   cam: {fileID: 0}
   coinInfo: {fileID: 0}
   skillInfo: {fileID: 0}
+  textMessageTip: {fileID: 0}
   showCoinAni: {fileID: 0}
   showSkillPointAni: {fileID: 0}
+  showMessageTipAni: {fileID: 0}
   ani: {fileID: 0}
   isPausedGame: 0
 --- !u!1 &716543486585973615

@@ -8,6 +8,7 @@ public class SkillSystem : MonoBehaviour
 	public Transform[] skillSlot; // 技能欄位，用於接受技能的拖放
 	[Tooltip("當前選擇的技能ID")]
 	public int currentSkillIndex; // 當前選擇的技能ID
+	[Header("文字顯示顏色")]
 	public Color textColor = new Color();
 
 	Skill skillData;

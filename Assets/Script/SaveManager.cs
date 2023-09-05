@@ -54,7 +54,8 @@ public class SaveManager
 			playerData.goodsList = new List<Goods>();	// 持有物列表
 			playerData.haveItem = new List<int>();		// 道具列表
 			playerData.haveSkill = new List<int>();     // 技能列表
-			playerData.itemNumberMax = 999;				// 最大持有道具數量
+			playerData.itemNumberMax = 999;             // 最大持有道具數量
+			playerData.messageTip = "";					// 玩家提示訊息
 		}
 		else
 		{
@@ -142,6 +143,27 @@ public struct PlayerData
 	}
 	[SerializeField] int _skillPoint;
 	public System.Action renewSkillPoint;
+
+	/// <summary>
+	/// 提示訊息
+	/// </summary>
+	[SerializeField]
+	public string messageTip
+	{
+		get { return _messageTip; }
+		set
+		{
+			_messageTip = value;
+
+			// 呼叫刷新技能點數
+			if (renewMmessageTip != null)
+			{
+				renewMmessageTip.Invoke();
+			}
+		}
+	}
+	[SerializeField] string _messageTip;
+	public System.Action renewMmessageTip;
 
 	/// <summary>
 	/// 玩家血量
@@ -454,7 +476,7 @@ public struct PlayerData
 	#endregion
 
 	// 建構式
-	public PlayerData(int coin, int skill, float maxHP, float maxMP, float moveSpeed, float jumpPower, float attackSpeed, float attack, float defense, string nameLV, Vector3 pos)
+	public PlayerData(int coin, int skill, float maxHP, float maxMP, float moveSpeed, float jumpPower, float attackSpeed, float attack, float defense, string nameLV, Vector3 pos, string tip)
 	{
 		_moneyCount = coin;
 		_skillPoint = skill;
@@ -481,6 +503,8 @@ public struct PlayerData
 		renewPlayerDefense = null;
 		levelName = nameLV;
 		playerPos = pos;
+		_messageTip = tip;
+		renewMmessageTip = null;
 
 		// this.moneyCount = coin;
 		// this.skillPoint = skill;
@@ -513,6 +537,8 @@ public struct PlayerData
 		renewPlayerDefense = null;
 		levelName = "遊戲場景";
 		playerPos = new Vector3(0, 0, 0);
+		_messageTip = "";
+		renewMmessageTip = null;
 
 		// this.moneyCount = 0;
 		// this.skillPoint = 0;
