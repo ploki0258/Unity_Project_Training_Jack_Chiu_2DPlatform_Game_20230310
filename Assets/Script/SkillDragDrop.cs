@@ -37,6 +37,8 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		originalParent = transform.parent;  // 保存初始父物件
 		startPosition = transform.position; // 保存初始位置
 
+		originalParent.localScale = Vector3.one;
+
 		// 如果有該技能 才生成克隆物件
 		if (SaveManager.instance.playerData.IsHaveSkill(skillData.id))
 		{

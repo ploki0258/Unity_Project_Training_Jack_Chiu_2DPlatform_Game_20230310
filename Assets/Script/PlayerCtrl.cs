@@ -106,6 +106,7 @@ public class PlayerCtrl : MonoBehaviour
 	private void Start()
 	{
 		coinInfo.text = "";
+		skillInfo.text = "";
 		textMessageTip.text = "";
 
 		SaveManager.instance.playerData.renewCoin += RenewCoin;
