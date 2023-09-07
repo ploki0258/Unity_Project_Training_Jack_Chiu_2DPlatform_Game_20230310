@@ -61,6 +61,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		}
 		else if (transform.parent.name == "技能欄按紐")	// 父物件的名稱是"技能欄按紐"的話
 		{
+			return;
 			// 設置父集
 			//cloneObject.transform.SetParent(transform.parent);
 		}
