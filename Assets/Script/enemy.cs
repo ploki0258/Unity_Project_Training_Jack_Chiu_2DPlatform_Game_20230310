@@ -77,6 +77,7 @@ public class Enemy : MonoBehaviour
 	{
 		TrackingPlayer();
 		AttackDamage();
+		Debug.Log("怪物血量：" + hpMonster);
 	}
 
 	/// <summary>
@@ -127,7 +128,7 @@ public class Enemy : MonoBehaviour
 	}
 
 	/// <summary>
-	/// 怪物受到傷害
+	/// 怪物受到傷害功能：扣血量
 	/// </summary>
 	/// <param name="hurt">所受的傷害量</param>
 	public void TakeDamageMonster(float hurt)
@@ -191,12 +192,15 @@ public class Enemy : MonoBehaviour
 	}
 
 	// 觸發事件 進入事件
+	// 怪物受到傷害功能：受傷、死亡
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		spawnSystem.SpawnEnemy();
 
+		// 如果已死亡 就不執行
 		if (isDeath)
 			return;
+		// 如果碰到的物件的Tag 等於 bullet
 		if (collision.gameObject.tag == "bullet")
 		{
 			TakeDamageMonster(damage);
@@ -212,13 +216,13 @@ public class Enemy : MonoBehaviour
 				isDeath = true;
 				Invoke("Dead", 1f);
 
-				if (MistManager.instance.inMist_cyan == false)
+				if (GameObject.FindObjectOfType<MistManager>() == true && MistManager.instance.inMist_cyan == false)
 				{
 					// 如果 目前生成的怪物數量 小於 最大生成數量的話 而且 生成的怪物數量為0 則於5秒後生成怪物
 					if (spawnSystem.enemyCount == 0)
 					{
 						spawnSystem.interval = 10;
-						// InvokeRepeating("spawnSystem.SpawnEnemy", 5f, spawnSystem.interval);
+						InvokeRepeating("spawnSystem.SpawnEnemy", 5f, spawnSystem.interval);
 					}
 				}
 			}

@@ -76,12 +76,16 @@ public class MistManager : MonoBehaviour
 		// Debug.Log(tempColor);
 	}
 
+	/// <summary>
+	/// 持續事件
+	/// </summary>
+	/// <param name="collision"></param>
 	private void OnTriggerStay2D(Collider2D collision)
 	{
 		// 呼叫協程 ColorGradient()
 		StartCoroutine(ColorGradient());
 		StartCoroutine(TakeDamage());
-
+		#region 迷霧效果
 		// 青色迷霧：提升怪物數量
 		if (collision.gameObject.CompareTag("Player") && mistType_cyan == true)
 		{
@@ -161,7 +165,7 @@ public class MistManager : MonoBehaviour
 				Invoke("TakeDamage", 5f);
 				SaveManager.instance.playerData.playerHP -= damage * Time.unscaledDeltaTime;
 			}
-			Debug.Log(SaveManager.instance.playerData.playerHP);
+			// Debug.Log(SaveManager.instance.playerData.playerHP);
 		}
 
 		// 綠色迷霧：道具回復效果相反
@@ -176,7 +180,7 @@ public class MistManager : MonoBehaviour
 			// mistImage.color = Color.Lerp(Color.white, new Color(00, 99, 00), 100f * Time.deltaTime);
 			tempColor = mistImage.color;
 		}
-
+		#endregion
 		// Test
 		if (collision.gameObject.CompareTag("Player") && colorChange != Color.white && mistType_cyan == false && mistType_blue == false &&
 			mistType_purple == false && mistType_red == false && mistType_gree == false)
@@ -207,6 +211,7 @@ public class MistManager : MonoBehaviour
 				// Debug.Log("從" + tempColor.ToString() + "漸變成" + Color.white.ToString());
 			}
 			// mistImage.color = Color.Lerp(tempColor, Color.white, 100f * Time.deltaTime);
+			tempColor = mistImage.color;
 		}
 	}
 

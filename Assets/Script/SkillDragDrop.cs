@@ -12,9 +12,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 	public Collider2D targetArea;       // 目標區域的碰撞器
 	[Header("技能資料")]
 	public Skill skillData;             // 技能資料
-	//[Header("提示文字")]
-	//public Text textTip;                // 提醒訊息
-
+	
 	private GameObject cloneObject;     // 生成的克隆物件
 	private GameObject reservedObject;  // 保留的物件
 	private Transform originalParent;   // 初始父物件
@@ -37,6 +35,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		originalParent = transform.parent;  // 保存初始父物件
 		startPosition = transform.position; // 保存初始位置
 
+		// 初始父物件.尺寸 = Vector3(1, 1, 1)
 		originalParent.localScale = Vector3.one;
 
 		// 如果有該技能 才生成克隆物件
@@ -136,9 +135,9 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 			}
 		}
 
-		// 如果技能欄位內有名稱有包含 "SkillIcon" 的話
+		// 如果技能欄位內有名稱有包含 "SkillIcon" 且技能圖示的父集 不是 原始父集 的話
 		// 調換位置
-		if (eventData.pointerCurrentRaycast.gameObject.CompareTag("SkillIcon"))
+		if (eventData.pointerCurrentRaycast.gameObject.CompareTag("SkillIcon") == true && eventData.pointerCurrentRaycast.gameObject.transform.parent != originalParent)
 		{
 			cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);   // 設置複製的物件的父集
 			cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position; // 設置複製的物件的位置

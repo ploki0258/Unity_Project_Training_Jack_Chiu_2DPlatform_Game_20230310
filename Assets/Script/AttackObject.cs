@@ -128,12 +128,12 @@ public class AttackObject : MonoBehaviour
 		{
 			boxCollider.isTrigger = false;
 		}
-		// Debug.Log($"<color=#01f>計時器：{timer}</color>");
-		if (timer <= 0)
+		else if (timer < 0)
 		{
-			boxCollider.isTrigger = true;
+			//boxCollider.isTrigger = true;
 			Destroy(this.gameObject);
 		}
+		//Debug.Log($"<color=#01f>計時器：{timer}</color>");
 	}
 	#endregion
 }
