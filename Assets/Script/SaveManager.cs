@@ -40,23 +40,23 @@ public class SaveManager
 		{
 			// 這是一個新玩家 請給他基本數值
 			// playerData = new PlayerData(0, 0, 100f, 100f, 10f, 7f, 500f, 100f, 100f, "遊戲場景", Vector3.zero);	// 此為建構式的寫法
-			playerData.moneyCount = 0;					// 玩家金幣
-			playerData.skillPoint = 0;					// 玩家技能點數
-			playerData.playerHP = 100f;					// 玩家血量
-			playerData.playerMP = 100f;					// 玩家魔力
-			playerData.playerSpeed = 10f;				// 玩家移動速度
-			playerData.playerJump = 10f;				// 玩家跳躍力
-			playerData.playerAttackSpeed = 500f;		// 玩家攻擊速度
-			playerData.playerAttack = 20f;				// 玩家攻擊力
-			playerData.playerDefense = 10f;				// 玩家防禦力
-			playerData.levelName = "遊戲場景";			// 關卡名稱
-			playerData.playerPos = Vector3.zero;		// 玩家位置
-			playerData.goodsList = new List<Goods>();	// 持有物列表
-			playerData.haveItem = new List<int>();		// 道具列表
+			playerData.moneyCount = 0;                  // 玩家金幣
+			playerData.skillPoint = 0;                  // 玩家技能點數
+			playerData.playerHP = 100f;                 // 玩家血量
+			playerData.playerMP = 100f;                 // 玩家魔力
+			playerData.playerSpeed = 10f;               // 玩家移動速度
+			playerData.playerJump = 10f;                // 玩家跳躍力
+			playerData.playerAttackSpeed = 500f;        // 玩家攻擊速度
+			playerData.playerAttack = 20f;              // 玩家攻擊力
+			playerData.playerDefense = 10f;             // 玩家防禦力
+			playerData.levelName = "遊戲場景";          // 關卡名稱
+			playerData.playerPos = Vector3.zero;        // 玩家位置
+			playerData.goodsList = new List<Goods>();   // 持有物列表
+			playerData.haveItem = new List<int>();      // 道具列表
 			playerData.haveSkill = new List<int>();     // 技能列表
 			playerData.itemNumberMax = 999;             // 最大持有道具數量
 			playerData.messageTip = "";                 // 玩家提示訊息
-			playerData.skillParent = null;
+			playerData.skillParent.skillParentPos = new Vector3(0f, 0f, 0f);
 		}
 		else
 		{
@@ -102,7 +102,7 @@ public struct PlayerData
 	// public int skillPoint;   // 技能點數
 	public string levelName;    // 關卡名稱
 	public Vector3 playerPos;   // 玩家位置
-	public Transform skillParent;
+	public SkillParent skillParent;
 
 	/// <summary>
 	/// 金幣數量
@@ -215,7 +215,7 @@ public struct PlayerData
 	public float playerSpeed
 	{
 		get { return _playerSpeed; }
-		set 
+		set
 		{
 			_playerSpeed = value;
 
@@ -478,7 +478,7 @@ public struct PlayerData
 	#endregion
 
 	// 建構式
-	public PlayerData(int coin, int skill, float maxHP, float maxMP, float moveSpeed, float jumpPower, float attackSpeed, float attack, float defense, string nameLV, Vector3 pos, string tip, Transform parent)
+	public PlayerData(int coin, int skill, float maxHP, float maxMP, float moveSpeed, float jumpPower, float attackSpeed, float attack, float defense, string nameLV, Vector3 pos, string tip, SkillParent parent)
 	{
 		_moneyCount = coin;
 		_skillPoint = skill;
@@ -557,4 +557,16 @@ public struct Goods
 {
 	[SerializeField] public int id;     // 有什麼樣的道具(ID)
 	[SerializeField] public int number; // 有幾個這個道具(數量)
+}
+
+[System.Serializable]
+public class SkillParent
+{
+	public Vector3 skillParentPos;  // 父物件的位置
+}
+
+[System.Serializable]
+public class SkillLocal
+{
+	public Vector3 skillLocalPos;   // 相對於父物件的位置(子物件位置)
 }

@@ -12,7 +12,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 	public Collider2D targetArea;       // 目標區域的碰撞器
 	[Header("技能資料")]
 	public Skill skillData;             // 技能資料
-	
+
 	private GameObject cloneObject;     // 生成的克隆物件
 	private GameObject reservedObject;  // 保留的物件
 	private Transform originalParent;   // 初始父物件
@@ -35,11 +35,8 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		originalParent = transform.parent;  // 保存初始父物件
 		startPosition = transform.position; // 保存初始位置
 
-		// 初始父物件.尺寸 = Vector3(1, 1, 1)
-		originalParent.localScale = Vector3.one;
-
 		// 如果有該技能 才生成克隆物件
-		if (SaveManager.instance.playerData.IsHaveSkill(skillData.id))
+		if (SaveManager.instance.playerData.IsHaveSkill(skillData.id) && transform.parent.name == "技能樹")
 		{
 			cloneObject = Instantiate(clonePrefab, transform.position, transform.rotation);
 		}
@@ -57,9 +54,15 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		{
 			// 將技能拖放物件的父物件設置為技能欄位
 			cloneObject.transform.SetParent(originalParent.parent.parent.parent.parent.parent);
+
+			// 初始父物件.尺寸 = Vector3(1, 1, 1)
+			originalParent.localScale = Vector3.one;
 		}
-		else if (transform.parent.name == "技能欄按紐")	// 父物件的名稱是"技能欄按紐"的話
+		else if (transform.parent.name.Contains("skillBtn"))  // 父物件的名稱包含"skillBtn"的話
 		{
+			// 初始父物件.尺寸 = Vector3(1.5, 1.5, 1.5)
+			//originalParent.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+
 			return;
 			// 設置父集
 			//cloneObject.transform.SetParent(transform.parent);

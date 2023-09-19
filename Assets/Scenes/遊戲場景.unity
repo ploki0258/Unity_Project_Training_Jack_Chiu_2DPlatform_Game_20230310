@@ -8246,6 +8246,7 @@ MonoBehaviour:
   - {fileID: 1464402241}
   currentSkillIndex: 0
   textColor: {r: 1, g: 0.8862745, b: 0, a: 1}
+  currentKeyCode: 0
 --- !u!225 &661030041
 CanvasGroup:
   m_ObjectHideFlags: 0

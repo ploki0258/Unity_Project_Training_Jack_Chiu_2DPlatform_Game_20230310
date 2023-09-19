@@ -92,7 +92,7 @@ public class Grid : MonoBehaviour
 			SaveManager.instance.playerData.playerJump += dataGrid.提升跳躍力;
 			SaveManager.instance.playerData.playerAttackSpeed += dataGrid.提升攻擊速度;
 			SaveManager.instance.playerData.playerSpeed += dataGrid.提升移動速度;
-			
+
 			// 如果玩家有攻擊物件時 攻擊物件的魔力消耗 降低 道具資料的魔力消耗降低的值
 			if (PlayerCtrl.instance.atkObject != null)
 				PlayerCtrl.instance.atkObject.GetComponent<AttackObject>().skillData.skillCost += -dataGrid.魔力消耗降低;
@@ -105,19 +105,21 @@ public class Grid : MonoBehaviour
 				SaveManager.instance.playerData.renewSkillPoint = null;
 			SaveManager.instance.playerData.skillPoint += dataGrid.獲得額外點數;
 
-			// 如果是綠色迷霧的話 道具的恢復效果變為扣除效果(負面效果)
-			bool inMistType_gree = MistManager.instance.inMist_gree;
-			if (inMistType_gree == true)
+			// 如果 "Mist Area" 存在的話
+			if (GameObject.Find("Mist Area") == true)
 			{
-				SaveManager.instance.playerData.playerHP -= dataGrid.恢復HP;
-				SaveManager.instance.playerData.playerHP =
-					Mathf.Clamp(SaveManager.instance.playerData.playerHP, SaveManager.instance.playerData.playerHP, PlayerCtrl.instance.maxHP);
-				SaveManager.instance.playerData.playerMP -= dataGrid.恢復MP;
-				SaveManager.instance.playerData.playerMP =
-					Mathf.Clamp(SaveManager.instance.playerData.playerMP, SaveManager.instance.playerData.playerMP, PlayerCtrl.instance.maxMP);
+				bool inMistType_gree = MistManager.instance.inMist_gree;
+				// 如果是綠色迷霧的話 道具的恢復效果變為扣除效果(負面效果)
+				if (inMistType_gree == true)
+				{
+					SaveManager.instance.playerData.playerHP -= dataGrid.恢復HP;
+					SaveManager.instance.playerData.playerHP =
+						Mathf.Clamp(SaveManager.instance.playerData.playerHP, SaveManager.instance.playerData.playerHP, PlayerCtrl.instance.maxHP);
+					SaveManager.instance.playerData.playerMP -= dataGrid.恢復MP;
+					SaveManager.instance.playerData.playerMP =
+						Mathf.Clamp(SaveManager.instance.playerData.playerMP, SaveManager.instance.playerData.playerMP, PlayerCtrl.instance.maxMP);
+				}
 			}
-
-			//增加技能欄位 += dataGrid.增加技能欄位;
 
 			// 不可被使用的東西 就不執行
 			if (dataGrid.canUse == false)

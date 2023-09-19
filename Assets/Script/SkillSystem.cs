@@ -12,8 +12,9 @@ public class SkillSystem : MonoBehaviour
 	[Header("文字顯示顏色")]
 	public Color textColor = new Color();
 
-	Skill skillData;	// 技能資料
-	int keyboard;		// 按鈕數字
+	Skill skillData;							// 技能資料
+	int keyCodeNumber;							// 按鈕數字
+	[SerializeField] KeyCode currentKeyCode;	// 當前紀錄的鍵盤按鈕
 	//SpriteRenderer iconSkill = null;
 
 	private void Awake()
@@ -39,7 +40,7 @@ public class SkillSystem : MonoBehaviour
 		// 才設置攻擊物件
 		if (currentSkillIndex >= 0 && SaveManager.instance.playerData.IsHaveSkill(currentSkillIndex))
 		{
-			PlayerCtrl.instance.atkObject = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.skillPrefab;
+			PlayerCtrl.instance.atkObject = skillSlot[keyCodeNumber].GetComponentInChildren<SkillDragDrop>().skillData.skillPrefab;
 			//Debug.Log($"<color=yellow>{currentSkillIndex + "\n" + PlayerCtrl.instance.atkObject.name}</color>");
 			//Debug.Log($"<color=green>{currentSkillIndex + "\n" + skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.skillPrefab.name}</color>");
 			//Debug.Log($"<Color=blue>{keyboard}</color>");
@@ -47,7 +48,7 @@ public class SkillSystem : MonoBehaviour
 	}
 
 	/// <summary>
-	/// 切換攻擊物件
+	/// 切換攻擊物件：相同按鈕按下2次切回物理攻擊
 	/// </summary>
 	public void SwitchAtkObject()
 	{
@@ -58,44 +59,67 @@ public class SkillSystem : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Z))
 		{
-			keyboard = 0;
+			keyCodeNumber = 0;
 
 			if (skillSlot[0].GetComponentInChildren<SkillDragDrop>())
 			{
 				// 當前選擇的技能ID = 技能槽位置.取得組件<SkillDragDrop>().技能資料.id
-				currentSkillIndex = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.id;
+				currentSkillIndex = skillSlot[keyCodeNumber].GetComponentInChildren<SkillDragDrop>().skillData.id;
 				// 設置技能玩家的攻擊物件
 				SetCurrentSkill(currentSkillIndex);
 				//iconSkill.sprite = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
 				//iconSkill.color = new Color(1f, 1f, 1f, 1f);
 			}
+			currentKeyCode = KeyCode.Z;
+
 			Debug.Log("快捷鍵Z： " + currentSkillIndex);
+
+			if (currentKeyCode == KeyCode.Z)
+			{
+				Debug.Log("快捷鍵Z" + "： " + "按下相同按鈕" + currentKeyCode.ToString());
+			}
 		}
+
 		if (Input.GetKeyDown(KeyCode.X))
 		{
-			keyboard = 1;
+			keyCodeNumber = 1;
 
 			if (skillSlot[1].GetComponentInChildren<SkillDragDrop>())
 			{
-				currentSkillIndex = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.id;
+				currentSkillIndex = skillSlot[keyCodeNumber].GetComponentInChildren<SkillDragDrop>().skillData.id;
 				SetCurrentSkill(currentSkillIndex);
 				//iconSkill.sprite = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
 				//iconSkill.color = new Color(1f, 1f, 1f, 1f);
 			}
+			currentKeyCode = KeyCode.X;
+
 			Debug.Log("快捷鍵X： " + currentSkillIndex);
+
+			//if (currentBotton == Input.GetKeyDown(KeyCode.X))
+			//{
+			//	Debug.Log("快捷鍵X" + currentBotton + "： " + "按下相同按鈕");
+			//}
 		}
+
 		if (Input.GetKeyDown(KeyCode.C))
 		{
-			keyboard = 2;
+			keyCodeNumber = 2;
 
 			if (skillSlot[2].GetComponentInChildren<SkillDragDrop>())
 			{
-				currentSkillIndex = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.id;
+				currentSkillIndex = skillSlot[keyCodeNumber].GetComponentInChildren<SkillDragDrop>().skillData.id;
 				SetCurrentSkill(currentSkillIndex);
 				//iconSkill.sprite = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
 				//iconSkill.color = new Color(1f, 1f, 1f, 1f);
 			}
+			currentKeyCode = KeyCode.C;
+
 			Debug.Log("快捷鍵C： " + currentSkillIndex);
+
+			//if (currentBotton == Input.GetKeyDown(KeyCode.C))
+			//{
+			//	Debug.Log("快捷鍵C" + currentBotton + "： " + "按下相同按鈕");
+			//}
 
 			// PlayerCtrl.instance.atkObject = skillSlot[2].GetComponent<Skill>().skillPrefab;
 			// currentSkillIndex = 2;
