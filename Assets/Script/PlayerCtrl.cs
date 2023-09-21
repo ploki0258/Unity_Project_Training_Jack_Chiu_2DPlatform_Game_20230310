@@ -91,7 +91,7 @@ public class PlayerCtrl : MonoBehaviour
 			this.transform.position = SaveManager.instance.playerData.playerPos;    // 瞬間移動到記錄中的位置
 
 		// SaveManager.instance.SaveData();
-
+		#region 程式抓取組件
 		//barHP = GameObject.Find("血條").GetComponent<Image>();
 		//barMP = GameObject.Find("魔力條").GetComponent<Image>();
 		//coinCount = GameObject.Find("金幣數量").GetComponent<TextMeshProUGUI>();
@@ -101,6 +101,7 @@ public class PlayerCtrl : MonoBehaviour
 		//skillInfo = GameObject.Find("技能點數顯示").GetComponent<Text>();
 		//showCoinAni = GameObject.Find("資訊顯示動畫").GetComponent<Animator>();
 		//showSkillPointAni = GameObject.Find("資訊顯示動畫").GetComponent<Animator>();
+		#endregion
 	}
 
 	private void Start()
@@ -111,7 +112,7 @@ public class PlayerCtrl : MonoBehaviour
 
 		SaveManager.instance.playerData.renewCoin += RenewCoin;
 		SaveManager.instance.playerData.renewSkillPoint += RenewSkillPoint;
-		SaveManager.instance.playerData.renewSkillPoint += RenewMessageTip;
+		SaveManager.instance.playerData.renewMmessageTip += RenewMessageTip;
 		SaveManager.instance.playerData.renewPlayerHP += RenewPlayerHP;
 		SaveManager.instance.playerData.renewPlayerMP += RenewPlayerMP;
 		SaveManager.instance.playerData.renewPlayerSpeed += RenewPlayerMove;
@@ -119,22 +120,23 @@ public class PlayerCtrl : MonoBehaviour
 		SaveManager.instance.playerData.renewPlayerAttackSpeed += RenewPlayerAttackSpeed;
 		SaveManager.instance.playerData.renewPlayerAttack += RenewPlayerAttack;
 		SaveManager.instance.playerData.renewPlayerDefense += RenewPlayerDefecse;
+		// 強制刷新一次HP & MP
 		RenewPlayerHP();
 		RenewPlayerMP();
 	}
 
 	private void OnDisable()
 	{
-		SaveManager.instance.playerData.renewCoin -= RenewCoin;
-		SaveManager.instance.playerData.renewSkillPoint -= RenewSkillPoint;
-		SaveManager.instance.playerData.renewSkillPoint -= RenewMessageTip;
+		//SaveManager.instance.playerData.renewCoin -= RenewCoin;
+		//SaveManager.instance.playerData.renewSkillPoint -= RenewSkillPoint;
+		SaveManager.instance.playerData.renewMmessageTip -= RenewMessageTip;
 		//SaveManager.instance.playerData.renewPlayerHP -= RenewPlayerHP;
 		//SaveManager.instance.playerData.renewPlayerMP -= RenewPlayerMP;
-		SaveManager.instance.playerData.renewPlayerSpeed -= RenewPlayerMove;
-		SaveManager.instance.playerData.renewPlayerJump -= RenewPlayerJump;
-		SaveManager.instance.playerData.renewPlayerAttackSpeed -= RenewPlayerAttackSpeed;
-		SaveManager.instance.playerData.renewPlayerAttack -= RenewPlayerAttack;
-		SaveManager.instance.playerData.renewPlayerDefense -= RenewPlayerDefecse;
+		//SaveManager.instance.playerData.renewPlayerSpeed -= RenewPlayerMove;
+		//SaveManager.instance.playerData.renewPlayerJump -= RenewPlayerJump;
+		//SaveManager.instance.playerData.renewPlayerAttackSpeed -= RenewPlayerAttackSpeed;
+		//SaveManager.instance.playerData.renewPlayerAttack -= RenewPlayerAttack;
+		//SaveManager.instance.playerData.renewPlayerDefense -= RenewPlayerDefecse;
 	}
 
 	private void Update()
@@ -150,8 +152,8 @@ public class PlayerCtrl : MonoBehaviour
 		// Debug.Log("以提升數值");
 		// Debug.Log("是否暫停：" + isPausedGame);
 
-		Debug.Log("玩家血量：" + SaveManager.instance.playerData.playerHP);
-		Debug.Log("最大血量：" + maxHP);
+		//Debug.Log("玩家血量：" + SaveManager.instance.playerData.playerHP);
+		//Debug.Log("最大血量：" + maxHP);
 	}
 
 	private void FixedUpdate()
@@ -468,7 +470,7 @@ public class PlayerCtrl : MonoBehaviour
 	}
 
 	/// <summary>
-	/// 技能點數顯示動畫
+	/// 更新技能點數顯示動畫
 	/// </summary>
 	void RenewSkillPoint()
 	{

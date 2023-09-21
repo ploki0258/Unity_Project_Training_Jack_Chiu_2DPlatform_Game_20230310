@@ -39,6 +39,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		if (SaveManager.instance.playerData.IsHaveSkill(skillData.id) && transform.parent.name == "技能樹")
 		{
 			cloneObject = Instantiate(clonePrefab, transform.position, transform.rotation);
+			cloneObject.transform.localScale = new Vector3(1f, 1f, 1f);
 		}
 		else
 		{

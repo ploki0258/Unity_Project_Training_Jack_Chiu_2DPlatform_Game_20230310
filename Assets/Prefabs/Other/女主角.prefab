@@ -3382,6 +3382,7 @@ MonoBehaviour:
   - {fileID: 1464402241}
   currentSkillIndex: 0
   textColor: {r: 1, g: 0.8862745, b: 0, a: 1}
+  currentKeyCode: 0
 --- !u!225 &661030041
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4944,7 +4945,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &934149899
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11945,10 +11946,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atkObject: {fileID: 0}
   atkPoint: {fileID: 5252116328570202490}
-  barHP: {fileID: 47178670}
-  barMP: {fileID: 1035279371}
-  coinCount: {fileID: 774936595}
-  skillCount: {fileID: 1282389590}
+  barHP: {fileID: 0}
+  barMP: {fileID: 0}
+  coinCount: {fileID: 0}
+  skillCount: {fileID: 0}
   maxHP: 100
   maxMP: 100
   costMP: 10
@@ -11960,12 +11961,12 @@ MonoBehaviour:
   traDirectionIcon: {fileID: 6122708130379374196}
   traDirectionIconOffset: {x: 0, y: 3, z: 0}
   cam: {fileID: 0}
-  coinInfo: {fileID: 1120333984}
-  skillInfo: {fileID: 713980451}
-  textMessageTip: {fileID: 1785713072}
-  showCoinAni: {fileID: 242122688}
-  showSkillPointAni: {fileID: 4739823865735959792}
-  showMessageTipAni: {fileID: 1436704672}
+  coinInfo: {fileID: 0}
+  skillInfo: {fileID: 0}
+  textMessageTip: {fileID: 0}
+  showCoinAni: {fileID: 0}
+  showSkillPointAni: {fileID: 0}
+  showMessageTipAni: {fileID: 0}
   ani: {fileID: 0}
   isPausedGame: 0
 --- !u!1 &377442239778922983
@@ -12339,10 +12340,10 @@ RectTransform:
   m_Father: {fileID: 631978252920529204}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100, y: -100}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &631978251980923604
 CanvasRenderer:

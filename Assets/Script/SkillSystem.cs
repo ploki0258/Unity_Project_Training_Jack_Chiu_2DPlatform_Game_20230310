@@ -59,15 +59,25 @@ public class SkillSystem : MonoBehaviour
 			{
 				if (keyCode == currentKeyCode)
 				{
-					Debug.Log("按下相同按鈕");
+					//Debug.Log("按下相同按鈕");
+
+					if (PlayerCtrl.instance.atkObject != null)
+					{
+						PlayerCtrl.instance.atkObject = null;
+					}
+					else if (PlayerCtrl.instance.atkObject == null)
+					{
+
+					}
 				}
 				else if (keyCode != currentKeyCode)
 				{
-					Debug.Log("按下不同按鈕");
+					//Debug.Log("按下不同按鈕");
 				}
 
 				// 當前的鍵盤按鈕 = 按下的按鈕
 				currentKeyCode = keyCode;
+				//Debug.Log("按下：" + currentKeyCode);
 			}
 		}
 	}
@@ -97,7 +107,7 @@ public class SkillSystem : MonoBehaviour
 			}
 			currentKeyCode = KeyCode.Z; // 當前的鍵盤按鈕 = Z
 
-			Debug.Log("快捷鍵Z： " + currentSkillIndex);
+			//Debug.Log("快捷鍵Z： " + currentSkillIndex);
 
 			if (currentKeyCode == KeyCode.Z)
 			{
@@ -118,12 +128,12 @@ public class SkillSystem : MonoBehaviour
 			}
 			currentKeyCode = KeyCode.X; // 當前的鍵盤按鈕 = X
 
-			Debug.Log("快捷鍵X： " + currentSkillIndex);
+			//Debug.Log("快捷鍵X： " + currentSkillIndex);
 
-			//if (currentBotton == Input.GetKeyDown(KeyCode.X))
-			//{
-			//	Debug.Log("快捷鍵X" + currentBotton + "： " + "按下相同按鈕");
-			//}
+			if (currentKeyCode == KeyCode.X)
+			{
+				Debug.Log("快捷鍵X" + currentKeyCode + "： " + "按下相同按鈕");
+			}
 		}
 
 		if (Input.GetKeyDown(KeyCode.C))
@@ -139,12 +149,12 @@ public class SkillSystem : MonoBehaviour
 			}
 			currentKeyCode = KeyCode.C; // 當前的鍵盤按鈕 = C
 
-			Debug.Log("快捷鍵C： " + currentSkillIndex);
+			//Debug.Log("快捷鍵C： " + currentSkillIndex);
 
-			//if (currentBotton == Input.GetKeyDown(KeyCode.C))
-			//{
-			//	Debug.Log("快捷鍵C" + currentBotton + "： " + "按下相同按鈕");
-			//}
+			if (currentKeyCode == KeyCode.C)
+			{
+				Debug.Log("快捷鍵C" + currentKeyCode + "： " + "按下相同按鈕");
+			}
 
 			// PlayerCtrl.instance.atkObject = skillSlot[2].GetComponent<Skill>().skillPrefab;
 			// currentSkillIndex = 2;

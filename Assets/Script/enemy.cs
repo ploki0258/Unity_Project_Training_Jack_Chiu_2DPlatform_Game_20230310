@@ -41,7 +41,9 @@ public class Enemy : MonoBehaviour
     // [SerializeField] float maxHP = 200f;
     */
 
+	[Tooltip("獲得金幣數量")]
 	int coinNumber;
+	[Tooltip("獲得技能點數數量")]
 	int skillNumber;
 	// bool aniCoin = false;       // 播放金幣動畫
 	// bool aniSkill = false;      // 播放技能點數動畫
@@ -77,7 +79,7 @@ public class Enemy : MonoBehaviour
 	{
 		TrackingPlayer();
 		AttackDamage();
-		Debug.Log("怪物血量：" + hpMonster);
+		//Debug.Log("怪物血量：" + hpMonster);
 	}
 
 	/// <summary>
@@ -143,7 +145,7 @@ public class Enemy : MonoBehaviour
 	{
 		DropItem();
 		enabled = false;
-		Destroy(this.gameObject);
+		Destroy(gameObject);
 	}
 
 	/// <summary>
@@ -159,7 +161,10 @@ public class Enemy : MonoBehaviour
 			// 顯示資訊欄文字
 			PlayerCtrl.instance.coinInfo.text = "+" + coinNumber + "金幣";
 			PlayerCtrl.instance.skillInfo.text = "獲得" + skillNumber + "點";
+			//Debug.Log("金幣：" + coinNumber);
+			//Debug.Log("技能點數：" + skillNumber);
 
+			// 玩家的金幣 & 技能點數 增加獲得的金幣 & 技能點數
 			SaveManager.instance.playerData.moneyCount += coinNumber;
 			SaveManager.instance.playerData.skillPoint += skillNumber;
 			// SaveManager.instance.playerData.skillPoint += itemSkillValue.獲得額外點數;
