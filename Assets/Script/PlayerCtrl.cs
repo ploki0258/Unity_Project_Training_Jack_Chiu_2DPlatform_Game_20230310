@@ -111,7 +111,7 @@ public class PlayerCtrl : MonoBehaviour
 
 		SaveManager.instance.playerData.renewCoin += RenewCoin;
 		SaveManager.instance.playerData.renewSkillPoint += RenewSkillPoint;
-		//SaveManager.instance.playerData.renewSkillPoint += RenewMessageTip;
+		SaveManager.instance.playerData.renewSkillPoint += RenewMessageTip;
 		SaveManager.instance.playerData.renewPlayerHP += RenewPlayerHP;
 		SaveManager.instance.playerData.renewPlayerMP += RenewPlayerMP;
 		SaveManager.instance.playerData.renewPlayerSpeed += RenewPlayerMove;
@@ -125,16 +125,16 @@ public class PlayerCtrl : MonoBehaviour
 
 	private void OnDisable()
 	{
-		//SaveManager.instance.playerData.renewCoin -= RenewCoin;
-		//SaveManager.instance.playerData.renewSkillPoint -= RenewSkillPoint;
-		//SaveManager.instance.playerData.renewSkillPoint -= RenewMessageTip;
+		SaveManager.instance.playerData.renewCoin -= RenewCoin;
+		SaveManager.instance.playerData.renewSkillPoint -= RenewSkillPoint;
+		SaveManager.instance.playerData.renewSkillPoint -= RenewMessageTip;
 		//SaveManager.instance.playerData.renewPlayerHP -= RenewPlayerHP;
 		//SaveManager.instance.playerData.renewPlayerMP -= RenewPlayerMP;
-		//SaveManager.instance.playerData.renewPlayerSpeed -= RenewPlayerMove;
-		//SaveManager.instance.playerData.renewPlayerJump -= RenewPlayerJump;
-		//SaveManager.instance.playerData.renewPlayerAttackSpeed -= RenewPlayerAttackSpeed;
-		//SaveManager.instance.playerData.renewPlayerAttack -= RenewPlayerAttack;
-		//SaveManager.instance.playerData.renewPlayerDefense -= RenewPlayerDefecse;
+		SaveManager.instance.playerData.renewPlayerSpeed -= RenewPlayerMove;
+		SaveManager.instance.playerData.renewPlayerJump -= RenewPlayerJump;
+		SaveManager.instance.playerData.renewPlayerAttackSpeed -= RenewPlayerAttackSpeed;
+		SaveManager.instance.playerData.renewPlayerAttack -= RenewPlayerAttack;
+		SaveManager.instance.playerData.renewPlayerDefense -= RenewPlayerDefecse;
 	}
 
 	private void Update()

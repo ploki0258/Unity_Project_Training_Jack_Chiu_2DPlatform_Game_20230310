@@ -12,10 +12,10 @@ public class SkillSystem : MonoBehaviour
 	[Header("文字顯示顏色")]
 	public Color textColor = new Color();
 
-	Skill skillData;							// 技能資料
-	int keyCodeNumber;							// 按鈕數字
-	[SerializeField] KeyCode currentKeyCode;	// 當前紀錄的鍵盤按鈕
-	//SpriteRenderer iconSkill = null;
+	Skill skillData;                            // 技能資料
+	int keyCodeNumber;                          // 按鈕數字
+	[SerializeField] KeyCode currentKeyCode;    // 當前紀錄的鍵盤按鈕
+												//SpriteRenderer iconSkill = null;
 
 	private void Awake()
 	{
@@ -25,6 +25,7 @@ public class SkillSystem : MonoBehaviour
 	private void Update()
 	{
 		SwitchAtkObject();
+		KeepKeyCode();
 	}
 
 	/// <summary>
@@ -44,6 +45,30 @@ public class SkillSystem : MonoBehaviour
 			//Debug.Log($"<color=yellow>{currentSkillIndex + "\n" + PlayerCtrl.instance.atkObject.name}</color>");
 			//Debug.Log($"<color=green>{currentSkillIndex + "\n" + skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.skillPrefab.name}</color>");
 			//Debug.Log($"<Color=blue>{keyboard}</color>");
+		}
+	}
+
+	/// <summary>
+	/// 紀錄所按下的鍵盤按鈕
+	/// </summary>
+	void KeepKeyCode()
+	{
+		foreach (KeyCode keyCode in System.Enum.GetValues(typeof(KeyCode)))
+		{
+			if (Input.GetKeyDown(keyCode))
+			{
+				if (keyCode == currentKeyCode)
+				{
+					Debug.Log("按下相同按鈕");
+				}
+				else if (keyCode != currentKeyCode)
+				{
+					Debug.Log("按下不同按鈕");
+				}
+
+				// 當前的鍵盤按鈕 = 按下的按鈕
+				currentKeyCode = keyCode;
+			}
 		}
 	}
 
@@ -70,7 +95,7 @@ public class SkillSystem : MonoBehaviour
 				//iconSkill.sprite = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
 				//iconSkill.color = new Color(1f, 1f, 1f, 1f);
 			}
-			currentKeyCode = KeyCode.Z;
+			currentKeyCode = KeyCode.Z; // 當前的鍵盤按鈕 = Z
 
 			Debug.Log("快捷鍵Z： " + currentSkillIndex);
 
@@ -91,7 +116,7 @@ public class SkillSystem : MonoBehaviour
 				//iconSkill.sprite = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
 				//iconSkill.color = new Color(1f, 1f, 1f, 1f);
 			}
-			currentKeyCode = KeyCode.X;
+			currentKeyCode = KeyCode.X; // 當前的鍵盤按鈕 = X
 
 			Debug.Log("快捷鍵X： " + currentSkillIndex);
 
@@ -112,7 +137,7 @@ public class SkillSystem : MonoBehaviour
 				//iconSkill.sprite = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
 				//iconSkill.color = new Color(1f, 1f, 1f, 1f);
 			}
-			currentKeyCode = KeyCode.C;
+			currentKeyCode = KeyCode.C; // 當前的鍵盤按鈕 = C
 
 			Debug.Log("快捷鍵C： " + currentSkillIndex);
 
