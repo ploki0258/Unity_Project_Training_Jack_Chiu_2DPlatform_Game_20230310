@@ -83,13 +83,13 @@ public class SaveManager
 	/// <summary>
 	/// 儲存使用者資料
 	/// </summary>
-	public void SaveUser()
+	/*public void SaveUser()
 	{
 		if (SaveManager.instance.playerData.playerHP <= 0)
 		{
 			SaveData();
 		}
-	}
+	}*/
 }
 
 /// <summary>
@@ -102,7 +102,7 @@ public struct PlayerData
 	// public int skillPoint;   // 技能點數
 	public string levelName;    // 關卡名稱
 	public Vector3 playerPos;   // 玩家位置
-	//public SkillParent skillParent;
+	//public SkillParent skillParent;	Bool GameObject
 
 	/// <summary>
 	/// 金幣數量
