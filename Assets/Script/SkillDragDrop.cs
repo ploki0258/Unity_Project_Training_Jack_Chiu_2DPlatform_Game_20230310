@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// 技能拖曳設置系統
+/// </summary>
 public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
 	[Header("克隆物件")]
@@ -137,6 +140,8 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 				Debug.Log("<color=#f0f>設置技能：</color>" + skillData.name);
 				skillSystem.SwitchAtkObject();
 			}
+			//SaveManager.instance.playerData.isSetSkill = true;
+			//Debug.Log("<COLOR=#f0f>保存技能</color>");
 		}
 
 		// 如果技能欄位內有名稱有包含 "SkillIcon" 且技能圖示的父集 不是 原始父集 的話
@@ -159,6 +164,8 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 				Debug.Log("<color=#f69>調換技能：</color>" + skillData.name);
 				skillSystem.SwitchAtkObject();
 			}
+			//SaveManager.instance.playerData.isSetSkill = true;
+			//Debug.Log("<color=#f69>保存技能</color>");
 		}
 
 		cloneObject.GetComponent<CanvasGroup>().blocksRaycasts = true;  // 打開射線檢測

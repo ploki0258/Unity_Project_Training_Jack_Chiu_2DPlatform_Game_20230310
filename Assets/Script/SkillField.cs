@@ -11,16 +11,18 @@ public class SkillField : MonoBehaviour
 	Text titleSkill;
 	[SerializeField, Header("技能說明")]
 	Text infoSkill;
-	[SerializeField, Header("技能按鈕")]
+	[SerializeField, Header("技能按鈕：學習按鈕、已習得、尚未解鎖")]
 	GameObject[] btnSkill;
 	// [SerializeField, Header("按鈕文字")]
 	// Text btnText;
 
+	[Tooltip("是否已學習該技能")]
 	bool alreSkill;     // 是否已學習該技能
+	[Tooltip("技能資料")]
 	Skill skillData;    // 技能資料
 	Text btn1Text;
 	Text btn2Text;
-
+	
 	private void Awake()
 	{
 
@@ -56,8 +58,8 @@ public class SkillField : MonoBehaviour
 		// infoSkill[1].text = "花費金幣：" + skillData.skillCoinCost.ToString() + "\n花費技能點數" + skillData.skillPointCost;
 		// 如果玩家沒有該技能的話 才顯示按鈕
 		alreSkill = SaveManager.instance.playerData.IsHaveSkill(id);
-		btnSkill[0].SetActive(alreSkill == false);  // 顯示學習按鈕
-		btnSkill[1].SetActive(alreSkill == true);   // 顯示已習得按鈕
+		btnSkill[0].SetActive(alreSkill == false);  // 如果沒有學習該技能 則顯示學習按鈕
+		btnSkill[1].SetActive(alreSkill == true);   // 如果已經學習該技能 顯示已習得按鈕
 		// 如果玩家沒有該技能的話
 		if (alreSkill == false)
 		{
@@ -147,7 +149,7 @@ public class SkillField : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("金幣或點數不足" + "\n無法學習此技能");
+			Debug.Log($"<color=white>金幣或點數不足" + "\n無法學習此技能</color>");
 		}
 	}
 }

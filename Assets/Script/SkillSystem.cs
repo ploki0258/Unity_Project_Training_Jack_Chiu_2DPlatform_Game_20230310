@@ -51,7 +51,7 @@ public class SkillSystem : MonoBehaviour
 	/// <summary>
 	/// 紀錄所按下的鍵盤按鈕
 	/// </summary>
-	void KeepKeyCode()
+	private void KeepKeyCode()
 	{
 		foreach (KeyCode keyCode in System.Enum.GetValues(typeof(KeyCode)))
 		{
@@ -109,6 +109,11 @@ public class SkillSystem : MonoBehaviour
 
 			//Debug.Log("快捷鍵Z： " + currentSkillIndex);
 
+			// 存檔系統.玩家資料.技能圖示 = 技能欄位的技能圖示
+			//SaveManager.instance.playerData.skillSprite = skillSlot[keyCodeNumber].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
+
+			//Instantiate(SaveManager.instance.playerData.skillSprite, skillSlot[keyCodeNumber].position, Quaternion.identity);
+
 			if (currentKeyCode == KeyCode.Z)
 			{
 				Debug.Log("快捷鍵Z" + "： " + "按下相同按鈕" + currentKeyCode.ToString());
@@ -130,6 +135,8 @@ public class SkillSystem : MonoBehaviour
 
 			//Debug.Log("快捷鍵X： " + currentSkillIndex);
 
+			// 存檔系統.玩家資料.技能圖示 = 技能欄位的技能圖示
+			SaveManager.instance.playerData.skillSprite = skillSlot[keyCodeNumber].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
 			if (currentKeyCode == KeyCode.X)
 			{
 				Debug.Log("快捷鍵X" + currentKeyCode + "： " + "按下相同按鈕");
@@ -151,6 +158,8 @@ public class SkillSystem : MonoBehaviour
 
 			//Debug.Log("快捷鍵C： " + currentSkillIndex);
 
+			// 存檔系統.玩家資料.技能圖示 = 技能欄位的技能圖示
+			SaveManager.instance.playerData.skillSprite = skillSlot[keyCodeNumber].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
 			if (currentKeyCode == KeyCode.C)
 			{
 				Debug.Log("快捷鍵C" + currentKeyCode + "： " + "按下相同按鈕");

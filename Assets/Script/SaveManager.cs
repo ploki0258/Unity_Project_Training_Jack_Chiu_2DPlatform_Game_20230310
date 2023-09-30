@@ -50,13 +50,14 @@ public class SaveManager
 			playerData.playerAttack = 20f;              // 玩家攻擊力
 			playerData.playerDefense = 10f;             // 玩家防禦力
 			playerData.levelName = "遊戲場景";			// 關卡名稱
-			playerData.playerPos = Vector3.one;			// 玩家位置
-			playerData.goodsList = new List<Goods>();	// 持有物列表
+			playerData.playerPos = Vector3.one;         // 玩家位置
+			playerData.goodsList = new List<Goods>();   // 持有物列表
 			playerData.haveItem = new List<int>();      // 道具列表
 			playerData.haveSkill = new List<int>();     // 技能列表
 			playerData.itemNumberMax = 999;             // 最大持有道具數量
 			playerData.messageTip = "";                 // 玩家提示訊息
-			//playerData.skillParent.skillParentPos = new Vector3(0f, 0f, 0f);
+			playerData.isSetSkill = false;				// 玩家是否設置技能
+			playerData.skillSprite = null;				// 設置的技能物件
 		}
 		else
 		{
@@ -102,7 +103,9 @@ public struct PlayerData
 	// public int skillPoint;   // 技能點數
 	public string levelName;    // 關卡名稱
 	public Vector3 playerPos;   // 玩家位置
-	//public SkillParent skillParent;	Bool GameObject
+	public bool isSetSkill;		// 用以判斷是否有放置技能
+	public Sprite skillSprite;	// 用以儲存技能物件
+								   //public SkillParent skillParent;
 
 	/// <summary>
 	/// 金幣數量
@@ -478,7 +481,8 @@ public struct PlayerData
 	#endregion
 
 	// 建構式
-	public PlayerData(int coin, int skill, float maxHP, float maxMP, float moveSpeed, float jumpPower, float attackSpeed, float attack, float defense, string nameLV, Vector3 pos, string tip)
+	public PlayerData(int coin, int skill, float maxHP, float maxMP, float moveSpeed, float jumpPower, float attackSpeed, float attack, float defense,
+		string nameLV, Vector3 pos, string tip, bool isHave, Sprite skillObjectIcon)
 	{
 		_moneyCount = coin;
 		_skillPoint = skill;
@@ -507,6 +511,8 @@ public struct PlayerData
 		playerPos = pos;
 		_messageTip = tip;
 		renewMmessageTip = null;
+		isSetSkill = isHave;
+		this.skillSprite = skillObjectIcon;
 		//skillParent = parent;
 
 		// this.moneyCount = coin;
@@ -542,6 +548,8 @@ public struct PlayerData
 		playerPos = new Vector3(0, 0, 0);
 		_messageTip = "";
 		renewMmessageTip = null;
+		isSetSkill = false;
+		skillSprite = null;
 		//skillParent = null;
 
 		// this.moneyCount = 0;
