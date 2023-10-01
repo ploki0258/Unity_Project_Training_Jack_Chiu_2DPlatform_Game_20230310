@@ -12,8 +12,8 @@ public class SkillSystem : MonoBehaviour
 	[Header("文字顯示顏色")]
 	public Color textColor = new Color();
 
+	public int keyCodeNumber;                   // 按鈕數字
 	Skill skillData;                            // 技能資料
-	int keyCodeNumber;                          // 按鈕數字
 	[SerializeField] KeyCode currentKeyCode;    // 當前紀錄的鍵盤按鈕
 												//SpriteRenderer iconSkill = null;
 
@@ -116,7 +116,7 @@ public class SkillSystem : MonoBehaviour
 
 			if (currentKeyCode == KeyCode.Z)
 			{
-				Debug.Log("快捷鍵Z" + "： " + "按下相同按鈕" + currentKeyCode.ToString());
+				Debug.Log("快捷鍵" + currentKeyCode + "： " + "按下相同按鈕");
 			}
 		}
 
@@ -136,10 +136,10 @@ public class SkillSystem : MonoBehaviour
 			//Debug.Log("快捷鍵X： " + currentSkillIndex);
 
 			// 存檔系統.玩家資料.技能圖示 = 技能欄位的技能圖示
-			SaveManager.instance.playerData.skillSprite = skillSlot[keyCodeNumber].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
+			//SaveManager.instance.playerData.skillSprite = skillSlot[keyCodeNumber].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
 			if (currentKeyCode == KeyCode.X)
 			{
-				Debug.Log("快捷鍵X" + currentKeyCode + "： " + "按下相同按鈕");
+				Debug.Log("快捷鍵" + currentKeyCode + "： " + "按下相同按鈕");
 			}
 		}
 
@@ -159,10 +159,10 @@ public class SkillSystem : MonoBehaviour
 			//Debug.Log("快捷鍵C： " + currentSkillIndex);
 
 			// 存檔系統.玩家資料.技能圖示 = 技能欄位的技能圖示
-			SaveManager.instance.playerData.skillSprite = skillSlot[keyCodeNumber].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
+			//SaveManager.instance.playerData.skillSprite = skillSlot[keyCodeNumber].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
 			if (currentKeyCode == KeyCode.C)
 			{
-				Debug.Log("快捷鍵C" + currentKeyCode + "： " + "按下相同按鈕");
+				Debug.Log("快捷鍵" + currentKeyCode + "： " + "按下相同按鈕");
 			}
 
 			// PlayerCtrl.instance.atkObject = skillSlot[2].GetComponent<Skill>().skillPrefab;

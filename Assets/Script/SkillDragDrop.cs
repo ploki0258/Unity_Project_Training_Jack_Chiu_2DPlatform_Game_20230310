@@ -22,7 +22,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 	private Vector3 startPosition;      // 初始位置
 	private bool isDragging = false;    // 是否正在拖曳
 	private int skillID;                // 技能ID
-	bool raycastTarget;
+	SkillSystem skillSystemData;
 
 	private void Start()
 	{
@@ -140,8 +140,11 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 				Debug.Log("<color=#f0f>設置技能：</color>" + skillData.name);
 				skillSystem.SwitchAtkObject();
 			}
-			//SaveManager.instance.playerData.isSetSkill = true;
-			//Debug.Log("<COLOR=#f0f>保存技能</color>");
+			SaveManager.instance.playerData.isSetSkill = true;
+			SaveManager.instance.playerData.skillObjectID = skillID;
+			//SaveManager.instance.playerData.skillSlotPos = skillSystemData.skillSlot[skillSystemData.keyCodeNumber];
+			Debug.Log($"<COLOR=#f0f>保存技能：{SaveManager.instance.playerData.isSetSkill}</color>");
+			Debug.Log($"<COLOR=#f0f>保存技能ID：{SaveManager.instance.playerData.skillObjectID}</color>");
 		}
 
 		// 如果技能欄位內有名稱有包含 "SkillIcon" 且技能圖示的父集 不是 原始父集 的話
@@ -164,8 +167,11 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 				Debug.Log("<color=#f69>調換技能：</color>" + skillData.name);
 				skillSystem.SwitchAtkObject();
 			}
-			//SaveManager.instance.playerData.isSetSkill = true;
-			//Debug.Log("<color=#f69>保存技能</color>");
+			SaveManager.instance.playerData.isSetSkill = true;
+			SaveManager.instance.playerData.skillObjectID = skillID;
+			//SaveManager.instance.playerData.skillSlotPos = skillSystemData.skillSlot[skillSystemData.keyCodeNumber];
+			Debug.Log($"<COLOR=#f69>保存技能：{SaveManager.instance.playerData.isSetSkill}</color>");
+			Debug.Log($"<COLOR=#f69>保存技能ID：{SaveManager.instance.playerData.skillObjectID}</color>");
 		}
 
 		cloneObject.GetComponent<CanvasGroup>().blocksRaycasts = true;  // 打開射線檢測

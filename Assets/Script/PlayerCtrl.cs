@@ -67,6 +67,7 @@ public class PlayerCtrl : MonoBehaviour
 	Rigidbody2D rig;
 	[Tooltip("用來儲存玩家是否站在地板上")]
 	private bool onFloor = false;
+	private SkillSystem skillSystem;
 	bool 翻轉 = false;
 	bool isWindowsOpen = WindowsManager.instance.IsWindowsOpen();   // 視窗是否被開啟
 	Vector3 mousePos;
@@ -85,12 +86,16 @@ public class PlayerCtrl : MonoBehaviour
 		// 角色出生時 讀檔一次
 		SaveManager.instance.LoadData();
 
+		//if (SaveManager.instance.playerData.isSetSkill)
+		//{
+		//	Instantiate(FindObjectOfType<SkillDragDrop>().skillData.skillIcon, skillSystem.skillSlot[0].position, skillSystem.skillSlot[0].rotation);
+		//}
+
 		// 如果記錄中的位置不是000 才瞬間移動到記錄中的位置
 		// 如果記錄中的位置是000表示可能沒有紀錄
 		if (SaveManager.instance.playerData.playerPos != Vector3.zero)
 			this.transform.position = SaveManager.instance.playerData.playerPos;    // 瞬間移動到記錄中的位置
 
-		// SaveManager.instance.SaveData();
 		#region 程式抓取組件
 		//barHP = GameObject.Find("血條").GetComponent<Image>();
 		//barMP = GameObject.Find("魔力條").GetComponent<Image>();
