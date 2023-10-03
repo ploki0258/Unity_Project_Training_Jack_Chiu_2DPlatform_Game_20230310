@@ -55,15 +55,17 @@ public class SkillSystem : MonoBehaviour
 	{
 		foreach (KeyCode keyCode in System.Enum.GetValues(typeof(KeyCode)))
 		{
-			if (Input.GetKeyDown(keyCode))
+			// 如果按下 keyCode 等於 Z / X / C按鍵
+			if (Input.GetKeyDown(keyCode) == Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(keyCode) == Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(keyCode) == Input.GetKeyDown(KeyCode.C))
 			{
+				// 如果 keyCode 等於 當前的keyCode
 				if (keyCode == currentKeyCode)
 				{
-					//Debug.Log("按下相同按鈕");
+					Debug.Log("按下相同按鈕");
 
 					if (PlayerCtrl.instance.atkObject != null)
 					{
-						PlayerCtrl.instance.atkObject = null;
+						
 					}
 					else if (PlayerCtrl.instance.atkObject == null)
 					{

@@ -45,10 +45,10 @@ public class SkillField : MonoBehaviour
 	/// <summary>
 	/// 點擊技能圖示初始化技能：顯示該技能的資訊
 	/// </summary>
-	/// <param name="id"></param>
+	/// <param name="id">技能ID</param>
 	public void 初始化技能(int id)
 	{
-		// 查找資料
+		// 查找技能資料
 		skillData = SkillManager.instance.FindSkillByID(id);
 
 		iconSkill.sprite = skillData.skillIcon;

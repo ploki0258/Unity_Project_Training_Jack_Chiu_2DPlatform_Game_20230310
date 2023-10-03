@@ -72,6 +72,7 @@ public class PlayerCtrl : MonoBehaviour
 	bool isWindowsOpen = WindowsManager.instance.IsWindowsOpen();   // 視窗是否被開啟
 	Vector3 mousePos;
 	Vector2 iconDirection;
+	Skill skillData;
 	#endregion
 
 	// 在整個專案全域宣告一個instance
@@ -82,14 +83,15 @@ public class PlayerCtrl : MonoBehaviour
 		instance = this;    // 讓單例等於自己
 		rig = GetComponent<Rigidbody2D>();
 		ani = GetComponent<Animator>();
-		// isPaused = FindObjectOfType<ItemField>().isPaused;
+		
 		// 角色出生時 讀檔一次
 		SaveManager.instance.LoadData();
 
-		//if (SaveManager.instance.playerData.isSetSkill)
-		//{
-		//	Instantiate(FindObjectOfType<SkillDragDrop>().skillData.skillIcon, skillSystem.skillSlot[0].position, skillSystem.skillSlot[0].rotation);
-		//}
+		if (SaveManager.instance.playerData.isSetSkill == true)
+		{
+			//Instantiate(, SaveManager.instance.playerData.skillSlotPos.position, SaveManager.instance.playerData.skillSlotPos.rotation);
+			Debug.Log("<color=#096>Skill</color>");
+		}
 
 		// 如果記錄中的位置不是000 才瞬間移動到記錄中的位置
 		// 如果記錄中的位置是000表示可能沒有紀錄
