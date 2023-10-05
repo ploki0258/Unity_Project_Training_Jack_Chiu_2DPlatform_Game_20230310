@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class ItemOnMap : MonoBehaviour
 {
-	public Item dataItem;	// 道具的腳本化物件
-	
-	private int itemID;		// 道具ID
+	[Header("道具資料")]
+	public Item dataItem;   // 道具的腳本化物件
+
+	private int itemID;     // 道具ID
 
 	private void Awake()
 	{
 		itemID = dataItem.id;
 		// 道具ID = 該道具的ID
 		// Debug.Log(itemID);
-		
+
 		/*dataItem = ItemManager.instance.FindItemData(itemID);
 		Debug.Log(dataItem);
 		*/
@@ -28,6 +29,8 @@ public class ItemOnMap : MonoBehaviour
 			if (successAdd)
 			{
 				Destroy(this.gameObject);
+				// 到玩家紀錄中 添加道具列表(ID)
+				SaveManager.instance.playerData.haveItem.Add(itemID);
 				// Debug.Log("道具+1");
 			}
 			else

@@ -25,7 +25,7 @@ public class SkillSystem : MonoBehaviour
 	private void Update()
 	{
 		SwitchAtkObject();
-		KeepKeyCode();
+		//KeepKeyCode();
 	}
 
 	/// <summary>
@@ -41,6 +41,7 @@ public class SkillSystem : MonoBehaviour
 		// 才設置攻擊物件
 		if (currentSkillIndex >= 0 && SaveManager.instance.playerData.IsHaveSkill(currentSkillIndex))
 		{
+			// 玩家.攻擊物件 = 技能欄[所按下按鈕的欄位].取得<SkillDragDrop>().技能資料.技能預製物
 			PlayerCtrl.instance.atkObject = skillSlot[keyCodeNumber].GetComponentInChildren<SkillDragDrop>().skillData.skillPrefab;
 			//Debug.Log($"<color=yellow>{currentSkillIndex + "\n" + PlayerCtrl.instance.atkObject.name}</color>");
 			//Debug.Log($"<color=green>{currentSkillIndex + "\n" + skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.skillPrefab.name}</color>");
@@ -61,7 +62,7 @@ public class SkillSystem : MonoBehaviour
 				// 如果 keyCode 等於 當前的keyCode
 				if (keyCode == currentKeyCode)
 				{
-					Debug.Log("按下相同按鈕");
+					//Debug.Log("按下相同按鈕");
 
 					if (PlayerCtrl.instance.atkObject != null)
 					{
@@ -113,8 +114,6 @@ public class SkillSystem : MonoBehaviour
 
 			// 存檔系統.玩家資料.技能圖示 = 技能欄位的技能圖示
 			//SaveManager.instance.playerData.skillSprite = skillSlot[keyCodeNumber].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
-
-			//Instantiate(SaveManager.instance.playerData.skillSprite, skillSlot[keyCodeNumber].position, Quaternion.identity);
 
 			if (currentKeyCode == KeyCode.Z)
 			{

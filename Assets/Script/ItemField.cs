@@ -11,19 +11,22 @@ public class ItemField : Windows<ItemField>
 
 	public bool isPaused;
 
+	private PuzzleManager puzzleManager;
+
 	protected override void Awake()
 	{
 		base.Awake();
 		openSpeed = 15f;    // 視窗開啟速度 = 15
 		ItemManager.instance.Initialization();
 		isPaused = FindObjectOfType<PlayerCtrl>().isPausedGame;
+		puzzleManager = FindObjectOfType<PuzzleManager>();
 	}
 
 	protected override void Start()
 	{
 		base.Start();
 		// Test
-		// SaveManager.instance.playerData.AddItem(20);
+		//SaveManager.instance.playerData.AddItem(20);
 
 		刷新道具欄();
 
@@ -54,7 +57,7 @@ public class ItemField : Windows<ItemField>
 		if (Input.GetKeyDown(KeyCode.Escape))
 			Close();
 
-		// Debug.Log("是否暫停(道具)：" + isPaused);
+		//Debug.Log("添加道具");
 	}
 
 	// 打開視窗時 顯示滑鼠 時間暫停
@@ -84,9 +87,9 @@ public class ItemField : Windows<ItemField>
 	{
 		// 清除上次暫存的格子
 		foreach (var g in 垃圾桶)
-           Destroy(g);
-       // 重製陣列
-       垃圾桶.Clear();
+			Destroy(g);
+		// 重製陣列
+		垃圾桶.Clear();
 		#region 測試
 		// 清除上次暫存的格子
 		/*

@@ -138,7 +138,7 @@ public class SkillField : MonoBehaviour
 			Debug.Log($"<color=#90ff06>升級技能： { + skillData.id + "\n已習得：" + skillData.skillName}</color>");
 			// 扣錢
 			SaveManager.instance.playerData.moneyCount -= skillData.skillCoinCost;
-			// 扣技能
+			// 扣技能點數
 			SaveManager.instance.playerData.skillPoint -= skillData.skillPointCost;
 			// 到玩家紀錄中 添加技能列表(ID)
 			SaveManager.instance.playerData.haveSkill.Add(skillData.id);

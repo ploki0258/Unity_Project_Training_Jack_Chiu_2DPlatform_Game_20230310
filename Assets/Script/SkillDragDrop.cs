@@ -150,15 +150,15 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 			SaveManager.instance.playerData.isSetSkill = true;
 			SaveManager.instance.playerData.skillObjectID = skillID;
 
-			if (skillSystemData.keyCodeNumber == 0)
+			if (eventData.pointerCurrentRaycast.gameObject.name.Contains("_L"))
 			{
 				SaveManager.instance.playerData.skillSlotPos = skillSystemData.skillSlot[0].transform;
 			}
-			else if (skillSystemData.keyCodeNumber == 1)
+			else if (eventData.pointerCurrentRaycast.gameObject.name.Contains("_M"))
 			{
 				SaveManager.instance.playerData.skillSlotPos = skillSystemData.skillSlot[1].transform;
 			}
-			else
+			else if (eventData.pointerCurrentRaycast.gameObject.name.Contains("_R"))
 			{
 				SaveManager.instance.playerData.skillSlotPos = skillSystemData.skillSlot[2].transform;
 			}
@@ -190,7 +190,20 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 			}
 			SaveManager.instance.playerData.isSetSkill = true;
 			SaveManager.instance.playerData.skillObjectID = skillID;
-			//SaveManager.instance.playerData.skillSlotPos[skillSystemData.keyCodeNumber] = skillSystemData.skillSlot[skillSystemData.keyCodeNumber].transform;
+			
+			if (eventData.pointerCurrentRaycast.gameObject.name.Contains("_L"))
+			{
+				SaveManager.instance.playerData.skillSlotPos = skillSystemData.skillSlot[0].transform;
+			}
+			else if (eventData.pointerCurrentRaycast.gameObject.name.Contains("_M"))
+			{
+				SaveManager.instance.playerData.skillSlotPos = skillSystemData.skillSlot[1].transform;
+			}
+			else if (eventData.pointerCurrentRaycast.gameObject.name.Contains("_R"))
+			{
+				SaveManager.instance.playerData.skillSlotPos = skillSystemData.skillSlot[2].transform;
+			}
+
 			Debug.Log($"<COLOR=#f69>是否保存技能：{SaveManager.instance.playerData.isSetSkill}</color>");
 			Debug.Log($"<COLOR=#f69>保存技能ID：{SaveManager.instance.playerData.skillObjectID}</color>");
 			Debug.Log($"<COLOR=#f69>保存技能Pos：{SaveManager.instance.playerData.skillSlotPos}</color>");

@@ -83,14 +83,17 @@ public class PlayerCtrl : MonoBehaviour
 		instance = this;    // 讓單例等於自己
 		rig = GetComponent<Rigidbody2D>();
 		ani = GetComponent<Animator>();
-		
+		skillData = SkillManager.instance.FindSkillByID(SaveManager.instance.playerData.skillObjectID);
+
 		// 角色出生時 讀檔一次
 		SaveManager.instance.LoadData();
 
+		// 如果 有放置技能 的話
+		// 就生成技能圖示在技能欄中
 		if (SaveManager.instance.playerData.isSetSkill == true)
 		{
-			//Instantiate(, SaveManager.instance.playerData.skillSlotPos.position, SaveManager.instance.playerData.skillSlotPos.rotation);
-			Debug.Log("<color=#096>Skill</color>");
+			Instantiate(skillData.skillIcon, SaveManager.instance.playerData.skillSlotPos.position, SaveManager.instance.playerData.skillSlotPos.rotation);
+			Debug.Log($"<color=#690>技能物件：{skillData.skillIcon}</color>");
 		}
 
 		// 如果記錄中的位置不是000 才瞬間移動到記錄中的位置

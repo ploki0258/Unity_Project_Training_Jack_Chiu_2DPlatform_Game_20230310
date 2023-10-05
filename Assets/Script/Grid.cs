@@ -10,9 +10,11 @@ public class Grid : MonoBehaviour
 	[SerializeField] Text 描述;
 	[SerializeField] 道具欄使用按鈕 btnUse = null;
 
+	[Tooltip("格子資料")]
 	Item dataGrid;
+	[Tooltip("是否為空格子")]
 	bool isNoneGrid = true; // 是否為空格子
-							// GameObject mist;
+	
 	/*
 	public float 恢復HP;
 	public float 恢復MP;
@@ -130,6 +132,8 @@ public class Grid : MonoBehaviour
 			else if (dataGrid.Consumables == true)
 			{
 				SaveManager.instance.playerData.RemoveItem(dataGrid.id);
+				// 到玩家紀錄中 移除道具列表(ID)
+				SaveManager.instance.playerData.haveItem.Remove(dataGrid.id);
 				// Debug.Log("消耗" + dataGrid.title);
 			}
 		}

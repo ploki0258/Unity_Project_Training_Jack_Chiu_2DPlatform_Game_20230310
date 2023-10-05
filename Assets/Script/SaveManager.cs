@@ -75,7 +75,7 @@ public class SaveManager
 	{
 		// 玩家資料.玩家位置 = PlayerCtrl.transform.position
 		playerData.playerPos = PlayerCtrl.instance.transform.position;
-		//playerData.skillSlotPos = ;
+		
 		// 轉換資料為Json格式
 		string json = JsonUtility.ToJson(playerData, true);
 		Debug.Log(json);
