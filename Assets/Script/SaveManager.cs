@@ -1,4 +1,5 @@
 ﻿using Fungus;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -57,8 +58,11 @@ public class SaveManager
 			playerData.itemNumberMax = 999;             // 最大持有道具數量
 			playerData.messageTip = "";                 // 玩家提示訊息
 			playerData.isSetSkill = false;              // 玩家是否設置技能
-			playerData.skillObjectID = -1;              // 設置的技能物件ID
-			playerData.skillSlotPos = null;
+			//playerData.skillObjectID = -1;              // 設置的技能物件ID
+			playerData.skillSlotID = 0;
+			playerData.skillZ = -1;
+			playerData.skillX = -1;
+			playerData.skillC = -1;
 		}
 		else
 		{
@@ -107,9 +111,64 @@ public struct PlayerData
 	// public int skillPoint;		// 技能點數
 	public string levelName;        // 關卡名稱
 	public Vector3 playerPos;       // 玩家位置
+
 	public bool isSetSkill;         // 用以判斷是否有放置技能
 	public int skillObjectID;       // 用以儲存技能物件
-	public Transform skillSlotPos;  // 技能物件存放的座標位置
+	public int skillSlotID;  // 技能物件存放的座標位置
+
+	#region ZXC
+	[SerializeField]
+	public int skillZ
+	{
+		get { return _skillZ; }
+		set
+		{
+			_skillZ = value;
+
+			// 呼叫刷新技能點數
+			if (renewSkillZXC != null)
+			{
+				renewSkillZXC.Invoke();
+			}
+		}
+	}
+	[SerializeField] int _skillZ;
+	public System.Action renewSkillZXC;
+
+
+	[SerializeField]
+	public int skillX
+	{
+		get { return _skillX; }
+		set
+		{
+			_skillX = value;
+
+			if (renewSkillZXC != null)
+			{
+				renewSkillZXC.Invoke();
+			}
+		}
+	}
+	[SerializeField] int _skillX;
+
+	[SerializeField]
+	public int skillC
+	{
+		get { return _skillC; }
+		set
+		{
+			_skillC = value;
+
+			// 呼叫刷新技能點數
+			if (renewSkillZXC != null)
+			{
+				renewSkillZXC.Invoke();
+			}
+		}
+	}
+	[SerializeField] int _skillC;
+	#endregion
 
 	/// <summary>
 	/// 金幣數量
@@ -488,13 +547,14 @@ public struct PlayerData
 
 	// 建構式
 	public PlayerData(int coin, int skill, float maxHP, float maxMP, float moveSpeed, float jumpPower, float attackSpeed, float attack, float defense,
-		string nameLV, Vector3 pos, string tip, bool isHave, int skillObjectID)
+		string nameLV, Vector3 pos, string tip, bool isHave, int skillObjectID, int skillZ, int skillX, int skillC)
 	{
 		_moneyCount = coin;
 		_skillPoint = skill;
 		renewCoin = null;
 		renewSkillPoint = null;
 		Act_goodsChange = null;
+		renewSkillZXC = null;
 		itemNumberMax = 999;
 		haveSkill = new List<int>();
 		haveItem = new List<int>();
@@ -519,8 +579,10 @@ public struct PlayerData
 		renewMmessageTip = null;
 		isSetSkill = isHave;
 		this.skillObjectID = skillObjectID;
-		skillSlotPos = null;
-
+		skillSlotID = 0;
+		_skillZ = skillZ;
+		_skillX = skillX;
+		_skillC = skillC;
 		// this.moneyCount = coin;
 		// this.skillPoint = skill;
 	}
@@ -532,6 +594,7 @@ public struct PlayerData
 		renewCoin = null;
 		renewSkillPoint = null;
 		Act_goodsChange = null;
+		renewSkillZXC = null;
 		itemNumberMax = 999;
 		haveSkill = new List<int>();
 		haveItem = new List<int>();
@@ -556,8 +619,11 @@ public struct PlayerData
 		renewMmessageTip = null;
 		isSetSkill = false;
 		skillObjectID = -1;
-		skillSlotPos = null;
-
+		skillSlotID = 0;
+		_skillZ = -1;
+		_skillX = -1;
+		_skillC = -1;
+		
 		// this.moneyCount = 0;
 		// this.skillPoint = 0;
 	}

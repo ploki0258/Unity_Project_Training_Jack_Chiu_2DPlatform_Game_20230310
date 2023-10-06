@@ -35,6 +35,18 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		// raycastTarget = GetComponent<Image>().raycastTarget;
 	}
 
+	/// <summary>將編號轉換為技能圖示</summary>
+	public Sprite GetSpriteBySlotID(int skillID)
+	{
+		if (skillID < 0)
+		{
+			Debug.Log("數值最小為0");
+			return null;
+		}
+		
+		return skillData.skillIcon;
+	}
+
 	/// <summary>
 	/// 開始拖拽
 	/// </summary>
@@ -124,6 +136,21 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		// layer == 1 << 5 (圖層設置的方式)
 		if (eventData.pointerCurrentRaycast.gameObject.CompareTag("SkillSlot") == true)
 		{
+			if (eventData.pointerCurrentRaycast.gameObject.name.Contains("_L"))
+			{
+				SaveManager.instance.playerData.skillZ = skillData.id;
+			}
+			else if (eventData.pointerCurrentRaycast.gameObject.name.Contains("_M"))
+			{
+				SaveManager.instance.playerData.skillX = skillData.id;
+			}
+			else if (eventData.pointerCurrentRaycast.gameObject.name.Contains("_R"))
+			{
+				SaveManager.instance.playerData.skillC = skillData.id;
+			}
+			Destroy(this.gameObject);
+			return;
+			/*
 			// 設置複製物件的父集
 			cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
 			// 設置複製物件的位置
@@ -152,26 +179,30 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
 			if (eventData.pointerCurrentRaycast.gameObject.name.Contains("_L"))
 			{
-				SaveManager.instance.playerData.skillSlotPos = skillSystemData.skillSlot[0].transform;
+				SaveManager.instance.playerData.skillSlotID = 0;
 			}
 			else if (eventData.pointerCurrentRaycast.gameObject.name.Contains("_M"))
 			{
-				SaveManager.instance.playerData.skillSlotPos = skillSystemData.skillSlot[1].transform;
+				SaveManager.instance.playerData.skillSlotID = 1;
 			}
 			else if (eventData.pointerCurrentRaycast.gameObject.name.Contains("_R"))
 			{
-				SaveManager.instance.playerData.skillSlotPos = skillSystemData.skillSlot[2].transform;
+				SaveManager.instance.playerData.skillSlotID = 2;
 			}
 
 			Debug.Log($"<COLOR=#f0f>是否保存技能：{SaveManager.instance.playerData.isSetSkill}</color>");
 			Debug.Log($"<COLOR=#f0f>保存技能ID：{SaveManager.instance.playerData.skillObjectID}</color>");
-			Debug.Log($"<COLOR=#f0f>保存技能Pos：{SaveManager.instance.playerData.skillSlotPos}</color>");
+			Debug.Log($"<COLOR=#f0f>保存技能Pos：{SaveManager.instance.playerData.skillSlotID}</color>");
+			*/
 		}
 
 		// 如果技能欄位內有名稱有包含 "SkillIcon" 且技能圖示的父集 不是 原始父集 的話
 		// 調換位置
-		if (eventData.pointerCurrentRaycast.gameObject.CompareTag("SkillIcon") == true && eventData.pointerCurrentRaycast.gameObject.transform.parent != originalParent)
+		/*if (eventData.pointerCurrentRaycast.gameObject.CompareTag("SkillIcon") == true && eventData.pointerCurrentRaycast.gameObject.transform.parent != originalParent)
 		{
+
+			Destroy(this.gameObject);
+			return;
 			cloneObject.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);   // 設置複製的物件的父集
 			cloneObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position; // 設置複製的物件的位置
 			eventData.pointerCurrentRaycast.gameObject.transform.SetParent(null);                           // 移除偵測的物件的父集
@@ -193,21 +224,21 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 			
 			if (eventData.pointerCurrentRaycast.gameObject.name.Contains("_L"))
 			{
-				SaveManager.instance.playerData.skillSlotPos = skillSystemData.skillSlot[0].transform;
+				SaveManager.instance.playerData.skillSlotID = 0;
 			}
 			else if (eventData.pointerCurrentRaycast.gameObject.name.Contains("_M"))
 			{
-				SaveManager.instance.playerData.skillSlotPos = skillSystemData.skillSlot[1].transform;
+				SaveManager.instance.playerData.skillSlotID = 1;
 			}
 			else if (eventData.pointerCurrentRaycast.gameObject.name.Contains("_R"))
 			{
-				SaveManager.instance.playerData.skillSlotPos = skillSystemData.skillSlot[2].transform;
+				SaveManager.instance.playerData.skillSlotID = 2;
 			}
 
 			Debug.Log($"<COLOR=#f69>是否保存技能：{SaveManager.instance.playerData.isSetSkill}</color>");
 			Debug.Log($"<COLOR=#f69>保存技能ID：{SaveManager.instance.playerData.skillObjectID}</color>");
-			Debug.Log($"<COLOR=#f69>保存技能Pos：{SaveManager.instance.playerData.skillSlotPos}</color>");
-		}
+			Debug.Log($"<COLOR=#f69>保存技能Pos：{SaveManager.instance.playerData.skillSlotID}</color>");
+		}*/
 
 		cloneObject.GetComponent<CanvasGroup>().blocksRaycasts = true;  // 打開射線檢測
 		#region 測試保留

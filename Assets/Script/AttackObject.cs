@@ -57,10 +57,10 @@ public class AttackObject : MonoBehaviour
 			// Debug.Log($"<color=#f1f>是否在物理攻擊： {isWandAttack}</color>");
 		}
 		// 如果子彈碰到"敵人" 就給予傷害
-		//if (collision.gameObject.tag == "enemy")
-		//{
-		//	Enemy.instance.TakeDamageMonster(damage);
-		//}
+		/*if (collision.gameObject.tag == "enemy")
+		{
+			Enemy.instance.TakeDamageMonster(damage);
+		}*/
 	}
 
 	/// <summary>

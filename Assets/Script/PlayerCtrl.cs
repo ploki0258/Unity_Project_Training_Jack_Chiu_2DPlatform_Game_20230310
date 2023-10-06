@@ -67,12 +67,13 @@ public class PlayerCtrl : MonoBehaviour
 	Rigidbody2D rig;
 	[Tooltip("用來儲存玩家是否站在地板上")]
 	private bool onFloor = false;
-	private SkillSystem skillSystem;
+	public SkillSystem skillSystem;
 	bool 翻轉 = false;
 	bool isWindowsOpen = WindowsManager.instance.IsWindowsOpen();   // 視窗是否被開啟
 	Vector3 mousePos;
 	Vector2 iconDirection;
 	Skill skillData;
+	SkillDragDrop SkillDragDrop;
 	#endregion
 
 	// 在整個專案全域宣告一個instance
@@ -81,25 +82,12 @@ public class PlayerCtrl : MonoBehaviour
 	private void Awake()
 	{
 		instance = this;    // 讓單例等於自己
+							// 角色出生時 讀檔一次
+		SaveManager.instance.LoadData();
 		rig = GetComponent<Rigidbody2D>();
 		ani = GetComponent<Animator>();
-		skillData = SkillManager.instance.FindSkillByID(SaveManager.instance.playerData.skillObjectID);
-
-		// 角色出生時 讀檔一次
-		SaveManager.instance.LoadData();
-
-		// 如果 有放置技能 的話
-		// 就生成技能圖示在技能欄中
-		if (SaveManager.instance.playerData.isSetSkill == true)
-		{
-			//Instantiate(skillData.skillIcon, SaveManager.instance.playerData.skillSlotPos.position, SaveManager.instance.playerData.skillSlotPos.rotation);
-			Debug.Log($"<color=#690>技能物件：{skillData.skillIcon}</color>");
-		}
-
-		// 如果記錄中的位置不是000 才瞬間移動到記錄中的位置
-		// 如果記錄中的位置是000表示可能沒有紀錄
-		if (SaveManager.instance.playerData.playerPos != Vector3.zero)
-			this.transform.position = SaveManager.instance.playerData.playerPos;    // 瞬間移動到記錄中的位置
+		skillSystem = FindObjectOfType<SkillSystem>();
+		SkillDragDrop = FindObjectOfType<SkillDragDrop>();
 
 		#region 程式抓取組件
 		//barHP = GameObject.Find("血條").GetComponent<Image>();
@@ -119,6 +107,23 @@ public class PlayerCtrl : MonoBehaviour
 		coinInfo.text = "";
 		skillInfo.text = "";
 		textMessageTip.text = "";
+		//skillData = SkillManager.instance.FindSkillByID(SaveManager.instance.playerData.skillObjectID);
+
+		
+
+		// 如果 有放置技能 的話
+		// 就生成技能圖示在技能欄中
+		if (SaveManager.instance.playerData.isSetSkill == true)
+		{
+			Transform temp = skillSystem.GetTransformBySlotID(SaveManager.instance.playerData.skillSlotID);
+			//Instantiate(, temp.position, temp.rotation);
+			Debug.Log($"<color=#690>技能物件：{skillData.skillIcon}</color>");
+		}
+
+		// 如果記錄中的位置不是000 才瞬間移動到記錄中的位置
+		// 如果記錄中的位置是000表示可能沒有紀錄
+		if (SaveManager.instance.playerData.playerPos != Vector3.zero)
+			this.transform.position = SaveManager.instance.playerData.playerPos;    // 瞬間移動到記錄中的位置
 
 		SaveManager.instance.playerData.renewCoin += RenewCoin;
 		SaveManager.instance.playerData.renewSkillPoint += RenewSkillPoint;
@@ -130,6 +135,7 @@ public class PlayerCtrl : MonoBehaviour
 		SaveManager.instance.playerData.renewPlayerAttackSpeed += RenewPlayerAttackSpeed;
 		SaveManager.instance.playerData.renewPlayerAttack += RenewPlayerAttack;
 		SaveManager.instance.playerData.renewPlayerDefense += RenewPlayerDefecse;
+		// SaveManager.instance.playerData.renewPlayerDefense += () => { Debug.Log("renewPlayerDefense"); };
 		// 強制刷新一次HP & MP
 		RenewPlayerHP();
 		RenewPlayerMP();

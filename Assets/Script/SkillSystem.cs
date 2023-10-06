@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,8 +8,8 @@ public class SkillSystem : MonoBehaviour
 {
 	[Header("技能欄按鈕陣列"), Tooltip("用於儲存技能施放的按鈕")]
 	public Transform[] skillSlot; // 技能欄位，用於接受技能的拖放
-	[Header("當前技能ID"), Tooltip("當前選擇的技能ID")]
-	public int currentSkillIndex; // 當前選擇的技能ID
+								  //[Header("當前技能ID"), Tooltip("當前選擇的技能ID")]
+
 	[Header("文字顯示顏色")]
 	public Color textColor = new Color();
 
@@ -28,26 +29,26 @@ public class SkillSystem : MonoBehaviour
 		//KeepKeyCode();
 	}
 
+	/// <summary>將編號轉換為位置</summary>
+	public Transform GetTransformBySlotID(int slotID)
+	{
+		if (slotID < 0)
+		{
+			Debug.Log("數值最小為0");
+			return null;
+		}
+		if (slotID >= skillSlot.Length)
+		{
+			Debug.Log("數值應該小於" + skillSlot.Length);
+			return null;
+		}
+		return skillSlot[slotID];
+	}
+
 	/// <summary>
 	/// 設置當前技能
 	/// </summary>
 	/// <param name="skill">技能ID</param>
-	public void SetCurrentSkill(int skill)
-	{
-		// 在這裡可以執行相應的施放技能的行為
-		currentSkillIndex = skill;
-
-		// 如果 技能ID >= 0 且 已擁有該技能時
-		// 才設置攻擊物件
-		if (currentSkillIndex >= 0 && SaveManager.instance.playerData.IsHaveSkill(currentSkillIndex))
-		{
-			// 玩家.攻擊物件 = 技能欄[所按下按鈕的欄位].取得<SkillDragDrop>().技能資料.技能預製物
-			PlayerCtrl.instance.atkObject = skillSlot[keyCodeNumber].GetComponentInChildren<SkillDragDrop>().skillData.skillPrefab;
-			//Debug.Log($"<color=yellow>{currentSkillIndex + "\n" + PlayerCtrl.instance.atkObject.name}</color>");
-			//Debug.Log($"<color=green>{currentSkillIndex + "\n" + skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.skillPrefab.name}</color>");
-			//Debug.Log($"<Color=blue>{keyboard}</color>");
-		}
-	}
 
 	/// <summary>
 	/// 紀錄所按下的鍵盤按鈕
@@ -66,7 +67,7 @@ public class SkillSystem : MonoBehaviour
 
 					if (PlayerCtrl.instance.atkObject != null)
 					{
-						
+
 					}
 					else if (PlayerCtrl.instance.atkObject == null)
 					{
@@ -85,115 +86,80 @@ public class SkillSystem : MonoBehaviour
 		}
 	}
 
+	private void Start()
+	{
+		當前選到的技能 = ZXCType.NONE;
+		SaveManager.instance.playerData.renewSkillZXC += 技能發生變化;
+	}
+
+	private void OnDisable()
+	{
+		SaveManager.instance.playerData.renewSkillZXC -= 技能發生變化;
+	}
+
+	void 技能發生變化()
+	{
+		當前選到的技能 = 當前選到的技能;
+	}
+
+	public ZXCType 當前選到的技能
+	{
+		get { return _當前選到的技能; }
+		set
+		{
+			_當前選到的技能 = value;
+			if (_當前選到的技能 == ZXCType.NONE)
+				PlayerCtrl.instance.atkObject = null;
+			else
+			{
+				int id = -1;
+				if (_當前選到的技能 == ZXCType.Z)
+					id = SaveManager.instance.playerData.skillZ;
+				else if (_當前選到的技能 == ZXCType.X)
+					id = SaveManager.instance.playerData.skillX;
+				else if (_當前選到的技能 == ZXCType.C)
+					id = SaveManager.instance.playerData.skillC;
+
+				if (id == -1)
+					PlayerCtrl.instance.atkObject = null;
+				else
+					PlayerCtrl.instance.atkObject = SkillManager.instance.FindSkillByID(id).skillPrefab;
+			}
+			if (選到的技能變化了 != null)
+				選到的技能變化了.Invoke();
+		}
+	}
+	ZXCType _當前選到的技能 = ZXCType.NONE;
+
+	public Action 選到的技能變化了 = null;
+	
 	/// <summary>
 	/// 切換攻擊物件：相同按鈕按下2次切回物理攻擊
 	/// </summary>
 	public void SwitchAtkObject()
 	{
-		List<int> skillPrefabs = SaveManager.instance.playerData.haveSkill;
-
-		SkillSystem skillSystem = FindObjectOfType<SkillSystem>();
-		Skill skill = FindObjectOfType<Skill>();
-
 		if (Input.GetKeyDown(KeyCode.Z))
 		{
-			keyCodeNumber = 0;
-
-			if (skillSlot[0].GetComponentInChildren<SkillDragDrop>())
-			{
-				// 當前選擇的技能ID = 技能槽位置.取得組件<SkillDragDrop>().技能資料.id
-				currentSkillIndex = skillSlot[keyCodeNumber].GetComponentInChildren<SkillDragDrop>().skillData.id;
-				// 設置技能玩家的攻擊物件
-				SetCurrentSkill(currentSkillIndex);
-				//iconSkill.sprite = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
-				//iconSkill.color = new Color(1f, 1f, 1f, 1f);
-			}
-			currentKeyCode = KeyCode.Z; // 當前的鍵盤按鈕 = Z
-
-			//Debug.Log("快捷鍵Z： " + currentSkillIndex);
-
-			// 存檔系統.玩家資料.技能圖示 = 技能欄位的技能圖示
-			//SaveManager.instance.playerData.skillSprite = skillSlot[keyCodeNumber].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
-
-			if (currentKeyCode == KeyCode.Z)
-			{
-				Debug.Log("快捷鍵" + currentKeyCode + "： " + "按下相同按鈕");
-			}
+			if (當前選到的技能 == ZXCType.Z)
+				當前選到的技能 = ZXCType.NONE;
+			else
+				當前選到的技能 = ZXCType.Z;
 		}
 
 		if (Input.GetKeyDown(KeyCode.X))
 		{
-			keyCodeNumber = 1;
-
-			if (skillSlot[1].GetComponentInChildren<SkillDragDrop>())
-			{
-				currentSkillIndex = skillSlot[keyCodeNumber].GetComponentInChildren<SkillDragDrop>().skillData.id;
-				SetCurrentSkill(currentSkillIndex);
-				//iconSkill.sprite = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
-				//iconSkill.color = new Color(1f, 1f, 1f, 1f);
-			}
-			currentKeyCode = KeyCode.X; // 當前的鍵盤按鈕 = X
-
-			//Debug.Log("快捷鍵X： " + currentSkillIndex);
-
-			// 存檔系統.玩家資料.技能圖示 = 技能欄位的技能圖示
-			//SaveManager.instance.playerData.skillSprite = skillSlot[keyCodeNumber].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
-			if (currentKeyCode == KeyCode.X)
-			{
-				Debug.Log("快捷鍵" + currentKeyCode + "： " + "按下相同按鈕");
-			}
+			if (當前選到的技能 == ZXCType.X)
+				當前選到的技能 = ZXCType.NONE;
+			else
+				當前選到的技能 = ZXCType.X;
 		}
 
 		if (Input.GetKeyDown(KeyCode.C))
 		{
-			keyCodeNumber = 2;
-
-			if (skillSlot[2].GetComponentInChildren<SkillDragDrop>())
-			{
-				currentSkillIndex = skillSlot[keyCodeNumber].GetComponentInChildren<SkillDragDrop>().skillData.id;
-				SetCurrentSkill(currentSkillIndex);
-				//iconSkill.sprite = skillSlot[keyboard].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
-				//iconSkill.color = new Color(1f, 1f, 1f, 1f);
-			}
-			currentKeyCode = KeyCode.C; // 當前的鍵盤按鈕 = C
-
-			//Debug.Log("快捷鍵C： " + currentSkillIndex);
-
-			// 存檔系統.玩家資料.技能圖示 = 技能欄位的技能圖示
-			//SaveManager.instance.playerData.skillSprite = skillSlot[keyCodeNumber].GetComponentInChildren<SkillDragDrop>().skillData.skillIcon;
-			if (currentKeyCode == KeyCode.C)
-			{
-				Debug.Log("快捷鍵" + currentKeyCode + "： " + "按下相同按鈕");
-			}
-
-			// PlayerCtrl.instance.atkObject = skillSlot[2].GetComponent<Skill>().skillPrefab;
-			// currentSkillIndex = 2;
-		}
-
-		#region 測試
-		/*
-		for (int i = 0; i < 3; i++)
-		{
-			if (i == keyboard)
-			{
-				skillSlot[i].GetComponentInChildren<Image>().color = new Color(255f, 255f, 255f, 1f);
-			}
+			if (當前選到的技能 == ZXCType.C)
+				當前選到的技能 = ZXCType.NONE;
 			else
-			{
-				skillSlot[i].GetComponentInChildren<Image>().color = new Color(255f, 255f, 255f, 0.8f);
-			}
-		}*/
-
-		// 根據當前技能索引設置攻擊物件
-		/*
-		if (currentSkillIndex >= 0)
-		{
-			int skillID = skillData.id;
-			skillSystem.SetCurrentSkill(skillID);
-			PlayerCtrl.instance.atkObject = skillSlot[currentSkillIndex].GetComponent<SkillDragDrop>().skillData.skillPrefab;
-			Debug.Log("切換為：" + skill.skillPrefab.name);
+				當前選到的技能 = ZXCType.C;
 		}
-		*/
-		#endregion
 	}
 }

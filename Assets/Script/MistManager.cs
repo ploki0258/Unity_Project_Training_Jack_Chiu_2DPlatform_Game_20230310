@@ -80,8 +80,9 @@ public class MistManager : MonoBehaviour
 	/// 持續事件
 	/// </summary>
 	/// <param name="collision"></param>
-	private void OnTriggerStay2D(Collider2D collision)
+	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		StopAllCoroutines();
 		// 呼叫協程 ColorGradient()
 		StartCoroutine(ColorGradient());
 		StartCoroutine(TakeDamage());
@@ -216,7 +217,7 @@ public class MistManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// 顏色漸變：改變迷霧顏色
+	/// 顏色漸變：改變迷霧顏色 改至Update
 	/// </summary>
 	/// <param name="originalColor">原始顏色</param>
 	/// <param name="changeColor">變化顏色</param>
