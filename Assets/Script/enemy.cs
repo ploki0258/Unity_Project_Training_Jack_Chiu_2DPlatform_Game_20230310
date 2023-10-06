@@ -19,11 +19,12 @@ public class Enemy : MonoBehaviour
 	[Header("掉落(技能)道具")]
 	public GameObject itemSkill = null;
 	[Header("掉落機率"), Tooltip("怪物的掉落機率"), Range(1, 10)]
-	public float probDrop = 5f;
-	[Header("被傷害值"), Tooltip("受到的傷害值")]
-	public float damage;
+	public int probDrop = 5;
 	[SerializeField, Header("尋找物件的名稱")]
 	string objectName;
+	
+	[Tooltip("怪物所受到的傷害值")]
+	private float damage;
 	/*
     [Header("資訊欄顯示")]
     [SerializeField] Text coinInfo = null;
@@ -78,14 +79,14 @@ public class Enemy : MonoBehaviour
 	private void Update()
 	{
 		TrackingPlayer();
-		AttackDamage();
+		GotEnemyDamage();
 		//Debug.Log("怪物血量：" + hpMonster);
 	}
 
 	/// <summary>
-	/// 受到的攻擊傷害：依據玩家的攻擊力給予傷害值
+	/// 怪物所受到的攻擊傷害：依據玩家的攻擊力受到傷害量
 	/// </summary>
-	void AttackDamage()
+	void GotEnemyDamage()
 	{
 		if (PlayerCtrl.instance.atkObject == null || SaveManager.instance.playerData.playerMP == 0)
 		{

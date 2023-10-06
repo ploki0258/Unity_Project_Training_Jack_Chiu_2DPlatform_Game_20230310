@@ -15,13 +15,13 @@ MonoBehaviour:
   id: 21
   title: "\u9B54\u529B\u85E5\u6C34"
   icon: {fileID: 21300000, guid: b7f77607c82ea4142a2070c0e37e1756, type: 3}
-  info: "\u6062\u5FA920\u9EDE\u9B54\u529B\u503C\u3002"
+  info: "\u6062\u5FA950\u9EDE\u9B54\u529B\u503C\u3002"
   itemSkill: 0
   colorBG: {r: 0.764151, g: 0.5688525, b: 0.49309364, a: 1}
   canUse: 1
   Consumables: 1
   "\u6062\u5FA9HP": 0
-  "\u6062\u5FA9MP": 20
+  "\u6062\u5FA9MP": 50
   "\u63D0\u5347\u653B\u64CA\u529B": 0
   "\u63D0\u5347\u9632\u79A6\u529B": 0
   "\u63D0\u5347\u8DF3\u8E8D\u529B": 0

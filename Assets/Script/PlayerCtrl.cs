@@ -92,7 +92,7 @@ public class PlayerCtrl : MonoBehaviour
 		// 就生成技能圖示在技能欄中
 		if (SaveManager.instance.playerData.isSetSkill == true)
 		{
-			Instantiate(skillData.skillIcon, SaveManager.instance.playerData.skillSlotPos.position, SaveManager.instance.playerData.skillSlotPos.rotation);
+			//Instantiate(skillData.skillIcon, SaveManager.instance.playerData.skillSlotPos.position, SaveManager.instance.playerData.skillSlotPos.rotation);
 			Debug.Log($"<color=#690>技能物件：{skillData.skillIcon}</color>");
 		}
 
