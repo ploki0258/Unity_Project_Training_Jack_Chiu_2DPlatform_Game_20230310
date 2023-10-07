@@ -114,9 +114,12 @@ public struct PlayerData
 
 	public bool isSetSkill;         // 用以判斷是否有放置技能
 	public int skillObjectID;       // 用以儲存技能物件
-	public int skillSlotID;  // 技能物件存放的座標位置
+	public int skillSlotID;			// 技能物件存放的座標位置
 
 	#region ZXC
+	/// <summary>
+	/// 技能槽Z儲存的技能ID
+	/// </summary>
 	[SerializeField]
 	public int skillZ
 	{
@@ -133,9 +136,14 @@ public struct PlayerData
 		}
 	}
 	[SerializeField] int _skillZ;
+	/// <summary>
+	/// 技能槽刷新事件
+	/// </summary>
 	public System.Action renewSkillZXC;
 
-
+	/// <summary>
+	/// 技能槽X儲存的技能ID
+	/// </summary>
 	[SerializeField]
 	public int skillX
 	{
@@ -152,6 +160,9 @@ public struct PlayerData
 	}
 	[SerializeField] int _skillX;
 
+	/// <summary>
+	/// 技能槽C儲存的技能ID
+	/// </summary>
 	[SerializeField]
 	public int skillC
 	{

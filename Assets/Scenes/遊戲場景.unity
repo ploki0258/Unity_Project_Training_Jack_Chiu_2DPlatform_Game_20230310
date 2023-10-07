@@ -4642,7 +4642,7 @@ GameObject:
   - component: {fileID: 326713153}
   - component: {fileID: 326713152}
   m_Layer: 5
-  m_Name: Image
+  m_Name: "\u6280\u80FD\u5716\u793A_M"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6807,7 +6807,7 @@ GameObject:
   - component: {fileID: 501449839}
   - component: {fileID: 501449838}
   m_Layer: 5
-  m_Name: Z
+  m_Name: "\u6B04\u4F4D\u6A19\u793A_L"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8030,7 +8030,7 @@ RectTransform:
   - {fileID: 938216286}
   - {fileID: 501449835}
   m_Father: {fileID: 661030037}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8170,8 +8170,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zXCType: 0
-  image: {fileID: 938216287}
-  text: {fileID: 501449836}
+  imageSkill: {fileID: 938216287}
+  textSlot: {fileID: 501449836}
 --- !u!1 &661030036
 GameObject:
   m_ObjectHideFlags: 0
@@ -8209,9 +8209,9 @@ RectTransform:
   - {fileID: 1025342370}
   - {fileID: 1433002256}
   - {fileID: 754034750}
-  - {fileID: 652453732}
-  - {fileID: 2126661996}
   - {fileID: 1630870101}
+  - {fileID: 2126661996}
+  - {fileID: 652453732}
   - {fileID: 1198612787}
   m_Father: {fileID: 934149899}
   m_RootOrder: 13
@@ -9861,7 +9861,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 760676303}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -11419,7 +11419,7 @@ GameObject:
   - component: {fileID: 938216288}
   - component: {fileID: 938216287}
   m_Layer: 5
-  m_Name: Image
+  m_Name: "\u6280\u80FD\u5716\u793A_L"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11465,7 +11465,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ef1d59dbccabb7c4f9ca70fdcd71a3f1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f4cd80013490a594a87dd8882fba1fb0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15334,7 +15334,7 @@ GameObject:
   - component: {fileID: 1391526831}
   - component: {fileID: 1391526830}
   m_Layer: 5
-  m_Name: Z
+  m_Name: "\u6B04\u4F4D\u6A19\u793A_M"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18934,7 +18934,7 @@ RectTransform:
   - {fileID: 2051207817}
   - {fileID: 1718937524}
   m_Father: {fileID: 661030037}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -18954,8 +18954,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zXCType: 2
-  image: {fileID: 2051207818}
-  text: {fileID: 1718937529}
+  imageSkill: {fileID: 2051207818}
+  textSlot: {fileID: 1718937529}
 --- !u!225 &1630870103
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -19423,7 +19423,7 @@ GameObject:
   - component: {fileID: 1718937526}
   - component: {fileID: 1718937525}
   m_Layer: 5
-  m_Name: Z
+  m_Name: "\u6B04\u4F4D\u6A19\u793A_R"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22904,7 +22904,7 @@ GameObject:
   - component: {fileID: 2051207819}
   - component: {fileID: 2051207818}
   m_Layer: 5
-  m_Name: Image
+  m_Name: "\u6280\u80FD\u5716\u793A_R"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22950,7 +22950,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ef1d59dbccabb7c4f9ca70fdcd71a3f1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 77f8cd2d220d3da46afa5b8cf419d79a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -23025,8 +23025,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zXCType: 1
-  image: {fileID: 326713152}
-  text: {fileID: 1391526834}
+  imageSkill: {fileID: 326713152}
+  textSlot: {fileID: 1391526834}
 --- !u!225 &2126661998
 CanvasGroup:
   m_ObjectHideFlags: 0
