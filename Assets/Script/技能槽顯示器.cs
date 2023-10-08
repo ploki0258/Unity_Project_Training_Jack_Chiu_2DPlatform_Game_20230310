@@ -20,6 +20,7 @@ public class 技能槽顯示器 : MonoBehaviour
 		HideSkill();
 		刷新內容();
 	}
+
 	private void OnDisable()
 	{
 		SaveManager.instance.playerData.renewSkillZXC -= 刷新內容;
@@ -33,12 +34,15 @@ public class 技能槽顯示器 : MonoBehaviour
 	void HideSkill()
 	{
 		//image.color = skillSystem.當前選到的技能 == zXCType ? new Color(1f, 1f, 1f, 1f) : new Color(1f, 1f, 1f, 0.5f);
+		// 如果 技能系統.當前選到的技能 等於 自己時
 		if (SkillSystem.instance.當前選到的技能 == zXCType)
 		{
+			// 技能圖示.顏色 為完全顯示
 			imageSkill.color = new Color(1f, 1f, 1f, 1f);
 		}
 		else
 		{
+			// 技能圖示.顏色 為半透明顯示
 			imageSkill.color = new Color(1f, 1f, 1f, 0.5f);
 		}
 	}
