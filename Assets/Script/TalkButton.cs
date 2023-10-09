@@ -2,8 +2,8 @@
 
 public class TalkButton : MonoBehaviour
 {
-    [SerializeField] GameObject Button = null;
-    [SerializeField] Animator archiveAni = null;
+    [SerializeField, Header("閃爍提示")] GameObject Button = null;
+    [SerializeField, Header("提示動畫")] Animator archiveAni = null;
 
     private void Update()
     {

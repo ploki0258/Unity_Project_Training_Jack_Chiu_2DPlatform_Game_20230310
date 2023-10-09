@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour
 {
 	#region 欄位
-	[Header("怪物最大血量"), Range(100, 1000)]
+	[Header("怪物最大血量"), Range(0, 1000)]
 	public float hpMonsterMax = 100f;
 	[Header("怪物血條")]
 	public Image barHP = null;
@@ -212,7 +212,7 @@ public class Enemy : MonoBehaviour
 			TakeDamageMonster(damage);
 			// Debug.Log($"<color=#ff9669>受到的傷害：{damage}</color>");
 
-			if (hpMonster <= 1)
+			if (hpMonster < 1)
 			{
 				//if (MistManager.instance.inMist_cyan == false)
 				//	// 每消失一隻怪物 計數器就-1

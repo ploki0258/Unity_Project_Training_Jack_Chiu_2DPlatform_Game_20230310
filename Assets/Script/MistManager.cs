@@ -200,7 +200,7 @@ public class MistManager : MonoBehaviour
 		{
 			inMist_gree = false;
 
-			PlayerCtrl.instance.costMP = originalCostMP;								// 變回原本魔力消耗
+			PlayerCtrl.instance.costMP = originalCostMP;                                // 變回原本魔力消耗
 			SaveManager.instance.playerData.playerSpeed = originalSpeed;                // 變回原本移動速度
 			SaveManager.instance.playerData.playerAttackSpeed = originalAttackSpeed;    // 變回原本攻擊速度
 			PlayerCtrl.instance.ani.speed = 1f;                                         // 變回原本動畫播放
@@ -258,5 +258,20 @@ public class MistManager : MonoBehaviour
 		startDamage = true;
 		yield return new WaitForSeconds(damageInterval);
 		startDamage = false;
+	}
+
+	[SerializeField, Header("繪製矩形\n繪製中心點")] Vector3 center = Vector3.one;
+	[SerializeField, Header("繪製大小")] Vector3 size = Vector3.one;
+	
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = new Color(1f, 1f, 0.5f, 0.5f);
+		Gizmos.DrawCube(center, size);
+	}
+
+	private void OnDrawGizmosSelected()
+	{
+		Gizmos.color = new Color(0.1f, 0.1f, 0.8f, 0.5f);
+		Gizmos.DrawCube(center, size);
 	}
 }
