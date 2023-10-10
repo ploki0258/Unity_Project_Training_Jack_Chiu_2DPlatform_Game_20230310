@@ -17,6 +17,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: d62fc87d7e2c1d740b3afc4193abf641, type: 3}
   info: "\u67D0\u7A2E\u602A\u7269\u7684\u86CB\uFF0C\u807D\u8AAA\u6709\u6A5F\u7387\u6703\u5B75\u51FA\u5F88\u5F37\u7684\u602A\u7269\u3002\n\u7372\u53D6100\u6280\u80FD\u9EDE"
   itemSkill: 1
+  typeItem: 1
   colorBG: {r: 0.764151, g: 0.5688525, b: 0.49309364, a: 1}
   canUse: 1
   Consumables: 1

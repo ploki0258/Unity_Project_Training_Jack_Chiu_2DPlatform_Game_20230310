@@ -19,7 +19,9 @@ MonoBehaviour:
   skillIcon: {fileID: 0}
   skillPrefab: {fileID: 0}
   skillCate: {r: 0.023584902, g: 0.4605793, b: 1, a: 1}
+  typeColor: 2
   isSpecial: 0
+  typeSkill: 0
   attackDis: "\u5C0D\u6575\u4EBA\u65BD\u5C55\u51B0\u4E4B\u7262\u7344"
   skillDis: "\u5C0D\u524D\u65B9\u7BC4\u570D\u5167\u7684\u6575\u4EBA\u9020\u6210\u4E2D\u5E45\u5EA6\u50B7\u5BB3\uFF0C\u4E26\u4F7F\u5176\u51B0\u51CD\uFF0C\u7DAD\u6301\u4E00\u6BB5\u6642\u9593\uFF0C\u4E26\u5927\u5E45\u5EA6\u964D\u4F4E\u884C\u52D5\u901F\u5EA6"
   skillCost: 50
@@ -28,6 +30,7 @@ MonoBehaviour:
   skillDamage: 500
   skillSpeed: 1
   burntPos: {fileID: 0}
+  holdDamage: 0
   enemyDis: 0
   enemySlowSpeed: 20
   enemyDelayTime: 5

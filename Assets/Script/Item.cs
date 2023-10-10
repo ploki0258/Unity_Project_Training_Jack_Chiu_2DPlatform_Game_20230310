@@ -17,8 +17,9 @@ public class Item : ScriptableObject
     public Sprite icon;
     [TextArea(5, 5), Header("道具敘述")]
     public string info;
-    [Header("技能道具")]
+    [Header("道具種類")]
     public bool itemSkill;
+    public TypeItem typeItem = TypeItem.NormalItem;
     [Header("底圖顏色")]
     public Color colorBG;
     [Header("道具可否使用")]
@@ -41,4 +42,9 @@ public class Item : ScriptableObject
     public int 獲得額外點數;
     [Range(0,5)]
     public int 增加技能欄位;
+}
+
+public enum TypeItem
+{
+    NormalItem, SkillItem, HighLevelItem, MapItem
 }
