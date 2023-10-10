@@ -241,6 +241,7 @@ public class Enemy : MonoBehaviour
 		// 如果碰到玩家 就依據怪物攻擊力扣玩家血量
 		if (collision.gameObject.tag == "Player")
 		{
+			ani.SetTrigger("attack");
 			PlayerCtrl.instance.ani.SetTrigger("hurt");
 			PlayerCtrl.instance.TakeDamage(atkMonster);
 		}
@@ -257,16 +258,4 @@ public class Enemy : MonoBehaviour
 			barHP.fillAmount = value / hpMonsterMax;
 		}
 	}
-
-	/*public int skill
-    {
-        get { return _skill; }
-        set
-        {
-            _skill = value;
-            PlayerCtrl.instance.skillCount.text = "× " + value;
-        }
-    }
-    int _skill = 0;
-    */
 }
