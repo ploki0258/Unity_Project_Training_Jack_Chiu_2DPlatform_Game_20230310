@@ -16,6 +16,7 @@ public class SkillSystem : MonoBehaviour
 	Skill skillData;                            // 技能資料
 	[SerializeField] KeyCode currentKeyCode;    // 當前紀錄的鍵盤按鈕
 
+	// 單例模式
 	public static SkillSystem instance = null;
 
 	private void Awake()
@@ -26,7 +27,8 @@ public class SkillSystem : MonoBehaviour
 
 	private void Start()
 	{
-		當前選到的技能 = ZXCType.NONE;
+		if (SaveManager.instance.playerData.skillZ != -1 || SaveManager.instance.playerData.skillX != -1 || SaveManager.instance.playerData.skillC != -1)
+			當前選到的技能 = ZXCType.NONE;
 		SaveManager.instance.playerData.renewSkillZXC += 技能發生變化;
 	}
 

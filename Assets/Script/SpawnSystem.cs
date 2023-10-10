@@ -64,17 +64,6 @@ public class SpawnSystem : MonoBehaviour
 			// 延遲重複呼叫-生成怪物
 			InvokeRepeating("SpawnEnemy", 0, interval);
 		}
-
-		// float dis = Vector2.Distance(player.position, transform.position);
-		/*if (dis < playerDis)
-		{
-			
-		}
-		else
-		{
-			return;
-		}
-		*/
 	}
 
 	// 繪製圖示
@@ -129,6 +118,23 @@ public class SpawnSystem : MonoBehaviour
 			// 每生成一個道具 計數器就+1
 			itemCount++;
 		}
+	}
 
+	/// <summary>
+	/// 重新啟動生成系統
+	/// </summary>
+	public void RestartSpawn()
+	{
+		CancelInvoke();
+		if (isItem)
+		{
+			// 延遲重複呼叫-生成技能道具
+			InvokeRepeating("SpawnItem", 0, interval);
+		}
+		else
+		{
+			// 延遲重複呼叫-生成怪物
+			InvokeRepeating("SpawnEnemy", 0, interval);
+		}
 	}
 }

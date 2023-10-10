@@ -77,11 +77,12 @@ public class MistManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// 持續事件
+	/// 進入事件
 	/// </summary>
 	/// <param name="collision"></param>
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		// 停止協程
 		StopAllCoroutines();
 		// 呼叫協程 ColorGradient()
 		StartCoroutine(ColorGradient());
@@ -101,6 +102,7 @@ public class MistManager : MonoBehaviour
 
 			// 提升怪物數量
 			spawnSystem.enemyCountMax = (int)spawnWeight;
+			spawnSystem.RestartSpawn();
 		}
 
 		// 藍色迷霧：加重技能消耗費用

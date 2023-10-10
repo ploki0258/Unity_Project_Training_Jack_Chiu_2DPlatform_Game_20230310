@@ -222,12 +222,13 @@ public class Enemy : MonoBehaviour
 				isDeath = true;
 				Invoke("Dead", 1f);
 
-				if (GameObject.FindObjectOfType<MistManager>() == true && MistManager.instance.inMist_cyan == false)
+				if (FindObjectOfType<MistManager>() == true && MistManager.instance.inMist_cyan == false)
 				{
 					// 如果 目前生成的怪物數量 小於 最大生成數量的話 而且 生成的怪物數量為0 則於5秒後生成怪物
 					if (spawnSystem.enemyCount == 0)
 					{
 						spawnSystem.interval = 10;
+						CancelInvoke();
 						InvokeRepeating("spawnSystem.SpawnEnemy", 5f, spawnSystem.interval);
 					}
 				}
