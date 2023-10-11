@@ -14869,7 +14869,7 @@ MonoBehaviour:
   minSpeed: 1
   attackSpeedWeight: 100
   minAttackSpeed: 10
-  spawnWeight: 1.4
+  spawnWeight: 1.7
   mistType_cyan: 1
   mistType_blue: 0
   mistType_purple: 0

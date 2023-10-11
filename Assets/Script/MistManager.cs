@@ -70,8 +70,31 @@ public class MistManager : MonoBehaviour
 
 	private void Update()
 	{
-		// Debug.Log(PlayerCtrl.instance.costMP);
-		// Debug.Log(tempColor);
+		// 青色迷霧
+		/*if (transitioning && mistType_cyan == true)
+		{
+			ColorTransition(Color.white, new Color(00, 10, 90));
+		}
+		// 藍色迷霧
+		if (transitioning && mistType_blue == true)
+		{
+			ColorTransition(Color.white, new Color(00, 00, 99));
+		}
+		// 紫色迷霧
+		if (transitioning && mistType_purple == true)
+		{
+			ColorTransition(Color.white, new Color(60, 00, 90));
+		}
+		// 紅色迷霧
+		if (transitioning && mistType_red == true)
+		{
+			ColorTransition(Color.white, new Color(99, 00, 00));
+		}
+		// 綠色迷霧
+		if (transitioning && mistType_gree == true)
+		{
+			ColorTransition(Color.white, new Color(00, 99, 00));
+		}*/
 	}
 
 	/// <summary>
@@ -205,7 +228,7 @@ public class MistManager : MonoBehaviour
 			SaveManager.instance.playerData.playerSpeed = originalSpeed;                // 變回原本移動速度
 			SaveManager.instance.playerData.playerAttackSpeed = originalAttackSpeed;    // 變回原本攻擊速度
 			PlayerCtrl.instance.ani.speed = 1f;                                         // 變回原本動畫播放
-			SpawnSystem.instance.enemyCountMax = (int)originalSpawn;                             // 變回原本最大敵人生成數量
+			SpawnSystem.instance.enemyCountMax = (int)originalSpawn;                    // 變回原本最大敵人生成數量
 
 			if (transitioning == true)
 			{
