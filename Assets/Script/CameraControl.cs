@@ -12,6 +12,8 @@ public class CameraControl : MonoBehaviour
 	Vector2 limitLR = new Vector2(-1.19f, 1.19f);
 	[SerializeField, Header("攝影機物件")]
 	GameObject cam1_Main, cam2_Fungus;
+	[SerializeField]
+	Camera MainCam;
 
 	private void Start()
 	{
@@ -50,5 +52,10 @@ public class CameraControl : MonoBehaviour
 		posA = Vector3.Lerp(posA, posB, speed * Time.deltaTime);
 
 		transform.position = posA;
+	}
+
+	void CMChageView()
+	{
+		
 	}
 }

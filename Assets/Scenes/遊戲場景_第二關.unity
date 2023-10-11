@@ -14869,7 +14869,7 @@ MonoBehaviour:
   minSpeed: 1
   attackSpeedWeight: 100
   minAttackSpeed: 10
-  spawnWeight: 2
+  spawnWeight: 1.4
   mistType_cyan: 1
   mistType_blue: 0
   mistType_purple: 0
@@ -18476,8 +18476,9 @@ MonoBehaviour:
   speed: 1.5
   limitUD: {x: -1.7, y: 1.7}
   limitLR: {x: -1.19, y: 1.19}
-  cam1: {fileID: 1997043513}
-  cam2: {fileID: 1963504599}
+  cam1_Main: {fileID: 1997043513}
+  cam2_Fungus: {fileID: 1963504599}
+  MainCam: {fileID: 1997043515}
 --- !u!1 &1997367526
 GameObject:
   m_ObjectHideFlags: 0

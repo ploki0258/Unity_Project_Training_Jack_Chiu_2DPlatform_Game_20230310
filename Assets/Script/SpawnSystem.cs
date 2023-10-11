@@ -46,8 +46,11 @@ public class SpawnSystem : MonoBehaviour
 	private Vector2 itemRange;      // 道具生成範圍
 	Transform player;
 
+	public static SpawnSystem instance = null;
+
 	private void Awake()
 	{
+		instance = this;
 		// player = GameObject.Find("玩家").transform;
 		enemyCount = 0;
 	}
@@ -97,6 +100,7 @@ public class SpawnSystem : MonoBehaviour
 			Instantiate(prefabEnemy[randomEnemy], monsterRange, Quaternion.identity);
 			// 每生成一隻怪物 計數器就+1
 			enemyCount++;
+			Enemy.instance.enabled = true;
 		}
 	}
 
@@ -126,15 +130,7 @@ public class SpawnSystem : MonoBehaviour
 	public void RestartSpawn()
 	{
 		CancelInvoke();
-		if (isItem)
-		{
-			// 延遲重複呼叫-生成技能道具
-			InvokeRepeating("SpawnItem", 0, interval);
-		}
-		else
-		{
-			// 延遲重複呼叫-生成怪物
-			InvokeRepeating("SpawnEnemy", 0, interval);
-		}
+		// 延遲重複呼叫-生成怪物
+		InvokeRepeating("SpawnEnemy", 0, interval);
 	}
 }

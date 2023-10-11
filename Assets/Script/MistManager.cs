@@ -47,27 +47,25 @@ public class MistManager : MonoBehaviour
 	private float originalSpeed;        // 原來的移動速度
 	private float originalAttackSpeed;  // 原來的攻擊速度
 	private float originalSpawn;        // 原來的生成數量
-	SpawnSystem spawnSystem;
 
 	public static MistManager instance; // 單例
 
 	private void Awake()
 	{
 		instance = this;
-		spawnSystem = GameObject.Find(objectName).GetComponent<SpawnSystem>();
 	}
 
 	private void Start()
 	{
 		if (mistType_blue == true)
-			cdWeight = PlayerCtrl.instance.costMP * cdWeight;
+			cdWeight *= PlayerCtrl.instance.costMP;
 		if (mistType_cyan == true)
-			spawnWeight = spawnSystem.enemyCountMax * spawnWeight;
+			spawnWeight *= SpawnSystem.instance.enemyCountMax;
 
 		originalCostMP = PlayerCtrl.instance.costMP;
 		originalSpeed = SaveManager.instance.playerData.playerSpeed;
 		originalAttackSpeed = SaveManager.instance.playerData.playerAttackSpeed;
-		originalSpawn = (float)spawnSystem.enemyCountMax;
+		originalSpawn = (float)SpawnSystem.instance.enemyCountMax;
 	}
 
 	private void Update()
@@ -101,8 +99,9 @@ public class MistManager : MonoBehaviour
 			tempColor = mistImage.color;
 
 			// 提升怪物數量
-			spawnSystem.enemyCountMax = (int)spawnWeight;
-			spawnSystem.RestartSpawn();
+			SpawnSystem.instance.enemyCountMax = (int)spawnWeight;
+			SpawnSystem.instance.RestartSpawn();
+			Enemy.instance.enabled = true;
 		}
 
 		// 藍色迷霧：加重技能消耗費用
@@ -206,7 +205,7 @@ public class MistManager : MonoBehaviour
 			SaveManager.instance.playerData.playerSpeed = originalSpeed;                // 變回原本移動速度
 			SaveManager.instance.playerData.playerAttackSpeed = originalAttackSpeed;    // 變回原本攻擊速度
 			PlayerCtrl.instance.ani.speed = 1f;                                         // 變回原本動畫播放
-			spawnSystem.enemyCountMax = (int)originalSpawn;                             // 變回原本最大敵人生成數量
+			SpawnSystem.instance.enemyCountMax = (int)originalSpawn;                             // 變回原本最大敵人生成數量
 
 			if (transitioning == true)
 			{
@@ -264,7 +263,7 @@ public class MistManager : MonoBehaviour
 
 	[SerializeField, Header("繪製矩形\n繪製中心點")] Vector3 center = Vector3.one;
 	[SerializeField, Header("繪製大小")] Vector3 size = Vector3.one;
-	
+
 	private void OnDrawGizmos()
 	{
 		Gizmos.color = new Color(1f, 1f, 0.5f, 0.5f);
