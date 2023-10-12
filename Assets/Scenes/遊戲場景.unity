@@ -6070,6 +6070,7 @@ MonoBehaviour:
   limitLR: {x: -1.19, y: 1.19}
   cam1_Main: {fileID: 8603954065742608385}
   cam2_Fungus: {fileID: 229068086}
+  MainCam: {fileID: 0}
 --- !u!1 &368537368
 GameObject:
   m_ObjectHideFlags: 0
@@ -21705,19 +21706,7 @@ MonoBehaviour:
   m_VerticalScrollbarSpacing: -3
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2007585058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25118,6 +25107,7 @@ MonoBehaviour:
   limitLR: {x: -1.19, y: 1.19}
   cam1_Main: {fileID: 8603954065742608385}
   cam2_Fungus: {fileID: 229068086}
+  MainCam: {fileID: 0}
 --- !u!4 &8814619735834722679
 Transform:
   m_ObjectHideFlags: 0

@@ -14861,7 +14861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mistImage: {fileID: 1598168213}
-  timeGradient: 10
+  timeGradient: 3
   damage: 1
   damageInterval: 5
   cdWeight: 2

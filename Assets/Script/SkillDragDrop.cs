@@ -60,7 +60,8 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		if (SaveManager.instance.playerData.IsHaveSkill(skillData.id) && transform.parent.name == "技能樹")
 		{
 			cloneObject = Instantiate(clonePrefab, transform.position, transform.rotation);
-			cloneObject.transform.localScale = new Vector3(1f, 1f, 1f);
+			//cloneObject.transform.localScale = new Vector3(1f, 1f, 1f);
+			cloneObject.GetComponent<RectTransform>().localScale = Vector3.one;
 		}
 		else
 		{
@@ -78,7 +79,7 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 			cloneObject.transform.SetParent(originalParent.parent.parent.parent.parent.parent);
 
 			// 初始父物件.尺寸 = Vector3(1, 1, 1)
-			originalParent.localScale = Vector3.one;
+			originalParent.GetComponent<RectTransform>().localScale = Vector3.one;
 		}
 		else if (transform.parent.name.Contains("skillBtn"))  // 父物件的名稱包含"skillBtn"的話
 		{

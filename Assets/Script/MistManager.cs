@@ -106,7 +106,7 @@ public class MistManager : MonoBehaviour
 		// 停止協程
 		StopAllCoroutines();
 		// 呼叫協程 ColorGradient()
-		StartCoroutine(ColorGradient());
+
 		StartCoroutine(TakeDamage());
 		#region 迷霧效果
 		// 青色迷霧：提升怪物數量
@@ -114,17 +114,22 @@ public class MistManager : MonoBehaviour
 		{
 			// inMist = true;
 
+			//StartCoroutine(ColorGradient(Color.white, new Color(0f, 0.1f, 0.9f)));
+
 			if (transitioning)
 			{
 				ColorTransition(Color.white, new Color(00, 10, 90));
 			}
-			// mistImage.color = Color.Lerp(Color.white, new Color(00, 10, 90), 100f * Time.deltaTime);
+			mistImage.color = Color.Lerp(Color.white, new Color(00, 10, 90), 100f * Time.deltaTime);
 			tempColor = mistImage.color;
 
 			// 提升怪物數量
-			SpawnSystem.instance.enemyCountMax = (int)spawnWeight;
-			SpawnSystem.instance.RestartSpawn();
-			Enemy.instance.enabled = true;
+			if (GameObject.FindObjectOfType<Enemy>())
+			{
+				SpawnSystem.instance.enemyCountMax = (int)spawnWeight;
+				SpawnSystem.instance.RestartSpawn();
+				Enemy.instance.enabled = true;
+			}
 		}
 
 		// 藍色迷霧：加重技能消耗費用
@@ -261,11 +266,17 @@ public class MistManager : MonoBehaviour
 	/// 漸變顏色協程
 	/// </summary>
 	/// <returns></returns>
-	IEnumerator ColorGradient()
+	IEnumerator ColorGradient(Color originalColor, Color changeColor)
 	{
 		yield return null;
 		// 漸變開始
 		transitioning = true;
+
+		//for (int i = 0; i < timeGradient; i++)
+		//{
+		//	ColorTransition(originalColor, changeColor);
+		//}
+
 		// 等待漸變時間
 		yield return new WaitForSeconds(timeGradient);
 		// 漸變結束

@@ -140,6 +140,7 @@ public class SkillSystem : MonoBehaviour
 		}
 	}
 	ZXCType _當前選到的技能 = ZXCType.NONE;
+	
 	public Action 選到的技能變化了 = null;
 
 	/// <summary>
