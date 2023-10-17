@@ -7,8 +7,9 @@ public class SoundManager : MonoBehaviour
 	public AudioClip run;
 	public AudioClip attack;
 	public AudioClip playerDead;
+	public AudioClip BGM;
 
-	private AudioSource aud;
+	public AudioSource aud;
 
 	public static SoundManager instance;
 

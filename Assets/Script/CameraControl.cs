@@ -31,6 +31,11 @@ public class CameraControl : MonoBehaviour
 		cam2_Fungus.SetActive(false);
 	}
 
+	/// <summary>
+	/// 切換攝影機
+	/// </summary>
+	/// <param name="isCam1">第一台攝影機是否開啟</param>
+	/// <param name="isCam2">第二台攝影機是否開啟</param>
 	public void CMSwitch(bool isCam1, bool isCam2)
 	{
 		cam1_Main.SetActive(isCam1);
@@ -54,8 +59,8 @@ public class CameraControl : MonoBehaviour
 		transform.position = posA;
 	}
 
-	void CMChageView()
-	{
+	//void CMChageView()
+	//{
 		
-	}
+	//}
 }

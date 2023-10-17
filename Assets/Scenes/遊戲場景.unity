@@ -6619,6 +6619,8 @@ MonoBehaviour:
   run: {fileID: 8300000, guid: 0503fd8e5c2489d43a2c397000cd7446, type: 3}
   attack: {fileID: 8300000, guid: 1ae95cba22c59ff4393b31b07106d1f7, type: 3}
   playerDead: {fileID: 8300000, guid: 8e034c88f3e748449b58dda9fb0bda04, type: 3}
+  BGM: {fileID: 8300000, guid: 97a9f07d3764c4762a71478af4ec4d4c, type: 3}
+  aud: {fileID: 468276310}
 --- !u!4 &468276309
 Transform:
   m_ObjectHideFlags: 0
