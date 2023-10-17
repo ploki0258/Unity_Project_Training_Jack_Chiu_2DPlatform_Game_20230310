@@ -114,13 +114,13 @@ public class MistManager : MonoBehaviour
 		{
 			// inMist = true;
 
-			//StartCoroutine(ColorGradient(Color.white, new Color(0f, 0.1f, 0.9f)));
+			StartCoroutine(ColorGradient(Color.white, Color.cyan));
 
-			if (transitioning)
-			{
-				ColorTransition(Color.white, new Color(00, 10, 90));
-			}
-			mistImage.color = Color.Lerp(Color.white, new Color(00, 10, 90), 100f * Time.deltaTime);
+			//if (transitioning)
+			//{
+			//	ColorTransition(Color.white, new Color(0f, 0.1f, 0.9f));
+			//}
+			//mistImage.color = Color.Lerp(Color.white, new Color(0f, 0.1f, 0.9f), 100f * Time.deltaTime);
 			tempColor = mistImage.color;
 
 			// 提升怪物數量
@@ -128,7 +128,6 @@ public class MistManager : MonoBehaviour
 			{
 				SpawnSystem.instance.enemyCountMax = (int)spawnWeight;
 				SpawnSystem.instance.RestartSpawn();
-				Enemy.instance.enabled = true;
 			}
 		}
 
@@ -139,7 +138,7 @@ public class MistManager : MonoBehaviour
 
 			if (transitioning)
 			{
-				ColorTransition(Color.white, new Color(00, 00, 99));
+				ColorTransition(Color.white, new Color(0f, 0f, 0.99f));
 			}
 			// mistImage.color = Color.Lerp(Color.white, new Color(00, 00, 99), Mathf.PingPong(Time.unscaledTime, 2f));
 			// tempColor = mistImage.color;
@@ -155,7 +154,7 @@ public class MistManager : MonoBehaviour
 
 			if (transitioning)
 			{
-				ColorTransition(Color.white, new Color(60, 00, 90));
+				ColorTransition(Color.white, new Color(0.6f, 0f, 0.9f));
 			}
 			// mistImage.color = Color.Lerp(Color.white, new Color(60, 00, 90), 1000f * Time.deltaTime);
 			tempColor = mistImage.color;
@@ -184,7 +183,7 @@ public class MistManager : MonoBehaviour
 			// 如果進行漸變的話 則漸變迷霧的顏色
 			if (transitioning)
 			{
-				ColorTransition(Color.white, new Color(99, 00, 00));
+				ColorTransition(Color.white, new Color(0.99f, 0f, 0f));
 			}
 			// mistImage.color = Color.Lerp(Color.white, new Color(99, 00, 00), 100f * Time.deltaTime);
 			tempColor = mistImage.color;
@@ -205,7 +204,7 @@ public class MistManager : MonoBehaviour
 
 			if (transitioning)
 			{
-				ColorTransition(Color.white, new Color(00, 99, 00));
+				ColorTransition(Color.white, new Color(0f, 0.99f, 0f));
 			}
 			// mistImage.color = Color.Lerp(Color.white, new Color(00, 99, 00), 100f * Time.deltaTime);
 			tempColor = mistImage.color;
@@ -254,6 +253,7 @@ public class MistManager : MonoBehaviour
 	{
 		float time = Mathf.Clamp01(Time.time / timeGradient);
 		// SpriteRenderer tempImage = Instantiate(mistImage, transform.position, transform.rotation);
+		// 迷霧.顏色 = 顏色.漸變(原始顏色, 變化後顏色)
 		mistImage.color = Color.Lerp(originalColor, changeColor, time);
 		tempColor = mistImage.color;
 
@@ -272,10 +272,10 @@ public class MistManager : MonoBehaviour
 		// 漸變開始
 		transitioning = true;
 
-		//for (int i = 0; i < timeGradient; i++)
-		//{
-		//	ColorTransition(originalColor, changeColor);
-		//}
+		for (int i = 0; i < timeGradient; i++)
+		{
+			ColorTransition(originalColor, changeColor);
+		}
 
 		// 等待漸變時間
 		yield return new WaitForSeconds(timeGradient);

@@ -104,12 +104,11 @@ public class PlayerCtrl : MonoBehaviour
 
 	private void Start()
 	{
+		Debug.Log("開始事件已發生");
 		coinInfo.text = "";
 		skillInfo.text = "";
 		textMessageTip.text = "";
 		//skillData = SkillManager.instance.FindSkillByID(SaveManager.instance.playerData.skillObjectID);
-
-		
 
 		// 如果 有放置技能 的話
 		// 就生成技能圖示在技能欄中
@@ -143,6 +142,7 @@ public class PlayerCtrl : MonoBehaviour
 
 	private void OnDisable()
 	{
+		Debug.Log("移除事件已發生");
 		//SaveManager.instance.playerData.renewCoin -= RenewCoin;
 		//SaveManager.instance.playerData.renewSkillPoint -= RenewSkillPoint;
 		SaveManager.instance.playerData.renewMmessageTip -= RenewMessageTip;

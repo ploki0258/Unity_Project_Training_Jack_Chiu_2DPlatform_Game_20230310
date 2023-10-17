@@ -49,6 +49,7 @@ public class DialogSystem : MonoBehaviour
     IEnumerator 對話()
     {
         對話中 = true;
+        // 顯示對話框
         talkUI.alpha = 1f;
         // 顯示正在對話的角色名稱
         // 對話人名.text = 當前文本.表[0].角色名稱;
@@ -83,6 +84,7 @@ public class DialogSystem : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         // 對話總表
+        // 總共跑幾段對話
         for (int j = 0; j < 當前文本.表.Count; j++)
         {
             // 開始這句話之前設定好人名並且關閉提示
@@ -96,7 +98,9 @@ public class DialogSystem : MonoBehaviour
             對話人名_左.text = 當前文本.表[j].左邊角色 ? 當前文本.表[j].角色名稱 : "";
             對話人名_右.text = 當前文本.表[j].左邊角色 ? "" : 當前文本.表[j].角色名稱;
             繼續提示.localScale = Vector3.zero;
-            //逐步顯示每一個字到畫面上
+            
+            // 逐步顯示每一個字到畫面上
+            // 跑每段對話中的每一個字
             string textFinal = "";
             for (int i = 0; i < 當前文本.表[j].文本內容.Length; i++)
             {
@@ -118,6 +122,7 @@ public class DialogSystem : MonoBehaviour
             pressEnter = false;
         }
 
+        // 隱藏對話框
         talkUI.alpha = 0f;
         yield return new WaitForSeconds(0.5f);
         對話中 = false;

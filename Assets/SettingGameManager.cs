@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,15 +16,17 @@ public class SettingGameManager : MonoBehaviour
 	public Image bgmIcon;
 	[Header("BGM圖示(靜音)"), Tooltip("BGM靜音時顯示")]
 	public Image bgmIconNoSound;
-
-	private const string gameVolumeKey = "GameVolume"; // 存儲遊戲音量的鍵名
-	private const string bgmVolumeKey = "BGMVolume"; // 存儲BGM音量的鍵名
+	
+	private const string gameVolumeKey = "GameVolume";	// 存儲遊戲音量的鍵名
+	private const string bgmVolumeKey = "BGMVolume";	// 存儲BGM音量的鍵名
+	[Tooltip("遊戲音效")]
 	public float gameVolume;
+	[Tooltip("BGM音效")]
 	public float bgmVolume;
 
 	private void Awake()
 	{
-		gameVolume = SoundManager.instance.aud.volume;
+		gameVolume = GameObject.Find("音效管理器").GetComponent<AudioSource>().volume;
 		bgmVolume = GameObject.Find("Spires(BGM)").GetComponent<AudioSource>().volume;
 	}
 
@@ -74,7 +77,6 @@ public class SettingGameManager : MonoBehaviour
 			gameVolumeIcon.enabled = true;
 			gameVolumeIconNoSound.enabled = false;
 		}
-
 		if (newBgmVolume == 0)
 		{
 			bgmIcon.enabled = false;

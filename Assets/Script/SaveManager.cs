@@ -116,7 +116,7 @@ public struct PlayerData
 	public int skillObjectID;       // 用以儲存技能物件
 	public int skillSlotID;			// 技能物件存放的座標位置
 
-	#region ZXC
+	#region 技能ZXC
 	/// <summary>
 	/// 技能槽Z儲存的技能ID
 	/// </summary>
@@ -128,7 +128,7 @@ public struct PlayerData
 		{
 			_skillZ = value;
 
-			// 呼叫刷新技能點數
+			// 呼叫技能槽刷新
 			if (renewSkillZXC != null)
 			{
 				renewSkillZXC.Invoke();

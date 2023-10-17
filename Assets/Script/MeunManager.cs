@@ -11,8 +11,11 @@ public class MeunManager : MonoBehaviour
 
 	TransferManager transferManager = null;
 
+	public static MeunManager instance = null;
+
 	private void Awake()
 	{
+		instance = this;
 		transferManager = GameObject.Find(objectName).GetComponent<TransferManager>();
 	}
 
@@ -41,8 +44,8 @@ public class MeunManager : MonoBehaviour
 	/// </summary>
 	public void StartGame()
 	{
-		PlayerPrefs.DeleteKey("GameData");  // 刪除玩家資料
-		SceneManager.LoadScene("遊戲場景"); // 載入遊戲場景
+		PlayerPrefs.DeleteKey("GameData");	// 刪除玩家資料
+		SceneManager.LoadScene("遊戲場景");	// 載入遊戲場景
 	}
 
 	/// <summary>
@@ -68,13 +71,19 @@ public class MeunManager : MonoBehaviour
 		SceneManager.LoadScene("開始畫面");
 	}
 
-	public void SettingGame()
+	/// <summary>
+	/// 開啟遊戲設定視窗
+	/// </summary>
+	public void OpenSettingGame()
 	{
 		settingWindows.SetActive(true);
 		Time.timeScale = 0f;
 	}
 
-	public void CloseWindows()
+	/// <summary>
+	/// 關閉遊戲設定視窗
+	/// </summary>
+	public void CloseSettingGameWindows()
 	{
 		settingWindows.SetActive(false);
 		Time.timeScale = 1f;
