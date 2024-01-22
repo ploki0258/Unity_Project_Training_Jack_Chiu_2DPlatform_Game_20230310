@@ -12,7 +12,7 @@ public class DeadWindows : Windows<DeadWindows>
 			Open();
 			// ¼½©ñ­µ®Ä
 			AudioClip sound = SoundManager.instance.playerDead;
-			SoundManager.instance.PlaySound(sound, 0.7f, 1f);
+			SoundManager.instance.PlayGameSfx(sound);
 		}
 		else
 		{

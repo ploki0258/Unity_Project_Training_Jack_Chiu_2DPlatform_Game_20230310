@@ -11,13 +11,13 @@ public class ShowSp : MonoBehaviour
 	private void Start()
 	{
 		// 登記要跟著技能點變化並且手動刷新一次
-		SaveManager.instance.playerData.renewSkillPoint += UpdateUI;
-		UpdateUI();
+		SaveManager.instance.playerData.renewSkillPoint += UpdateSkillPointUI;
+		UpdateSkillPointUI();
 	}
 	private void OnDisable()
 	{
 		// 退出登記
-		SaveManager.instance.playerData.renewSkillPoint -= UpdateUI;
+		SaveManager.instance.playerData.renewSkillPoint -= UpdateSkillPointUI;
 	}
 	
 	private void Reset()
@@ -26,8 +26,8 @@ public class ShowSp : MonoBehaviour
 	}
 
 	/// <summary>刷新技能點數</summary>
-	void UpdateUI()
+	void UpdateSkillPointUI()
 	{
-		spText.text = SaveManager.instance.playerData.skillPoint.ToString("N0") + " 點";
+		spText.text = "× " + SaveManager.instance.playerData.skillPoint.ToString("N0") + " 點";
 	}
 }

@@ -81,8 +81,10 @@ public class PlayerCtrl : MonoBehaviour
 
 	private void Awake()
 	{
-		instance = this;    // 讓單例等於自己
-							// 角色出生時 讀檔一次
+		// 讓單例等於自己
+		instance = this;
+
+		// 角色出生時 讀檔一次
 		SaveManager.instance.LoadData();
 		rig = GetComponent<Rigidbody2D>();
 		ani = GetComponent<Animator>();
@@ -104,7 +106,6 @@ public class PlayerCtrl : MonoBehaviour
 
 	private void Start()
 	{
-		Debug.Log("開始事件已發生");
 		coinInfo.text = "";
 		skillInfo.text = "";
 		textMessageTip.text = "";
@@ -134,15 +135,15 @@ public class PlayerCtrl : MonoBehaviour
 		SaveManager.instance.playerData.renewPlayerAttackSpeed += RenewPlayerAttackSpeed;
 		SaveManager.instance.playerData.renewPlayerAttack += RenewPlayerAttack;
 		SaveManager.instance.playerData.renewPlayerDefense += RenewPlayerDefecse;
-		// SaveManager.instance.playerData.renewPlayerDefense += () => { Debug.Log("renewPlayerDefense"); };
 		// 強制刷新一次HP & MP
 		RenewPlayerHP();
 		RenewPlayerMP();
+		
+		// SaveManager.instance.playerData.renewPlayerDefense += () => { Debug.Log("renewPlayerDefense"); };
 	}
 
 	private void OnDisable()
 	{
-		Debug.Log("移除事件已發生");
 		//SaveManager.instance.playerData.renewCoin -= RenewCoin;
 		//SaveManager.instance.playerData.renewSkillPoint -= RenewSkillPoint;
 		SaveManager.instance.playerData.renewMmessageTip -= RenewMessageTip;
@@ -280,7 +281,7 @@ public class PlayerCtrl : MonoBehaviour
 							tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
 
 							AudioClip sound = SoundManager.instance.attack;
-							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
+							SoundManager.instance.PlayGameSfx(sound);
 						}
 						else if (atkObject != null && 翻轉 == true)
 						{
@@ -289,7 +290,7 @@ public class PlayerCtrl : MonoBehaviour
 							tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
 
 							AudioClip sound = SoundManager.instance.attack;
-							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
+							SoundManager.instance.PlayGameSfx(sound);
 						}
 					}
 
@@ -306,7 +307,7 @@ public class PlayerCtrl : MonoBehaviour
 							// tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
 
 							AudioClip sound = SoundManager.instance.attack;
-							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
+							SoundManager.instance.PlayGameSfx(sound);
 						}
 						else if (atkObject != null && 翻轉 == true)
 						{
@@ -315,7 +316,7 @@ public class PlayerCtrl : MonoBehaviour
 							// tempAtkObject.GetComponent<Rigidbody2D>().AddForce(traDirectionIcon.eulerAngles * SaveManager.instance.playerData.playerAttackSpeed * 100f, ForceMode2D.Impulse);
 
 							AudioClip sound = SoundManager.instance.attack;
-							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
+							SoundManager.instance.PlayGameSfx(sound);
 						}
 					}
 					else
@@ -333,7 +334,7 @@ public class PlayerCtrl : MonoBehaviour
 							tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
 
 							AudioClip sound = SoundManager.instance.attack;
-							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
+							SoundManager.instance.PlayGameSfx(sound);
 						}
 						else if (atkObject != null && 翻轉 == true)
 						{
@@ -342,7 +343,7 @@ public class PlayerCtrl : MonoBehaviour
 							tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
 
 							AudioClip sound = SoundManager.instance.attack;
-							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
+							SoundManager.instance.PlayGameSfx(sound);
 						}
 					}
 
@@ -361,7 +362,7 @@ public class PlayerCtrl : MonoBehaviour
 							// tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
 
 							AudioClip sound = SoundManager.instance.attack;
-							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
+							SoundManager.instance.PlayGameSfx(sound);
 						}
 						else if (atkObject != null && 翻轉 == true)
 						{
@@ -371,7 +372,7 @@ public class PlayerCtrl : MonoBehaviour
 							// tempAtkObject.GetComponent<Rigidbody2D>().AddForce(transform.right * SaveManager.instance.playerData.playerAttackSpeed + transform.up * 10);
 
 							AudioClip sound = SoundManager.instance.attack;
-							SoundManager.instance.PlaySound(sound, 0.7f, 2f);
+							SoundManager.instance.PlayGameSfx(sound);
 						}
 					}
 					#endregion

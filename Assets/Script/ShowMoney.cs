@@ -10,14 +10,14 @@ public class ShowMoney : MonoBehaviour
 	private void Start()
 	{
 		// 登記要跟著金錢變化並且手動刷新一次
-		SaveManager.instance.playerData.renewCoin += UpdateUI;
-		UpdateUI();
+		SaveManager.instance.playerData.renewCoin += UpdateMoneyUI;
+		UpdateMoneyUI();
 	}
 
 	private void OnDisable()
 	{
 		// 退出登記
-		SaveManager.instance.playerData.renewCoin -= UpdateUI;
+		SaveManager.instance.playerData.renewCoin -= UpdateMoneyUI;
 	}
 
 	private void Reset()
@@ -26,8 +26,8 @@ public class ShowMoney : MonoBehaviour
 	}
 
 	/// <summary>刷新金錢數量</summary>
-	void UpdateUI()
+	void UpdateMoneyUI()
 	{
-		coinText.text = SaveManager.instance.playerData.moneyCount.ToString("N0");
+		coinText.text = "× " + SaveManager.instance.playerData.moneyCount.ToString("N0");
 	}
 }
