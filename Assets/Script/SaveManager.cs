@@ -41,7 +41,7 @@ public class SaveManager
 		{
 			// 這是一個新玩家 請給他基本數值
 			// playerData = new PlayerData(0, 0, 100f, 100f, 10f, 7f, 500f, 100f, 100f, "遊戲場景", Vector3.zero);	// 此為建構式的寫法
-			playerData.moneyCount = 0;                  // 玩家金幣
+			playerData.coinCount = 0;                  // 玩家金幣
 			playerData.skillPoint = 0;                  // 玩家技能點數
 			playerData.playerHP = 100f;                 // 玩家血量
 			playerData.playerMP = 100f;                 // 玩家魔力
@@ -58,7 +58,7 @@ public class SaveManager
 			playerData.itemNumberMax = 999;             // 最大持有道具數量
 			playerData.messageTip = "";                 // 玩家提示訊息
 			playerData.isSetSkill = false;              // 玩家是否設置技能
-			//playerData.skillObjectID = -1;              // 設置的技能物件ID
+			//playerData.skillObjectID = -1;            // 設置的技能物件ID
 			playerData.skillSlotID = 0;
 			playerData.skillZ = -1;
 			playerData.skillX = -1;
@@ -87,17 +87,6 @@ public class SaveManager
 		PlayerPrefs.SetString("GameData", json);
 		// PlayerPrefs.Save();
 	}
-
-	/// <summary>
-	/// 儲存使用者資料
-	/// </summary>
-	/*public void SaveUser()
-	{
-		if (SaveManager.instance.playerData.playerHP <= 0)
-		{
-			SaveData();
-		}
-	}*/
 }
 
 /// <summary>
@@ -107,8 +96,6 @@ public class SaveManager
 public struct PlayerData
 {
 	#region 玩家基本參數
-	// public int moneyCount;		// 金幣數量
-	// public int skillPoint;		// 技能點數
 	public string levelName;        // 關卡名稱
 	public Vector3 playerPos;       // 玩家位置
 
@@ -185,12 +172,12 @@ public struct PlayerData
 	/// 金幣數量
 	/// </summary>
 	[SerializeField]
-	public int moneyCount
+	public int coinCount
 	{
-		get { return _moneyCount; }
+		get { return _coinCount; }
 		set
 		{
-			_moneyCount = value;
+			_coinCount = value;
 
 			// 呼叫刷新金幣
 			if (renewCoin != null)
@@ -199,7 +186,7 @@ public struct PlayerData
 			}
 		}
 	}
-	[SerializeField] int _moneyCount;
+	[SerializeField] int _coinCount;
 	public System.Action renewCoin;
 
 	/// <summary>
@@ -560,7 +547,7 @@ public struct PlayerData
 	public PlayerData(int coin, int skill, float maxHP, float maxMP, float moveSpeed, float jumpPower, float attackSpeed, float attack, float defense,
 		string nameLV, Vector3 pos, string tip, bool isHave, int skillObjectID, int skillZ, int skillX, int skillC)
 	{
-		_moneyCount = coin;
+		_coinCount = coin;
 		_skillPoint = skill;
 		renewCoin = null;
 		renewSkillPoint = null;
@@ -600,7 +587,7 @@ public struct PlayerData
 
 	public PlayerData(int v)
 	{
-		_moneyCount = 0;
+		_coinCount = 0;
 		_skillPoint = 0;
 		renewCoin = null;
 		renewSkillPoint = null;

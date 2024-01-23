@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using TMPro;
+
 public class ShowMoney : MonoBehaviour
 {
 	[SerializeField] TextMeshProUGUI coinText = null;
@@ -10,14 +8,14 @@ public class ShowMoney : MonoBehaviour
 	private void Start()
 	{
 		// 登記要跟著金錢變化並且手動刷新一次
-		SaveManager.instance.playerData.renewCoin += UpdateMoneyUI;
-		UpdateMoneyUI();
+		SaveManager.instance.playerData.renewCoin += UpdateCoinUI;
+		UpdateCoinUI();
 	}
 
 	private void OnDisable()
 	{
 		// 退出登記
-		SaveManager.instance.playerData.renewCoin -= UpdateMoneyUI;
+		SaveManager.instance.playerData.renewCoin -= UpdateCoinUI;
 	}
 
 	private void Reset()
@@ -25,9 +23,9 @@ public class ShowMoney : MonoBehaviour
 		coinText = GetComponent<TextMeshProUGUI>();
 	}
 
-	/// <summary>刷新金錢數量</summary>
-	void UpdateMoneyUI()
+	/// <summary>更新金錢數量的顯示</summary>
+	void UpdateCoinUI()
 	{
-		coinText.text = "× " + SaveManager.instance.playerData.moneyCount.ToString("N0");
+		coinText.text = "× " + SaveManager.instance.playerData.coinCount.ToString("N0");
 	}
 }

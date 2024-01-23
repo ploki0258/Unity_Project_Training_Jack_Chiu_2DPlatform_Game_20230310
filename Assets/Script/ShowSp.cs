@@ -25,7 +25,7 @@ public class ShowSp : MonoBehaviour
 		spText = GetComponent<TextMeshProUGUI>();
 	}
 
-	/// <summary>刷新技能點數</summary>
+	/// <summary>更新技能點數的顯示</summary>
 	void UpdateSkillPointUI()
 	{
 		spText.text = "× " + SaveManager.instance.playerData.skillPoint.ToString("N0") + " 點";

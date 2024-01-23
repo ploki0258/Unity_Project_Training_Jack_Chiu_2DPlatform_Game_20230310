@@ -78,6 +78,7 @@ public class MeunManager : MonoBehaviour
 	{
 		settingWindows.SetActive(true);
 		Time.timeScale = 0f;
+		PlayerCtrl.instance.enabled = false;
 	}
 
 	/// <summary>
@@ -87,5 +88,6 @@ public class MeunManager : MonoBehaviour
 	{
 		settingWindows.SetActive(false);
 		Time.timeScale = 1f;
+		PlayerCtrl.instance.enabled = true;
 	}
 }

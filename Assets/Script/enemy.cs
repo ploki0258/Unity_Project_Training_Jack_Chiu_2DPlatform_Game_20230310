@@ -159,17 +159,14 @@ public class Enemy : MonoBehaviour
 			coinNumber = Random.Range(10, 100) * 10;    // 獲得隨機金幣數量
 			skillNumber = Random.Range(1, 10) * 10;     // 獲得隨機技能點數
 
-			// 顯示資訊欄文字
-			PlayerCtrl.instance.coinInfo.text = "+" + coinNumber + "金幣";
-			PlayerCtrl.instance.skillInfo.text = "獲得" + skillNumber + "點";
-			//Debug.Log("金幣：" + coinNumber);
-			//Debug.Log("技能點數：" + skillNumber);
-
 			// 玩家的金幣 & 技能點數 增加獲得的金幣 & 技能點數
-			SaveManager.instance.playerData.moneyCount += coinNumber;
+			SaveManager.instance.playerData.coinCount += coinNumber;
 			SaveManager.instance.playerData.skillPoint += skillNumber;
 			// SaveManager.instance.playerData.skillPoint += itemSkillValue.獲得額外點數;
-			// Debug.Log(coinNumber);
+
+			// 顯示資訊欄文字
+			PlayerCtrl.instance.coinInfo.text = "獲得" + coinNumber + "金幣";
+			PlayerCtrl.instance.skillInfo.text = "獲得" + skillNumber + "點SP";
 
 			/*if (aniCoin == true)
             {
@@ -193,7 +190,6 @@ public class Enemy : MonoBehaviour
 			{
 				Instantiate(itemSkill, point.position, point.rotation);
 			}
-			// Debug.Log("隨機號：" + randomDrop);
 		}
 	}
 
