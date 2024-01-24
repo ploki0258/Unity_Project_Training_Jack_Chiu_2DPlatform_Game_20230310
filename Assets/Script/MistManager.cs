@@ -58,11 +58,11 @@ public class MistManager : MonoBehaviour
 	private void Start()
 	{
 		if (mistType_blue == true)
-			cdWeight *= PlayerCtrl.instance.costMP;
+			cdWeight *= SaveManager.instance.playerData.costMP;
 		if (mistType_cyan == true)
 			spawnWeight *= SpawnSystem.instance.enemyCountMax;
 
-		originalCostMP = PlayerCtrl.instance.costMP;
+		originalCostMP = SaveManager.instance.playerData.costMP;
 		originalSpeed = SaveManager.instance.playerData.playerSpeed;
 		originalAttackSpeed = SaveManager.instance.playerData.playerAttackSpeed;
 		originalSpawn = (float)SpawnSystem.instance.enemyCountMax;
@@ -144,7 +144,7 @@ public class MistManager : MonoBehaviour
 			// tempColor = mistImage.color;
 
 			// 加重技能消耗費用
-			PlayerCtrl.instance.costMP = instance.cdWeight;
+			SaveManager.instance.playerData.costMP = instance.cdWeight;
 		}
 
 		// 紫色迷霧：減速
@@ -169,7 +169,7 @@ public class MistManager : MonoBehaviour
 			SaveManager.instance.playerData.playerAttackSpeed =
 				Mathf.Clamp(SaveManager.instance.playerData.playerAttackSpeed, minAttackSpeed, SaveManager.instance.playerData.playerAttackSpeed);
 
-			// 速度影響動畫
+			// 影響動畫播放速度
 			PlayerCtrl.instance.ani.speed = 1f / SaveManager.instance.playerData.playerSpeed;
 			// Debug.Log("移動速度：" + SaveManager.instance.playerData.playerSpeed);
 			// Debug.Log("動畫速度：" + PlayerCtrl.instance.ani.speed);
@@ -210,6 +210,7 @@ public class MistManager : MonoBehaviour
 			tempColor = mistImage.color;
 		}
 		#endregion
+		
 		// Test
 		if (collision.gameObject.CompareTag("Player") && colorChange != Color.white && mistType_cyan == false && mistType_blue == false &&
 			mistType_purple == false && mistType_red == false && mistType_gree == false)
@@ -228,7 +229,7 @@ public class MistManager : MonoBehaviour
 		{
 			inMist_gree = false;
 
-			PlayerCtrl.instance.costMP = originalCostMP;                                // 變回原本魔力消耗
+			SaveManager.instance.playerData.costMP = originalCostMP;                    // 變回原本魔力消耗
 			SaveManager.instance.playerData.playerSpeed = originalSpeed;                // 變回原本移動速度
 			SaveManager.instance.playerData.playerAttackSpeed = originalAttackSpeed;    // 變回原本攻擊速度
 			PlayerCtrl.instance.ani.speed = 1f;                                         // 變回原本動畫播放

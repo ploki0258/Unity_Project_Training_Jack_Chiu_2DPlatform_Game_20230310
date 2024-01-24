@@ -22,23 +22,11 @@ public class PlayerCtrl : MonoBehaviour
 	public float maxHP = 100f;
 	[Header("最大魔力"), Range(100, 1000)]
 	public float maxMP = 100f;
-	[Header("魔力消耗")]
-	public float costMP = 0f;
-
-	[Header("移動速度"), Range(0, 100)]
-	public float speed = 10f;
-	[Header("跳躍力量"), Range(0, 100)]
-	public float jumpForce = 7f;
-	[Header("攻擊速度"), Range(0, 1000)]
-	public float atkSpeed = 500f;
-	[Header("攻擊力"), Range(10, 1000)]
-	public float attack = 100f;
-	[Header("防禦力"), Range(10, 1000)]
-	public float defense = 100f;
 	[Header("攻擊方向圖示")]
 	public Transform traDirectionIcon = null;
 	[SerializeField, Header("攻擊方向圖示位移")]
 	Vector3 traDirectionIconOffset;
+	[SerializeField, Header("地板偵測器")] Sensor floorSensor = null;
 	public Camera cam;
 
 	// 怪物使用
@@ -47,25 +35,24 @@ public class PlayerCtrl : MonoBehaviour
 	public Text skillInfo = null;
 	[Header("訊息提示文字")]
 	public Text textMessageTip;                // 提醒訊息
-	//[Header("金幣顯示動畫")]
-	//public Animator showCoinAni = null;
-	//[Header("技能點數顯示動畫")]
-	//public Animator showSkillPointAni = null;
+											   //[Header("金幣顯示動畫")]
+											   //public Animator showCoinAni = null;
+											   //[Header("技能點數顯示動畫")]
+											   //public Animator showSkillPointAni = null;
 	[Header("提示訊息顯示動畫")]
 	public Animator showMessageTipAni = null;
 
 	public Animator ani;
 	public bool isPausedGame;
 	Rigidbody2D rig;
-	[Tooltip("用來儲存玩家是否站在地板上")]
-	private bool onFloor = false;
 	public SkillSystem skillSystem;
 	bool 翻轉 = false;
-	bool isWindowsOpen = WindowsManager.instance.IsWindowsOpen();   // 視窗是否被開啟
 	Vector3 mousePos;
 	Vector2 iconDirection;
 	Skill skillData;
-	SkillDragDrop SkillDragDrop;
+	//[Tooltip("用來儲存玩家是否站在地板上")]
+	//private bool onFloor = false;
+	//bool isWindowsOpen = WindowsManager.instance.IsWindowsOpen();   // 視窗是否被開啟
 	#endregion
 
 	// 在整個專案全域宣告一個instance
@@ -81,7 +68,6 @@ public class PlayerCtrl : MonoBehaviour
 		rig = GetComponent<Rigidbody2D>();
 		ani = GetComponent<Animator>();
 		skillSystem = FindObjectOfType<SkillSystem>();
-		SkillDragDrop = FindObjectOfType<SkillDragDrop>();
 
 		#region 程式抓取組件
 		//barHP = GameObject.Find("血條").GetComponent<Image>();
@@ -117,8 +103,7 @@ public class PlayerCtrl : MonoBehaviour
 		if (SaveManager.instance.playerData.playerPos != Vector3.zero)
 			this.transform.position = SaveManager.instance.playerData.playerPos;    // 瞬間移動到記錄中的位置
 
-		//SaveManager.instance.playerData.renewCoin += RenewCoin;
-		//SaveManager.instance.playerData.renewSkillPoint += RenewSkillPoint;
+		// 登記事件變化
 		SaveManager.instance.playerData.renewMmessageTip += RenewMessageTip;
 		SaveManager.instance.playerData.renewPlayerHP += RenewPlayerHP;
 		SaveManager.instance.playerData.renewPlayerMP += RenewPlayerMP;
@@ -130,14 +115,13 @@ public class PlayerCtrl : MonoBehaviour
 		// 強制刷新一次HP & MP
 		RenewPlayerHP();
 		RenewPlayerMP();
-		
+
 		// SaveManager.instance.playerData.renewPlayerDefense += () => { Debug.Log("renewPlayerDefense"); };
 	}
 
 	private void OnDisable()
 	{
-		//SaveManager.instance.playerData.renewCoin -= RenewCoin;
-		//SaveManager.instance.playerData.renewSkillPoint -= RenewSkillPoint;
+		// 退出登記
 		SaveManager.instance.playerData.renewMmessageTip -= RenewMessageTip;
 		//SaveManager.instance.playerData.renewPlayerHP -= RenewPlayerHP;
 		//SaveManager.instance.playerData.renewPlayerMP -= RenewPlayerMP;
@@ -154,6 +138,7 @@ public class PlayerCtrl : MonoBehaviour
 		Jump();
 		Attack();
 		Dead();
+
 #if UNITY_EDITOR
 		Panacea();
 #endif
@@ -168,7 +153,7 @@ public class PlayerCtrl : MonoBehaviour
 	private void FixedUpdate()
 	{
 		//偵測是否踩到地板物件
-		onFloor = Physics2D.Raycast(this.transform.position, new Vector2(0f, -1f), -1f, 1 << 6);
+		//onFloor = Physics2D.Raycast(this.transform.position, new Vector2(0f, -1f), -1f, 1 << 6);
 	}
 
 	/// <summary>
@@ -185,12 +170,6 @@ public class PlayerCtrl : MonoBehaviour
 
 		rig.velocity = new Vector2(ad * SaveManager.instance.playerData.playerSpeed, rig.velocity.y);
 
-		if (ad != 0)
-		{
-			AudioClip sound = SoundManager.instance.run;
-			// SoundManager.instance.PlaySound(sound, 0.7f, 1f);
-		}
-
 		//移動動畫
 		ani.SetBool("isRun", ad != 0);
 
@@ -205,6 +184,13 @@ public class PlayerCtrl : MonoBehaviour
 		{
 			this.transform.rotation = Quaternion.AngleAxis(180, new Vector3(0, 1, 0));
 			翻轉 = true;
+		}
+
+		// 播放跑步音效
+		if (ad != 0)
+		{
+			//AudioClip sound = SoundManager.instance.run;
+			//SoundManager.instance.PlayGameSfx(sound);
 		}
 
 		/*
@@ -228,15 +214,14 @@ public class PlayerCtrl : MonoBehaviour
 	void Jump()
 	{
 		// 如果 按下空白建(或上) 以及 onFloor = true 就跳躍
-		if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && onFloor != false)
+		if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && floorSensor.isOn == true)
 		{
 			// rig.velocity = new Vector2(rig.velocity.x, 跳躍力);
 			rig.AddForce(transform.up * SaveManager.instance.playerData.playerJump, ForceMode2D.Impulse);
 		}
 
 		//跳躍動畫
-		ani.SetBool("isJump", onFloor == false);
-		// Debug.Log("踩到地板" + onFloor);
+		ani.SetBool("isJump", floorSensor.isOn == false);
 	}
 
 	/// <summary>
@@ -258,9 +243,9 @@ public class PlayerCtrl : MonoBehaviour
 					if (SaveManager.instance.playerData.playerMP <= 0)
 						return;
 					// 魔力消耗 等於 攻擊物件的魔力消耗
-					costMP = atkObject.GetComponent<AttackObject>().skillData.skillCost;
+					SaveManager.instance.playerData.costMP = atkObject.GetComponent<AttackObject>().skillData.skillCost;
 					// 扣魔力消耗
-					SaveManager.instance.playerData.playerMP -= costMP;
+					SaveManager.instance.playerData.playerMP -= SaveManager.instance.playerData.costMP;
 
 					#region// 依據攻擊物件的種類 將攻擊物件生成點生成在特定座標
 					if (atkObject.name == "火球_0")
@@ -427,7 +412,8 @@ public class PlayerCtrl : MonoBehaviour
 	/// <param name="hurt">傷害量</param>
 	public void TakeDamage(float hurt)
 	{
-		SaveManager.instance.playerData.playerHP -= hurt;
+		// 生命值 - 傷害(扣除防禦力的百分比)           ( 100 - 100 * (                   10                         /  100))
+		SaveManager.instance.playerData.playerHP -= (hurt - hurt * (SaveManager.instance.playerData.playerDefense / 100));
 	}
 
 	/// <summary>
@@ -470,24 +456,6 @@ public class PlayerCtrl : MonoBehaviour
 	}
 
 	/// <summary>
-	/// 更新金幣顯示動畫
-	/// </summary>
-	/*void RenewCoin()
-	{
-		// 播放動畫
-		PlayerCtrl.instance.showCoinAni.SetTrigger("play");
-	}
-	/// <summary>
-	/// 更新技能點數顯示動畫
-	/// </summary>
-	void RenewSkillPoint()
-	{
-		// 播放動畫
-		PlayerCtrl.instance.showSkillPointAni.SetTrigger("play");
-	}
-	*/
-
-	/// <summary>
 	/// 提示訊息顯示動畫
 	/// </summary>
 	public void RenewMessageTip()
@@ -523,7 +491,8 @@ public class PlayerCtrl : MonoBehaviour
 	/// </summary>
 	void RenewPlayerMove()
 	{
-		instance.speed += SaveManager.instance.playerData.playerSpeed;
+		//SaveManager.instance.playerData.playerSpeed += speed;
+		//speed += SaveManager.instance.playerData.playerSpeed;
 	}
 
 	/// <summary>
@@ -531,7 +500,7 @@ public class PlayerCtrl : MonoBehaviour
 	/// </summary>
 	void RenewPlayerJump()
 	{
-		instance.jumpForce += SaveManager.instance.playerData.playerJump;
+		//instance.jumpForce += SaveManager.instance.playerData.playerJump;
 	}
 
 	/// <summary>
@@ -539,7 +508,7 @@ public class PlayerCtrl : MonoBehaviour
 	/// </summary>
 	void RenewPlayerAttackSpeed()
 	{
-		instance.atkSpeed += SaveManager.instance.playerData.playerAttackSpeed;
+		//instance.atkSpeed += SaveManager.instance.playerData.playerAttackSpeed;
 	}
 
 	/// <summary>
@@ -547,7 +516,7 @@ public class PlayerCtrl : MonoBehaviour
 	/// </summary>
 	void RenewPlayerAttack()
 	{
-		instance.attack += SaveManager.instance.playerData.playerAttack;
+		//instance.attack += SaveManager.instance.playerData.playerAttack;
 	}
 
 	/// <summary>
@@ -555,8 +524,26 @@ public class PlayerCtrl : MonoBehaviour
 	/// </summary>
 	void RenewPlayerDefecse()
 	{
-		instance.defense += SaveManager.instance.playerData.playerDefense;
+		//instance.defense += SaveManager.instance.playerData.playerDefense;
 	}
+
+	/// <summary>
+	/// 更新金幣顯示動畫
+	/// </summary>
+	/*void RenewCoin()
+	{
+		// 播放動畫
+		PlayerCtrl.instance.showCoinAni.SetTrigger("play");
+	}
+	/// <summary>
+	/// 更新技能點數顯示動畫
+	/// </summary>
+	void RenewSkillPoint()
+	{
+		// 播放動畫
+		PlayerCtrl.instance.showSkillPointAni.SetTrigger("play");
+	}
+	*/
 
 	/// <summary>
 	/// 儲存玩家資訊
@@ -565,14 +552,13 @@ public class PlayerCtrl : MonoBehaviour
 	{
 		SaveManager.instance.SaveData();
 	}
-	*/
 
 	/*public void Coin()
 	{
 		countCoin.text = "× " + Enemy.instance.coinNumber.ToString();
-	}*/
+	}
 
-	/*public float hp
+	public float hp
 	{
 		get { return maxHP * barHP.fillAmount; }
 		set

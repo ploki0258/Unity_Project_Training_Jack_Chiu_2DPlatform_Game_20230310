@@ -1,5 +1,6 @@
 ﻿using Fungus;
 using UnityEngine;
+using UnityEngine.Networking.Types;
 
 public class PuzzleManager : MonoBehaviour
 {
@@ -18,8 +19,6 @@ public class PuzzleManager : MonoBehaviour
 	private void Awake()
 	{
 		instance = this;
-		//itemAddID = dataItem.id;
-		//itemRemoveID = dataItem.id;
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)

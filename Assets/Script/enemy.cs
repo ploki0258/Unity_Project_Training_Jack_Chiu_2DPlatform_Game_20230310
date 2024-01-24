@@ -79,14 +79,14 @@ public class Enemy : MonoBehaviour
 	private void Update()
 	{
 		TrackingPlayer();
-		GotEnemyDamage();
+		GetEnemyDamage();
 		//Debug.Log("怪物血量：" + hpMonster);
 	}
 
 	/// <summary>
 	/// 怪物所受到的攻擊傷害：依據玩家的攻擊力受到傷害量
 	/// </summary>
-	void GotEnemyDamage()
+	void GetEnemyDamage()
 	{
 		if (PlayerCtrl.instance.atkObject == null || SaveManager.instance.playerData.playerMP == 0)
 		{

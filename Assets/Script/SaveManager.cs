@@ -40,16 +40,21 @@ public class SaveManager
 		if (json == "0")
 		{
 			// 這是一個新玩家 請給他基本數值
-			// playerData = new PlayerData(0, 0, 100f, 100f, 10f, 7f, 500f, 100f, 100f, "遊戲場景", Vector3.zero);	// 此為建構式的寫法
-			playerData.coinCount = 0;                  // 玩家金幣
+			// 此為建構式的寫法
+			// playerData = new PlayerData(0, 0, 100f, 100f, 10f, 7f, 500f, 100f, 100f, "遊戲場景", Vector3.zero);
+			
+			playerData.playerHP = 
+				PlayerCtrl.instance.maxHP;              // 玩家血量
+			playerData.playerMP = 
+				PlayerCtrl.instance.maxMP;              // 玩家魔力
+			playerData.coinCount = 0;					// 玩家金幣
 			playerData.skillPoint = 0;                  // 玩家技能點數
-			playerData.playerHP = 100f;                 // 玩家血量
-			playerData.playerMP = 100f;                 // 玩家魔力
+			playerData.costMP = 10f;					// 玩家的魔力消耗值
 			playerData.playerSpeed = 10f;               // 玩家移動速度
 			playerData.playerJump = 10f;                // 玩家跳躍力
 			playerData.playerAttackSpeed = 500f;        // 玩家攻擊速度
 			playerData.playerAttack = 20f;              // 玩家攻擊力
-			playerData.playerDefense = 10f;             // 玩家防禦力
+			playerData.playerDefense = 2f;	            // 玩家防禦力
 			playerData.levelName = "遊戲場景";			// 關卡名稱
 			playerData.playerPos = Vector3.zero;        // 玩家位置
 			playerData.goodsList = new List<Goods>();   // 持有物列表
@@ -98,7 +103,6 @@ public struct PlayerData
 	#region 玩家基本參數
 	public string levelName;        // 關卡名稱
 	public Vector3 playerPos;       // 玩家位置
-
 	public bool isSetSkill;         // 用以判斷是否有放置技能
 	public int skillObjectID;       // 用以儲存技能物件
 	public int skillSlotID;			// 技能物件存放的座標位置
@@ -272,6 +276,26 @@ public struct PlayerData
 	}
 	[SerializeField] float _playerMP;
 	public System.Action renewPlayerMP;
+
+	/// <summary>
+	/// 玩家的魔力消耗值
+	/// </summary>
+	[SerializeField]
+	public float costMP
+	{
+		get { return _costMP; }
+		set
+		{
+			_costMP = value;
+
+			if (renewCostMP != null)
+			{
+				renewCostMP.Invoke();
+			}
+		}
+	}
+	[SerializeField] float _costMP;
+	public Action renewCostMP;
 
 	/// <summary>
 	/// 玩家移動速度
@@ -544,7 +568,7 @@ public struct PlayerData
 	#endregion
 
 	// 建構式
-	public PlayerData(int coin, int skill, float maxHP, float maxMP, float moveSpeed, float jumpPower, float attackSpeed, float attack, float defense,
+	public PlayerData(int coin, int skill, float maxHP, float maxMP, float cost, float moveSpeed, float jumpPower, float attackSpeed, float attack, float defense,
 		string nameLV, Vector3 pos, string tip, bool isHave, int skillObjectID, int skillZ, int skillX, int skillC)
 	{
 		_coinCount = coin;
@@ -561,6 +585,8 @@ public struct PlayerData
 		renewPlayerHP = null;
 		_playerMP = maxMP;
 		renewPlayerMP = null;
+		_costMP = cost;
+		renewCostMP = null;
 		_playerSpeed = moveSpeed;
 		renewPlayerSpeed = null;
 		_playerJump = jumpPower;
@@ -599,6 +625,8 @@ public struct PlayerData
 		goodsList = new List<Goods>();
 		_playerHP = 100f;
 		renewPlayerHP = null;
+		_costMP = 0;
+		renewCostMP = null;
 		_playerMP = 100f;
 		renewPlayerMP = null;
 		_playerSpeed = 10f;
