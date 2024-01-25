@@ -1,6 +1,7 @@
 ﻿using Fungus;
 using System;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class SaveManager
@@ -276,6 +277,42 @@ public struct PlayerData
 	}
 	[SerializeField] float _playerMP;
 	public System.Action renewPlayerMP;
+
+	[SerializeField]
+	public float playerHpMax
+	{
+		get { return _playerHpMax; }
+		set
+		{
+			_playerHpMax = value;
+
+			// 呼叫刷新技能點數
+			if (renewPlayerHpMax != null)
+			{
+				renewPlayerHpMax.Invoke();
+			}
+		}
+	}
+	[SerializeField] float _playerHpMax;
+	public System.Action renewPlayerHpMax;
+
+	[SerializeField]
+	public float playerMpMax
+	{
+		get { return _playerMpMax; }
+		set
+		{
+			_playerMpMax = value;
+
+			// 呼叫刷新技能點數
+			if (renewPlayerMpMax != null)
+			{
+				renewPlayerMpMax.Invoke();
+			}
+		}
+	}
+	[SerializeField] float _playerMpMax;
+	public System.Action renewPlayerMpMax;
 
 	/// <summary>
 	/// 玩家的魔力消耗值
@@ -568,7 +605,7 @@ public struct PlayerData
 	#endregion
 
 	// 建構式
-	public PlayerData(int coin, int skill, float maxHP, float maxMP, float cost, float moveSpeed, float jumpPower, float attackSpeed, float attack, float defense,
+	public PlayerData(int coin, int skill, float hp, float mp, float maxHp, float maxMp,  float cost, float moveSpeed, float jumpPower, float attackSpeed, float attack, float defense,
 		string nameLV, Vector3 pos, string tip, bool isHave, int skillObjectID, int skillZ, int skillX, int skillC)
 	{
 		_coinCount = coin;
@@ -581,10 +618,14 @@ public struct PlayerData
 		haveSkill = new List<int>();
 		haveItem = new List<int>();
 		goodsList = new List<Goods>();
-		_playerHP = maxHP;
+		_playerHP = hp;
 		renewPlayerHP = null;
-		_playerMP = maxMP;
+		_playerMP = mp;
 		renewPlayerMP = null;
+		_playerHpMax = maxHp;
+		renewPlayerHpMax = null;
+		_playerMpMax = maxMp;
+		renewPlayerMpMax = null;
 		_costMP = cost;
 		renewCostMP = null;
 		_playerSpeed = moveSpeed;
@@ -629,6 +670,10 @@ public struct PlayerData
 		renewCostMP = null;
 		_playerMP = 100f;
 		renewPlayerMP = null;
+		_playerHpMax = 100f;
+		renewPlayerHpMax = null;
+		_playerMpMax = 100f;
+		renewPlayerMpMax = null;
 		_playerSpeed = 10f;
 		renewPlayerSpeed = null;
 		_playerJump = 7f;

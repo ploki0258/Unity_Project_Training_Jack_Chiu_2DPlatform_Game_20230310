@@ -14,6 +14,7 @@ public class ShowTooltipSp : MonoBehaviour
 
 	private void OnDisable()
 	{
+		Debug.Log("506");
 		// 退出登記
 		SaveManager.instance.playerData.renewSkillPoint -= RenewSkillPointAni;
 	}

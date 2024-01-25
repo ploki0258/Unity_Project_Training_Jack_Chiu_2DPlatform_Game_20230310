@@ -9,24 +9,12 @@ public class Grid : MonoBehaviour
 	[SerializeField] Text 名稱;
 	[SerializeField] Text 描述;
 	[SerializeField] 道具欄使用按鈕 btnUse = null;
+	[SerializeField] ShowTipMessage showTipMessage;
 
 	[Tooltip("格子資料")]
 	Item dataGrid;
 	[Tooltip("是否為空格子")]
 	bool isNoneGrid = true; // 是否為空格子
-	
-	/*
-	public float 恢復HP;
-	public float 恢復MP;
-	public float 提升防禦力;
-	public float 提升跳躍力;
-	public float 提升攻擊速度;
-	public float 提升移動速度;
-	public float 魔力消耗降低;
-	public float 提升技能傷害;
-	public int 獲得額外點數;
-	public int 增加技能欄位;
-	*/
 
 	public void InputData(Goods data)
 	{
@@ -82,6 +70,7 @@ public class Grid : MonoBehaviour
 	{
 		if (btnUse != null)
 		{
+			#region 執行道具效果
 			// 根據道具效果做各種事情
 			SaveManager.instance.playerData.playerHP += dataGrid.恢復HP;
 			SaveManager.instance.playerData.playerHP =
@@ -106,7 +95,47 @@ public class Grid : MonoBehaviour
 			if (dataGrid.獲得額外點數 == 0)
 				SaveManager.instance.playerData.renewSkillPoint = null;
 			SaveManager.instance.playerData.skillPoint += dataGrid.獲得額外點數;
+			#endregion
 
+			#region 提示訊息
+			if (dataGrid.恢復HP != 0)
+			{
+				showTipMessage.type = ShowTipMessage.valueType.HP;
+				showTipMessage.增加數值 = dataGrid.恢復HP;
+			}
+			else if (dataGrid.恢復MP != 0)
+			{
+				showTipMessage.type = ShowTipMessage.valueType.MP;
+				showTipMessage.增加數值 = dataGrid.恢復MP;
+			}
+			else if (dataGrid.提升攻擊力 != 0)
+			{
+				showTipMessage.type = ShowTipMessage.valueType.Attack;
+				showTipMessage.增加數值 = dataGrid.提升攻擊力;
+			}
+			else if (dataGrid.提升防禦力 != 0)
+			{
+				showTipMessage.type = ShowTipMessage.valueType.Defense;
+				showTipMessage.增加數值 = dataGrid.提升防禦力;
+			}
+			else if (dataGrid.提升跳躍力 != 0)
+			{
+				showTipMessage.type = ShowTipMessage.valueType.Jump;
+				showTipMessage.增加數值 = dataGrid.提升跳躍力;
+			}
+			else if (dataGrid.提升攻擊速度 != 0)
+			{
+				showTipMessage.type = ShowTipMessage.valueType.AttackSpeed;
+				showTipMessage.增加數值 = dataGrid.提升攻擊速度;
+			}
+			else if (dataGrid.提升移動速度 != 0)
+			{
+				showTipMessage.type = ShowTipMessage.valueType.Speed;
+				showTipMessage.增加數值 = dataGrid.提升移動速度;
+			}
+			#endregion
+
+			#region 迷霧效果
 			// 如果 "Mist Area" 存在的話
 			if (GameObject.Find("Mist Area") == true)
 			{
@@ -122,7 +151,9 @@ public class Grid : MonoBehaviour
 						Mathf.Clamp(SaveManager.instance.playerData.playerMP, SaveManager.instance.playerData.playerMP, PlayerCtrl.instance.maxMP);
 				}
 			}
+			#endregion
 
+			#region 按鈕功能
 			// 不可被使用的東西 就不執行
 			if (dataGrid.canUse == false)
 			{
@@ -136,6 +167,7 @@ public class Grid : MonoBehaviour
 				SaveManager.instance.playerData.haveItem.Remove(dataGrid.id);
 				// Debug.Log("消耗" + dataGrid.title);
 			}
+			#endregion
 		}
 	}
 }

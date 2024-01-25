@@ -3,7 +3,7 @@ using UnityEngine;
 public class Sensor : MonoBehaviour
 {
 	[SerializeField, Header("¥b®|")] float radius = 0.5f;
-	[SerializeField, Header("¥b®|")] Vector2 squareSize = Vector2.one;
+	[SerializeField, Header("¤j¤p")] Vector2 squareSize = Vector2.one;
 	[SerializeField, Header("°»´ú¹Ï¼h")] LayerMask sensorLayer;
 	[SerializeField] °»´ú¾¹§Îª¬ shape = °»´ú¾¹§Îª¬.circle;
 

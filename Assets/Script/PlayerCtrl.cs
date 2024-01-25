@@ -33,12 +33,17 @@ public class PlayerCtrl : MonoBehaviour
 	[Header("資訊欄顯示")]
 	public Text coinInfo = null;
 	public Text skillInfo = null;
-	[Header("訊息提示文字")]
-	public Text textMessageTip;                // 提醒訊息
-											   //[Header("金幣顯示動畫")]
-											   //public Animator showCoinAni = null;
-											   //[Header("技能點數顯示動畫")]
-											   //public Animator showSkillPointAni = null;
+	// 提示訊息
+	//[SerializeField, Header("訊息文字")]
+	//Text textTip = null;
+	//[SerializeField, Header("存檔文字")]
+	//Text textSave = null;
+	//[Header("訊息提示文字")]
+	//public Text textMessageTip;
+	//[Header("金幣顯示動畫")]
+	//public Animator showCoinAni = null;
+	//[Header("技能點數顯示動畫")]
+	//public Animator showSkillPointAni = null;
 	[Header("提示訊息顯示動畫")]
 	public Animator showMessageTipAni = null;
 
@@ -86,7 +91,8 @@ public class PlayerCtrl : MonoBehaviour
 	{
 		coinInfo.text = "";
 		skillInfo.text = "";
-		textMessageTip.text = "";
+		//textTip.text = "";
+		//textSave.text = "";
 		//skillData = SkillManager.instance.FindSkillByID(SaveManager.instance.playerData.skillObjectID);
 
 		// 如果 有放置技能 的話
@@ -105,31 +111,23 @@ public class PlayerCtrl : MonoBehaviour
 
 		// 登記事件變化
 		SaveManager.instance.playerData.renewMmessageTip += RenewMessageTip;
-		SaveManager.instance.playerData.renewPlayerHP += RenewPlayerHP;
-		SaveManager.instance.playerData.renewPlayerMP += RenewPlayerMP;
-		SaveManager.instance.playerData.renewPlayerSpeed += RenewPlayerMove;
-		SaveManager.instance.playerData.renewPlayerJump += RenewPlayerJump;
-		SaveManager.instance.playerData.renewPlayerAttackSpeed += RenewPlayerAttackSpeed;
-		SaveManager.instance.playerData.renewPlayerAttack += RenewPlayerAttack;
-		SaveManager.instance.playerData.renewPlayerDefense += RenewPlayerDefecse;
+		//SaveManager.instance.playerData.renewPlayerHP += RenewPlayerHP;
+		//SaveManager.instance.playerData.renewPlayerMP += RenewPlayerMP;
+		
 		// 強制刷新一次HP & MP
-		RenewPlayerHP();
-		RenewPlayerMP();
+		//RenewPlayerHP();
+		//RenewPlayerMP();
 
 		// SaveManager.instance.playerData.renewPlayerDefense += () => { Debug.Log("renewPlayerDefense"); };
 	}
 
 	private void OnDisable()
 	{
+		Debug.Log("101");
 		// 退出登記
 		SaveManager.instance.playerData.renewMmessageTip -= RenewMessageTip;
 		//SaveManager.instance.playerData.renewPlayerHP -= RenewPlayerHP;
 		//SaveManager.instance.playerData.renewPlayerMP -= RenewPlayerMP;
-		//SaveManager.instance.playerData.renewPlayerSpeed -= RenewPlayerMove;
-		//SaveManager.instance.playerData.renewPlayerJump -= RenewPlayerJump;
-		//SaveManager.instance.playerData.renewPlayerAttackSpeed -= RenewPlayerAttackSpeed;
-		//SaveManager.instance.playerData.renewPlayerAttack -= RenewPlayerAttack;
-		//SaveManager.instance.playerData.renewPlayerDefense -= RenewPlayerDefecse;
 	}
 
 	private void Update()
@@ -467,65 +465,24 @@ public class PlayerCtrl : MonoBehaviour
 	/// <summary>
 	/// 更新玩家血量
 	/// </summary>
-	void RenewPlayerHP()
-	{
-		barHP.fillAmount = SaveManager.instance.playerData.playerHP / maxHP;
-		//Debug.Log($"<color=red>玩家血量： {SaveManager.instance.playerData.playerHP}</color>");
-		//Debug.Log("<color=red>最大血量：</color>" + maxHP);
-		//Debug.Log($"<color=red>當前血量：{barHP.fillAmount * 100}</color>");
-	}
+	//void RenewPlayerHP()
+	//{
+	//	barHP.fillAmount = SaveManager.instance.playerData.playerHP / maxHP;
+	//	//Debug.Log($"<color=red>玩家血量： {SaveManager.instance.playerData.playerHP}</color>");
+	//	//Debug.Log("<color=red>最大血量：</color>" + maxHP);
+	//	//Debug.Log($"<color=red>當前血量：{barHP.fillAmount * 100}</color>");
+	//}
 
 	/// <summary>
 	/// 更新玩家魔力
 	/// </summary>
-	void RenewPlayerMP()
-	{
-		barMP.fillAmount = SaveManager.instance.playerData.playerMP / maxMP;
-		//Debug.Log($"<color=blue>玩家魔力： {SaveManager.instance.playerData.playerMP}</color>");
-		//Debug.Log("<color=blue>最大魔力：</color>" + maxMP);
-		//Debug.Log($"<color=blue>當前魔力：{barMP.fillAmount * 100}</color>");
-	}
-
-	/// <summary>
-	/// 更新玩家移動速度
-	/// </summary>
-	void RenewPlayerMove()
-	{
-		//SaveManager.instance.playerData.playerSpeed += speed;
-		//speed += SaveManager.instance.playerData.playerSpeed;
-	}
-
-	/// <summary>
-	/// 更新玩家跳躍力
-	/// </summary>
-	void RenewPlayerJump()
-	{
-		//instance.jumpForce += SaveManager.instance.playerData.playerJump;
-	}
-
-	/// <summary>
-	/// 更新玩家攻擊速度
-	/// </summary>
-	void RenewPlayerAttackSpeed()
-	{
-		//instance.atkSpeed += SaveManager.instance.playerData.playerAttackSpeed;
-	}
-
-	/// <summary>
-	/// 更新玩家攻擊力
-	/// </summary>
-	void RenewPlayerAttack()
-	{
-		//instance.attack += SaveManager.instance.playerData.playerAttack;
-	}
-
-	/// <summary>
-	/// 更新玩家防禦力
-	/// </summary>
-	void RenewPlayerDefecse()
-	{
-		//instance.defense += SaveManager.instance.playerData.playerDefense;
-	}
+	//void RenewPlayerMP()
+	//{
+	//	barMP.fillAmount = SaveManager.instance.playerData.playerMP / maxMP;
+	//	//Debug.Log($"<color=blue>玩家魔力： {SaveManager.instance.playerData.playerMP}</color>");
+	//	//Debug.Log("<color=blue>最大魔力：</color>" + maxMP);
+	//	//Debug.Log($"<color=blue>當前魔力：{barMP.fillAmount * 100}</color>");
+	//}
 
 	/// <summary>
 	/// 更新金幣顯示動畫

@@ -15,6 +15,7 @@ public class ShowTooltipMoney : MonoBehaviour
 
 	private void OnDisable()
 	{
+		Debug.Log("405");
 		// 退出登記
 		SaveManager.instance.playerData.renewCoin -= RenewCoinAni;
 	}

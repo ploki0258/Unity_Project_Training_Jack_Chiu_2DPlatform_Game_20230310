@@ -14,6 +14,7 @@ public class ShowMoney : MonoBehaviour
 
 	private void OnDisable()
 	{
+		Debug.Log("404");
 		// 退出登記
 		SaveManager.instance.playerData.renewCoin -= UpdateCoinUI;
 	}

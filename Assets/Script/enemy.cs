@@ -20,8 +20,6 @@ public class Enemy : MonoBehaviour
 	public GameObject itemSkill = null;
 	[Header("掉落機率"), Tooltip("怪物的掉落機率"), Range(1, 10)]
 	public int probDrop = 5;
-	[SerializeField, Header("尋找物件的名稱")]
-	string objectName;
 	
 	[Tooltip("怪物所受到的傷害值")]
 	private float damage;
@@ -46,8 +44,6 @@ public class Enemy : MonoBehaviour
 	int coinNumber;
 	[Tooltip("獲得技能點數數量")]
 	int skillNumber;
-	// bool aniCoin = false;       // 播放金幣動畫
-	// bool aniSkill = false;      // 播放技能點數動畫
 	bool isDeath = false;       // 是否死亡
 	Transform player = null;
 	Rigidbody2D rig = null;
@@ -65,15 +61,11 @@ public class Enemy : MonoBehaviour
 		rig = GetComponent<Rigidbody2D>();
 		ani = GetComponent<Animator>();
 		spawnSystem = FindObjectOfType<SpawnSystem>();
-		// spawnSystem = GameObject.Find(objectName).GetComponent<SpawnSystem>();
 	}
 
 	private void Start()
 	{
 		hpMonster = hpMonsterMax;
-		
-		// coinInfo.text = "";
-		// skill = 0;
 	}
 
 	private void Update()
@@ -88,6 +80,7 @@ public class Enemy : MonoBehaviour
 	/// </summary>
 	void GetEnemyDamage()
 	{
+		// 如果玩家沒有攻擊物件 或 魔力 = 0
 		if (PlayerCtrl.instance.atkObject == null || SaveManager.instance.playerData.playerMP == 0)
 		{
 			damage = SaveManager.instance.playerData.playerAttack;
@@ -115,7 +108,6 @@ public class Enemy : MonoBehaviour
 			transform.eulerAngles = new Vector3(0f, 180f, 0f);
 		}
 
-
 		// 距離 = 二維向量的 距離(A點, B點)
 		float dis = Vector3.Distance(transform.position, player.position);
 		// 如果玩家進入追蹤範圍 就追蹤玩家
@@ -124,9 +116,9 @@ public class Enemy : MonoBehaviour
 			Vector3 newPos = Vector3.Lerp(transform.position, player.position, Time.deltaTime * 0.1f);
 			transform.position = newPos;
 
-			// transform.position = Vector3.MoveTowards(transform.position, player.position, speedMonster);
-			// rig.velocity = transform.right * speedMonster;
-			// rig.velocity = new Vector2(rig.velocity.x, rig.velocity.y);
+			/* transform.position = Vector3.MoveTowards(transform.position, player.position, speedMonster);
+			rig.velocity = transform.right * speedMonster;
+			rig.velocity = new Vector2(rig.velocity.x, rig.velocity.y);*/
 		}
 	}
 

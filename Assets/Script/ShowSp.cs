@@ -16,6 +16,7 @@ public class ShowSp : MonoBehaviour
 	}
 	private void OnDisable()
 	{
+		Debug.Log("505");
 		// 退出登記
 		SaveManager.instance.playerData.renewSkillPoint -= UpdateSkillPointUI;
 	}
