@@ -1,10 +1,9 @@
-using Fungus;
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 
 public class MpManager : MonoBehaviour
 {
-	[Header("Å]¤O±ø")]
+	[Header("é­”åŠ›æ¢")]
 	public Image barMP = null;
 
 	private void Start()
@@ -24,7 +23,7 @@ public class MpManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// §ó·sª±®aÅ]¤O
+	/// æ›´æ–°ç©å®¶é­”åŠ›
 	/// </summary>
 	void RenewPlayerMP()
 	{

@@ -28,8 +28,5 @@ public class HpManager : MonoBehaviour
 	void RenewPlayerHP()
 	{
 		barHP.fillAmount = SaveManager.instance.playerData.playerHP / PlayerCtrl.instance.maxHP;
-		//Debug.Log($"<color=red>玩家血量： {SaveManager.instance.playerData.playerHP}</color>");
-		//Debug.Log("<color=red>最大血量：</color>" + maxHP);
-		//Debug.Log($"<color=red>當前血量：{barHP.fillAmount * 100}</color>");
 	}
 }

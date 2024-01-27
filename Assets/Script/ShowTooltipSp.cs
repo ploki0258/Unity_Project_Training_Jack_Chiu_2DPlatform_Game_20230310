@@ -20,7 +20,7 @@ public class ShowTooltipSp : MonoBehaviour
 	}
 
 	/// <summary>
-	/// 更新金幣顯示動畫
+	/// 更新技能點數顯示動畫
 	/// </summary>
 	void RenewSkillPointAni()
 	{
