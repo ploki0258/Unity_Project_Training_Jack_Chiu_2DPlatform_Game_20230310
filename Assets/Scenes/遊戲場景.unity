@@ -1084,12 +1084,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
-  m_LookaheadTime: 0
-  m_LookaheadSmoothing: 0
+  m_LookaheadTime: 0.88
+  m_LookaheadSmoothing: 5
   m_LookaheadIgnoreY: 0
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_XDamping: 2
+  m_YDamping: 2
+  m_ZDamping: 2
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
@@ -4324,7 +4324,7 @@ MonoBehaviour:
   m_Follow: {fileID: 5099320031601829800}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5.24
+    OrthographicSize: 5.2
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -4348,7 +4348,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 356568653}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00000047683716, y: 0, z: -10}
+  m_LocalPosition: {x: 0.00000023841858, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7995,7 +7995,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1052190743}
   - component: {fileID: 1052190742}
-  m_Layer: 2
+  m_Layer: 7
   m_Name: "\u651D\u5F71\u6A5F\u5141\u8A31\u7BC4\u570D"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8012,7 +8012,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -8027,11 +8027,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 45.784683, y: 5.478936}
-      - {x: -25.218554, y: 5.333025}
-      - {x: -25.239931, y: -5.335294}
-      - {x: 174.63579, y: -5.363209}
-      - {x: 174.62222, y: 5.374157}
+    - - {x: 100, y: 5.4}
+      - {x: -100, y: 5.4}
+      - {x: -100, y: -5.4}
+      - {x: 100, y: -5.4}
 --- !u!4 &1052190743
 Transform:
   m_ObjectHideFlags: 0
@@ -8040,7 +8039,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052190741}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -74.7, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10675,6 +10674,7 @@ GameObject:
   - component: {fileID: 1438114986}
   - component: {fileID: 1438114988}
   - component: {fileID: 1438114987}
+  - component: {fileID: 1438114989}
   m_Layer: 5
   m_Name: "\u5B58\u6A94\u8A0A\u606F\u52D5\u756B"
   m_TagString: Untagged
@@ -10736,6 +10736,20 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1438114989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438114985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4bfbc45f6575a44d8b94556efbdf8e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textSave: {fileID: 1372811591}
+  saveText: "\u5DF2\u5B58\u6A94"
 --- !u!1 &1439415219
 GameObject:
   m_ObjectHideFlags: 0
@@ -18530,7 +18544,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.24
+  orthographic size: 5.2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -18554,7 +18568,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3797076827859581988}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00000047683716, y: 0, z: -10}
+  m_LocalPosition: {x: 0.00000023841858, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 public class ShowTipMessage : MonoBehaviour
 {
-	[SerializeField, Header("數值類型")] public valueType type = valueType.None; 
+	[SerializeField, Header("數值類型")] public valueType type = valueType.None;
 	[SerializeField, Header("訊息文字")] Text textTip = null;
-	[HideInInspector] public string valueName;
+	public string valueName;
 	Animator aniTip;
 
 	public float 增加數值;
@@ -35,6 +35,13 @@ public class ShowTipMessage : MonoBehaviour
 		SaveManager.instance.playerData.renewCostMP += UpdateTipMessageUI;
 
 		SaveManager.instance.playerData.renewPlayerHpMax += RenewTipMessageAni;
+		SaveManager.instance.playerData.renewPlayerMpMax += RenewTipMessageAni;
+		SaveManager.instance.playerData.renewPlayerAttack += RenewTipMessageAni;
+		SaveManager.instance.playerData.renewPlayerDefense += RenewTipMessageAni;
+		SaveManager.instance.playerData.renewPlayerJump += RenewTipMessageAni;
+		SaveManager.instance.playerData.renewPlayerSpeed += RenewTipMessageAni;
+		SaveManager.instance.playerData.renewPlayerAttackSpeed += RenewTipMessageAni;
+		SaveManager.instance.playerData.renewCostMP += RenewTipMessageAni;
 
 		textTip.text = "";
 		UpdateTipMessageUI();
@@ -52,13 +59,20 @@ public class ShowTipMessage : MonoBehaviour
 		SaveManager.instance.playerData.renewCostMP -= UpdateTipMessageUI;
 
 		SaveManager.instance.playerData.renewPlayerHpMax -= RenewTipMessageAni;
+		SaveManager.instance.playerData.renewPlayerMpMax -= RenewTipMessageAni;
+		SaveManager.instance.playerData.renewPlayerAttack -= RenewTipMessageAni;
+		SaveManager.instance.playerData.renewPlayerDefense -= RenewTipMessageAni;
+		SaveManager.instance.playerData.renewPlayerJump -= RenewTipMessageAni;
+		SaveManager.instance.playerData.renewPlayerSpeed -= RenewTipMessageAni;
+		SaveManager.instance.playerData.renewPlayerAttackSpeed -= RenewTipMessageAni;
+		SaveManager.instance.playerData.renewCostMP -= RenewTipMessageAni;
 	}
 
-	/// <summary>更新金錢數量的顯示</summary>
+	/// <summary>更新提示訊息的顯示</summary>
 	public void UpdateTipMessageUI()
 	{
 		SwitchValueText();
-		textTip.text = valueName + "+ " + 增加數值;
+		textTip.text = valueName + " +" + 增加數值;
 	}
 
 	/// <summary>
@@ -80,11 +94,11 @@ public class ShowTipMessage : MonoBehaviour
 			case valueType.None:
 				valueName = "";
 				break;
-			case valueType.HP:
-				valueName = "生命";
+			case valueType.HpMax:
+				valueName = "生命上限";
 				break;
-			case valueType.MP:
-				valueName = "魔力";
+			case valueType.MpMax:
+				valueName = "魔力上限";
 				break;
 			case valueType.Attack:
 				valueName = "攻擊力";
@@ -116,8 +130,8 @@ public class ShowTipMessage : MonoBehaviour
 	public enum valueType
 	{
 		None,
-		HP,
-		MP,
+		HpMax,
+		MpMax,
 		Attack,
 		Defense,
 		Speed,

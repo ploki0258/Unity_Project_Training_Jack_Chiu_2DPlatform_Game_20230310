@@ -32,7 +32,7 @@ public class TalkButton : MonoBehaviour
     }
 
     /// <summary>
-    /// 記錄點功能
+    /// 記錄點存檔功能
     /// </summary>
     public void Archive()
     {
@@ -40,7 +40,7 @@ public class TalkButton : MonoBehaviour
 		{
             SaveManager.instance.SaveData();
 		}
-    }
+	}
 
     /// <summary>
     /// 顯示對話介面，並執行開始對話

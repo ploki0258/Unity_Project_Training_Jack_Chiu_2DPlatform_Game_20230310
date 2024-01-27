@@ -98,17 +98,7 @@ public class Grid : MonoBehaviour
 			#endregion
 
 			#region 提示訊息
-			if (dataGrid.恢復HP != 0)
-			{
-				showTipMessage.type = ShowTipMessage.valueType.HP;
-				showTipMessage.增加數值 = dataGrid.恢復HP;
-			}
-			else if (dataGrid.恢復MP != 0)
-			{
-				showTipMessage.type = ShowTipMessage.valueType.MP;
-				showTipMessage.增加數值 = dataGrid.恢復MP;
-			}
-			else if (dataGrid.提升攻擊力 != 0)
+			if (dataGrid.提升攻擊力 != 0)
 			{
 				showTipMessage.type = ShowTipMessage.valueType.Attack;
 				showTipMessage.增加數值 = dataGrid.提升攻擊力;

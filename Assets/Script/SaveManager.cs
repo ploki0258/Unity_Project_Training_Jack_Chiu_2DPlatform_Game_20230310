@@ -43,19 +43,23 @@ public class SaveManager
 			// 這是一個新玩家 請給他基本數值
 			// 此為建構式的寫法
 			// playerData = new PlayerData(0, 0, 100f, 100f, 10f, 7f, 500f, 100f, 100f, "遊戲場景", Vector3.zero);
-			
-			playerData.playerHP = 
-				PlayerCtrl.instance.maxHP;              // 玩家血量
-			playerData.playerMP = 
-				PlayerCtrl.instance.maxMP;              // 玩家魔力
-			playerData.coinCount = 0;					// 玩家金幣
+
+			playerData.playerHpMax =
+				PlayerCtrl.instance.maxHP;				// 血量最大值
+			playerData.playerMpMax =
+				PlayerCtrl.instance.maxMP;              // 魔力最大值
+			playerData.playerHP =
+				playerData.playerHpMax;					// 玩家血量
+			playerData.playerMP =
+				playerData.playerMpMax;					// 玩家魔力
+			playerData.coinCount = 0;                   // 玩家金幣
 			playerData.skillPoint = 0;                  // 玩家技能點數
-			playerData.costMP = 10f;					// 玩家的魔力消耗值
+			playerData.costMP = 10f;                    // 玩家的魔力消耗值
 			playerData.playerSpeed = 10f;               // 玩家移動速度
 			playerData.playerJump = 10f;                // 玩家跳躍力
 			playerData.playerAttackSpeed = 500f;        // 玩家攻擊速度
 			playerData.playerAttack = 20f;              // 玩家攻擊力
-			playerData.playerDefense = 2f;	            // 玩家防禦力
+			playerData.playerDefense = 2f;              // 玩家防禦力
 			playerData.levelName = "遊戲場景";			// 關卡名稱
 			playerData.playerPos = Vector3.zero;        // 玩家位置
 			playerData.goodsList = new List<Goods>();   // 持有物列表
@@ -64,11 +68,11 @@ public class SaveManager
 			playerData.itemNumberMax = 999;             // 最大持有道具數量
 			playerData.messageTip = "";                 // 玩家提示訊息
 			playerData.isSetSkill = false;              // 玩家是否設置技能
-			//playerData.skillObjectID = -1;            // 設置的技能物件ID
 			playerData.skillSlotID = 0;
 			playerData.skillZ = -1;
 			playerData.skillX = -1;
 			playerData.skillC = -1;
+			//playerData.skillObjectID = -1;            // 設置的技能物件ID
 		}
 		else
 		{
@@ -85,14 +89,20 @@ public class SaveManager
 	{
 		// 玩家資料.玩家位置 = PlayerCtrl.transform.position
 		playerData.playerPos = PlayerCtrl.instance.transform.position;
-		
+
 		// 轉換資料為Json格式
 		string json = JsonUtility.ToJson(playerData, true);
 		Debug.Log(json);
 		// 儲存在硬碟中
 		PlayerPrefs.SetString("GameData", json);
 		// PlayerPrefs.Save();
+
+		if (renewSave != null)
+		{
+			renewSave.Invoke();
+		}
 	}
+	public System.Action renewSave;
 }
 
 /// <summary>
@@ -106,7 +116,7 @@ public struct PlayerData
 	public Vector3 playerPos;       // 玩家位置
 	public bool isSetSkill;         // 用以判斷是否有放置技能
 	public int skillObjectID;       // 用以儲存技能物件
-	public int skillSlotID;			// 技能物件存放的座標位置
+	public int skillSlotID;         // 技能物件存放的座標位置
 
 	#region 技能ZXC
 	/// <summary>
@@ -278,6 +288,9 @@ public struct PlayerData
 	[SerializeField] float _playerMP;
 	public System.Action renewPlayerMP;
 
+	/// <summary>
+	/// 血量最大值
+	/// </summary>
 	[SerializeField]
 	public float playerHpMax
 	{
@@ -296,6 +309,9 @@ public struct PlayerData
 	[SerializeField] float _playerHpMax;
 	public System.Action renewPlayerHpMax;
 
+	/// <summary>
+	/// 魔力最大值
+	/// </summary>
 	[SerializeField]
 	public float playerMpMax
 	{
@@ -605,7 +621,7 @@ public struct PlayerData
 	#endregion
 
 	// 建構式
-	public PlayerData(int coin, int skill, float hp, float mp, float maxHp, float maxMp,  float cost, float moveSpeed, float jumpPower, float attackSpeed, float attack, float defense,
+	public PlayerData(int coin, int skill, float hp, float mp, float maxHp, float maxMp, float cost, float moveSpeed, float jumpPower, float attackSpeed, float attack, float defense,
 		string nameLV, Vector3 pos, string tip, bool isHave, int skillObjectID, int skillZ, int skillX, int skillC)
 	{
 		_coinCount = coin;
@@ -694,7 +710,7 @@ public struct PlayerData
 		_skillZ = -1;
 		_skillX = -1;
 		_skillC = -1;
-		
+
 		// this.moneyCount = 0;
 		// this.skillPoint = 0;
 	}

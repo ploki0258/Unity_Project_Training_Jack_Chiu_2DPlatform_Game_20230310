@@ -29,8 +29,5 @@ public class MpManager : MonoBehaviour
 	void RenewPlayerMP()
 	{
 		barMP.fillAmount = SaveManager.instance.playerData.playerMP / PlayerCtrl.instance.maxMP;
-		//Debug.Log($"<color=blue>玩家魔力： {SaveManager.instance.playerData.playerMP}</color>");
-		//Debug.Log("<color=blue>最大魔力：</color>" + maxMP);
-		//Debug.Log($"<color=blue>當前魔力：{barMP.fillAmount * 100}</color>");
 	}
 }
