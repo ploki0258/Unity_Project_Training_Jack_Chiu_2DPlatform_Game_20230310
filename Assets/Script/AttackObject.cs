@@ -8,10 +8,12 @@ public class AttackObject : MonoBehaviour
 	bool isWandAttack = false;  // 是否在物理攻擊(MP <= 0)
 	[Header("技能資料")]
 	public Skill skillData;
+	[SerializeField, Header("消失距離")] float disDestroy = 1f;
 
 	[Tooltip("原本怪物移動速度")]
 	private float originalSpeedMonster;
 	private float timer;
+	private float disBullet;
 	private bool isTerraSkill = false;
 	private BoxCollider2D boxCollider;
 	private Rigidbody2D rg2D;
@@ -86,8 +88,17 @@ public class AttackObject : MonoBehaviour
 	// 風刃技能
 	void WindSkill()
 	{
+		disBullet = Vector2.Distance(transform.position, PlayerCtrl.instance.transform.position);
+		//Debug.Log("距離:" + disBullet);
 		PlayerCtrl.instance.UpdateDirectionIconPos();
+		// 隨著攻擊圖示的方向發射
 		rg2D.velocity = transform.right * SaveManager.instance.playerData.playerAttackSpeed * 3f * Time.unscaledDeltaTime;
+
+		// 如果距離玩家一定距離遠時 就銷毀自己
+		if (disBullet >= disDestroy)
+		{
+			Destroy(this.gameObject);
+		}
 		//Vector3 movent = PlayerCtrl.instance.traDirectionIcon.eulerAngles * SaveManager.instance.playerData.playerAttackSpeed;
 		//transform.position += movent;
 	}

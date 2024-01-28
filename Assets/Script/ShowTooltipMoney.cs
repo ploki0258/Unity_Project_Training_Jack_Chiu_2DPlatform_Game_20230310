@@ -14,7 +14,7 @@ public class ShowTooltipMoney : MonoBehaviour
 
 	private void OnDisable()
 	{
-		Debug.Log("405");
+		Debug.Log("金幣顯示訊息被關閉或被刪除");
 		// 退出登記
 		SaveManager.instance.playerData.renewCoin -= RenewCoinAni;
 	}

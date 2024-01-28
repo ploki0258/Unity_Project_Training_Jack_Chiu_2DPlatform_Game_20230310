@@ -16,7 +16,7 @@ public class ShowSp : MonoBehaviour
 	}
 	private void OnDisable()
 	{
-		Debug.Log("505");
+		Debug.Log("技能點數被關閉或被刪除");
 		// 退出登記
 		SaveManager.instance.playerData.renewSkillPoint -= UpdateSkillPointUI;
 	}
@@ -29,6 +29,6 @@ public class ShowSp : MonoBehaviour
 	/// <summary>更新技能點數的顯示</summary>
 	void UpdateSkillPointUI()
 	{
-		spText.text = "× " + SaveManager.instance.playerData.skillPoint.ToString("N0") + " 點";
+		spText.text = "× " + SaveManager.instance.playerData.skillPoint.ToString("N0") + "點";
 	}
 }

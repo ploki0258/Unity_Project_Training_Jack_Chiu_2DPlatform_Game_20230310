@@ -25,7 +25,7 @@ public class PlayerCtrl : MonoBehaviour
 	[Header("攻擊方向圖示")]
 	public Transform traDirectionIcon = null;
 	[SerializeField, Header("攻擊方向圖示位移")]
-	Vector3 traDirectionIconOffset;
+	Vector2 traDirectionIconOffset;
 	[SerializeField, Header("地板偵測器")] Sensor floorSensor = null;
 	public Camera cam;
 
@@ -91,8 +91,6 @@ public class PlayerCtrl : MonoBehaviour
 	{
 		coinInfo.text = "";
 		skillInfo.text = "";
-		//textTip.text = "";
-		//textSave.text = "";
 		//skillData = SkillManager.instance.FindSkillByID(SaveManager.instance.playerData.skillObjectID);
 
 		// 如果 有放置技能 的話
@@ -123,7 +121,7 @@ public class PlayerCtrl : MonoBehaviour
 
 	private void OnDisable()
 	{
-		Debug.Log("101");
+		Debug.Log("女主角被關閉或被刪除");
 		// 退出登記
 		SaveManager.instance.playerData.renewMmessageTip -= RenewMessageTip;
 		//SaveManager.instance.playerData.renewPlayerHP -= RenewPlayerHP;
@@ -272,7 +270,6 @@ public class PlayerCtrl : MonoBehaviour
 					if (atkObject.name == "風刃_4")
 					{
 						traDirectionIcon.gameObject.SetActive(true);
-						// UpdateDirectionIconPos();
 
 						// 生成子彈並發射
 						if (atkObject != null && 翻轉 != true)
@@ -385,14 +382,6 @@ public class PlayerCtrl : MonoBehaviour
 	}
 
 	/// <summary>
-	/// 法術功能：各個法術的效果
-	/// </summary>
-	//private void SpellAttack()
-	//{
-
-	//}
-
-	/// <summary>
 	/// 死亡功能
 	/// </summary>
 	void Dead()
@@ -419,12 +408,12 @@ public class PlayerCtrl : MonoBehaviour
 	/// </summary>
 	public void UpdateDirectionIconPos()
 	{
-		Vector3 pos = transform.position + traDirectionIconOffset;
-		traDirectionIcon.position = pos;
+		Vector2 newPos = (Vector2)transform.position + traDirectionIconOffset;
+		traDirectionIcon.position = newPos;
 
-		mousePos = cam.ScreenToWorldPoint(Input.mousePosition);                         // 取得滑鼠座標轉換為世界座標
-		iconDirection = (mousePos - transform.position).normalized;                     // 計算差值並標準化(只取其方向，但長度為1)
-		float angle = Mathf.Atan2(iconDirection.y, iconDirection.x) * Mathf.Rad2Deg;    // 計算旋轉角度
+		mousePos = cam.ScreenToWorldPoint(Input.mousePosition);							// 取得滑鼠座標轉換為世界座標
+		iconDirection = (mousePos - traDirectionIcon.position).normalized;				// 計算差值並標準化(只取其方向，但長度為1)
+		float angle = Mathf.Atan2(iconDirection.y, iconDirection.x) * Mathf.Rad2Deg;	// 計算旋轉角度
 		traDirectionIcon.eulerAngles = new Vector3(0, 0, angle);
 		#region 測試
 		// 取得當前物件的角度
