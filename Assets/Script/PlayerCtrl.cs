@@ -22,6 +22,8 @@ public class PlayerCtrl : MonoBehaviour
 	public float maxHP = 100f;
 	[Header("最大魔力"), Range(100, 1000)]
 	public float maxMP = 100f;
+	[Header("魔力減輕數值"), Range(100, 1000)]
+	public int costMpReduce = 1;
 	[Header("攻擊方向圖示")]
 	public Transform traDirectionIcon = null;
 	[SerializeField, Header("攻擊方向圖示位移")]
@@ -137,6 +139,7 @@ public class PlayerCtrl : MonoBehaviour
 
 #if UNITY_EDITOR
 		Panacea();
+		HpRecover();
 #endif
 		// speedAtk += itemNormalValue.提升攻擊速度;
 		// Debug.Log("以提升數值");
@@ -239,7 +242,7 @@ public class PlayerCtrl : MonoBehaviour
 					if (SaveManager.instance.playerData.playerMP <= 0)
 						return;
 					// 魔力消耗 等於 攻擊物件的魔力消耗
-					SaveManager.instance.playerData.costMP = atkObject.GetComponent<AttackObject>().skillData.skillCost;
+					SaveManager.instance.playerData.costMP = atkObject.GetComponent<AttackObject>().skillData.skillCost * costMpReduce;
 					// 扣魔力消耗
 					SaveManager.instance.playerData.playerMP -= SaveManager.instance.playerData.costMP;
 
@@ -430,10 +433,10 @@ public class PlayerCtrl : MonoBehaviour
 		#endregion
 	}
 
+	#region 遊戲測試功能：編譯器中有效
 	/// <summary>
 	/// 萬能藥：MP全回滿
 	/// </summary>
-	/// Test
 	void Panacea()
 	{
 		if (Input.GetKeyDown(KeyCode.P) && SaveManager.instance.playerData.playerMP != maxMP)
@@ -441,6 +444,18 @@ public class PlayerCtrl : MonoBehaviour
 			SaveManager.instance.playerData.playerMP = maxMP;
 		}
 	}
+
+	/// <summary>
+	/// 萬能藥：HP全回滿
+	/// </summary>
+	void HpRecover()
+	{
+		if (Input.GetKeyDown(KeyCode.L) && SaveManager.instance.playerData.playerHP != maxHP)
+		{
+			SaveManager.instance.playerData.playerHP = maxHP;
+		}
+	}
+	#endregion
 
 	/// <summary>
 	/// 提示訊息顯示動畫

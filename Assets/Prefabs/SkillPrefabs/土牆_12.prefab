@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8460640480509477603}
   m_Layer: 0
   m_Name: "\u571F\u7246_12"
-  m_TagString: Floor
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,6 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isWandAttack: 0
   skillData: {fileID: 11400000, guid: ef50dfe609123f54ea8a11de15bc5181, type: 2}
+  disDestroy: 1
 --- !u!1 &8480483517356212546
 GameObject:
   m_ObjectHideFlags: 0

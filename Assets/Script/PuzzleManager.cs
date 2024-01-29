@@ -1,6 +1,5 @@
 ﻿using Fungus;
 using UnityEngine;
-using UnityEngine.Networking.Types;
 
 public class PuzzleManager : MonoBehaviour
 {
@@ -23,7 +22,7 @@ public class PuzzleManager : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.gameObject.CompareTag("bullet") == true)
+		if (collision.gameObject.CompareTag("Bullet") == true)
 		{
 			if (PlayerCtrl.instance.atkObject != false && collision.gameObject.name != "土牆_12")
 			{
@@ -31,7 +30,7 @@ public class PuzzleManager : MonoBehaviour
 			}
 		}
 
-		if (collision.gameObject.CompareTag("bullet") && collisionsCount >= 3)
+		if (collision.gameObject.CompareTag("Bullet") && collisionsCount >= 3)
 		{
 			Destroy(this.gameObject);
 		}

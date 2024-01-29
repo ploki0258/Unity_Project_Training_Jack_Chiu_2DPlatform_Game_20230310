@@ -48,7 +48,7 @@ public class AttackObject : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		// 如果 子彈 碰到 地板 或 敵人 就消失
-		if ((collision.gameObject.tag == "Floor" || collision.gameObject.tag == "enemy") && isTerraSkill == false)
+		if ((collision.gameObject.tag == "Floor" || collision.gameObject.tag == "Enemy") && isTerraSkill == false)
 		{
 			// 如果 不在物理攻擊(MP <= 0)時 消失自己
 			if (isWandAttack == false)
@@ -58,8 +58,10 @@ public class AttackObject : MonoBehaviour
 			// Debug.Log($"<color=#ff0>是否施放土技能： {isTerraSkill}</color>");
 			// Debug.Log($"<color=#f1f>是否在物理攻擊： {isWandAttack}</color>");
 		}
+
+		/*
 		// 如果子彈碰到"敵人" 就給予傷害
-		/*if (collision.gameObject.tag == "enemy")
+		if (collision.gameObject.tag == "Enemy")
 		{
 			Enemy.instance.TakeDamageMonster(damage);
 		}*/

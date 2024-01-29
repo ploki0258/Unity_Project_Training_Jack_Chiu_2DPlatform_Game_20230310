@@ -98,14 +98,17 @@ public class Enemy : MonoBehaviour
 	/// </summary>
 	private void TrackingPlayer()
 	{
+		bool trun = player.position.x > transform.position.x;
 		// 面向玩家：如果玩家的 X 大於 敵人的 X 角度 0，否則 角度 180
 		if (player.position.x > this.transform.position.x)
 		{
-			transform.eulerAngles = Vector3.zero;
+			transform.eulerAngles = new Vector3(0f, 0f, 0f);
+			Debug.Log("轉向：" + trun);
 		}
 		else if (player.position.x < this.transform.position.x)
 		{
 			transform.eulerAngles = new Vector3(0f, 180f, 0f);
+			Debug.Log("轉向：" + trun);
 		}
 
 		// 距離 = 二維向量的 距離(A點, B點)
@@ -113,7 +116,7 @@ public class Enemy : MonoBehaviour
 		// 如果玩家進入追蹤範圍 就追蹤玩家
 		if (dis <= disChase)
 		{
-			Vector3 newPos = Vector3.Lerp(transform.position, player.position, Time.deltaTime * 0.1f);
+			Vector3 newPos = Vector3.Lerp(transform.position, player.position, Time.unscaledDeltaTime * 0.1f);
 			transform.position = newPos;
 
 			/* transform.position = Vector3.MoveTowards(transform.position, player.position, speedMonster);
@@ -194,8 +197,8 @@ public class Enemy : MonoBehaviour
 		// 如果已死亡 就不執行
 		if (isDeath)
 			return;
-		// 如果碰到的物件的Tag 等於 bullet
-		if (collision.gameObject.tag == "bullet")
+		// 如果碰到的物件的Tag 等於 Bullet
+		if (collision.gameObject.tag == "Bullet")
 		{
 			TakeDamageMonster(damage);
 			// Debug.Log($"<color=#ff9669>受到的傷害：{damage}</color>");

@@ -42,7 +42,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1935043901326990066
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -59,7 +59,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1935043901326990067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,7 +158,6 @@ MonoBehaviour:
   itemSkill: {fileID: 1022320456975806930, guid: 027360ec4fca6c14b8d7cdd75cc5e103,
     type: 3}
   probDrop: 10
-  objectName: "\u602A\u7269\u751F\u6210\u9EDE \u53F2\u840A\u59C6"
 --- !u!1 &1935043901930004934
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,7 +309,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1829792938, guid: 4350a1513b18f7f49a4d38258bcd36dc, type: 3}
-  m_Color: {r: 0.7921569, g: 0.6227101, b: 0.53333336, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
