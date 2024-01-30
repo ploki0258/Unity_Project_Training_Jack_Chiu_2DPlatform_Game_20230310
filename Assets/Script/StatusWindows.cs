@@ -84,8 +84,8 @@ public class StatusWindows : Windows<StatusWindows>
 		// 現在 - 原本 = 此次變化量
 		//float originalCostMp = SaveManager.instance.playerData.costMP;
 
-		textHp.text = "血量：" + SaveManager.instance.playerData.playerHP.ToString("F0") + " / " + SaveManager.instance.playerData.playerHpMax;
-		textMp.text = "魔力：" + SaveManager.instance.playerData.playerMP.ToString("F0") + " / " + SaveManager.instance.playerData.playerMpMax;
+		textHp.text = "血量：" + SaveManager.instance.playerData.playerHP.ToString("F0") + " / " + SaveManager.instance.playerData.playerHpMax.ToString("F0");
+		textMp.text = "魔力：" + SaveManager.instance.playerData.playerMP.ToString("F0") + " / " + SaveManager.instance.playerData.playerMpMax.ToString("F0");
 		textAttack.text = "攻擊力：" + SaveManager.instance.playerData.playerAttack.ToString("F0");
 		textDefense.text = "防禦力：" + SaveManager.instance.playerData.playerDefense.ToString("F0");
 		textJump.text = "跳躍力：" + SaveManager.instance.playerData.playerJump.ToString("F0");
