@@ -105,12 +105,12 @@ RectTransform:
   m_GameObject: {fileID: 3456010383480219156}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.00058823527, y: 0.00058823527, z: 0.00058823527}
+  m_LocalScale: {x: 0.0005882352, y: 0.0005882352, z: 0.0005882352}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3456010383427864775}
-  m_Father: {fileID: 3456010384803124545}
-  m_RootOrder: 1
+  m_Father: {fileID: 3456010384759066678}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -278,12 +278,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3456010384097905133}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.4, z: 0}
+  m_LocalPosition: {x: 0, y: -0.39999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 3456010384803124545}
-  m_RootOrder: 2
+  m_Father: {fileID: 3456010384759066678}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3456010384759066675
 GameObject:
@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 3456010384759066678}
   - component: {fileID: 3456010384759066677}
   m_Layer: 0
-  m_Name: sprMain
+  m_Name: "\u53F2\u840A\u59C6"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -313,7 +313,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3456010383480219157}
+  - {fileID: 3456010384097905134}
   m_Father: {fileID: 3456010384803124545}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -402,8 +404,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3456010384759066678}
-  - {fileID: 3456010383480219157}
-  - {fileID: 3456010384097905134}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -420,7 +420,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 26e4c07107f8d9942acf83c3e8458486, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -486,3 +486,4 @@ MonoBehaviour:
   itemSkill: {fileID: 4671880185607488085, guid: b9058730acfdbdc45bba83fbcbe52e6f,
     type: 3}
   probDrop: 9
+  ani: {fileID: 0}

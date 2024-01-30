@@ -81,15 +81,16 @@ public class StatusWindows : Windows<StatusWindows>
 	/// </summary>
 	void UpdateStatusValueUI()
 	{
-		float originalCostMp = SaveManager.instance.playerData.costMP;
+		// 現在 - 原本 = 此次變化量
+		//float originalCostMp = SaveManager.instance.playerData.costMP;
 
-		textHp.text = "血量：" + Mathf.Round(SaveManager.instance.playerData.playerHP) + " / " + SaveManager.instance.playerData.playerHpMax;
-		textMp.text = "魔力：" + Mathf.Round(SaveManager.instance.playerData.playerMP) + " / " + SaveManager.instance.playerData.playerMpMax;
-		textAttack.text = "攻擊力：" + SaveManager.instance.playerData.playerAttack;
-		textDefense.text = "防禦力：" + SaveManager.instance.playerData.playerDefense;
-		textJump.text = "跳躍力：" + SaveManager.instance.playerData.playerJump;
-		textSpeed.text = "移動速度：" + SaveManager.instance.playerData.playerSpeed;
-		textAttackSpeed.text = "攻擊速度：" + SaveManager.instance.playerData.playerAttackSpeed;
-		textCostMp.text = "魔力消耗減輕：" + SaveManager.instance.playerData.costMP + "%";
+		textHp.text = "血量：" + SaveManager.instance.playerData.playerHP.ToString("F0") + " / " + SaveManager.instance.playerData.playerHpMax;
+		textMp.text = "魔力：" + SaveManager.instance.playerData.playerMP.ToString("F0") + " / " + SaveManager.instance.playerData.playerMpMax;
+		textAttack.text = "攻擊力：" + SaveManager.instance.playerData.playerAttack.ToString("F0");
+		textDefense.text = "防禦力：" + SaveManager.instance.playerData.playerDefense.ToString("F0");
+		textJump.text = "跳躍力：" + SaveManager.instance.playerData.playerJump.ToString("F0");
+		textSpeed.text = "移動速度：" + SaveManager.instance.playerData.playerSpeed.ToString("F0");
+		textAttackSpeed.text = "攻擊速度：" + SaveManager.instance.playerData.playerAttackSpeed.ToString("F0");
+		textCostMp.text = "魔力消耗減輕：" + SaveManager.instance.playerData.costMP.ToString("F0") + "%";
 	}
 }

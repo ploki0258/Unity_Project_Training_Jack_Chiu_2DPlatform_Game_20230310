@@ -70,8 +70,8 @@ public class MistManager : MonoBehaviour
 
 	private void Update()
 	{
-		// 青色迷霧
-		/*if (transitioning && mistType_cyan == true)
+		/*// 青色迷霧
+		if (transitioning && mistType_cyan == true)
 		{
 			ColorTransition(Color.white, new Color(00, 10, 90));
 		}
@@ -106,8 +106,8 @@ public class MistManager : MonoBehaviour
 		// 停止協程
 		StopAllCoroutines();
 		// 呼叫協程 ColorGradient()
-
 		StartCoroutine(TakeDamage());
+		
 		#region 迷霧效果
 		// 青色迷霧：提升怪物數量
 		if (collision.gameObject.CompareTag("Player") && mistType_cyan == true)
@@ -249,13 +249,13 @@ public class MistManager : MonoBehaviour
 	/// 顏色漸變：改變迷霧顏色 改至Update
 	/// </summary>
 	/// <param name="originalColor">原始顏色</param>
-	/// <param name="changeColor">變化顏色</param>
-	private void ColorTransition(Color originalColor, Color changeColor)
+	/// <param name="newColor">變化顏色</param>
+	private void ColorTransition(Color originalColor, Color newColor)
 	{
 		float time = Mathf.Clamp01(Time.time / timeGradient);
 		// SpriteRenderer tempImage = Instantiate(mistImage, transform.position, transform.rotation);
 		// 迷霧.顏色 = 顏色.漸變(原始顏色, 變化後顏色)
-		mistImage.color = Color.Lerp(originalColor, changeColor, time);
+		mistImage.color = Color.Lerp(originalColor, newColor, time);
 		tempColor = mistImage.color;
 
 		// 檢查漸變是否完成

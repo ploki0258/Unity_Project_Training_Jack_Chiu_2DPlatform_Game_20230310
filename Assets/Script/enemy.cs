@@ -98,17 +98,17 @@ public class Enemy : MonoBehaviour
 	/// </summary>
 	private void TrackingPlayer()
 	{
-		bool trun = player.position.x > transform.position.x;
-		// 面向玩家：如果玩家的 X 大於 敵人的 X 角度 0，否則 角度 180
+		bool turn = player.position.x > transform.position.x;
+		// 面向玩家：如果玩家的 X 大於 敵人的 X 則轉向玩家(角度:180)，否則就不變
 		if (player.position.x > this.transform.position.x)
 		{
-			transform.eulerAngles = new Vector3(0f, 0f, 0f);
-			Debug.Log("轉向：" + trun);
+			transform.eulerAngles = new Vector3(0f, 180f, 0f);
+			//Debug.Log("轉向：" + turn);
 		}
 		else if (player.position.x < this.transform.position.x)
 		{
-			transform.eulerAngles = new Vector3(0f, 180f, 0f);
-			Debug.Log("轉向：" + trun);
+			transform.eulerAngles = new Vector3(0f, 0f, 0f);
+			//Debug.Log("轉向：" + turn);
 		}
 
 		// 距離 = 二維向量的 距離(A點, B點)
