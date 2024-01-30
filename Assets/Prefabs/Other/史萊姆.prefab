@@ -295,6 +295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3456010384759066678}
   - component: {fileID: 3456010384759066677}
+  - component: {fileID: 3456010384759066676}
   m_Layer: 0
   m_Name: "\u53F2\u840A\u59C6"
   m_TagString: Untagged
@@ -371,6 +372,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3456010384759066676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3456010384759066675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93748f532713a1a44a643b246a88c450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texture: {fileID: 2800000, guid: 996b95468dc1483458986cad31b0af56, type: 3}
 --- !u!1 &3456010384803124554
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,6 +395,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3456010384803124545}
   - component: {fileID: 3456010384803124544}
+  - component: {fileID: 3456010384803124559}
+  - component: {fileID: 3456010384803124558}
   - component: {fileID: 3456010384803124557}
   - component: {fileID: 3456010384803124556}
   - component: {fileID: 3456010384803124555}
@@ -428,6 +444,45 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3456010384803124559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3456010384803124554}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b463b79ff1ac81b45bb4cdf06cf484db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_texture2DArr:
+  - {fileID: 2800000, guid: 996b95468dc1483458986cad31b0af56, type: 3}
+  - {fileID: 2800000, guid: ab49b63aff1e8024787fdc961cb79d1f, type: 3}
+  - {fileID: 2800000, guid: a1748c2ae16e5644189d85d7c6b533f9, type: 3}
+  - {fileID: 2800000, guid: 90f72869266e6064482ac42f18119e4c, type: 3}
+  - {fileID: 2800000, guid: 4350a1513b18f7f49a4d38258bcd36dc, type: 3}
+  - {fileID: 2800000, guid: 2e9313eb0a92b2d4d881b2c6ddd3623b, type: 3}
+  - {fileID: 2800000, guid: b219f809ec0510448a25d36e896f01ef, type: 3}
+  - {fileID: 2800000, guid: 32a3d72fac13f9b49b98ba24896ccfe1, type: 3}
+  m_overrideSprite: {fileID: 3456010384759066676}
+  m_btnPrev: {fileID: 0}
+  m_btnNext: {fileID: 0}
+--- !u!114 &3456010384803124558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3456010384803124554}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff5c87756943a4040bc95c7f7cfdf1a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_animator: {fileID: 3456010384803124544}
+  TriggerName: 
+  IsSleep: 0
 --- !u!50 &3456010384803124557
 Rigidbody2D:
   serializedVersion: 4
