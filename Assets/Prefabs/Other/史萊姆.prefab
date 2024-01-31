@@ -541,4 +541,3 @@ MonoBehaviour:
   itemSkill: {fileID: 4671880185607488085, guid: b9058730acfdbdc45bba83fbcbe52e6f,
     type: 3}
   probDrop: 9
-  ani: {fileID: 0}
