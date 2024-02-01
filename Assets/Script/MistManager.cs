@@ -1,12 +1,13 @@
-﻿using System.Collections;
+﻿using Fungus;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MistManager : MonoBehaviour
 {
+	#region 欄位
 	[SerializeField, Header("迷霧圖片")]
 	SpriteRenderer mistImage = null;
-	[SerializeField, Header("漸變時間"), Range(0, 50)]
+	[SerializeField, Header("漸變時間"), Range(0, 10)]
 	float timeGradient = 1f;
 	[Header("紅色迷霧")]
 	[SerializeField, Header("傷害量"), Range(0, 100)]
@@ -28,7 +29,7 @@ public class MistManager : MonoBehaviour
 	[Header("青色迷霧")]
 	[SerializeField, Header("生成提升倍數"), Range(0, 20)]
 	float spawnWeight = 0f;
-	[SerializeField, Header("迷霧種類")] MistType mistType = MistType.None;
+	[SerializeField, Header("迷霧種類")] MistColorType mistType = MistColorType.None;
 	/*[SerializeField] bool mistType_cyan;    // 青色
 	//[SerializeField] bool mistType_blue;    // 藍色
 	//[SerializeField] bool mistType_purple;  // 紫色
@@ -38,6 +39,9 @@ public class MistManager : MonoBehaviour
 	Color colorChange;
 	[SerializeField, Header("尋找物件名稱")]
 	string objectName;
+	[SerializeField, Header("繪製矩形\n繪製中心點")] Vector2 center = Vector2.zero;
+	[SerializeField, Header("繪製大小")] Vector2 size = Vector2.one;
+	[SerializeField] Texture texture;
 
 	public bool inMist_gree = false;
 	public bool inMist_cyan = false;
@@ -46,34 +50,52 @@ public class MistManager : MonoBehaviour
 	private Color tempColor;            // 漸變顏色
 	[Tooltip("是否在進行漸變 ")]
 	private bool transitioning = false; // 是否在漸變
+	private BoxCollider2D boxCollider2D;
 	private bool startDamage = false;   // 是否開始傷害
 	private float originalCostMP;       // 原來的MP消耗值
 	private float originalSpeed;        // 原來的移動速度
 	private float originalAttackSpeed;  // 原來的攻擊速度
 	private float originalSpawn;        // 原來的生成數量
+	#endregion
 
 	public static MistManager instance; // 單例
 
 	private void Awake()
 	{
 		instance = this;
+
+		boxCollider2D = GetComponent<BoxCollider2D>();
 	}
 
 	private void Start()
 	{
-		if (mistType == MistType.Blue)
+		if (mistType == MistColorType.Blue)
 			cdWeight *= SaveManager.instance.playerData.costMP;
-		if (mistType == MistType.Cyan)
+		if (mistType == MistColorType.Cyan)
 			spawnWeight *= SpawnSystem.instance.enemyCountMax;
 
 		originalCostMP = SaveManager.instance.playerData.costMP;
 		originalSpeed = SaveManager.instance.playerData.playerSpeed;
 		originalAttackSpeed = SaveManager.instance.playerData.playerAttackSpeed;
 		originalSpawn = (float)SpawnSystem.instance.enemyCountMax;
+
+		center = (Vector2)boxCollider2D.transform.position;
 	}
 
 	private void Update()
 	{
+		boxCollider2D.transform.position = center;
+
+		/*// Test
+		if (colorChange != Color.white && mistType == MistColorType.None)
+		{
+			debug.log("進入區域");
+			float t = 1 / timegradient;
+			float time = mathf.pingpong(time.time * t, 1);
+			mistimage.color = color.lerp(color.white, colorchange, time);
+			debug.log("t值:" + time);
+		}*/
+
 		/*// 青色迷霧
 		if (transitioning && mistType_cyan == true)
 		{
@@ -104,7 +126,7 @@ public class MistManager : MonoBehaviour
 	/// <summary>
 	/// 進入事件
 	/// </summary>
-	/// <param name="collision"></param>
+	/// <param name="collision">碰到的物件</param>
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		// 停止協程
@@ -112,9 +134,9 @@ public class MistManager : MonoBehaviour
 		// 呼叫協程 ColorGradient()
 		StartCoroutine(TakeDamage());
 
-		#region 迷霧效果
+		#region 各類迷霧效果
 		// 青色迷霧：提升怪物數量
-		if (collision.gameObject.CompareTag("Player") && mistType == MistType.Cyan)
+		if (collision.gameObject.CompareTag("Player") && mistType == MistColorType.Cyan)
 		{
 			// inMist = true;
 			StartCoroutine(ColorGradient(Color.white, new Color(0f, 0.1f, 0.9f)));
@@ -135,7 +157,7 @@ public class MistManager : MonoBehaviour
 		}
 
 		// 藍色迷霧：加重技能消耗費用
-		if (collision.gameObject.CompareTag("Player") && mistType == MistType.Blue)
+		if (collision.gameObject.CompareTag("Player") && mistType == MistColorType.Blue)
 		{
 			// inMist = true;
 			StartCoroutine(ColorGradient(Color.white, new Color(0f, 0f, 0.99f)));
@@ -152,7 +174,7 @@ public class MistManager : MonoBehaviour
 		}
 
 		// 紫色迷霧：減速
-		if (collision.gameObject.CompareTag("Player") && mistType == MistType.Purple)
+		if (collision.gameObject.CompareTag("Player") && mistType == MistColorType.Purple)
 		{
 			// inMist = true;
 			StartCoroutine(ColorGradient(Color.white, new Color(0.6f, 0f, 0.9f)));
@@ -181,7 +203,7 @@ public class MistManager : MonoBehaviour
 		}
 
 		// 紅色迷霧：減少HP
-		if (collision.gameObject.CompareTag("Player") && mistType == MistType.Red)
+		if (collision.gameObject.CompareTag("Player") && mistType == MistColorType.Red)
 		{
 			// inMist = true;
 			StartCoroutine(ColorGradient(Color.white, new Color(0.99f, 0f, 0f)));
@@ -203,8 +225,8 @@ public class MistManager : MonoBehaviour
 			// Debug.Log(SaveManager.instance.playerData.playerHP);
 		}
 
-		// 綠色迷霧：道具回復效果相反
-		if (collision.gameObject.CompareTag("Player") && mistType == MistType.Green)
+		// 綠色迷霧：道具回復效果相反 or 怪物的道具掉落率為0，地圖掉落率降低
+		if (collision.gameObject.CompareTag("Player") && mistType == MistColorType.Green)
 		{
 			inMist_gree = true;
 			StartCoroutine(ColorGradient(Color.white, new Color(0f, 0.99f, 0f)));
@@ -219,9 +241,13 @@ public class MistManager : MonoBehaviour
 		#endregion
 
 		// Test
-		if (collision.gameObject.CompareTag("Player") && colorChange != Color.white && mistType == MistType.None)
+		if (collision.gameObject.CompareTag("Player") && colorChange != Color.white && mistType == MistColorType.None)
 		{
-			mistImage.color = Color.Lerp(Color.white, colorChange, 0.5f * Time.deltaTime);
+			Debug.Log("進入區域");
+			float t = 1 / timeGradient;
+			float time = Mathf.PingPong(Time.time * t, 1);
+			mistImage.color = Color.Lerp(Color.white, colorChange, time);
+			Debug.Log("t值:" + time);
 		}
 	}
 
@@ -313,13 +339,13 @@ public class MistManager : MonoBehaviour
 		startDamage = false;
 	}
 
-	[SerializeField, Header("繪製矩形\n繪製中心點")] Vector3 center = Vector3.one;
-	[SerializeField, Header("繪製大小")] Vector3 size = Vector3.one;
-
+	#region 繪製圖形
 	private void OnDrawGizmos()
 	{
 		Gizmos.color = new Color(1f, 1f, 0.5f, 0.5f);
 		Gizmos.DrawCube(center, size);
+
+		//Gizmos.DrawIcon(center, "Light Gizmo.tiff", true);
 	}
 
 	private void OnDrawGizmosSelected()
@@ -327,8 +353,12 @@ public class MistManager : MonoBehaviour
 		Gizmos.color = new Color(0.1f, 0.1f, 0.8f, 0.5f);
 		Gizmos.DrawCube(center, size);
 	}
+	#endregion
 
-	public enum MistType
+	/// <summary>
+	/// 迷霧種類
+	/// </summary>
+	public enum MistColorType
 	{
 		None = 0,
 		Cyan = 1,   // 青色
