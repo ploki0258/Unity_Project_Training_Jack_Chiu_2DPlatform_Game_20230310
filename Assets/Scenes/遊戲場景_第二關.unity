@@ -7834,11 +7834,10 @@ MonoBehaviour:
   minAttackSpeed: 10
   spawnWeight: 1.7
   mistType: 0
-  colorChange: {r: 0, g: 0, b: 0, a: 1}
+  colorChange: {r: 1, g: 1, b: 1, a: 1}
   objectName: "\u602A\u7269\u751F\u6210\u9EDE"
   center: {x: 20, y: 0}
   size: {x: 17.5, y: 10}
-  texture: {fileID: 2800000, guid: 67874ba45e025674d92471e82bd504a6, type: 3}
   inMist_gree: 0
   inMist_cyan: 0
 --- !u!61 &761453314
@@ -9250,7 +9249,6 @@ MonoBehaviour:
   objectName: "\u602A\u7269\u751F\u6210\u9EDE"
   center: {x: 83.38, y: 0}
   size: {x: 16.75, y: 10}
-  texture: {fileID: 0}
   inMist_gree: 0
   inMist_cyan: 0
 --- !u!61 &926821856
@@ -14941,7 +14939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mistImage: {fileID: 1598168213}
-  timeGradient: 3
+  timeGradient: 10
   damage: 1
   damageInterval: 5
   cdWeight: 2
@@ -14955,7 +14953,6 @@ MonoBehaviour:
   objectName: "\u602A\u7269\u751F\u6210\u9EDE"
   center: {x: 54.13, y: 0}
   size: {x: 17.5, y: 10}
-  texture: {fileID: 0}
   inMist_gree: 0
   inMist_cyan: 0
 --- !u!61 &1636884308
