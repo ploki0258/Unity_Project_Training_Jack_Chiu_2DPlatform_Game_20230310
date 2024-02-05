@@ -41,7 +41,7 @@ public abstract class Windows<T> : SingletonMonoBehaviour<T> where T : class
     public bool isOpen = false;
     virtual protected void Update()
     {
-        mainUI.alpha = Mathf.Lerp(mainUI.alpha, targetAlpha, Time.deltaTime * openSpeed);
+        mainUI.alpha = Mathf.Lerp(mainUI.alpha, targetAlpha, Time.unscaledDeltaTime * openSpeed);
         if (mainUI.alpha > 0.9f && isOpen == false)
         {
             isOpen = true;

@@ -4,8 +4,18 @@ public class TalkButton : MonoBehaviour
 {
     [SerializeField, Header("閃爍提示")] GameObject Button = null;
     [SerializeField, Header("提示動畫")] Animator archiveAni = null;
+    [SerializeField, Header("存檔點")] bool isArchive = false;
 
-    private void Update()
+	private void Start()
+	{
+        // 一開始先隱藏提示
+        if (isArchive == true)
+        {
+			Button.SetActive(false);
+		}
+	}
+
+	private void Update()
     {
         // HideUI();
         Archive();
@@ -36,7 +46,7 @@ public class TalkButton : MonoBehaviour
     /// </summary>
     public void Archive()
     {
-        if (Button.activeSelf && Input.GetKeyDown(KeyCode.E))
+        if (Button.activeInHierarchy == true && isArchive == true && Input.GetKeyDown(KeyCode.E))
 		{
             SaveManager.instance.SaveData();
 		}

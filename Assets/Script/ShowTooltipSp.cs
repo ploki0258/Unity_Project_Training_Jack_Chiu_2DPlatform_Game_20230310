@@ -14,7 +14,7 @@ public class ShowTooltipSp : MonoBehaviour
 
 	private void OnDisable()
 	{
-		Debug.Log("技能點數顯示訊息被關閉或被刪除");
+		//Debug.Log("技能點數顯示訊息被關閉或被刪除");
 		// 退出登記
 		SaveManager.instance.playerData.renewSkillPoint -= RenewSkillPointAni;
 	}

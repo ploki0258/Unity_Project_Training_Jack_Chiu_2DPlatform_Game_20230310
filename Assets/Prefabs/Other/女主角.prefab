@@ -16485,7 +16485,6 @@ MonoBehaviour:
   limitLR: {x: -1.19, y: 1.19}
   cam1_Main: {fileID: 8603954065742608385}
   cam2_Fungus: {fileID: 0}
-  MainCam: {fileID: 0}
 --- !u!1001 &2642865334441644859
 PrefabInstance:
   m_ObjectHideFlags: 0

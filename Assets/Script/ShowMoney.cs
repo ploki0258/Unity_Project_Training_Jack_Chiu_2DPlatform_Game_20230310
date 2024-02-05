@@ -14,7 +14,7 @@ public class ShowMoney : MonoBehaviour
 
 	private void OnDisable()
 	{
-		Debug.Log("金幣數量被關閉或被刪除");
+		//Debug.Log("金幣數量被關閉或被刪除");
 		// 退出登記
 		SaveManager.instance.playerData.renewCoin -= UpdateCoinUI;
 	}
