@@ -64,6 +64,7 @@ public class StatusWindows : Windows<StatusWindows>
 		base.Open();
 		Time.timeScale = 0f;
 		PlayerCtrl.instance.enabled = false;
+		//Enemy.instance.enabled = false;
 		// Cursor.lockState = CursorLockMode.None;
 	}
 
@@ -73,6 +74,7 @@ public class StatusWindows : Windows<StatusWindows>
 		base.Close();
 		Time.timeScale = 1f;
 		PlayerCtrl.instance.enabled = true;
+		//Enemy.instance.enabled = true;
 		// Cursor.lockState = CursorLockMode.Locked;
 	}
 

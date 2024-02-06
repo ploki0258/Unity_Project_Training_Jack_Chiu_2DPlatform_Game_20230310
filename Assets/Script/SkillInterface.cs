@@ -43,6 +43,7 @@ public class SkillInterface : Windows<SkillInterface>
 		Time.timeScale = 0f;
 		// TalentTree.instance.ShowSkillIcon(4);
 		PlayerCtrl.instance.enabled = false;
+		//Enemy.instance.enabled = false;
 	}
 
 	public override void Close()
@@ -52,5 +53,6 @@ public class SkillInterface : Windows<SkillInterface>
 		isPaused = false;
 		Time.timeScale = 1f;
 		PlayerCtrl.instance.enabled = true;
+		//Enemy.instance.enabled = true;
 	}
 }

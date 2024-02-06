@@ -68,6 +68,7 @@ public class ItemField : Windows<ItemField>
 		isPaused = true;
 		Time.timeScale = 0f;
 		PlayerCtrl.instance.enabled = false;
+		//Enemy.instance.enabled = false;
 	}
 
 	// 關閉視窗時 隱藏滑鼠 時間繼續
@@ -78,6 +79,7 @@ public class ItemField : Windows<ItemField>
 		isPaused = false;
 		Time.timeScale = 1f;
 		PlayerCtrl.instance.enabled = true;
+		//Enemy.instance.enabled = true;
 	}
 
 	// 建立"垃圾桶"列表 用於暫存要清除的格子

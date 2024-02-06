@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
 	public GameObject itemSkill = null;
 	[Header("掉落機率"), Tooltip("怪物的掉落機率"), Range(1, 10)]
 	public int probDrop = 5;
-	
+
 	[Tooltip("怪物所受到的傷害值")]
 	private float damage;
 	/*
@@ -49,6 +49,7 @@ public class Enemy : MonoBehaviour
 	Rigidbody2D rig = null;
 	Animator ani = null;
 	SpawnSystem spawnSystem;
+	bool open = WindowsManager.instance.IsWindowsOpen();
 	#endregion
 
 	// 在整個專案全域宣告一個instance
@@ -59,7 +60,7 @@ public class Enemy : MonoBehaviour
 		instance = this;    // 讓單例等於自己
 		player = GameObject.Find("女主角").transform;
 		rig = GetComponent<Rigidbody2D>();
-		ani = GetComponent<Animator>();
+		ani = GetComponentInChildren<Animator>();
 		spawnSystem = FindObjectOfType<SpawnSystem>();
 	}
 
@@ -73,6 +74,17 @@ public class Enemy : MonoBehaviour
 		TrackingPlayer();
 		GetEnemyDamage();
 		//Debug.Log("怪物血量：" + hpMonster);
+
+
+		if (open == true)
+		{
+			ani.speed = 0;
+			gameObject.SetActive(false);
+		}
+		else
+		{
+			ani.speed = 1;
+		}
 	}
 
 	/// <summary>
@@ -208,12 +220,12 @@ public class Enemy : MonoBehaviour
 				//if (MistManager.instance.inMist_cyan == false)
 				//	// 每消失一隻怪物 計數器就-1
 				//	spawnSystem.enemyCount--;
-				
+
 				ani.SetTrigger("damage");
 				isDeath = true;
 				Invoke("Dead", 1f);
 
-				if (FindObjectOfType<MistManager>() == true && MistManager.instance.inMist_cyan == false)
+				if (MistManager.instance.inMist_cyan == false)
 				{
 					// 如果 目前生成的怪物數量 小於 最大生成數量的話 而且 生成的怪物數量為0 則於5秒後生成怪物
 					if (spawnSystem.enemyCount == 0)

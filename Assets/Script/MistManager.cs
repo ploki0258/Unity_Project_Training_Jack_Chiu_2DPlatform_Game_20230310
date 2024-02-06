@@ -42,7 +42,7 @@ public class MistManager : MonoBehaviour
 	[Tooltip("改變的顏色")]
 	Color changeColor;
 	[Tooltip("變化後的顏色")]
-	private Color tempColor;            // 漸變顏色
+	public Color tempColor;            // 漸變顏色
 	[Tooltip("是否在進行漸變 ")]
 	private bool transitioning = false; // 是否在漸變
 	private bool inMist = false;
@@ -190,7 +190,7 @@ public class MistManager : MonoBehaviour
 			//	ColorTransition(Color.white, new Color(0.6f, 0f, 0.9f));
 			//}
 			// mistImage.color = Color.Lerp(Color.white, new Color(60, 00, 90), 1000f * Time.deltaTime);
-			tempColor = mistImage.color;
+			//tempColor = mistImage.color;
 
 			// 降低玩家移動速度
 			SaveManager.instance.playerData.playerSpeed -= speedWeight * Time.unscaledDeltaTime;
@@ -224,7 +224,7 @@ public class MistManager : MonoBehaviour
 			//	ColorTransition(Color.white, new Color(0.99f, 0f, 0f));
 			//}
 			// mistImage.color = Color.Lerp(Color.white, new Color(99, 00, 00), 100f * Time.deltaTime);
-			tempColor = mistImage.color;
+			//tempColor = mistImage.color;
 
 			// 呼叫協程 ColorGradient()
 			StartCoroutine(TakeDamage());
@@ -255,7 +255,7 @@ public class MistManager : MonoBehaviour
 			//	ColorTransition(Color.white, new Color(0f, 0.99f, 0f));
 			//}
 			// mistImage.color = Color.Lerp(Color.white, new Color(00, 99, 00), 100f * Time.deltaTime);
-			tempColor = mistImage.color;
+			//tempColor = mistImage.color;
 		}
 		#endregion
 		#endregion
@@ -311,9 +311,9 @@ public class MistManager : MonoBehaviour
 	{
 		//float time = Mathf.Clamp01(Time.time / timeGradient);
 		// 迷霧.顏色 = 顏色.漸變(原始顏色, 變化後顏色)
+		time += Time.deltaTime;
 		float t = time * (1f / timeGradient);
 		mistImage.color = Color.Lerp(originalColor, newColor, t);
-		time += Time.deltaTime;
 		tempColor = mistImage.color;
 
 		// 檢查漸變是否完成
