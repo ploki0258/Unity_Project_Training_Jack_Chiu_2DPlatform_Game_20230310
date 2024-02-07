@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 視窗管理器
+/// </summary>
 public class WindowsManager
 {
 	#region 單例
@@ -56,6 +59,7 @@ public class WindowsManager
 	/// <summary>是否有視窗被開啟</summary>
 	public bool IsWindowsOpen()
 	{
+		Debug.Log(windowsList.ToString());	
 		return windowsList.Count > 0;
 	}
 }

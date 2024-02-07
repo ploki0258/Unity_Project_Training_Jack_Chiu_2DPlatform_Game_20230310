@@ -126,7 +126,7 @@ public class Enemy : MonoBehaviour
 		// 距離 = 二維向量的 距離(A點, B點)
 		float dis = Vector3.Distance(transform.position, player.position);
 		// 如果玩家進入追蹤範圍 就追蹤玩家
-		if (dis <= disChase)
+		if (dis <= disChase && open == false)
 		{
 			Vector3 newPos = Vector3.Lerp(transform.position, player.position, Time.unscaledDeltaTime * 0.1f);
 			transform.position = newPos;
