@@ -7,10 +7,8 @@ public class SpawnSystem : MonoBehaviour
 	public float interval = 0f;
 	[Header("生成類別"), Tooltip("是否生成道具")]
 	[SerializeField] bool isItem = false;
-	[Header("怪物預製物")]
-	[SerializeField] GameObject[] prefabEnemy = null;
-	[Header("道具預製物")]
-	[SerializeField] GameObject[] prefabItem = null;
+	[Header("怪物 / 道具預製物")]
+	[SerializeField] GameObject[] prefabEnemy, prefabItem = null;
 	// 繪製圖形
 	[Header("生成點範圍X")]
 	[SerializeField] float range_X;
@@ -95,7 +93,7 @@ public class SpawnSystem : MonoBehaviour
 		// 如果 目前生成的怪物數量 小於 最大生成數量的話 則生成怪物 
 		if (enemyCount < enemyCountMax)
 		{
-			int randomEnemy = Random.Range(0, prefabItem.Length);
+			int randomEnemy = Random.Range(0, prefabEnemy.Length);
 			// 於生成範圍內生成怪物
 			Instantiate(prefabEnemy[randomEnemy], monsterRange, Quaternion.identity);
 			// 每生成一隻怪物 計數器就+1
