@@ -1,22 +1,22 @@
-using System.Collections;
+О╩©using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// ЁФ╗рЁ]╜p╪р╕║ ╓ё╔i╜╚╫ф╕s╕b ╔Т╕С╕a╓Х╛р╔i╘I╔s
+// Е√╝Д╬▀Х╗╜Х╗┬Ф╗║Е╪▐ Д╦█Е▐╞И┤█Х╓┤Е╜≤Е°╗ Д╩╩Д╫∙Е°╟Ф√╧Г ├Е▐╞Е▒╪Е▐╚
 public class GameManager
 {
     static public GameManager instance
     {
-        // ╥М╕Ё╓H╗о╔н╖з╙╨╝и╜т
+        // Г∙╤Ф°┴Д╨╨Д╫©Г■╗Ф┬▒Г └Ф≥┌Е─≥
         get
         {
-            // ╕p╙G╖з╓ё╕s╕b
+            // Е╕┌Ф·°Ф┬▒Д╦█Е╜≤Е°╗
             if (_instance == null)
             {
-                // ╢N╕ш╖з╬л╙е╚ь╔ъ
+                // Е╟╠Х┤╙Ф┬▒Ф├▒Г╘╨Е╩╨Г╚▀
                 _instance = new GameManager();
             }
-            // ╕^╤г╖з╔i╣╧╧О╓Х╗о╔н
+            // Е⌡·Е┌ЁФ┬▒Е▐╞Г╣╕Е╟█Ф√╧Д╫©Г■╗
             return _instance;
         }
     }
@@ -26,11 +26,11 @@ public class GameManager
 
     public int playerMoney = 10;
 
-    public System.Action ╧Cю╦╣╡╖Т╗ф╔С = null;
-    public void ╧Cю╦╣╡╖Т()
+    public System.Action И│┼Ф┬╡Г╣░Ф²÷Д╨▀Д╩╤ = null;
+    public void И│┼Ф┬╡Г╣░Ф²÷()
     {
-        // ╕Ё╓H╕b╡Бе╔╗ф╔С╙╨╦э╢N╘I╔s╗ф╔С
-        if (╧Cю╦╣╡╖Т╗ф╔С != null)
-            ╧Cю╦╣╡╖Т╗ф╔С.Invoke();
+        // Ф°┴Д╨╨Е°╗Х│├Х│╫Д╨▀Д╩╤Г └Х╘╠Е╟╠Е▒╪Е▐╚Д╨▀Д╩╤
+        if (И│┼Ф┬╡Г╣░Ф²÷Д╨▀Д╩╤ != null)
+            И│┼Ф┬╡Г╣░Ф²÷Д╨▀Д╩╤.Invoke();
     }
 }

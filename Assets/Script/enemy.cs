@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour
 {
 	#region 欄位
-	[Header("怪物最大血量"), Range(0, 1000)]
+	[Header("怪物最大血量"), Range(0, 500)]
 	public float hpMonsterMax = 100f;
 	[Header("怪物血條")]
 	public Image barHP = null;
