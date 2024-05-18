@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class 道具欄使用按鈕 : MonoBehaviour
 {
+	[HideInInspector]
 	public Grid 目前選到的格子 = null;
 
 	public void 按了()

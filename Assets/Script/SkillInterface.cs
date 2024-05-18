@@ -5,6 +5,8 @@ public class SkillInterface : Windows<SkillInterface>
 	bool Opening = false;
 	public bool isPaused;
 
+	public float timeSkillInterface;
+
 	protected override void Awake()
 	{
 		base.Awake();
@@ -40,10 +42,8 @@ public class SkillInterface : Windows<SkillInterface>
 		base.Open();
 		Opening = true;
 		isPaused = true;
-		Time.timeScale = 0f;
-		// TalentTree.instance.ShowSkillIcon(4);
+		timeSkillInterface = 0f;
 		PlayerCtrl.instance.enabled = false;
-		//Enemy.instance.enabled = false;
 	}
 
 	public override void Close()
@@ -51,8 +51,7 @@ public class SkillInterface : Windows<SkillInterface>
 		base.Close();
 		Opening = false;
 		isPaused = false;
-		Time.timeScale = 1f;
+		timeSkillInterface = 1f;
 		PlayerCtrl.instance.enabled = true;
-		//Enemy.instance.enabled = true;
 	}
 }

@@ -132,6 +132,7 @@ public class PlayerCtrl : MonoBehaviour
 
 	private void Update()
 	{
+		UpdateTimeScale();
 		PlayerMove();
 		Jump();
 		Attack();
@@ -464,6 +465,14 @@ public class PlayerCtrl : MonoBehaviour
 	{
 		// 播放動畫
 		PlayerCtrl.instance.showMessageTipAni.SetTrigger("play");
+	}
+
+	/// <summary>
+	/// 更新遊戲時間流速
+	/// </summary>
+	void UpdateTimeScale()
+	{
+		Time.timeScale = ItemField.ins.timeItemField * SkillInterface.ins.timeSkillInterface * StatusWindows.ins.timeStatusWindows;
 	}
 
 	/// <summary>

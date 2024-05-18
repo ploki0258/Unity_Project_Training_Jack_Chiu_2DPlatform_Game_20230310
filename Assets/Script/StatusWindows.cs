@@ -6,6 +6,8 @@ public class StatusWindows : Windows<StatusWindows>
 	[SerializeField, Header("顯示文字")] Text textHp, textMp, textAttack, textDefense, textJump, textSpeed, textAttackSpeed, textCostMp;
 	[SerializeField, Header("開啟按鍵")] KeyCode keyCode = KeyCode.R;
 
+	public float timeStatusWindows;
+
 	protected override void Start()
 	{
 		base.Start();
@@ -62,7 +64,7 @@ public class StatusWindows : Windows<StatusWindows>
 	public override void Open()
 	{
 		base.Open();
-		Time.timeScale = 0f;
+		timeStatusWindows = 0f;
 		PlayerCtrl.instance.enabled = false;
 		//Enemy.instance.enabled = false;
 		// Cursor.lockState = CursorLockMode.None;
@@ -72,7 +74,7 @@ public class StatusWindows : Windows<StatusWindows>
 	public override void Close()
 	{
 		base.Close();
-		Time.timeScale = 1f;
+		timeStatusWindows = 1f;
 		PlayerCtrl.instance.enabled = true;
 		//Enemy.instance.enabled = true;
 		// Cursor.lockState = CursorLockMode.Locked;

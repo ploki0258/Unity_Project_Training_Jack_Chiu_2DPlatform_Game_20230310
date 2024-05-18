@@ -12,6 +12,7 @@ public class ItemField : Windows<ItemField>
 	public bool isPaused;
 
 	private PuzzleManager puzzleManager;
+	public float timeItemField;
 
 	protected override void Awake()
 	{
@@ -66,7 +67,7 @@ public class ItemField : Windows<ItemField>
 		base.Open();
 		// Cursor.lockState = CursorLockMode.None;
 		isPaused = true;
-		Time.timeScale = 0f;
+		timeItemField = 0f;
 		PlayerCtrl.instance.enabled = false;
 		//Enemy.instance.enabled = false;
 	}
@@ -77,7 +78,7 @@ public class ItemField : Windows<ItemField>
 		base.Close();
 		// Cursor.lockState = CursorLockMode.Locked;
 		isPaused = false;
-		Time.timeScale = 1f;
+		timeItemField = 1f;
 		PlayerCtrl.instance.enabled = true;
 		//Enemy.instance.enabled = true;
 	}
