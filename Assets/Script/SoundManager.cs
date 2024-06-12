@@ -58,11 +58,20 @@ public class SoundManager : MonoBehaviour
 		sfxSource.mute = !sfxSource.mute;
 	}
 	*/
+
+	/// <summary>
+	/// 調整音樂音量
+	/// </summary>
+	/// <param name="volume"></param>
 	public void MusicVolume(float volume)
 	{
 		musicSource.volume = volume;
 	}
 
+	/// <summary>
+	/// 調整音效音量
+	/// </summary>
+	/// <param name="volume"></param>
 	public void SfxVolume(float volume)
 	{
 		sfxSource.volume = volume;

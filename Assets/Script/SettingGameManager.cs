@@ -48,8 +48,8 @@ public class SettingGameManager : MonoBehaviour
 		gameVolumeIconNoSound.enabled = false;
 		bgmIconNoSound.enabled = false;
 
-		float savedGameVolume = PlayerPrefs.GetFloat(gameVolumeKey, 1f); // 讀取存儲的遊戲音量，預設為0.5f
-		float savedBgmVolume = PlayerPrefs.GetFloat(bgmVolumeKey, 1f); // 讀取存儲的BGM音量，預設為0.5f
+		float savedGameVolume = PlayerPrefs.GetFloat(gameVolumeKey, 1f); // 讀取存儲的遊戲音量，預設為1f
+		float savedBgmVolume = PlayerPrefs.GetFloat(bgmVolumeKey, 1f); // 讀取存儲的BGM音量，預設為1f
 		gameSfxSlider.value = savedGameVolume; // 設定Slider的值為讀取的遊戲音量
 		bgmSlider.value = savedBgmVolume; // 設定Slider的值為讀取的BGM音量
 	}
@@ -77,6 +77,7 @@ public class SettingGameManager : MonoBehaviour
 			gameVolumeIcon.enabled = true;
 			gameVolumeIconNoSound.enabled = false;
 		}
+
 		if (newBgmVolume == 0)
 		{
 			bgmIcon.enabled = false;
