@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1486647978236301386}
   - component: {fileID: 1486647978236301383}
   - component: {fileID: 1486647978236301382}
-  - component: {fileID: 1486647978236301381}
+  - component: {fileID: 4585495656050595322}
   m_Layer: 0
   m_Name: "\u53F2\u840A\u59C6"
   m_TagString: Untagged
@@ -72,7 +72,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.1}
   m_Size: {x: 1, y: 1.7}
   m_Direction: 0
---- !u!114 &1486647978236301381
+--- !u!114 &4585495656050595322
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,18 +81,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1486647978236301380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 326291c50175f0d4aa952ec74e4ba60d, type: 3}
+  m_Script: {fileID: 11500000, guid: d9c0140ea51d0d6448881430bcf359c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hpMonsterMax: 100
   barHP: {fileID: 4276050575448806260}
-  atkMonster: 10
+  atkMonster: 5
   point: {fileID: 1486647978769699526}
   speedMonster: 5
-  disChase: 5
+  disChase: 8
   itemSkill: {fileID: 4671880185607488085, guid: b9058730acfdbdc45bba83fbcbe52e6f,
     type: 3}
-  probDrop: 9
+  probDrop: 5
 --- !u!1 &1486647978769699525
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4276050574291025479}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b463b79ff1ac81b45bb4cdf06cf484db, type: 3}
   m_Name: 
@@ -271,12 +271,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4276050574291025479}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff5c87756943a4040bc95c7f7cfdf1a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_animator: {fileID: 0}
+  m_animator: {fileID: 4276050574291025480}
   TriggerName: 
   IsSleep: 0
 --- !u!1 &4276050575448806263

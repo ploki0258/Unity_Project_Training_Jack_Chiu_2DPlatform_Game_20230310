@@ -44,8 +44,8 @@ public class MeunManager : MonoBehaviour
 	/// </summary>
 	public void StartGame()
 	{
-		PlayerPrefs.DeleteKey("GameData");	// 刪除玩家資料
-		SceneManager.LoadScene("遊戲場景");	// 載入遊戲場景
+		PlayerPrefs.DeleteKey("GameData");  // 刪除玩家資料
+		SceneManager.LoadScene("遊戲場景"); // 載入遊戲場景
 	}
 
 	/// <summary>
@@ -78,7 +78,8 @@ public class MeunManager : MonoBehaviour
 	{
 		settingWindows.SetActive(true);
 		Time.timeScale = 0f;
-		PlayerCtrl.instance.enabled = false;
+		if (PlayerCtrl.instance != null)
+			PlayerCtrl.instance.enabled = false;
 	}
 
 	/// <summary>
@@ -88,6 +89,7 @@ public class MeunManager : MonoBehaviour
 	{
 		settingWindows.SetActive(false);
 		Time.timeScale = 1f;
-		PlayerCtrl.instance.enabled = true;
+		if (PlayerCtrl.instance != null)
+			PlayerCtrl.instance.enabled = true;
 	}
 }

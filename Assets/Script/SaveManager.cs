@@ -118,7 +118,7 @@ public struct PlayerData
 	public int skillObjectID;       // 用以儲存技能物件
 	public int skillSlotID;         // 技能物件存放的座標位置
 
-	#region 技能ZXC
+	#region 技能槽ZXC
 	/// <summary>
 	/// 技能槽Z儲存的技能ID
 	/// </summary>
@@ -131,17 +131,13 @@ public struct PlayerData
 			_skillZ = value;
 
 			// 呼叫技能槽刷新
-			if (renewSkillZXC != null)
+			if (renewSkillSlotZXC != null)
 			{
-				renewSkillZXC.Invoke();
+				renewSkillSlotZXC.Invoke();
 			}
 		}
 	}
 	[SerializeField] int _skillZ;
-	/// <summary>
-	/// 技能槽刷新事件
-	/// </summary>
-	public System.Action renewSkillZXC;
 
 	/// <summary>
 	/// 技能槽X儲存的技能ID
@@ -154,9 +150,9 @@ public struct PlayerData
 		{
 			_skillX = value;
 
-			if (renewSkillZXC != null)
+			if (renewSkillSlotZXC != null)
 			{
-				renewSkillZXC.Invoke();
+				renewSkillSlotZXC.Invoke();
 			}
 		}
 	}
@@ -174,13 +170,18 @@ public struct PlayerData
 			_skillC = value;
 
 			// 呼叫刷新技能點數
-			if (renewSkillZXC != null)
+			if (renewSkillSlotZXC != null)
 			{
-				renewSkillZXC.Invoke();
+				renewSkillSlotZXC.Invoke();
 			}
 		}
 	}
 	[SerializeField] int _skillC;
+	
+	/// <summary>
+	/// 技能槽刷新事件
+	/// </summary>
+	public System.Action renewSkillSlotZXC;
 	#endregion
 
 	/// <summary>
@@ -629,7 +630,7 @@ public struct PlayerData
 		renewCoin = null;
 		renewSkillPoint = null;
 		Act_goodsChange = null;
-		renewSkillZXC = null;
+		renewSkillSlotZXC = null;
 		itemNumberMax = 999;
 		haveSkill = new List<int>();
 		haveItem = new List<int>();
@@ -675,7 +676,7 @@ public struct PlayerData
 		renewCoin = null;
 		renewSkillPoint = null;
 		Act_goodsChange = null;
-		renewSkillZXC = null;
+		renewSkillSlotZXC = null;
 		itemNumberMax = 999;
 		haveSkill = new List<int>();
 		haveItem = new List<int>();

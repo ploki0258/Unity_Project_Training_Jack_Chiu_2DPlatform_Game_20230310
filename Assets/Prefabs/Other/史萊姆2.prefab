@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1935043901326990064}
   - component: {fileID: 1935043901326990065}
   - component: {fileID: 1935043901326990070}
-  - component: {fileID: 1935043901326990071}
+  - component: {fileID: 5729907881353210437}
   m_Layer: 0
   m_Name: "\u53F2\u840A\u59C62"
   m_TagString: enemy
@@ -88,7 +88,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.97, y: 1.6}
   m_Direction: 0
---- !u!114 &1935043901326990071
+--- !u!114 &5729907881353210437
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,18 +97,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1935043901326990068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 326291c50175f0d4aa952ec74e4ba60d, type: 3}
+  m_Script: {fileID: 11500000, guid: d9c0140ea51d0d6448881430bcf359c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpMonsterMax: 200
+  hpMonsterMax: 100
   barHP: {fileID: 1935043901930004929}
-  atkMonster: 20
+  atkMonster: 5
   point: {fileID: 1935043903081271564}
   speedMonster: 5
-  disChase: 7
-  itemSkill: {fileID: 1022320456975806930, guid: 027360ec4fca6c14b8d7cdd75cc5e103,
+  disChase: 8
+  itemSkill: {fileID: 4671880185607488085, guid: b9058730acfdbdc45bba83fbcbe52e6f,
     type: 3}
-  probDrop: 10
+  probDrop: 5
 --- !u!1 &1935043901930004934
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,7 +262,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1829792938, guid: 4350a1513b18f7f49a4d38258bcd36dc, type: 3}
+  m_Sprite: {fileID: 2023689072, guid: 996b95468dc1483458986cad31b0af56, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

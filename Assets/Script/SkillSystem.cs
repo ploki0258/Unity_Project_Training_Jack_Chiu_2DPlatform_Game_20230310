@@ -29,12 +29,12 @@ public class SkillSystem : MonoBehaviour
 	{
 		if (SaveManager.instance.playerData.skillZ != -1 || SaveManager.instance.playerData.skillX != -1 || SaveManager.instance.playerData.skillC != -1)
 			當前選到的技能 = ZXCType.NONE;
-		SaveManager.instance.playerData.renewSkillZXC += 技能發生變化;
+		SaveManager.instance.playerData.renewSkillSlotZXC += 技能發生變化;
 	}
 
 	private void OnDisable()
 	{
-		SaveManager.instance.playerData.renewSkillZXC -= 技能發生變化;
+		SaveManager.instance.playerData.renewSkillSlotZXC -= 技能發生變化;
 	}
 
 	private void Update()
@@ -58,42 +58,6 @@ public class SkillSystem : MonoBehaviour
 		}
 		return skillSlot[slotID];
 	}
-
-	/// <summary>
-	/// 紀錄所按下的鍵盤按鈕
-	/// </summary>
-	/*private void KeepKeyCode()
-	{
-		foreach (KeyCode keyCode in System.Enum.GetValues(typeof(KeyCode)))
-		{
-			// 如果按下 keyCode 等於 Z / X / C按鍵
-			if (Input.GetKeyDown(keyCode) == Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(keyCode) == Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(keyCode) == Input.GetKeyDown(KeyCode.C))
-			{
-				// 如果 keyCode 等於 當前的keyCode
-				if (keyCode == currentKeyCode)
-				{
-					//Debug.Log("按下相同按鈕");
-
-					if (PlayerCtrl.instance.atkObject != null)
-					{
-
-					}
-					else if (PlayerCtrl.instance.atkObject == null)
-					{
-
-					}
-				}
-				else if (keyCode != currentKeyCode)
-				{
-					//Debug.Log("按下不同按鈕");
-				}
-
-				// 當前的鍵盤按鈕 = 按下的按鈕
-				currentKeyCode = keyCode;
-				//Debug.Log("按下：" + currentKeyCode);
-			}
-		}
-	}*/
 
 	void 技能發生變化()
 	{
@@ -153,7 +117,7 @@ public class SkillSystem : MonoBehaviour
 		{
 			// 如果 當前選到的技能 等於 狀態Z
 			if (當前選到的技能 == ZXCType.Z)
-				// 當前選到的技能 變為 狀態NONE
+				// 當前選到的技能 變為 狀態NONE(取消選取)
 				當前選到的技能 = ZXCType.NONE;
 			else
 				// 當前選到的技能 變為 狀態Z

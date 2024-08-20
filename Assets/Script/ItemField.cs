@@ -134,22 +134,4 @@ public class ItemField : Windows<ItemField>
 			}
 		}
 	}
-
-	/*
-    void 刷新道具欄()
-    {
-        // 根據有幾個道具生成幾個商品
-        for (int i = 0; i < ItemManager.instance.AllItem.Length; i++)
-        {
-            GameObject 剛剛生成的商品 = Instantiate(tempGrid, itemFieldBG);
-            剛剛生成的商品.SetActive(true);
-            RectTransform UI位置 = 剛剛生成的商品.GetComponent<RectTransform>();
-
-            UI位置.anchoredPosition = new Vector2(UI位置.anchoredPosition.x, 20f + (i * 220f));
-
-            剛剛生成的商品.GetComponent<Grid>().輸入資料(SaveManager.instance.goodsList[i]);
-        }
-        itemFieldBG.sizeDelta = new Vector2(itemFieldBG.sizeDelta.x, 20f + (ItemManager.instance.AllItem.Length * 22f));
-    }
-    */
 }

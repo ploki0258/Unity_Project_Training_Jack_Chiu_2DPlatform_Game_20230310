@@ -123,7 +123,6 @@ public class PlayerCtrl : MonoBehaviour
 
 	private void OnDisable()
 	{
-		Debug.Log("女主角被關閉或被刪除");
 		// 退出登記
 		SaveManager.instance.playerData.renewMmessageTip -= RenewMessageTip;
 		//SaveManager.instance.playerData.renewPlayerHP -= RenewPlayerHP;

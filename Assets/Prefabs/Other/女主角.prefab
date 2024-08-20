@@ -2013,7 +2013,7 @@ RectTransform:
   - {fileID: 7067629960174217015}
   - {fileID: 7067629959536715778}
   m_Father: {fileID: 661030037}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2161,9 +2161,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1464402241}
-  - {fileID: 468894845}
   - {fileID: 652453732}
+  - {fileID: 468894845}
+  - {fileID: 1464402241}
   m_Father: {fileID: 934149899}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2774,6 +2774,7 @@ MonoBehaviour:
   openSpeed: 5
   isOpen: 0
   isPaused: 0
+  timeSkillInterface: 0
 --- !u!1 &771769212
 GameObject:
   m_ObjectHideFlags: 0
@@ -5304,7 +5305,7 @@ RectTransform:
   - {fileID: 7067629961074007776}
   - {fileID: 7067629961004141533}
   m_Father: {fileID: 661030037}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8590,6 +8591,7 @@ MonoBehaviour:
   tempGrid: {fileID: 631978251980923607}
   itemFieldBG: {fileID: 631978252920529204}
   isPaused: 0
+  timeItemField: 0
 --- !u!225 &631978252963403268
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -13125,6 +13127,7 @@ MonoBehaviour:
   textAttackSpeed: {fileID: 6426397198199749376}
   textCostMp: {fileID: 6426397198153800062}
   keyCode: 114
+  timeStatusWindows: 0
 --- !u!1 &6426397199365997699
 GameObject:
   m_ObjectHideFlags: 0
@@ -16376,7 +16379,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.24
+  orthographic size: 5.2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
