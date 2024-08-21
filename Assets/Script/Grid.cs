@@ -72,12 +72,12 @@ public class Grid : MonoBehaviour
 		{
 			#region 執行道具效果
 			// 根據道具效果做各種事情
+			float hp = SaveManager.instance.playerData.playerHP;
 			SaveManager.instance.playerData.playerHP += dataGrid.恢復HP;
-			SaveManager.instance.playerData.playerHP =
-				Mathf.Clamp(SaveManager.instance.playerData.playerHP, SaveManager.instance.playerData.playerHP, PlayerCtrl.instance.maxHP);
+			SaveManager.instance.playerData.playerHP = Mathf.Clamp(hp, 0f, PlayerCtrl.instance.maxHP);
 			SaveManager.instance.playerData.playerMP += dataGrid.恢復MP;
-			SaveManager.instance.playerData.playerMP =
-				Mathf.Clamp(SaveManager.instance.playerData.playerMP, SaveManager.instance.playerData.playerMP, PlayerCtrl.instance.maxMP);
+			float mp = SaveManager.instance.playerData.playerMP;
+			SaveManager.instance.playerData.playerMP = Mathf.Clamp(mp, 0f, PlayerCtrl.instance.maxMP);
 			SaveManager.instance.playerData.playerAttack += dataGrid.提升攻擊力;
 			SaveManager.instance.playerData.playerDefense += dataGrid.提升防禦力;
 			SaveManager.instance.playerData.playerJump += dataGrid.提升跳躍力;
@@ -95,6 +95,22 @@ public class Grid : MonoBehaviour
 			if (dataGrid.獲得額外點數 == 0)
 				SaveManager.instance.playerData.renewSkillPoint = null;
 			SaveManager.instance.playerData.skillPoint += dataGrid.獲得額外點數;
+			#endregion
+
+			#region 按鈕功能
+			// 不可被使用的東西 就不執行
+			if (dataGrid.canUse == false)
+			{
+				return;
+			}
+			// 如果會消耗 就減少一個
+			else if (dataGrid.Consumables == true)
+			{
+				SaveManager.instance.playerData.RemoveItem(dataGrid.id);
+				// 到玩家紀錄中 移除道具列表(ID)
+				SaveManager.instance.playerData.haveItem.Remove(dataGrid.id);
+				// Debug.Log("消耗" + dataGrid.title);
+			}
 			#endregion
 
 			#region 提示訊息
@@ -140,22 +156,6 @@ public class Grid : MonoBehaviour
 					SaveManager.instance.playerData.playerMP =
 						Mathf.Clamp(SaveManager.instance.playerData.playerMP, SaveManager.instance.playerData.playerMP, PlayerCtrl.instance.maxMP);
 				}
-			}
-			#endregion
-
-			#region 按鈕功能
-			// 不可被使用的東西 就不執行
-			if (dataGrid.canUse == false)
-			{
-				return;
-			}
-			// 如果會消耗 就減少一個
-			else if (dataGrid.Consumables == true)
-			{
-				SaveManager.instance.playerData.RemoveItem(dataGrid.id);
-				// 到玩家紀錄中 移除道具列表(ID)
-				SaveManager.instance.playerData.haveItem.Remove(dataGrid.id);
-				// Debug.Log("消耗" + dataGrid.title);
 			}
 			#endregion
 		}

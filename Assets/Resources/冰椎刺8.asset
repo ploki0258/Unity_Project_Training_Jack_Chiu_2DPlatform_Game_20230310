@@ -20,7 +20,7 @@ MonoBehaviour:
   skillPrefab: {fileID: 6721646784831770407, guid: db5f628dae4f1444396dbf88e43967ec,
     type: 3}
   skillCate: {r: 0.023584902, g: 0.4605793, b: 1, a: 1}
-  typeColor: 2
+  typeColor: 3
   isSpecial: 0
   typeSkill: 0
   attackDis: "\u767C\u5C04\u51B0\u523A"

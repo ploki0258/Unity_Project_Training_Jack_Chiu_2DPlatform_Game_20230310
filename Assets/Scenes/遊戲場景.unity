@@ -991,6 +991,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &104601810 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 774273517, guid: 0648648337d78ce4f813692eda58c245,
+    type: 3}
+  m_PrefabInstance: {fileID: 6426397199979230320}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &114230623
 GameObject:
   m_ObjectHideFlags: 0
@@ -6133,6 +6139,12 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.66, y: 8.450949}
   m_EdgeRadius: 0
+--- !u!1 &787831024 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 969935198, guid: 0648648337d78ce4f813692eda58c245,
+    type: 3}
+  m_PrefabInstance: {fileID: 6426397199979230320}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &805299991
 GameObject:
   m_ObjectHideFlags: 0
@@ -12503,12 +12515,40 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 55776621, guid: 0648648337d78ce4f813692eda58c245, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 176627019, guid: 0648648337d78ce4f813692eda58c245, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 593385761}
     - target: {fileID: 760676307, guid: 0648648337d78ce4f813692eda58c245, type: 3}
       propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 776574426, guid: 0648648337d78ce4f813692eda58c245, type: 3}
+      propertyPath: skillBtn
+      value: 
+      objectReference: {fileID: 104601810}
+    - target: {fileID: 776574426, guid: 0648648337d78ce4f813692eda58c245, type: 3}
+      propertyPath: skillBtns.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 776574426, guid: 0648648337d78ce4f813692eda58c245, type: 3}
+      propertyPath: skillBtns.Array.data[0]
+      value: 
+      objectReference: {fileID: 104601810}
+    - target: {fileID: 776574426, guid: 0648648337d78ce4f813692eda58c245, type: 3}
+      propertyPath: skillBtns.Array.data[1]
+      value: 
+      objectReference: {fileID: 787831024}
+    - target: {fileID: 776574426, guid: 0648648337d78ce4f813692eda58c245, type: 3}
+      propertyPath: skillBtns.Array.data[2]
+      value: 
+      objectReference: {fileID: 787831024}
+    - target: {fileID: 969935198, guid: 0648648337d78ce4f813692eda58c245, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1684194100, guid: 0648648337d78ce4f813692eda58c245, type: 3}
@@ -12705,6 +12745,11 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1719399012}
+    - target: {fileID: 7067629959536715779, guid: 0648648337d78ce4f813692eda58c245,
+        type: 3}
+      propertyPath: m_Name
+      value: "\u69FD\u4F4D\u6587\u5B57_L"
+      objectReference: {fileID: 0}
     - target: {fileID: 7067629960617996439, guid: 0648648337d78ce4f813692eda58c245,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -12720,11 +12765,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 593385761}
+    - target: {fileID: 7067629960659906501, guid: 0648648337d78ce4f813692eda58c245,
+        type: 3}
+      propertyPath: m_Name
+      value: "\u69FD\u4F4D\u6587\u5B57_M"
+      objectReference: {fileID: 0}
     - target: {fileID: 7067629960929750279, guid: 0648648337d78ce4f813692eda58c245,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 593385761}
+    - target: {fileID: 7067629961004141530, guid: 0648648337d78ce4f813692eda58c245,
+        type: 3}
+      propertyPath: m_Name
+      value: "\u69FD\u4F4D\u6587\u5B57_R"
+      objectReference: {fileID: 0}
     - target: {fileID: 7848826392862498581, guid: 0648648337d78ce4f813692eda58c245,
         type: 3}
       propertyPath: m_LocalRotation.w

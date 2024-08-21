@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using Fungus;
 
 /// <summary>
 /// 技能拖曳設置系統
@@ -43,7 +39,6 @@ public class SkillDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 			Debug.Log("數值最小為0");
 			return null;
 		}
-		
 		return skillData.skillIcon;
 	}
 

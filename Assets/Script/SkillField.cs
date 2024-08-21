@@ -12,16 +12,13 @@ public class SkillField : MonoBehaviour
 	[SerializeField, Header("技能說明")]
 	Text infoSkill;
 	[SerializeField, Header("技能按鈕：學習按鈕、已習得、尚未解鎖")]
-	GameObject[] btnSkill;
-	// [SerializeField, Header("按鈕文字")]
-	// Text btnText;
+	GameObject skillBtn;
 
 	[Tooltip("是否已學習該技能")]
 	bool alreSkill;     // 是否已學習該技能
 	[Tooltip("技能資料")]
 	Skill skillData;    // 技能資料
-	Text btn1Text;
-	Text btn2Text;
+	Text skillBtnText;
 	
 	private void Awake()
 	{
@@ -30,16 +27,12 @@ public class SkillField : MonoBehaviour
 		iconSkill.transform.localScale = Vector3.zero;
 		titleSkill.text = "";
 		infoSkill.text = "";
-		// infoSkill[1].text = "";
-		btnSkill[0].SetActive(false);
-		btnSkill[1].SetActive(false);
-		btnSkill[2].SetActive(false);
+		skillBtn.SetActive(false);
 	}
 
 	private void Start()
 	{
-		// btn1Text = btnSkill[0].GetComponentInChildren<Text>();
-		// btn2Text = btnSkill[1].GetComponentInChildren<Text>();
+		skillBtnText = skillBtn.GetComponentInChildren<Text>();
 	}
 
 	/// <summary>
@@ -48,6 +41,7 @@ public class SkillField : MonoBehaviour
 	/// <param name="id">技能ID</param>
 	public void 初始化技能(int id)
 	{
+		skillBtn.SetActive(true);
 		// 查找技能資料
 		skillData = SkillManager.instance.FindSkillByID(id);
 
@@ -58,8 +52,9 @@ public class SkillField : MonoBehaviour
 		// infoSkill[1].text = "花費金幣：" + skillData.skillCoinCost.ToString() + "\n花費技能點數" + skillData.skillPointCost;
 		// 如果玩家沒有該技能的話 才顯示按鈕
 		alreSkill = SaveManager.instance.playerData.IsHaveSkill(id);
-		btnSkill[0].SetActive(alreSkill == false);  // 如果沒有學習該技能 則顯示學習按鈕
-		btnSkill[1].SetActive(alreSkill == true);   // 如果已經學習該技能 顯示已習得按鈕
+		// 如果沒有學習該技能 則顯示學習按鈕
+		// 如果已經學習該技能 顯示已習得按鈕
+		skillBtnText.text = alreSkill == false ? "學習" : "已習得";
 		// 如果玩家沒有該技能的話
 		if (alreSkill == false)
 		{
@@ -73,9 +68,7 @@ public class SkillField : MonoBehaviour
 				if (SaveManager.instance.playerData.IsHaveSkill(currentlySkill.Pre_id) == false)
 				{
 					// Debug.Log("需先習得前一個技能");
-					btnSkill[0].SetActive(false);
-					btnSkill[1].SetActive(false);
-					btnSkill[2].SetActive(true);    // 顯示尚未解鎖按鈕
+					skillBtnText.text = "尚未解鎖";    // 顯示尚未解鎖按鈕
 				}
 			}
 		}
