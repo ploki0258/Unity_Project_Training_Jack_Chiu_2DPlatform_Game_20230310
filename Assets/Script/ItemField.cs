@@ -109,7 +109,7 @@ public class ItemField : Windows<ItemField>
 		// i小於格子數量 20
 		for (int i = 0; i < 20; i++)
 		{
-			// 如果i小於玩家持有的道具數量 就顯示道具
+			// 如果i小於玩家持有的道具數量 就顯示道具(i代表格子數量，道具依序顯示)
 			if (i < SaveManager.instance.playerData.goodsList.Count)
 			{
 				// 顯示持有道具
