@@ -64,9 +64,9 @@ public class Grid : MonoBehaviour
 	}
 
 	/// <summary>
-	/// 按下按鈕
+	/// 按下使用按鈕
 	/// </summary>
-	public void PressButton()
+	public void PressUseButton()
 	{
 		if (btnUse != null)
 		{

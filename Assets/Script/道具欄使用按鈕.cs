@@ -11,6 +11,6 @@ public class 道具欄使用按鈕 : MonoBehaviour
 	{
 		if (目前選到的格子 == null)
 			return;
-		目前選到的格子.PressButton();
+		目前選到的格子.PressUseButton();
 	}
 }
